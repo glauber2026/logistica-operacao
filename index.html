@@ -425,7 +425,19 @@ main table button{padding:7px 12px!important;font-size:13.5px!important;min-heig
 #qrVivo{position:fixed;inset:0;z-index:60;background:#111821F2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
 #qrVivo .qrCaixa{position:relative;width:min(86vw,420px);aspect-ratio:1;border-radius:26px;overflow:hidden;background:#000;box-shadow:0 14px 40px #0008}
 #qrVid{width:100%;height:100%;object-fit:cover}
-#qrVivo .qrMira{position:absolute;inset:14%;border:3px solid #FF9F43;border-radius:20px;box-shadow:0 0 0 2000px #00000040;animation:qrMira 1.4s ease-in-out infinite}
+#qrVivo .qrMira{position:absolute;inset:14%;border:3px solid #FF9F43;border-radius:20px;box-shadow:0 0 0 2000px #0000008C;animation:qrMira 1.4s ease-in-out infinite}
+#qrVivo .qrMira{overflow:hidden}
+#qrVivo .qrLinha{position:absolute;left:6%;right:6%;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#FF9A3C,transparent);box-shadow:0 0 12px #FF9A3C;animation:qrLinha 2s ease-in-out infinite}
+@keyframes qrLinha{0%{top:6%}50%{top:92%}100%{top:6%}}
+#qrVivo.qrOk .qrMira{border-color:#16A34A!important;animation:none!important;box-shadow:0 0 0 2000px #0000008C,0 0 22px #16A34A}
+#qrVivo.qrOk .qrLinha{display:none}
+#qrVivo .qrFerr{display:flex;gap:12px;align-items:center;width:min(86vw,420px)}
+#qrVivo .qrLuz{background:#FFFFFF26!important;color:#fff!important;border:1.5px solid #FFFFFF80!important;border-radius:50%!important;width:48px!important;height:48px!important;min-height:0!important;padding:0!important;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:none!important}
+#qrVivo .qrLuz.on{background:#FF9A3C!important;color:#2E2E30!important;border-color:#FF9A3C!important}
+#qrVivo .qrZoom{flex:1;accent-color:#FF9A3C;height:30px}
+#qrVivo .qrFoco{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border:2px solid #FF9A3C;border-radius:50%;pointer-events:none;animation:qrFoco .7s ease-out forwards}
+@keyframes qrFoco{0%{transform:scale(1.5);opacity:1}100%{transform:scale(1);opacity:0}}
+#qrVTx.qrDica{color:#FFD7A8}
 @keyframes qrMira{50%{border-color:#FFFFFF}}
 #qrVTx{color:#fff;text-align:center;font-size:16px;margin:0;line-height:1.4}
 #qrVivo .qrFoto{background:#fff;color:#E06A10;font-weight:700;padding:11px 18px;border-radius:16px;cursor:pointer;font-size:15px}
@@ -1106,7 +1118,8 @@ button:disabled.ocup{opacity:1!important}
 <div id="lsFundo" class="np" onclick="fecharLista()"></div>
 <div id="lsJan" class="np" role="dialog" aria-labelledby="lsTit"><div class="sinoCab"><b id="lsTit">Escolher produto</b><button type="button" class="sinoX" onclick="fecharLista()" aria-label="Fechar">✕</button></div>
 <input id="lsBusca" autocomplete="off" placeholder="Digite o código ou parte da descrição" oninput="pintarLista()"><div id="lsItens"></div></div>
-<div id="qrVivo" class="np"><div class="qrCaixa"><video id="qrVid" autoplay playsinline muted></video><div class="qrMira"></div></div>
+<div id="qrVivo" class="np"><div class="qrCaixa" id="qrCaixa" onclick="qrFocar(event)"><video id="qrVid" autoplay playsinline muted></video><div class="qrMira"><div class="qrLinha"></div></div></div>
+<div class="qrFerr"><button type="button" id="qrLuzB" class="qrLuz" hidden onclick="qrLanterna()" aria-label="Lanterna"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2h10v4l-3 4v12h-4V10L7 6z"/><path d="M12 13v2"/></svg></button><input type="range" id="qrZoomR" class="qrZoom" hidden aria-label="Zoom" oninput="qrZoom(this.value)"></div>
 <p id="qrVTx">Abrindo a câmera...</p>
 <label for="qrArq" class="qrFoto"><svg class="icB" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg>Ler QR Code com a câmera</label>
 <button type="button" class="qrSair" onclick="qrFechar()">Cancelar</button></div>
@@ -1169,13 +1182,20 @@ var POS = '<?= pos ?>', MODO = '<?= modo ?>';
 if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};location.search.replace(/^\?/,'').split('&').forEach(function(x){var k=x.split('=');if(k[0])q[decodeURIComponent(k[0])]=decodeURIComponent((k[1]||'').replace(/\+/g,' '))});
   POS=String(q.p||'').toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,20);MODO=String(q.v||'').toLowerCase().replace(/[^a-z]/g,'').slice(0,10)})()}
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
+/* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
+var FILA_SRV=[],FILA_T=0;
 function servidor(fn,args,ok,falha){args=args||[];ok=ok||function(){};falha=falha||function(){};
   if(window.google&&google.script&&google.script.run){google.script.run.withSuccessHandler(ok).withFailureHandler(falha)[fn].apply(null,args);return}
   if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\/]+\/exec$/.test(API_URL)){falha(new Error('o link do app (/exec) não foi colado no Index.html do GitHub'));return}
-  fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:fn,args:args}),redirect:'follow'})
+  FILA_SRV.push({fn:fn,args:args,ok:ok,falha:falha});if(FILA_SRV.length>=20){clearTimeout(FILA_T);enviarFila();return}
+  if(!FILA_T)FILA_T=setTimeout(enviarFila,25)}
+function enviarFila(){FILA_T=0;var l=FILA_SRV;FILA_SRV=[];if(!l.length)return;
+  var erroTodos=function(e){var m=String(e&&e.message||e);if(/Failed to fetch|NetworkError|Load failed/i.test(m)&&navigator.onLine!==false)m='o app no Google não respondeu. Confira se a implantação está com "Quem pode acessar: Qualquer pessoa"';l.forEach(function(x){x.falha(new Error(m))})};
+  fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({lote:l.map(function(x){return {fn:x.fn,args:x.args}})}),redirect:'follow'})
     .then(function(x){if(!x.ok)throw new Error('o servidor respondeu '+x.status);return x.json()})
-    .then(function(d){if(d&&d.erro)throw new Error(d.erro);ok(d?d.r:undefined)})
-    .catch(function(e){var m=String(e&&e.message||e);if(/Failed to fetch|NetworkError|Load failed/i.test(m)&&navigator.onLine!==false)m='o app no Google não respondeu. Confira se a implantação está com "Quem pode acessar: Qualquer pessoa"';falha(new Error(m))})}
+    .then(function(d){if(d&&d.erro)throw new Error(d.erro);var rs=(d&&d.lote)||[];
+      l.forEach(function(x,k){var o=rs[k]||{erro:'sem resposta do servidor'};try{if(o.erro)x.falha(new Error(o.erro));else x.ok(o.r)}catch(e){console.error(e)}})})
+    .catch(erroTodos)}
 var ITENS = [], ITMAP = {}, tvTimer = null;
 function $(i){return document.getElementById(i)}
 /* Janela de confirmação e de aviso do próprio app, no lugar das caixas do navegador (que mostram o endereço do Google) */
@@ -1331,24 +1351,68 @@ var GRUPO='ini';
 var QR_ALVO='';
 var QR_CB=null;
 var QR_ST=null,QR_LOOP=0;
+var QR_ULT={t:0,txt:''},QR_TRK=null,QR_LUZ=false,QR_WL=null,QR_DICA=0,QR_INI=0;
 function lerQR(id,cb){QR_ALVO=id;QR_CB=cb||null;$('qrArq').value='';
   /* Dentro do Google a câmera ao vivo é bloqueada: abre a câmera de foto direto, sem tela intermediária */
   if(window.top!==window.self){$('qrArq').click();return}
-  var j=$('qrVivo');j.style.display='flex';$('qrVTx').textContent='Abrindo a câmera...';
+  var j=$('qrVivo');j.classList.remove('qrOk');j.style.display='flex';var tx=$('qrVTx');tx.className='';tx.textContent='Abrindo a câmera...';
+  $('qrLuzB').hidden=true;$('qrZoomR').hidden=true;QR_LUZ=false;$('qrLuzB').classList.remove('on');
   if(!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)){qrSemVivo();return}
-  navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false}).then(function(st){
+  /* tela não apaga enquanto a câmera está aberta */
+  try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(function(w){QR_WL=w}).catch(function(){})}catch(e){}
+  var LENTE=LS.getItem('jeLente')||'';
+  var pede=function(dev){var v={width:{ideal:1920},height:{ideal:1080},advanced:[{focusMode:'continuous'}]};if(dev)v.deviceId={exact:dev};else v.facingMode={ideal:'environment'};
+    return navigator.mediaDevices.getUserMedia({video:v,audio:false})};
+  pede(LENTE).catch(function(){LS.removeItem('jeLente');return pede('')}).then(function(st){
+    if($('qrVivo').style.display==='none'){st.getTracks().forEach(function(t){t.stop()});return}
     QR_ST=st;var v=$('qrVid');v.srcObject=st;v.setAttribute('playsinline','');v.muted=true;v.play();
-    $('qrVTx').textContent='Aponte para o QR Code da etiqueta';qrVarrer();
+    QR_TRK=st.getVideoTracks()[0];qrRecursos();
+    $('qrVTx').textContent='Aponte para o QR Code da etiqueta';QR_INI=Date.now();qrVarrer();
+    if(!LENTE)qrMelhorLente();
   }).catch(function(){qrSemVivo()})}
-function qrSemVivo(){$('qrVid').style.display='none';$('qrVTx').innerHTML='Toque no botão abaixo e tire uma foto do QR Code.<br><small>Deixe o QR Code no meio da foto, de perto e com boa luz.</small>'}
-function qrFechar(){cancelAnimationFrame(QR_LOOP);if(QR_ST){QR_ST.getTracks().forEach(function(t){t.stop()});QR_ST=null}
-  var v=$('qrVid');v.srcObject=null;v.style.display='';$('qrVivo').style.display='none'}
-function qrVarrer(){var v=$('qrVid'),c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true}),bd=null,ocup=false;
+/* Celular com várias câmeras traseiras: escolhe a principal (não a grande-angular) e guarda a escolha */
+function qrMelhorLente(){try{navigator.mediaDevices.enumerateDevices().then(function(ds){
+  var tr=ds.filter(function(d){return d.kind==='videoinput'&&/back|traseira|rear|environment/i.test(d.label)});if(tr.length<2||!QR_TRK)return;
+  var boa=tr.filter(function(d){return !/ultra|wide|grande|angular|tele|macro|depth|0[.,]5/i.test(d.label)});
+  var esc=(tr.filter(function(d){return /camera2 0\b|camera 0\b/i.test(d.label)})[0])||boa[0]||tr[0];
+  var atual=(QR_TRK.getSettings&&QR_TRK.getSettings().deviceId)||'';LS.setItem('jeLente',esc.deviceId);
+  if(esc.deviceId&&esc.deviceId!==atual&&QR_ST){var a=QR_ALVO,c=QR_CB;qrPararCam();lerQR(a,c)}})}catch(e){}}
+/* Lanterna e zoom: só aparecem se o celular aceitar */
+function qrRecursos(){var cp={};try{cp=QR_TRK.getCapabilities?QR_TRK.getCapabilities():{}}catch(e){}
+  $('qrLuzB').hidden=!cp.torch;
+  var z=$('qrZoomR');if(cp.zoom&&cp.zoom.max>cp.zoom.min){z.min=cp.zoom.min;z.max=Math.min(cp.zoom.max,8);z.step=cp.zoom.step||0.1;z.value=(QR_TRK.getSettings().zoom)||cp.zoom.min;z.hidden=false}else z.hidden=true}
+function qrLanterna(){if(!QR_TRK)return;QR_LUZ=!QR_LUZ;QR_TRK.applyConstraints({advanced:[{torch:QR_LUZ}]}).then(function(){$('qrLuzB').classList.toggle('on',QR_LUZ)}).catch(function(){QR_LUZ=false;$('qrLuzB').hidden=true})}
+function qrZoom(v){if(QR_TRK)QR_TRK.applyConstraints({advanced:[{zoom:Number(v)}]}).catch(function(){})}
+/* Tocar na imagem: foca naquele ponto (nos celulares que aceitam) */
+function qrFocar(ev){var cx=$('qrCaixa'),r=cx.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
+  var a=document.createElement('div');a.className='qrFoco';a.style.left=(x*100)+'%';a.style.top=(y*100)+'%';cx.appendChild(a);setTimeout(function(){a.remove()},800);
+  if(!QR_TRK)return;var cp={};try{cp=QR_TRK.getCapabilities?QR_TRK.getCapabilities():{}}catch(e){}
+  var adv={};if(cp.pointsOfInterest)adv.pointsOfInterest=[{x:x,y:y}];if(cp.focusMode&&cp.focusMode.indexOf('single-shot')>=0)adv.focusMode='single-shot';
+  if(Object.keys(adv).length)QR_TRK.applyConstraints({advanced:[adv]}).then(function(){if(cp.focusMode&&cp.focusMode.indexOf('continuous')>=0)setTimeout(function(){QR_TRK&&QR_TRK.applyConstraints({advanced:[{focusMode:'continuous'}]}).catch(function(){})},1500)}).catch(function(){})}
+function qrSemVivo(){$('qrVid').style.display='none';$('qrLuzB').hidden=true;$('qrZoomR').hidden=true;$('qrVTx').innerHTML='Toque no botão abaixo e tire uma foto do QR Code.<br><small>Deixe o QR Code no meio da foto, de perto e com boa luz.</small>'}
+function qrPararCam(){cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);if(QR_ST){QR_ST.getTracks().forEach(function(t){t.stop()});QR_ST=null}QR_TRK=null}
+function qrFechar(){qrPararCam();try{if(QR_WL){QR_WL.release();QR_WL=null}}catch(e){}
+  var v=$('qrVid');v.srcObject=null;v.style.display='';$('qrVivo').style.display='none';$('qrVivo').classList.remove('qrOk')}
+/* Bipe curto de leitura */
+var QR_AUD=null;function qrBipe(){try{QR_AUD=QR_AUD||new (window.AudioContext||window.webkitAudioContext)();var o=QR_AUD.createOscillator(),g=QR_AUD.createGain();o.type='sine';o.frequency.value=1800;g.gain.setValueAtTime(.25,QR_AUD.currentTime);g.gain.exponentialRampToValueAtTime(.001,QR_AUD.currentTime+.15);o.connect(g);g.connect(QR_AUD.destination);o.start();o.stop(QR_AUD.currentTime+.16)}catch(e){}}
+function qrVarrer(){var v=$('qrVid'),c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true}),bd=null,ocup=false,feito=false;
+  var lc=document.createElement('canvas');lc.width=lc.height=24;var lx=lc.getContext('2d',{willReadFrequently:true});
   try{if('BarcodeDetector' in window)bd=new BarcodeDetector({formats:['qr_code']})}catch(e){}
-  var achou=function(t){if(!t)return false;qrFechar();if(navigator.vibrate)navigator.vibrate(80);qrEntregar(t);return true};
-  (function tick(){if(!QR_ST)return;QR_LOOP=requestAnimationFrame(tick);if(ocup||v.readyState<2)return;ocup=true;
+  var achou=function(t){if(!t||feito)return false;
+    /* mesma leitura logo em seguida (a câmera reabriu na mesma etiqueta por engano) é ignorada */
+    if(t===QR_ULT.txt&&Date.now()-QR_ULT.t<2500)return false;
+    feito=true;QR_ULT={t:Date.now(),txt:t};cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);
+    $('qrVivo').classList.add('qrOk');var tx=$('qrVTx');tx.className='';tx.textContent='Lido!';qrBipe();if(navigator.vibrate)navigator.vibrate(80);
+    setTimeout(function(){qrFechar();qrEntregar(t)},350);return true};
+  /* Dicas: pouca luz e demora para ler */
+  clearInterval(QR_DICA);QR_DICA=setInterval(function(){if(!QR_ST||feito||v.readyState<2)return;var tx=$('qrVTx'),d='';
+    try{lx.drawImage(v,0,0,24,24);var px=lx.getImageData(0,0,24,24).data,s=0;for(var i=0;i<px.length;i+=4)s+=px[i]*.3+px[i+1]*.59+px[i+2]*.11;
+      if(s/(px.length/4)<55)d=$('qrLuzB').hidden?'Pouca luz: procure um lugar mais claro.':'Pouca luz: toque na lanterna.'}catch(e){}
+    if(!d&&Date.now()-QR_INI>8000)d='Não leu ainda? Aproxime ou afaste um pouco'+($('qrZoomR').hidden?'':', use o zoom')+' e toque na imagem para focar.';
+    if(d){tx.className='qrDica';tx.textContent=d}else{tx.className='';tx.textContent='Aponte para o QR Code da etiqueta'}},1000);
+  (function tick(){if(!QR_ST||feito)return;QR_LOOP=requestAnimationFrame(tick);if(ocup||v.readyState<2)return;ocup=true;
     if(bd){bd.detect(v).then(function(l){ocup=false;if(l&&l.length)achou(l[0].rawValue)}).catch(function(){bd=null;ocup=false});return}
-    if(window.jsQR){var k=Math.min(1,640/Math.max(v.videoWidth,v.videoHeight));c.width=Math.round(v.videoWidth*k);c.height=Math.round(v.videoHeight*k);
+    if(window.jsQR){var k=Math.min(1,800/Math.max(v.videoWidth,v.videoHeight));c.width=Math.round(v.videoWidth*k);c.height=Math.round(v.videoHeight*k);
       x.drawImage(v,0,0,c.width,c.height);var r=jsQR(x.getImageData(0,0,c.width,c.height).data,c.width,c.height,{inversionAttempts:'dontInvert'});
       ocup=false;if(r&&r.data)achou(r.data);return}
     ocup=false})()}
@@ -2392,8 +2456,11 @@ document.addEventListener('pointerdown',function(e){
   for(var i=1;i<=6;i++)ru+='<option value="'+i+'">R0'+i+'</option>';
   for(var j=1;j<=10;j++)bl+='<option value="'+j+'">B'+(j<10?'0':'')+j+'</option>';
   $('eRua').innerHTML=ru;$('eBloco').innerHTML=bl;$('eBloco2').innerHTML='<option value="">Nenhum</option>'+bl.replace(/<option value="TODOS">Todos<\/option>/,'');
-  chamar('apiItens',[],function(l){ITENS=l;l.forEach(function(x){ITMAP[x[0]]=x});
-    $('listaItens').innerHTML=l.map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')});
+  /* Lista de produtos guardada no celular: aparece na hora e é atualizada por trás */
+  var pintaIt=function(l){ITENS=l;l.forEach(function(x){ITMAP[x[0]]=x});
+    $('listaItens').innerHTML=l.map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')};
+  try{var gi=JSON.parse(LS.getItem('jeItensC')||'null');if(gi&&gi.length)pintaIt(gi)}catch(e){}
+  chamar('apiItens',[],function(l){if(!Array.isArray(l))return;pintaIt(l);try{LS.setItem('jeItensC',JSON.stringify(l))}catch(e){}});
   if(MODO==='tv'){document.body.classList.add('tv');$('htit').textContent='Logística de Operação';rodarTV();return}
   if(!quem()){ir('nome');return}
   chamar('apiSessao',[quem()],function(r){
