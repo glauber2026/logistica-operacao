@@ -427,7 +427,7 @@ main table button{padding:7px 12px!important;font-size:13.5px!important;min-heig
 #qrVid{width:100%;height:100%;object-fit:cover}
 #qrVivo .qrMira{position:absolute;inset:14%;border:3px solid #FF9F43;border-radius:20px;box-shadow:0 0 0 2000px #0000008C;animation:qrMira 1.4s ease-in-out infinite}
 #qrVivo .qrMira{overflow:hidden}
-#qrVivo .qrLinha{position:absolute;left:6%;right:6%;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#FF2D2D,transparent);box-shadow:0 0 12px #FF2D2D;animation:qrLinha 3.5s ease-in-out infinite}
+#qrVivo .qrLinha{position:absolute;left:4%;right:4%;height:1.5px;border-radius:1px;background:#FF2D2D;box-shadow:0 0 2px #FF2D2D;animation:qrLinha 5s ease-in-out infinite}
 @keyframes qrLinha{0%{top:6%}50%{top:92%}100%{top:6%}}
 #qrVivo.qrOk .qrMira{border-color:#16A34A!important;animation:none!important;box-shadow:0 0 0 2000px #0000008C,0 0 22px #16A34A}
 #qrVivo.qrOk .qrLinha{display:none}
@@ -1362,7 +1362,7 @@ function lerQR(id,cb){QR_ALVO=id;QR_CB=cb||null;$('qrArq').value='';
   /* tela não apaga enquanto a câmera está aberta */
   try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(function(w){QR_WL=w}).catch(function(){})}catch(e){}
   var LENTE=LS.getItem('jeLente')||'';
-  var pede=function(dev){var v={width:{ideal:1920},height:{ideal:1080},advanced:[{focusMode:'continuous'}]};if(dev)v.deviceId={exact:dev};else v.facingMode={ideal:'environment'};
+  var pede=function(dev){var v={width:{ideal:1280},height:{ideal:720},advanced:[{focusMode:'continuous'}]};if(dev)v.deviceId={exact:dev};else v.facingMode={ideal:'environment'};
     return navigator.mediaDevices.getUserMedia({video:v,audio:false})};
   pede(LENTE).catch(function(){LS.removeItem('jeLente');return pede('')}).then(function(st){
     if($('qrVivo').style.display==='none'){st.getTracks().forEach(function(t){t.stop()});return}
@@ -1377,7 +1377,7 @@ function qrMelhorLente(){try{navigator.mediaDevices.enumerateDevices().then(func
   var boa=tr.filter(function(d){return !/ultra|wide|grande|angular|tele|macro|depth|0[.,]5/i.test(d.label)});
   var esc=(tr.filter(function(d){return /camera2 0\b|camera 0\b/i.test(d.label)})[0])||boa[0]||tr[0];
   var atual=(QR_TRK.getSettings&&QR_TRK.getSettings().deviceId)||'';LS.setItem('jeLente',esc.deviceId);
-  if(esc.deviceId&&esc.deviceId!==atual&&QR_ST){var a=QR_ALVO,c=QR_CB;qrPararCam();lerQR(a,c)}})}catch(e){}}
+  /* não reinicia a câmera agora (deixava lento): a lente escolhida vale na próxima leitura */})}catch(e){}}
 /* Lanterna e zoom: só aparecem se o celular aceitar */
 function qrRecursos(){var cp={};try{cp=QR_TRK.getCapabilities?QR_TRK.getCapabilities():{}}catch(e){}
   $('qrLuzB').hidden=!cp.torch;
