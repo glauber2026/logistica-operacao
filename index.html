@@ -2416,7 +2416,13 @@ function whatsProg(){
 }
 var FALT=null;
 function hojeK(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
-function abrirFaltas(){$('faIni').value=hojeK();$('faIni').max=hojeK();$('faFim').max=hojeK();fFecha();perIni('fa');perVazio('fa')}   /* entra sem buscar nada */
+function faListas(l){if(!l||!l.pessoas)return;var v=$('faPes').value,t=$('faTipo').value;
+  $('faPes').innerHTML=l.pessoas.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');if(v)$('faPes').value=v;
+  $('faTipo').innerHTML=l.tipos.map(function(x){return '<option>'+esc(x)+'</option>'}).join('');if(t)$('faTipo').value=t}
+/* entra sem pesquisar o histórico; as listas do Lançar falta aparecem na hora (guardadas no celular) e são atualizadas por trás */
+function abrirFaltas(){$('faIni').value=hojeK();$('faIni').max=hojeK();$('faFim').max=hojeK();fFecha();perIni('fa');perVazio('fa');
+  try{faListas(JSON.parse(LS.getItem('jeFaListas')||'null'))}catch(e){}
+  TOQUE.el=null;chamar('apiFaltasListas',[quem()],function(r){if(!r||!r.ok)return;faListas(r);try{LS.setItem('jeFaListas',JSON.stringify({pessoas:r.pessoas,tipos:r.tipos}))}catch(e){}})}
 function carregarFaltas(){
   $('faRes').innerHTML='';
   perIni('fa');var FF=perFaixa('fa');
@@ -2728,12 +2734,15 @@ function perFaixa(k){var r=val(k+'Data')||hojeISO(),d=new Date(r+'T12:00:00'),de
   var f=function(x){return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)};return [f(de),f(ate)]}
 function perTx(k){var F=perFaixa(k),br=function(x){return x.split('-').reverse().join('/')};return F[0]===F[1]?(F[0]===hojeISO()?'hoje':'em '+br(F[0])):'de '+br(F[0])+' a '+br(F[1])}
 var MV={arm:{k:'mv',r:null,max:100},abs:{k:'ab',r:null,max:100}};   /* mostra 100 de cada vez: a tela abre mais rápido */
-function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);MV[a].r=null;perVazio(k)}   /* entra sem buscar nada */
+/* Lista de pessoas já pronta ao entrar (03/11/2026): vem da lista de usuários que o app já carrega, mais quem aparecer na pesquisa */
+function mvPessoas(k,extra){var sl=$(k+'Pes');if(!sl)return;var v=sl.value,m={};
+  [].forEach.call(($('nome')||{options:[]}).options,function(o){if(o.text)m[o.text]=1});(extra||[]).forEach(function(n){if(n)m[n]=1});
+  sl.innerHTML='<option value="">Todos</option>'+Object.keys(m).sort(function(a,b){return a.localeCompare(b)}).map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');if(v)sl.value=v}
+function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);mvPessoas(k);MV[a].r=null;perVazio(k)}   /* entra sem buscar nada */
 function verUltimo(){mvBuscar('arm')}
 function mvBuscar(a,pes){var M=MV[a],k=M.k,F=perFaixa(k);perPinta(k);$(k+'Res').innerHTML='';M.max=100;
   chamar('apiMeusLanc',[quem(),pes||'',0,a,F[0],F[1]],function(r){if(!r.ok){$(k+'Res').innerHTML=msg('erro',r.msg);return}M.r=r;M.tx=perTx(k);
-    var sl=$(k+'Pes'),v=sl.value;sl.innerHTML='<option value="">Todos</option>'+r.pessoas.map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');
-    mvPintar(a)})}
+    mvPessoas(k,r.pessoas);mvPintar(a)})}
 function mvPintar(a){a=a||'arm';var M=MV[a],k=M.k,r=M.r;if(!r||!r.res)return;var f=$(k+'Pes').value,b=String(val(k+'Busca')||'').trim().toLowerCase(),abs=a==='abs';
   /* período muito cheio (veio só parte da lista): a pessoa escolhida é buscada no Google; senão, filtra no celular */
   if((r.mais||r.alvo)&&String(r.alvo||'')!==String(f||'').toUpperCase()){mvBuscar(a,f);return}
