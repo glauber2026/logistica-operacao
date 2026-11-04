@@ -1113,6 +1113,7 @@ html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar label{margin-top:8px}
   <div class="fBar"><div class="perSeg segP" data-k="fa" role="group" aria-label="Período"><button type="button" data-p="d" onclick="perSel('fa','d')">Dia</button><button type="button" data-p="s" onclick="perSel('fa','s')">Semana</button><button type="button" data-p="m" onclick="perSel('fa','m')">Mês</button></div>
   <label class="vh" for="faData">Data de referência</label>
   <div class="rcNav"><button type="button" class="sec" onclick="perAndar('fa',-1)" aria-label="Período anterior">‹</button><input id="faData" type="date" data-fixo="1" onchange="perMudou('fa')"><button type="button" class="sec" onclick="perAndar('fa',1)" aria-label="Próximo período">›</button></div></div>
+  <p class="pqLin"><button type="button" class="pqBt" onclick="perPesq('fa')">Pesquisar</button></p>
 
   <div id="faRes" style="margin-top:10px"></div>
 </div>
@@ -1213,6 +1214,7 @@ html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar label{margin-top:8px}
   <label class="vh" for="mvData">Data de referência</label>
   <div class="rcNav"><button type="button" class="sec" onclick="perAndar('mv',-1)" aria-label="Período anterior">‹</button><input id="mvData" type="date" data-fixo="1" onchange="perMudou('mv')"><button type="button" class="sec" onclick="perAndar('mv',1)" aria-label="Próximo período">›</button></div>
   <label for="mvPes">Pessoa</label><select id="mvPes" onchange="mvPintar('arm')"><option value="">Todos</option></select></div>
+  <p class="pqLin"><button type="button" class="pqBt" onclick="perPesq('mv')">Pesquisar</button></p>
   <label for="mvBusca">Filtrar o que veio</label><input id="mvBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição, NF ou dia (ex.: 03/11)" oninput="mvPintar('arm')">
   <div id="mvRes"></div>
 </div>
@@ -1241,6 +1243,7 @@ html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar label{margin-top:8px}
   <label class="vh" for="abData">Data de referência</label>
   <div class="rcNav"><button type="button" class="sec" onclick="perAndar('ab',-1)" aria-label="Período anterior">‹</button><input id="abData" type="date" data-fixo="1" onchange="perMudou('ab')"><button type="button" class="sec" onclick="perAndar('ab',1)" aria-label="Próximo período">›</button></div>
   <label for="abPes">Pessoa</label><select id="abPes" onchange="mvPintar('abs')"><option value="">Todos</option></select></div>
+  <p class="pqLin"><button type="button" class="pqBt" onclick="perPesq('ab')">Pesquisar</button></p>
   <label for="abBusca">Filtrar o que veio</label><input id="abBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição, NF ou dia (ex.: 03/11)" oninput="mvPintar('abs')">
   <div id="abRes"></div>
 </div>
@@ -1628,7 +1631,7 @@ function caixaAvisos(tit,l,def){var g='av_'+tit.replace(/\W/g,'');return '<div c
 function irAviso(go){go=String(go||'');
   if(go.indexOf('pos:')===0){abrirPos(go.slice(4));return}
   if(go==='pesqTudo'){ir('pesq');pesqTudo();return}
-  if(go==='lanc'||go==='lanc30'){PER.mv.p=go==='lanc'?'d':'m';if($('mvData'))$('mvData').value=hojeISO();ir('desfazer');return}
+  if(go==='lanc'||go==='lanc30'){PER.mv.p=go==='lanc'?'d':'m';if($('mvData'))$('mvData').value=hojeISO();ir('desfazer');perPesq('mv');return}
   if(go==='reorg'){ir('reorg');reorg();return}
   if(go==='regras'){ir('regras');abrirRegras();return}
   if(go==='cal'){ir('cal');abrirCal();return}
@@ -1855,7 +1858,7 @@ var PROCS={
        {k:'',t:'Número do pallet e etiqueta repetida (vale para os dois Endereçar)',p:['O TOTVS pode imprimir etiquetas iguais quando imprime várias juntas. Por isso, cada pallet endereçado ganha um número próprio, amarrado à posição onde foi guardado.','Se a etiqueta lida já estiver em outro endereço, o app só avisa onde. Se for outro pallet, pode endereçar normalmente.','Depois de ler a etiqueta, termine o endereçamento. Se sair antes, o app pergunta "Sair sem salvar?" e o número não é criado.','O Endereçar é só para material novo. Para mudar um pallet de lugar, use a Transferência de endereço.']},
        {k:'',t:'Quantidade fora do padrão',p:['Depois de ler a etiqueta, o app mostra a descrição, a quantidade com a unidade, a nota fiscal e a data.','Se a quantidade da etiqueta for diferente do padrão do cadastro, o app pergunta se a etiqueta está certa.','Confira a etiqueta. Se estiver certa, toque em Sim e siga. Se não, toque em Não e tire uma etiqueta nova no TOTVS.','O Sim fica registrado nos problemas, com o seu nome.']},
    {k:'',t:'Transferência de endereço',p:['Toque em Transferência de endereço.','Vá até o pallet e leia o QR Code do endereço atual. O app mostra o produto, a quantidade e a data.','Leia a etiqueta do produto. Se não for o pallet daquele endereço, o app trava.','Leve o pallet e leia o QR Code do endereço novo. Ele tem que estar livre e dentro das regras de nível.','Escolha o motivo (em Outro, escreva a observação) e toque em Confirmar transferência. A data de recebimento é mantida, então o FIFO não muda.']},
-       {k:'',t:'Consultar e corrigir um lançamento',p:['Toque em Movimentações. Aparecem os endereçamentos e as transferências de toda a equipe.','Em Filtros, escolha Dia, Semana ou Mês e use as setinhas para andar no tempo. A pessoa e o campo Filtrar o que veio filtram na hora.','Não existe mais o botão Desfazer. Se o pallet foi para a posição errada, use a Transferência de endereço para levar para a certa.','Se apareceu um pallet que não existe (etiqueta lida duas vezes), avise o líder: a posição é zerada pelo Inventário.','Os problemas e travas ficam registrados com o nome de quem fez.']},
+       {k:'',t:'Consultar e corrigir um lançamento',p:['Toque em Movimentações. Aparecem os endereçamentos e as transferências de toda a equipe.','Em Filtros, escolha Dia, Semana ou Mês e use as setinhas para andar no tempo. Depois toque em Pesquisar. A pessoa e o campo Filtrar o que veio filtram na hora o que já veio.','Não existe mais o botão Desfazer. Se o pallet foi para a posição errada, use a Transferência de endereço para levar para a certa.','Se apareceu um pallet que não existe (etiqueta lida duas vezes), avise o líder: a posição é zerada pelo Inventário.','Os problemas e travas ficam registrados com o nome de quem fez.']},
        {k:'',t:'Reorganizar (por etapas)',p:['Toque em Reorganizar.','O app trabalha em 3 etapas, nesta ordem: 1. Família (componente embaixo do motor da mesma estrutura), 2. Giro (alto giro perto do chão), 3. Peso (mais pesado embaixo). Material fora das regras de nível aparece antes de tudo.','Todos os destinos são posições livres: pode fazer na hora, em qualquer ordem.','Em cada movimento, leia o QR Code da posição atual e depois o da posição de destino.','Terminou os movimentos? Toque em Continuar: o app recalcula e mostra o próximo passo, até tudo ficar no lugar certo.']}]},
  4:{n:'PROLOG 004',t:'Procedimento de abastecimento de produção',area:'Abastecimento de produção',obj:'Levar para a produção o material certo, sempre o mais antigo (FIFO), com a transferência do armazém 01 para o 06 registrada.',aplic:'Toda retirada de material do porta-pallets para a produção.',resp:'Execução: operador de abastecimento. Acompanhamento: líder de logística.',rec:['Celular com o app','Empilhadeira ou paleteira','EPIs do PROLOG 001'],
   ops:[{k:'abs',t:'Abastecer produção',p:['Toque em Abastecer produção e pesquise o produto (digitando, pela lista ou lendo a etiqueta).','O app mostra as posições na ordem do FIFO. Vá na marcada como 1º FIFO.','Leia o QR Code da posição.','Leia a etiqueta do TOTVS do pallet que você pegou. Produto ou data diferentes da posição, o app bloqueia: não leve o material.','Escolha abastecer tudo da posição ou fracionado e confirme. A transferência do 01 para o 06 é gravada sozinha.']},{k:'',t:'Posição vazia',p:['Leia o QR Code da posição normalmente.','Se não tiver material na posição, toque em Posição vazia e confirme.','A posição vai para conferência no Inventário e o app marca a próxima posição do FIFO. Vá até ela.','Se não tiver outra posição do produto, o app avisa: chame o líder.']},
@@ -2081,10 +2084,10 @@ function ir(t,manter){document.body.classList.remove('gj');fecharMais();fecharPe
   if(t==='cad'&&!manter){FOTO='';FOTO2='';$('cFoto').value='';$('cFoto2').value='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'})}
   document.querySelectorAll('.esc').forEach(function(e){e.style.display='none'});
   $('s-'+t).style.display='block';
-  if(t==='inv')abrirInv();if(t==='resinv')carregarResInv();if(t==='ptv')abrirPtv();if(t==='sess')abrirSess();if(t==='trf')mvAbrir('abs');if(t==='conq')iniciarConq();
+  if(t==='inv')abrirInv();if(t==='resinv')carregarResInv();if(t==='ptv')abrirPtv();if(t==='sess')abrirSess();if(t==='trf'&&!manter)mvAbrir('abs');if(t==='conq')iniciarConq();
   if(t==='menu'){ $('olaNome').textContent=nomeUsu(); $('olaPerf').textContent=(NOME_PERFIL[perfilUsu()]||'Operação'); var ad=LS.getItem('jeAdm')==='1';
     document.querySelectorAll('.adm').forEach(function(b){b.style.display=ad?'':'none'});var gs=ad||perfilUsu()==='Gestor';document.querySelectorAll('.ges').forEach(function(b){b.style.display=gs?'':'none'}); if(Date.now()-AV_T>60000)carregarAvisos(); }
-  if(t==='desfazer') mvAbrir('arm');
+  if(t==='desfazer'&&!manter) mvAbrir('arm');
   navAtual(t);
   if(t==='menu'){aplicarOrdem();aplicarRecolher();mostrarGrupo()}else{var g=grupoDaTela(t);if(g)GRUPO=g}
   camada(t);
@@ -2413,7 +2416,7 @@ function whatsProg(){
 }
 var FALT=null;
 function hojeK(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
-function abrirFaltas(){$('faIni').value=hojeK();$('faIni').max=hojeK();$('faFim').max=hojeK();carregarFaltas()}
+function abrirFaltas(){$('faIni').value=hojeK();$('faIni').max=hojeK();$('faFim').max=hojeK();fFecha();perIni('fa');perVazio('fa')}   /* entra sem buscar nada */
 function carregarFaltas(){
   $('faRes').innerHTML='';
   perIni('fa');var FF=perFaixa('fa');
@@ -2705,12 +2708,17 @@ function desbloq(){chamar('apiDesbloquear',[{quem:quem(),end:POS}],resultado)}
 /* ---------- MOVIMENTAÇÕES DO ARMAZENAMENTO (03/11/2026; antes "Meus lançamentos"): todos veem os lançamentos de todos,
    com pesquisa por quem, produto, posição ou dia. Sem desfazer: posição errada → Transferência de endereço; pallet que não existe → Inventário. */
 /* PERÍODO PADRÃO (03/11/2026), igual em todas as telas de pesquisa com data: Dia / Semana / Mês, data de referência e setinhas ‹ ›,
-   recolhido em "Filtros". Escolher o período já busca (com a bolinha); pessoa e texto filtram no próprio celular. */
+   recolhido em "Filtros". Ao entrar na tela não busca nada: só busca quando a pessoa toca em Pesquisar (com a bolinha).
+   Período, data e setinhas só escolhem; pessoa e texto filtram no próprio celular o que já veio. */
 var PER={mv:{p:'d',ir:function(){mvBuscar('arm')}},ab:{p:'d',ir:function(){mvBuscar('abs')}},fa:{p:'m',ir:function(){carregarFaltas()}}};
 function perIni(k){if(!$(k+'Data').value)$(k+'Data').value=hojeISO();perPinta(k)}
 function perPinta(k){var P=PER[k];fTxt(k+'FTxt',P.p,val(k+'Data'));document.querySelectorAll('.perSeg[data-k="'+k+'"] button').forEach(function(b){b.classList.toggle('at',b.getAttribute('data-p')===P.p)})}
-function perSel(k,p){PER[k].p=p;perPinta(k);PER[k].ir()}
-function perMudou(k){perPinta(k);PER[k].ir()}
+function perSel(k,p){PER[k].p=p;perPinta(k);perAvisa(k)}
+function perMudou(k){perPinta(k);perAvisa(k)}
+function perPesq(k){fFecha();perPinta(k);PER[k].ir()}
+function perRes(k){return $(k==='fa'?'faRes':k+'Res')}
+function perAvisa(k){var r=perRes(k);if(r&&!r.querySelector('.pqAviso'))r.insertAdjacentHTML('afterbegin','<p class="pqAviso">Toque em Pesquisar para ver '+perTx(k)+'.</p>');else if(r){r.querySelector('.pqAviso').textContent='Toque em Pesquisar para ver '+perTx(k)+'.'}}
+function perVazio(k){var r=perRes(k);if(r)r.innerHTML='<p class="rcDica">Escolha o período em Filtros e toque em <b>Pesquisar</b>.</p>'}
 function perAndar(k,n){var r=val(k+'Data')||hojeISO(),d=new Date(r+'T12:00:00'),P=PER[k];
   if(P.p==='d')d.setDate(d.getDate()+n);else if(P.p==='s')d.setDate(d.getDate()+7*n);else d=new Date(d.getFullYear(),d.getMonth()+n,1,12);
   $(k+'Data').value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);perMudou(k)}
@@ -2720,7 +2728,7 @@ function perFaixa(k){var r=val(k+'Data')||hojeISO(),d=new Date(r+'T12:00:00'),de
   var f=function(x){return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)};return [f(de),f(ate)]}
 function perTx(k){var F=perFaixa(k),br=function(x){return x.split('-').reverse().join('/')};return F[0]===F[1]?(F[0]===hojeISO()?'hoje':'em '+br(F[0])):'de '+br(F[0])+' a '+br(F[1])}
 var MV={arm:{k:'mv',r:null,max:100},abs:{k:'ab',r:null,max:100}};   /* mostra 100 de cada vez: a tela abre mais rápido */
-function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);mvBuscar(a)}
+function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);MV[a].r=null;perVazio(k)}   /* entra sem buscar nada */
 function verUltimo(){mvBuscar('arm')}
 function mvBuscar(a,pes){var M=MV[a],k=M.k,F=perFaixa(k);perPinta(k);$(k+'Res').innerHTML='';M.max=100;
   chamar('apiMeusLanc',[quem(),pes||'',0,a,F[0],F[1]],function(r){if(!r.ok){$(k+'Res').innerHTML=msg('erro',r.msg);return}M.r=r;M.tx=perTx(k);
