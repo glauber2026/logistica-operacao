@@ -541,7 +541,7 @@ canvas.assin{width:100%;height:150px;background:#fff;border:2px dashed #999;bord
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .conqBox{width:100%;max-width:calc((100vh - 140px) * 1.65);margin:0 auto}
 body.tv .conqBox{max-width:calc((100vh - 70px) * 1.7)}
-.trfPer{display:flex;gap:6px;margin:6px 0 2px}html body main .trfPer button{flex:1;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 0!important;font-size:15px;box-shadow:none!important}html body main .trfPer button.at{background:#F58321!important;color:#2E2E30!important;font-weight:700}
+
 .trfSum{display:flex;gap:8px;margin:10px 0}.trfSum div{flex:1;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:10px;text-align:center;font-size:13px;color:#555}.trfSum b{display:block;font-size:22px;color:#2E2E30}
 .trfL{padding:10px 12px;border-radius:12px;margin:4px 0;background:#fff;font-size:14px;line-height:1.45}.trfL:nth-child(even){background:var(--lisC)}.trfL b{font-size:15px}.trfL small{color:#666}
 .rgEts{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}.rgEt{font-size:13px;padding:5px 10px;border-radius:999px;background:#E9EAEC;color:#555}.rgEt.at{background:#F58321;color:#2E2E30;font-weight:700}.rgEt.ok{background:#16A34A;color:#fff}
@@ -814,11 +814,11 @@ html body.rolou header{min-height:40px!important;padding:4px 14px!important}
 html body.rolou header img{width:28px!important;height:28px!important;padding:3px!important}
 html body.rolou header h1,html body.rolou #htit{font-size:15px!important}
 @media (prefers-reduced-motion:reduce){html body header,html body header img,html body header h1{transition:none!important}}
-html body main :is(#s-rec,#s-trf) .fBar{display:none}html body main :is(#s-rec,#s-trf) .fBar.on{display:flex}
-html body main :is(#s-rec,#s-trf) button.fTog{display:flex!important;width:100%!important;justify-content:space-between!important;align-items:center!important;gap:8px;background:#F4F5F6!important;color:#2E2E30!important;border-radius:12px!important;padding:9px 12px!important;margin:2px 0 6px!important;font-size:14px!important;font-weight:600!important;min-height:0!important;box-shadow:none!important;text-align:left!important}
-html body main :is(#s-rec,#s-trf) .fAbre{display:flex;align-items:center;gap:6px;color:#C25E00;font-weight:700}
-html body main :is(#s-rec,#s-trf) .fAbre i{width:8px;height:8px;border-right:2px solid #F58321;border-bottom:2px solid #F58321;transform:rotate(45deg);margin-top:-4px;transition:transform .15s}
-html body main :is(#s-rec,#s-trf) .fTog.on .fAbre i{transform:rotate(-135deg);margin-top:4px}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .fBar{display:none}html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .fBar.on{display:flex}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) button.fTog{display:flex!important;width:100%!important;justify-content:space-between!important;align-items:center!important;gap:8px;background:#F4F5F6!important;color:#2E2E30!important;border-radius:12px!important;padding:9px 12px!important;margin:2px 0 6px!important;font-size:14px!important;font-weight:600!important;min-height:0!important;box-shadow:none!important;text-align:left!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .fAbre{display:flex;align-items:center;gap:6px;color:#C25E00;font-weight:700}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .fAbre i{width:8px;height:8px;border-right:2px solid #F58321;border-bottom:2px solid #F58321;transform:rotate(45deg);margin-top:-4px;transition:transform .15s}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .fTog.on .fAbre i{transform:rotate(-135deg);margin-top:4px}
 .dfLista{border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);background:#fff;margin:6px 0 10px}
 .dfIt{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #E0E0E0;font-size:14px}
 .dfIt:nth-child(even){background:var(--lisC)}.dfIt small{color:#6B6B6B}
@@ -827,12 +827,12 @@ html body main #s-desfazer .dfIt button.verm{flex:none;width:auto!important;padd
 /* Filtros compactos (30/10/2026): período em uma barra só e data com setas, menores, para a programação aparecer inteira */
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .fBar{display:flex;flex-direction:column;gap:6px;margin:2px 0 4px}
-html body main :is(#s-rec,#s-trf) .segP{display:flex;gap:0;background:#E9EAEC;border-radius:999px;padding:3px;margin:0}
-html body main :is(#s-rec,#s-trf) .segP button{flex:1!important;background:transparent!important;color:#2E2E30!important;border-radius:999px!important;padding:7px 0!important;font-size:14px!important;min-height:0!important;box-shadow:none!important}
-html body main :is(#s-rec,#s-trf) .segP button.at{background:#F58321!important;font-weight:700!important}
-html body main #s-rec .rcNav{gap:6px}
-html body main #s-rec .rcNav input,html body main #s-trf .fBar input{padding:7px 10px!important;min-height:0!important;font-size:15px!important;margin:0!important}
-html body main #s-rec .rcNav button{width:38px!important;min-width:38px!important;height:36px!important;padding:0!important;font-size:20px!important;min-height:0!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .segP{display:flex;gap:0;background:#E9EAEC;border-radius:999px;padding:3px;margin:0}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .segP button{flex:1!important;background:transparent!important;color:#2E2E30!important;border-radius:999px!important;padding:7px 0!important;font-size:14px!important;min-height:0!important;box-shadow:none!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .segP button.at{background:#F58321!important;font-weight:700!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .rcNav{gap:6px}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .rcNav input,html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar input{padding:7px 10px!important;min-height:0!important;font-size:15px!important;margin:0!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt) .rcNav button{width:38px!important;min-width:38px!important;height:36px!important;padding:0!important;font-size:20px!important;min-height:0!important}
 .rcSumL{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px;margin:4px 0 6px;font-size:13px;color:#555}
 .rcSumL b{font-size:14px;color:#2E2E30}.rcSumL i{font-style:normal}.rcSumL i.rcNumEr{color:#DC2626;font-weight:700}
 .rcAtu{margin:0;font-size:12px;color:#8A8A8A;text-align:right}
@@ -934,6 +934,12 @@ html body main button.pqBt{width:100%}
 .sjLista .sjIt{padding:8px 10px;border-radius:10px}.sjLista .sjIt:nth-child(odd){background:#F4F5F6}
 .sjTag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:#16A34A;color:#fff}
 .sjTag.ac{background:#F58321}.sjTag.fam{background:#E9EAEC;color:#2E2E30}
+
+/* ---- período padrão (Dia / Semana / Mês), igual ao do Recebimento ---- */
+.perSeg{display:flex;gap:6px;margin:6px 0 6px}
+html body main .perSeg button{flex:1!important;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 0!important;font-size:15px!important;box-shadow:none!important}
+html body main .perSeg button.at{background:#F58321!important;color:#2E2E30!important;font-weight:700!important}
+html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar label{margin-top:8px}
 </style>
 </head>
 <body>
@@ -1103,8 +1109,11 @@ html body main button.pqBt{width:100%}
     <label>Observação</label><input id="faObs" placeholder="ex.: avisou pelo WhatsApp às 6h">
     <p><button onclick="salvarFalta()">Lançar</button></p><div id="faMsg"></div>
   </details>
-  <label>Período do histórico</label>
-  <select id="faPer"><option value="30">Últimos 30 dias</option><option value="90" selected>Últimos 90 dias</option><option value="180">Últimos 6 meses</option><option value="365">Último ano</option></select><p class="pqLin"><button type="button" class="pqBt" onclick="carregarFaltas()">Pesquisar</button></p>
+  <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="faFTxt">Dia · Hoje</span><span class="fAbre">Filtros<i></i></span></button>
+  <div class="fBar"><div class="perSeg segP" data-k="fa" role="group" aria-label="Período"><button type="button" data-p="d" onclick="perSel('fa','d')">Dia</button><button type="button" data-p="s" onclick="perSel('fa','s')">Semana</button><button type="button" data-p="m" onclick="perSel('fa','m')">Mês</button></div>
+  <label class="vh" for="faData">Data de referência</label>
+  <div class="rcNav"><button type="button" class="sec" onclick="perAndar('fa',-1)" aria-label="Período anterior">‹</button><input id="faData" type="date" data-fixo="1" onchange="perMudou('fa')"><button type="button" class="sec" onclick="perAndar('fa',1)" aria-label="Próximo período">›</button></div></div>
+
   <div id="faRes" style="margin-top:10px"></div>
 </div>
 
@@ -1198,12 +1207,14 @@ html body main button.pqBt{width:100%}
 
 <div id="s-desfazer" class="esc card">
   <div class="tit">Movimentações</div>
-  <div class="lin"><div><label for="mlPer">Período</label><select id="mlPer" onchange="mvAvisaPesq()"><option value="1">Hoje</option><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option></select></div>
-  <div id="dFil"><label for="dPes">Pessoa</label><select id="dPes" onchange="mvPintar()"><option value="">Todos</option></select></div></div>
-  <p class="pqLin"><button type="button" class="pqBt" onclick="verUltimo()">Pesquisar</button></p>
-  <label for="dBusca">Filtrar o que veio</label><input id="dBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição ou dia (ex.: 03/11)" oninput="mvPintar()">
-  <div id="dMsg"></div>
-  <div id="dRes"></div>
+  <p class="rcDica">Endereçamentos e transferências de endereço de toda a equipe.</p>
+  <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="mvFTxt">Dia · Hoje</span><span class="fAbre">Filtros<i></i></span></button>
+  <div class="fBar"><div class="perSeg segP" data-k="mv" role="group" aria-label="Período"><button type="button" data-p="d" onclick="perSel('mv','d')">Dia</button><button type="button" data-p="s" onclick="perSel('mv','s')">Semana</button><button type="button" data-p="m" onclick="perSel('mv','m')">Mês</button></div>
+  <label class="vh" for="mvData">Data de referência</label>
+  <div class="rcNav"><button type="button" class="sec" onclick="perAndar('mv',-1)" aria-label="Período anterior">‹</button><input id="mvData" type="date" data-fixo="1" onchange="perMudou('mv')"><button type="button" class="sec" onclick="perAndar('mv',1)" aria-label="Próximo período">›</button></div>
+  <label for="mvPes">Pessoa</label><select id="mvPes" onchange="mvPintar('arm')"><option value="">Todos</option></select></div>
+  <label for="mvBusca">Filtrar o que veio</label><input id="mvBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição, NF ou dia (ex.: 03/11)" oninput="mvPintar('arm')">
+  <div id="mvRes"></div>
 </div>
 
 <div id="s-pesq" class="esc card">
@@ -1224,14 +1235,14 @@ html body main button.pqBt{width:100%}
 
 <div id="s-trf" class="esc card">
   <div class="tit">Movimentações</div>
-  <p id="trfQuem">Transferências gravadas no abastecimento de produção.</p>
-  <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="trFTxt">Hoje</span><span class="fAbre">Filtros<i></i></span></button>
-  <div class="fBar"><div class="trfPer segP" role="group" aria-label="Período"><button type="button" data-p="d" onclick="trfPer('d')">Dia</button><button type="button" data-p="s" onclick="trfPer('s')">Semana</button><button type="button" data-p="m" onclick="trfPer('m')">Mês</button></div>
-  <label class="vh" for="trfData">Data de referência</label><input id="trfData" type="date" onchange="fTxt('trFTxt',TRF_P,val('trfData'));trfAvisaPesq()"></div>
-  <div id="trfOpBox" hidden><label>Operador</label><select id="trfOp" onchange="trfOpMudou()"><option value="">Todos</option></select></div>
-  <p class="pqLin"><button type="button" class="pqBt" onclick="trfBuscar()">Pesquisar</button></p>
-  <label for="trfBusca">Filtrar o que veio</label><input id="trfBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição, NF ou dia" oninput="trfPintar()">
-  <div id="trfRes"></div>
+  <p class="rcDica">Abastecimentos de toda a equipe, gravados como transferência do 01 para o 06.</p>
+  <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="abFTxt">Dia · Hoje</span><span class="fAbre">Filtros<i></i></span></button>
+  <div class="fBar"><div class="perSeg segP" data-k="ab" role="group" aria-label="Período"><button type="button" data-p="d" onclick="perSel('ab','d')">Dia</button><button type="button" data-p="s" onclick="perSel('ab','s')">Semana</button><button type="button" data-p="m" onclick="perSel('ab','m')">Mês</button></div>
+  <label class="vh" for="abData">Data de referência</label>
+  <div class="rcNav"><button type="button" class="sec" onclick="perAndar('ab',-1)" aria-label="Período anterior">‹</button><input id="abData" type="date" data-fixo="1" onchange="perMudou('ab')"><button type="button" class="sec" onclick="perAndar('ab',1)" aria-label="Próximo período">›</button></div>
+  <label for="abPes">Pessoa</label><select id="abPes" onchange="mvPintar('abs')"><option value="">Todos</option></select></div>
+  <label for="abBusca">Filtrar o que veio</label><input id="abBusca" class="mvBusca" autocomplete="off" placeholder="quem, produto, posição, NF ou dia (ex.: 03/11)" oninput="mvPintar('abs')">
+  <div id="abRes"></div>
 </div>
 
 <div id="s-rec" class="esc card">
@@ -1617,7 +1628,7 @@ function caixaAvisos(tit,l,def){var g='av_'+tit.replace(/\W/g,'');return '<div c
 function irAviso(go){go=String(go||'');
   if(go.indexOf('pos:')===0){abrirPos(go.slice(4));return}
   if(go==='pesqTudo'){ir('pesq');pesqTudo();return}
-  if(go==='lanc'||go==='lanc30'){if($('mlPer'))$('mlPer').value=go==='lanc'?'1':'30';ir('desfazer');return}
+  if(go==='lanc'||go==='lanc30'){PER.mv.p=go==='lanc'?'d':'m';if($('mvData'))$('mvData').value=hojeISO();ir('desfazer');return}
   if(go==='reorg'){ir('reorg');reorg();return}
   if(go==='regras'){ir('regras');abrirRegras();return}
   if(go==='cal'){ir('cal');abrirCal();return}
@@ -1844,7 +1855,7 @@ var PROCS={
        {k:'',t:'Número do pallet e etiqueta repetida (vale para os dois Endereçar)',p:['O TOTVS pode imprimir etiquetas iguais quando imprime várias juntas. Por isso, cada pallet endereçado ganha um número próprio, amarrado à posição onde foi guardado.','Se a etiqueta lida já estiver em outro endereço, o app só avisa onde. Se for outro pallet, pode endereçar normalmente.','Depois de ler a etiqueta, termine o endereçamento. Se sair antes, o app pergunta "Sair sem salvar?" e o número não é criado.','O Endereçar é só para material novo. Para mudar um pallet de lugar, use a Transferência de endereço.']},
        {k:'',t:'Quantidade fora do padrão',p:['Depois de ler a etiqueta, o app mostra a descrição, a quantidade com a unidade, a nota fiscal e a data.','Se a quantidade da etiqueta for diferente do padrão do cadastro, o app pergunta se a etiqueta está certa.','Confira a etiqueta. Se estiver certa, toque em Sim e siga. Se não, toque em Não e tire uma etiqueta nova no TOTVS.','O Sim fica registrado nos problemas, com o seu nome.']},
    {k:'',t:'Transferência de endereço',p:['Toque em Transferência de endereço.','Vá até o pallet e leia o QR Code do endereço atual. O app mostra o produto, a quantidade e a data.','Leia a etiqueta do produto. Se não for o pallet daquele endereço, o app trava.','Leve o pallet e leia o QR Code do endereço novo. Ele tem que estar livre e dentro das regras de nível.','Escolha o motivo (em Outro, escreva a observação) e toque em Confirmar transferência. A data de recebimento é mantida, então o FIFO não muda.']},
-       {k:'',t:'Consultar e corrigir um lançamento',p:['Toque em Movimentações. Aparecem os endereçamentos e as transferências de toda a equipe.','Escolha o período e a pessoa, ou pesquise por quem, produto, posição ou dia.','Não existe mais o botão Desfazer. Se o pallet foi para a posição errada, use a Transferência de endereço para levar para a certa.','Se apareceu um pallet que não existe (etiqueta lida duas vezes), avise o líder: a posição é zerada pelo Inventário.','Os problemas e travas ficam registrados com o nome de quem fez.']},
+       {k:'',t:'Consultar e corrigir um lançamento',p:['Toque em Movimentações. Aparecem os endereçamentos e as transferências de toda a equipe.','Em Filtros, escolha Dia, Semana ou Mês e use as setinhas para andar no tempo. A pessoa e o campo Filtrar o que veio filtram na hora.','Não existe mais o botão Desfazer. Se o pallet foi para a posição errada, use a Transferência de endereço para levar para a certa.','Se apareceu um pallet que não existe (etiqueta lida duas vezes), avise o líder: a posição é zerada pelo Inventário.','Os problemas e travas ficam registrados com o nome de quem fez.']},
        {k:'',t:'Reorganizar (por etapas)',p:['Toque em Reorganizar.','O app trabalha em 3 etapas, nesta ordem: 1. Família (componente embaixo do motor da mesma estrutura), 2. Giro (alto giro perto do chão), 3. Peso (mais pesado embaixo). Material fora das regras de nível aparece antes de tudo.','Todos os destinos são posições livres: pode fazer na hora, em qualquer ordem.','Em cada movimento, leia o QR Code da posição atual e depois o da posição de destino.','Terminou os movimentos? Toque em Continuar: o app recalcula e mostra o próximo passo, até tudo ficar no lugar certo.']}]},
  4:{n:'PROLOG 004',t:'Procedimento de abastecimento de produção',area:'Abastecimento de produção',obj:'Levar para a produção o material certo, sempre o mais antigo (FIFO), com a transferência do armazém 01 para o 06 registrada.',aplic:'Toda retirada de material do porta-pallets para a produção.',resp:'Execução: operador de abastecimento. Acompanhamento: líder de logística.',rec:['Celular com o app','Empilhadeira ou paleteira','EPIs do PROLOG 001'],
   ops:[{k:'abs',t:'Abastecer produção',p:['Toque em Abastecer produção e pesquise o produto (digitando, pela lista ou lendo a etiqueta).','O app mostra as posições na ordem do FIFO. Vá na marcada como 1º FIFO.','Leia o QR Code da posição.','Leia a etiqueta do TOTVS do pallet que você pegou. Produto ou data diferentes da posição, o app bloqueia: não leve o material.','Escolha abastecer tudo da posição ou fracionado e confirme. A transferência do 01 para o 06 é gravada sozinha.']},{k:'',t:'Posição vazia',p:['Leia o QR Code da posição normalmente.','Se não tiver material na posição, toque em Posição vazia e confirme.','A posição vai para conferência no Inventário e o app marca a próxima posição do FIFO. Vá até ela.','Se não tiver outra posição do produto, o app avisa: chame o líder.']},
@@ -2070,10 +2081,10 @@ function ir(t,manter){document.body.classList.remove('gj');fecharMais();fecharPe
   if(t==='cad'&&!manter){FOTO='';FOTO2='';$('cFoto').value='';$('cFoto2').value='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'})}
   document.querySelectorAll('.esc').forEach(function(e){e.style.display='none'});
   $('s-'+t).style.display='block';
-  if(t==='inv')abrirInv();if(t==='resinv')carregarResInv();if(t==='ptv')abrirPtv();if(t==='sess')abrirSess();if(t==='trf')abrirTrf();if(t==='conq')iniciarConq();
+  if(t==='inv')abrirInv();if(t==='resinv')carregarResInv();if(t==='ptv')abrirPtv();if(t==='sess')abrirSess();if(t==='trf')mvAbrir('abs');if(t==='conq')iniciarConq();
   if(t==='menu'){ $('olaNome').textContent=nomeUsu(); $('olaPerf').textContent=(NOME_PERFIL[perfilUsu()]||'Operação'); var ad=LS.getItem('jeAdm')==='1';
     document.querySelectorAll('.adm').forEach(function(b){b.style.display=ad?'':'none'});var gs=ad||perfilUsu()==='Gestor';document.querySelectorAll('.ges').forEach(function(b){b.style.display=gs?'':'none'}); if(Date.now()-AV_T>60000)carregarAvisos(); }
-  if(t==='desfazer') verUltimo();
+  if(t==='desfazer') mvAbrir('arm');
   navAtual(t);
   if(t==='menu'){aplicarOrdem();aplicarRecolher();mostrarGrupo()}else{var g=grupoDaTela(t);if(g)GRUPO=g}
   camada(t);
@@ -2405,7 +2416,8 @@ function hojeK(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+
 function abrirFaltas(){$('faIni').value=hojeK();$('faIni').max=hojeK();$('faFim').max=hojeK();carregarFaltas()}
 function carregarFaltas(){
   $('faRes').innerHTML='';
-  chamar('apiFaltas',[quem(),$('faPer').value],function(r){
+  perIni('fa');var FF=perFaixa('fa');
+  chamar('apiFaltas',[quem(),0,FF[0],FF[1]],function(r){
     if(!r.ok){$('faRes').innerHTML=msg('erro',r.msg);return}
     FALT=r;
     var v=$('faPes').value;$('faPes').innerHTML=r.pessoas.filter(function(p){return !p.inativo}).map(function(p){return '<option>'+esc(p.nome)+'</option>'}).join('');if(v)$('faPes').value=v;
@@ -2692,34 +2704,56 @@ function desbloq(){chamar('apiDesbloquear',[{quem:quem(),end:POS}],resultado)}
 
 /* ---------- MOVIMENTAÇÕES DO ARMAZENAMENTO (03/11/2026; antes "Meus lançamentos"): todos veem os lançamentos de todos,
    com pesquisa por quem, produto, posição ou dia. Sem desfazer: posição errada → Transferência de endereço; pallet que não existe → Inventário. */
-var DESF={lista:[]};
-function mvAvisaPesq(){if(DESF&&DESF.res&&!$('dRes').querySelector('.pqAviso'))$('dRes').insertAdjacentHTML('afterbegin','<p class="pqAviso">Toque em Pesquisar para ver o período escolhido.</p>')}
-function verUltimo(){var per=$('mlPer')?$('mlPer').value:'1';$('dRes').innerHTML='';
-  chamar('apiMeusLanc',[quem(),'',per,'arm'],function(r){if(!r.ok){$('dRes').innerHTML=msg('erro',r.msg);return}DESF=r;
-    var sl=$('dPes'),v=sl.value;sl.innerHTML='<option value="">Todos</option>'+r.pessoas.map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');
-    mvPintar()})}
-function mvPintar(){var r=DESF;if(!r||!r.res)return;var f=$('dPes').value,b=String(val('dBusca')||'').trim().toLowerCase();
-  var quemTx=f||'A equipe',perTx={1:'hoje',7:'nos últimos 7 dias',30:'nos últimos 30 dias'}[r.dias];
+/* PERÍODO PADRÃO (03/11/2026), igual em todas as telas de pesquisa com data: Dia / Semana / Mês, data de referência e setinhas ‹ ›,
+   recolhido em "Filtros". Escolher o período já busca (com a bolinha); pessoa e texto filtram no próprio celular. */
+var PER={mv:{p:'d',ir:function(){mvBuscar('arm')}},ab:{p:'d',ir:function(){mvBuscar('abs')}},fa:{p:'m',ir:function(){carregarFaltas()}}};
+function perIni(k){if(!$(k+'Data').value)$(k+'Data').value=hojeISO();perPinta(k)}
+function perPinta(k){var P=PER[k];fTxt(k+'FTxt',P.p,val(k+'Data'));document.querySelectorAll('.perSeg[data-k="'+k+'"] button').forEach(function(b){b.classList.toggle('at',b.getAttribute('data-p')===P.p)})}
+function perSel(k,p){PER[k].p=p;perPinta(k);PER[k].ir()}
+function perMudou(k){perPinta(k);PER[k].ir()}
+function perAndar(k,n){var r=val(k+'Data')||hojeISO(),d=new Date(r+'T12:00:00'),P=PER[k];
+  if(P.p==='d')d.setDate(d.getDate()+n);else if(P.p==='s')d.setDate(d.getDate()+7*n);else d=new Date(d.getFullYear(),d.getMonth()+n,1,12);
+  $(k+'Data').value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);perMudou(k)}
+function perFaixa(k){var r=val(k+'Data')||hojeISO(),d=new Date(r+'T12:00:00'),de=new Date(d),ate=new Date(d),P=PER[k];
+  if(P.p==='s'){var w=(d.getDay()+6)%7;de.setDate(d.getDate()-w);ate=new Date(de);ate.setDate(de.getDate()+6)}
+  else if(P.p==='m'){de=new Date(d.getFullYear(),d.getMonth(),1,12);ate=new Date(d.getFullYear(),d.getMonth()+1,0,12)}
+  var f=function(x){return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)};return [f(de),f(ate)]}
+function perTx(k){var F=perFaixa(k),br=function(x){return x.split('-').reverse().join('/')};return F[0]===F[1]?(F[0]===hojeISO()?'hoje':'em '+br(F[0])):'de '+br(F[0])+' a '+br(F[1])}
+var MV={arm:{k:'mv',r:null,max:100},abs:{k:'ab',r:null,max:100}};   /* mostra 100 de cada vez: a tela abre mais rápido */
+function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);mvBuscar(a)}
+function verUltimo(){mvBuscar('arm')}
+function mvBuscar(a,pes){var M=MV[a],k=M.k,F=perFaixa(k);perPinta(k);$(k+'Res').innerHTML='';M.max=100;
+  chamar('apiMeusLanc',[quem(),pes||'',0,a,F[0],F[1]],function(r){if(!r.ok){$(k+'Res').innerHTML=msg('erro',r.msg);return}M.r=r;M.tx=perTx(k);
+    var sl=$(k+'Pes'),v=sl.value;sl.innerHTML='<option value="">Todos</option>'+r.pessoas.map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');
+    mvPintar(a)})}
+function mvPintar(a){a=a||'arm';var M=MV[a],k=M.k,r=M.r;if(!r||!r.res)return;var f=$(k+'Pes').value,b=String(val(k+'Busca')||'').trim().toLowerCase(),abs=a==='abs';
+  /* período muito cheio (veio só parte da lista): a pessoa escolhida é buscada no Google; senão, filtra no celular */
+  if((r.mais||r.alvo)&&String(r.alvo||'')!==String(f||'').toUpperCase()){mvBuscar(a,f);return}
+  var quemTx=f||'A equipe',perTx=M.tx||'';
   var daP=function(x){return !f||String(x.quem).toUpperCase()===f.toUpperCase()},LP=r.lista.filter(daP),PP=r.prob.filter(daP);
-  var R={end:0,reo:0,des:0,pro:PP.length};LP.forEach(function(x){if(R[x.g]!==undefined)R[x.g]++});
+  var R={end:0,reo:0,des:0,sai:0,pro:PP.length};LP.forEach(function(x){if(R[x.g]!==undefined)R[x.g]++});
+  if(!f||r.alvo)R=r.res;   /* totais do período inteiro, contados no Google */
   var box=function(n,t,c){return '<div><b class="'+(c&&n?c:'')+'">'+n+'</b><span>'+t+'</span></div>'};
-  var h='<p class="rcPer2">'+esc(quemTx)+' '+perTx+'</p><div class="mlRes">'+box(R.end,'endereçou')+box(R.reo,'transferiu')+box(R.des,'desfeitos','at')+box(R.pro,'problemas','er')+'</div>';
+  var h='<p class="rcPer2">'+esc(quemTx)+' '+perTx+'</p><div class="mlRes">'+(abs?box(R.sai,'abasteceu')+box(R.pro,'problemas','er'):box(R.end,'endereçou')+box(R.reo,'transferiu')+box(R.pro,'problemas','er'))+'</div>';
+  LP.forEach(function(x){var it=ITMAP[x.item];if(it&&!x.desc){x.desc=it[1]||'';x.unid=it[9]||''}});   /* descrição vem da lista do celular */
   var bate=function(x){return !b||[x.quem,x.tipo,x.end,x.dest,x.item,x.desc,x.quando,x.nf].join(' ').toLowerCase().indexOf(b)>=0};
-  var L=LP.filter(bate);
+  var L=LP.filter(bate),LT=L.length;L=L.slice(0,M.max);
   h+='<p class="rcPer2">Lançamentos'+(b?' ('+L.length+' encontrados)':'')+'</p>';
   if(!L.length)h+='<p class="rcDica">'+(b?'Nada encontrado com "'+esc(b)+'".':'Nenhum lançamento '+perTx+'.')+'</p>';
   else h+='<div class="dfLista">'+L.map(function(x){var q=x.qtd===''||x.qtd===null?'':String(x.qtd)+(x.unid?' '+(x.unid==='Kilo'?'kg':Number(x.qtd)===1?x.unid.toLowerCase():(UN_PL[x.unid]||x.unid.toLowerCase())):'');
-    return '<div class="dfIt'+(x.desfeito?' mlDesf':'')+'"><div><b>'+esc(x.tipo)+'</b> · '+endCor(x.end)+(x.dest?' → '+endCor(x.dest):'')+
+    return '<div class="dfIt'+(x.desfeito?' mlDesf':'')+'"><div><b>'+esc(abs?'Transferência do 01 para o 06'+(x.tipo!=='Saída'?' · '+x.tipo:''):x.tipo)+'</b> · '+endCor(x.end)+(x.dest?' → '+endCor(x.dest):'')+
     (x.item?'<br><span class="mlProd">'+esc(x.item)+(x.desc?' · '+esc(x.desc):'')+'</span>':'')+
     '<br><small>'+[q,x.nf?'NF '+x.nf:'',x.quando,x.quem].filter(Boolean).map(esc).join(' · ')+'</small></div>'+
-    (x.desfeito?'<span class="mlTag">Desfeito</span>':'')+'</div>'}).join('')+'</div>';
+    (x.desfeito?'<span class="mlTag">Desfeito</span>':'')+'</div>'}).join('')+'</div>'+
+    (LT>L.length?'<p class="pqLin"><button type="button" class="sec" onclick="MV.'+a+'.max+=100;mvPintar(\''+a+'\')">Mostrar mais ('+(LT-L.length)+')</button></p>':'')+
+    (r.mais?msg('aviso','O período tem muitos lançamentos: aparecem os 800 mais recentes. Os números lá em cima contam todos. Para ver mais, escolha Dia ou Semana, ou uma pessoa.'):'');
   h+='<p class="rcPer2">Problemas e travas</p>';
   var P=PP.filter(function(x){return !b||[x.quem,x.tipo,x.end,x.item,x.det,x.quando].join(' ').toLowerCase().indexOf(b)>=0});
   var pc={};PP.forEach(function(x){pc[x.tipo]=(pc[x.tipo]||0)+1});var tipos=Object.keys(pc);
   if(!tipos.length)h+='<p class="dfCont">Nenhum problema '+perTx+'. Muito bem!</p>';
   else{h+='<p class="dfCont dfTem">'+tipos.sort(function(a,c){return pc[c]-pc[a]}).map(function(k){return esc(k)+': <b>'+pc[k]+'</b>'}).join(' · ')+'</p>';
     h+='<div class="dfLista dfHist">'+P.map(function(x){return '<div class="dfIt"><div><b>'+esc(x.tipo)+'</b>'+(x.end?' · '+esc(x.end):'')+(x.item?' · '+esc(x.item):'')+'<br><small>'+esc(x.det)+'</small><br><small>'+esc(x.quando)+' · '+esc(x.quem)+'</small></div></div>'}).join('')+'</div>'}
-  $('dRes').innerHTML=h}
+  $(k+'Res').innerHTML=h}
 
 /* ---------- PAINEL ---------- */
 function corPct(p){return p<=0.7?'var(--ver)':(p<=0.9?'var(--ama)':'var(--verm)')}
@@ -2941,34 +2975,6 @@ function zerarInv(){perguntar('Apagar todas as contagens do inventário? Use só
 
 /* ---------- PROGRAMAÇÃO TV ---------- */
 var PTV_URL='';
-/* ---------- MOVIMENTAÇÕES DO ABASTECIMENTO (03/11/2026; antes "Transferências 01 → 06"): todos veem as de todos, com pesquisa ---------- */
-var TRF_P='d';
-function abrirTrf(){fFecha();if(!$('trfData').value)$('trfData').value=hojeISO();trfPer(TRF_P,true)}
-function trfPer(p,buscar){TRF_P=p;fTxt('trFTxt',p,val('trfData'));document.querySelectorAll('.trfPer button').forEach(function(b){b.classList.toggle('at',b.getAttribute('data-p')===p)});if(buscar)trfBuscar();else trfAvisaPesq()}
-function trfAvisaPesq(){if(TRF_R)$('trfRes').insertAdjacentHTML('afterbegin',$('trfRes').querySelector('.pqAviso')?'':'<p class="pqAviso">Toque em Pesquisar para ver o período escolhido.</p>')}
-function trfOpMudou(){if(TRF_R&&TRF_R.r.mais)trfAvisaPesq();else trfPintar()}
-function trfFaixa(){var r=val('trfData')||hojeISO(),d=new Date(r+'T12:00:00'),de=new Date(d),ate=new Date(d);
-  if(TRF_P==='s'){var w=(d.getDay()+6)%7;de.setDate(d.getDate()-w);ate=new Date(de);ate.setDate(de.getDate()+6)}
-  else if(TRF_P==='m'){de=new Date(d.getFullYear(),d.getMonth(),1,12);ate=new Date(d.getFullYear(),d.getMonth()+1,0,12)}
-  var f=function(x){return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)};return [f(de),f(ate)]}
-function trfBuscar(){fTxt('trFTxt',TRF_P,val('trfData'));var F=trfFaixa(),br=function(x){return x.split('-').reverse().join('/')};$('trfRes').innerHTML='';fFecha();
-  chamar('apiTransfs',[quem(),F[0],F[1],(TRF_R&&TRF_R.r.mais&&$('trfOp'))?val('trfOp'):''],function(r){if(!r.ok){$('trfRes').innerHTML=msg('erro',r.msg);return}
-    $('trfOpBox').hidden=!r.todos;
-    if(r.todos){var at=val('trfOp'),ops=r.operadores.slice();if(at&&ops.indexOf(at)<0)ops.push(at);
-      $('trfOp').innerHTML='<option value="">Todos</option>'+ops.map(function(o){return '<option'+(o===at?' selected':'')+'>'+esc(o)+'</option>'}).join('')}
-    $('trfQuem').textContent='Abastecimentos da equipe, gravados como transferência do 01 para o 06.';
-    TRF_R={r:r,per:F[0]===F[1]?br(F[0]):br(F[0])+' a '+br(F[1])};trfPintar()})}
-var TRF_R=null;
-function trfPintar(){if(!TRF_R)return;var r=TRF_R.r,per=TRF_R.per,b=String(val('trfBusca')||'').trim().toLowerCase();
-    var op=r.mais?'':val('trfOp');   /* operador filtrado no celular (quando o período inteiro veio) */
-    var L=r.lista.filter(function(x){return (!op||x.op===op)&&(!b||[x.op,x.cod,x.desc,x.end,x.nf,x.quando,x.rec].join(' ').toLowerCase().indexOf(b)>=0)});
-    var LO=op?r.lista.filter(function(x){return x.op===op}):null,tot=LO?LO.length:r.total,qt=LO?LO.reduce(function(a,x){return a+(Number(x.qtd)||0)},0):r.qtd,its=LO?Object.keys(LO.reduce(function(a,x){a[x.cod]=1;return a},{})).length:r.itens;
-    var h='<p><small>Período: '+per+(op?' · '+esc(op):'')+'</small></p><div class="trfSum"><div><b>'+tot+'</b>transferências</div><div><b>'+its+'</b>produtos</div><div><b>'+(Math.round(qt*100)/100).toLocaleString('pt-BR')+'</b>quantidade</div></div>';
-    if(b)h+='<p class="rcPer2">'+L.length+' encontrada(s) com "'+esc(b)+'"</p>';
-    if(!L.length)h+=msg('aviso',b?'Nada encontrado nesta pesquisa.':'Nenhuma transferência neste período.');
-    else h+='<div>'+L.map(function(x){return '<div class="trfL"><b>Transferência do 01 para o 06</b><br><b>'+esc(x.cod)+'</b> · '+esc(qtdU(x.qtd,x.cod))+'<br>'+esc(x.desc)+'<br><small>'+esc(x.quando)+' · '+esc(x.op)+' · '+endCor(x.end)+(x.nf?' · NF '+esc(x.nf):'')+(x.rec?' · Receb. '+esc(x.rec):'')+(x.integ?' · Integrado: '+esc(x.integ):'')+'</small></div>'}).join('')+'</div>'+
-      (r.mais?msg('aviso','Mostrando as 1000 mais recentes. O total acima considera todas do período.'):'');
-    $('trfRes').innerHTML=h}
 /* ---------- DESLOGAR TODOS + TRAVA DE MANUTENÇÃO (30/10/2026) ---------- */
 function abrirSess(){$('sessMsg').innerHTML='';$('sessSt').innerHTML='Carregando...';
   chamar('apiSessoes',[quem()],function(r){if(!r.ok){$('sessSt').innerHTML=msg('erro',r.msg);return}
