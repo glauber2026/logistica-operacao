@@ -2114,7 +2114,10 @@ function trocarSenha(){
 }
 function sair(){chamar('apiSair',[quem()],function(){});AV_T=0;if($('avisos'))$('avisos').innerHTML='';['jeTok','jeNome','jeAdm','jePerf','jeAvC'].forEach(function(k){LS.removeItem(k)});AV={meus:[],res:null,sis:[],ges:null};carregarNomes();ir('nome')}
 function avisoManut(){if(MODO==='tv'||!$('lManut'))return;chamar('apiAvisoManut',[],function(m){$('lManut').innerHTML=m&&m.ativo?msg('aviso','🔧 '+m.msg):''})}
-function carregarNomes(){avisoManut();chamar('apiNomes',[],function(l){$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n})}
+function carregarNomes(){avisoManut();chamar('apiNomes',[],function(l){if(!Array.isArray(l))return;$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n;
+  try{LS.setItem('jeNomesC',JSON.stringify(l))}catch(e){}
+  /* abertura rápida: se a tela de Movimentações já estiver aberta, a lista de pessoas é completada agora */
+  if(typeof mvPessoas==='function'){mvPessoas('mv',MV.arm.r&&MV.arm.r.pessoas);mvPessoas('ab',MV.abs.r&&MV.abs.r.pessoas)}})}
 function abrirProd(){var d=new Date(),f=function(x){return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)};
   $('pAte').value=f(d);var i=new Date(d);i.setDate(i.getDate()-6);$('pDe').value=f(i);verProd()}
 function verProd(){
@@ -2737,6 +2740,7 @@ var MV={arm:{k:'mv',r:null,max:100},abs:{k:'ab',r:null,max:100}};   /* mostra 10
 /* Lista de pessoas já pronta ao entrar (03/11/2026): vem da lista de usuários que o app já carrega, mais quem aparecer na pesquisa */
 function mvPessoas(k,extra){var sl=$(k+'Pes');if(!sl)return;var v=sl.value,m={};
   [].forEach.call(($('nome')||{options:[]}).options,function(o){if(o.text)m[o.text]=1});(extra||[]).forEach(function(n){if(n)m[n]=1});
+  if(!Object.keys(m).length){try{(JSON.parse(LS.getItem('jeNomesC')||'[]')||[]).forEach(function(n){if(n)m[n]=1})}catch(e){}}   /* guardada no celular */
   sl.innerHTML='<option value="">Todos</option>'+Object.keys(m).sort(function(a,b){return a.localeCompare(b)}).map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');if(v)sl.value=v}
 function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);mvPessoas(k);MV[a].r=null;perVazio(k)}   /* entra sem buscar nada */
 function verUltimo(){mvBuscar('arm')}
