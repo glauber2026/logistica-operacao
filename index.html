@@ -954,15 +954,20 @@ html body main .camBox button.mic[hidden]{display:none!important}
 html body main .camBox:has(button.mic:not([hidden])) input{padding-right:106px!important}
 @media print{.camBox button.mic{display:none!important}}
 
-/* ---- 05/11/2026: botões de câmera e microfone em prateado, estilo botão (as cores dos níveis já deixam a tela colorida).
-   O toque só escurece; o microfone fica laranja enquanto ouve. Vale para os pequenos dos campos e para o grande de leitura. ---- */
-html body main .camBox button.cam.cam.cam,html body main .camBox button.cam.mic.mic.mic.mic{background:linear-gradient(180deg,#FBFBFC 0%,#E6E8EB 52%,#D2D5DA 100%)!important;color:#3A3B3F!important;border:1px solid #B9BDC4!important;border-radius:10px!important;width:40px!important;height:34px!important;box-shadow:inset 0 1px 0 #FFFFFF,0 1px 2px #0000001F!important}
+/* ---- 05/11/2026 (revisado): botões de câmera, microfone e o grande de ler QR Code no laranja suave dos botões principais
+   (igual ao Continuar), com texto/ícone escuro. Toque só escurece; microfone ouvindo fica laranja forte. Vale para todas as telas. ---- */
+html body main .camBox button.cam.cam.cam,html body main .camBox button.cam.mic.mic.mic.mic{background:#F2A766!important;background-image:none!important;color:#2E2E30!important;border:0!important;border-radius:10px!important;width:40px!important;height:34px!important;box-shadow:none!important}
 html body main .camBox button.cam.mic.mic.mic{right:50px!important}
-html body main .camBox button.cam.cam.cam:active,html body main .camBox button.cam.mic.mic.mic.mic:active{background:linear-gradient(180deg,#E6E8EB 0%,#D2D5DA 55%,#BFC3C9 100%)!important}
-html body main .camBox button.cam.mic.mic.mic.mic.on{background:#F58321!important;color:#fff!important;border-color:#F58321!important}
-html body main :is(#s-guardar,#s-tirar,#s-tend,#s-inv,#s-pos,#s-pesq) button.endLer.endLer.endLer{background:linear-gradient(180deg,#FBFBFC 0%,#E6E8EB 52%,#D2D5DA 100%)!important;color:#2E2E30!important;border:1px solid #B9BDC4!important;box-shadow:inset 0 1px 0 #FFFFFF,0 1px 3px #00000024!important}
-html body main :is(#s-guardar,#s-tirar,#s-tend,#s-inv,#s-pos,#s-pesq) button.endLer.endLer.endLer svg{color:#3A3B3F!important;stroke:#3A3B3F!important}
-html body main :is(#s-guardar,#s-tirar,#s-tend,#s-inv,#s-pos,#s-pesq) button.endLer.endLer.endLer:active{background:linear-gradient(180deg,#E6E8EB 0%,#D2D5DA 55%,#BFC3C9 100%)!important}
+html body main .camBox button.cam.cam.cam:active,html body main .camBox button.cam.mic.mic.mic.mic:active{background:#E8975A!important}
+html body main .camBox button.cam.mic.mic.mic.mic.on{background:#F58321!important;color:#fff!important}
+html body main button.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer{background:#F2A766!important;background-image:none!important;color:#2E2E30!important;border:0!important;box-shadow:none!important}
+html body main button.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer svg{color:#2E2E30!important;stroke:#2E2E30!important}
+html body main button.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer:active{background:#E8975A!important}
+html body main label.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn{background:#F2A766!important;background-image:none!important;color:#2E2E30!important;border:0!important;box-shadow:none!important}
+html body main label.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn:active{background:#E8975A!important}
+/* Cancelar operação: vermelho clássico, na caixinha e na janela */
+html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm{background:#DC2626!important;background-image:none!important;color:#FFFFFF!important;border:0!important}
+html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp:active,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm:active{background:#B91C1C!important}
 
 /* ---- 05/11/2026: Endereçar abre direto (o manual, só do administrador, fica recolhido no fim) ---- */
 #s-guardar #opInt{background:transparent;box-shadow:none;margin:0;overflow:visible}
@@ -1648,7 +1653,7 @@ function fecharPergunta(tudo){if(PERG.aberta&&(tudo||!PERG.so)&&PERG.cancela)PER
 function perguntar(t,sim,nao,op){op=op||{};var j=$('pergJan'),f=$('pergFundo'),i=$('pergIn'),bs=$('pergSim'),bn=$('pergNao');
   if(!j){if(sim)sim('');return}
   $('pergTx').textContent=String(t==null?'':t);i.value='';i.style.display=op.campo?'block':'none';
-  bs.textContent=op.ok||(op.so?'OK':'Confirmar');bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
+  bs.textContent=op.ok||(op.so?'OK':'Confirmar');bs.classList.toggle('cancVerm',/^Cancelar opera/.test(bs.textContent));bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
   var tecla=function(e){if(e.key==='Escape'){e.preventDefault();bn.onclick()}else if(e.key==='Enter'){e.preventDefault();bs.onclick()}};
   var fecha=function(){PERG.aberta=0;j.classList.remove('on');f.classList.remove('on');document.removeEventListener('keydown',tecla)};
   bs.onclick=function(){var v=i.value.trim();if(op.campo&&!v){i.focus();return}fecha();if(sim)sim(op.campo?v:undefined)};
@@ -1800,23 +1805,50 @@ var QR_ESP='',QR_ESP_PROX='';
    Três jeitos de achar o produto: digitar (lista inteligente), ler a etiqueta pela câmera ou falar.
    A voz só preenche a pesquisa: código certo → pesquisa direto; senão abre a lista com o que foi falado, e a pessoa toca no produto. */
 var VOZ=null,VOZ_ACAO={pqCod:function(){pesqItem()},tCod:function(){tirar()}};
-function vozTexto(t){t=semAc(t).toLowerCase()
+/* Voz (05/11/2026, revisado): números por extenso viram dígitos e letras faladas viram letras ("xis um pê" -> X1P) */
+var VOZ_NUM={zero:0,um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,meia:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,treze:13,quatorze:14,catorze:14,quinze:15,dezesseis:16,dezessete:17,dezoito:18,dezenove:19,vinte:20,trinta:30,quarenta:40,cinquenta:50,sessenta:60,setenta:70,oitenta:80,noventa:90,cem:100,cento:100,duzentos:200,trezentos:300,quatrocentos:400,quinhentos:500,seiscentos:600,setecentos:700,oitocentos:800,novecentos:900,mil:1000};
+var VOZ_LET={a:'A',be:'B',bê:'B',ce:'C',cê:'C',de:'D',dê:'D',e:'E',efe:'F',ge:'G',gê:'G',aga:'H',i:'I',jota:'J',ka:'K',ca:'K',ele:'L',eme:'M',ene:'N',o:'O',pe:'P',pê:'P',que:'Q',quê:'Q',erre:'R',esse:'S',te:'T',tê:'T',u:'U',ve:'V',vê:'V',dablio:'W',dabliu:'W',xis:'X',ipsilon:'Y',ze:'Z',zê:'Z'};
+function vozNumeros(t){var p=t.split(' '),out=[],acc=null;
+  var flush=function(){if(acc!==null){out.push(String(acc));acc=null}};
+  var casa=function(a){return a>=1000&&a%1000===0?1000:a>=100&&a%100===0?100:a>=20&&a%10===0?10:1};
+  for(var i=0;i<p.length;i++){var w=p[i],v=VOZ_NUM[w];
+    if(w==='e'&&acc!==null&&i+1<p.length&&VOZ_NUM[p[i+1]]!==undefined)continue;
+    if(v===undefined){flush();out.push(w);continue}
+    if(v===1000){acc=(acc!==null&&acc>0&&acc<1000?acc:1)*1000;continue}
+    if(acc!==null&&casa(acc)>1&&v<casa(acc)){acc+=v;continue}
+    flush();acc=v}
+  flush();return out.join(' ')}
+function vozTexto(t){t=semAc(t).toLowerCase();t=vozNumeros(t.replace(/\s+/g,' ').trim());
+  t=t.split(' ').map(function(w){return VOZ_LET[w]&&w.length>1?VOZ_LET[w]:w}).join(' ');
+  t=t
   .replace(/\b(ponto|virgula)\b/g,'.').replace(/\b(traco|hifen|tracinho)\b/g,'-').replace(/\b(barra)\b/g,'/');
-  t=t.replace(/(\d)\s+(?=[\d.\-\/])/g,'$1').replace(/([.\-\/])\s+(?=\d)/g,'$1').replace(/\s+/g,' ').trim();return t.toUpperCase()}
+  t=t.toUpperCase().replace(/(\d)\s+(?=[\d.\-\/])/g,'$1').replace(/([.\-\/])\s+(?=[A-Z0-9])/g,'$1')
+   .replace(/\b([A-Z])\s+(?=\d)/g,'$1').replace(/(\d)\s+([A-Z])\b(?!\w)/g,'$1$2').replace(/\b([A-Z])\s+(?=[A-Z]\b)/g,'$1')
+   .replace(/\s+/g,' ').trim();return t.toUpperCase()}
+/* só os dígitos e letras do código, para comparar sem ponto/traço/espaço */
+function vozChave(t){return semAc(t).replace(/[^A-Z0-9]/g,'')}
+/* acha o produto pelo que foi falado: código exato, código só pelos dígitos/letras, ou descrição (como a pesquisa digitada) */
+function vozAcha(alts){var ks={},cand=[];
+  for(var i=0;i<alts.length;i++){var a=alts[i];if(!a)continue;if(ITMAP[a])return {um:a};var k=vozChave(a);if(k.length>=3)ks[k]=1}
+  var keys=Object.keys(ks);
+  if(keys.length){var hit=(ITENS||[]).filter(function(x){var c=vozChave(x[0]);return keys.some(function(k){return c===k})});if(hit.length===1)return {um:hit[0][0]};
+    var pre=(ITENS||[]).filter(function(x){var c=vozChave(x[0]);return keys.some(function(k){return /\d/.test(k)&&k.length>=4&&c.indexOf(k)===0})});if(pre.length===1)return {um:pre[0][0]};if(pre.length>1)cand=pre}
+  if(!cand.length)for(var j=0;j<alts.length&&!cand.length;j++){if(alts[j])cand=achaItens(alts[j],50)}
+  if(cand.length===1)return {um:cand[0][0]};
+  return {lista:cand,txt:alts[0]||''}}
 var MIC_BLOQ='O microfone está bloqueado neste celular. Para liberar:\n\n1. Toque no cadeado (ou no ícone de ajustes) ao lado do endereço do site, lá em cima.\n2. Toque em Permissões e ligue o Microfone.\n3. Recarregue a página.\n\nSe continuar bloqueado: Configurações do celular > Apps > Chrome > Permissões > Microfone > Permitir.\nNo iPhone: Ajustes > Safari (ou Chrome) > Microfone > Permitir.';
 function ouvir(id){var SR=window.SpeechRecognition||window.webkitSpeechRecognition,b=document.querySelector('button.mic[onclick*="'+id+'"]');
   if(!SR){avisoJan('Este navegador não tem pesquisa por voz. Use o Chrome, ou digite / leia a etiqueta pela câmera.');return}
   if(VOZ){try{VOZ.abort()}catch(e){}VOZ=null;document.querySelectorAll('button.mic.on').forEach(function(x){x.classList.remove('on')});return}
-  var r=new SR();VOZ=r;r.lang='pt-BR';r.interimResults=false;r.maxAlternatives=3;r.continuous=false;
+  var r=new SR();VOZ=r;r.lang='pt-BR';r.interimResults=false;r.maxAlternatives=5;r.continuous=false;
   if(b)b.classList.add('on');toast('Pode falar o código ou a descrição...');
   var fim=function(){VOZ=null;if(b)b.classList.remove('on')};
-  r.onresult=function(ev){fim();var alts=[].map.call(ev.results[0],function(a){return vozTexto(a.transcript)});
-    var c=alts.filter(function(a){return ITMAP[a]})[0];var inp=$(id);
-    if(c){inp.value=c;toast('Ouvi: '+c);if(VOZ_ACAO[id])VOZ_ACAO[id]();return}
-    var t=alts[0]||'';if(!t){toast('Não entendi. Tente de novo.');return}
-    toast('Ouvi: '+t);var a=achaItens(t);
-    if(a.length===1){inp.value=a[0][0];if(VOZ_ACAO[id])VOZ_ACAO[id]();return}
-    abrirLista(id);$('lsBusca').value=t;pintarLista()};
+  r.onresult=function(ev){fim();var alts=[].map.call(ev.results[ev.results.length-1],function(a){return vozTexto(a.transcript)});var inp=$(id);
+    if(!alts[0]){toast('Não entendi. Tente de novo.');return}
+    var a=vozAcha(alts);
+    if(a.um){inp.value=a.um;toast('Ouvi: '+a.um);if(VOZ_ACAO[id])VOZ_ACAO[id]();return}
+    toast('Ouvi: '+a.txt+(a.lista.length?' · escolha na lista':' · nada parecido'));
+    abrirLista(id);$('lsBusca').value=a.lista.length&&!achaItens(a.txt,1).length?vozChave(a.txt).slice(0,4):a.txt;pintarLista()};
   r.onerror=function(e){fim();if(e.error==='not-allowed'||e.error==='service-not-allowed'){avisoJan(MIC_BLOQ);return}var m={'no-speech':'Não ouvi nada. Toque no microfone e fale perto do celular.','network':'Sem internet: a pesquisa por voz precisa de internet.'}[e.error];toast(m||'Não deu para ouvir. Tente de novo.')};
   r.onend=fim;try{r.start()}catch(e){fim()}}
 document.addEventListener('DOMContentLoaded',function(){if(!(window.SpeechRecognition||window.webkitSpeechRecognition))document.querySelectorAll('button.mic').forEach(function(b){b.hidden=true})});
@@ -2132,7 +2164,7 @@ function chamar(fn,args,cb){if(COM_TOKEN[fn])args=[quem()].concat(args||[]);
   if(navigator.onLine===false){if(MODO!=='tv')avisoJan('Sem internet no celular. Confira o Wi-Fi ou os dados móveis e tente de novo. Nada foi gravado.');return}
   var b=(MODO!=='tv'&&TOQUE.el&&Date.now()-TOQUE.t<4000)?TOQUE.el:null;TOQUE.el=null;espera(true,b);
   var bola=!!b||(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn]);
-  if(bola)procLiga(fn);if(PROC_GRAVA.test(fn))AV_T=0;var fim=function(){espera(false,b);if(bola)procDesliga()};
+  if(bola)procLiga(fn);if(PROC_GRAVA.test(fn)){AV_T=0;if(window.PQ_CACHE)PQ_CACHE.t=0}var fim=function(){espera(false,b);if(bola)procDesliga()};
   servidor(fn,args,function(r){fim();if(r&&r.msg&&String(r.msg).indexOf('Sessão expirada')>=0&&MODO!=='tv'){['jeTok','jeAdm','jePerf'].forEach(function(k){LS.removeItem(k)});avisoJan(r.msg);ir('nome');return}cb(r)},function(e){fim();avisoJan(navigator.onLine===false?'A internet caiu antes da resposta. Confira em Meus lançamentos se a ação foi gravada antes de repetir.':'Falha de conexão: '+e.message)});
 }
 var LIMPAR={guardar:['gCod','gRes','gInf','mInf'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
@@ -3204,14 +3236,18 @@ function pesqItem(){PQ_ULT=pesqItem;var c=val('pqCod');if(!c){$('pqRes').innerHT
     if(a.length===1){$('pqCod').value=a[0][0];c=a[0][0]}
     else if(a.length>1){abrirLista('pqCod');$('lsBusca').value=c;pintarLista();return}
     else{$('pqRes').innerHTML=msg('erro','Nenhum produto encontrado com "'+esc(c)+'". Confira o código ou tente outra palavra da descrição.');return}}
-  chamar('apiSaldoItem',[c],function(r){if(!r.ok){$('pqRes').innerHTML=msg('erro',r.msg);return}
-    $('pqRes').innerHTML=r.lista.length?pqBloco(r):msg('aviso','Este produto não está em nenhuma posição.')})}
+  var pint=function(r){$('pqRes').innerHTML=r&&r.lista&&r.lista.length?pqBloco(r):msg('aviso','Este produto não está em nenhuma posição.')};
+  /* 05/11/2026: com o estoque já carregado no celular, mostra na hora e confere com o servidor por trás */
+  var k=String(c).toUpperCase();
+  if(PQ_CACHE.t&&Date.now()-PQ_CACHE.t<120000){var loc=PQ_CACHE.m[k]||null,antes=JSON.stringify(loc&&loc.lista||[]);pint(loc);
+    TOQUE.el=null;chamar('apiSaldoItem',[c],function(r){if(!r||!r.ok)return;if(val('pqCod').toUpperCase()!==k)return;if(JSON.stringify(r.lista||[])!==antes)pint(r);PQ_CACHE.m[k]=r.lista&&r.lista.length?r:null});pqPrecarregar();return}
+  chamar('apiSaldoItem',[c],function(r){if(!r.ok){$('pqRes').innerHTML=msg('erro',r.msg);return}pint(r)});pqPrecarregar()}
 function pesqTudo(){PQ_ULT=pesqTudo;chamar('apiSaldoTudo',[],function(r){if(!r.ok){$('pqRes').innerHTML=msg('erro',r.msg);return}
     $('pqRes').innerHTML=r.itens.length?'<p class="pqTot">'+r.itens.length+' item(ns) no estoque · Total geral: <b>'+r.itens.reduce(function(t,x){return t+(Number(x.total)||0)},0)+'</b></p>'+r.itens.map(pqBloco).join(''):msg('aviso','Nenhum item endereçado.')})}
 /* ---------- VOLTAR no final de toda tela (padrão) ---------- */
 function vFim(t){if(MODO==='tv'||['menu','nome','seg','troca'].indexOf(t)>=0)return;var e=$('s-'+t);if(!e||e.querySelector('.vFim'))return;
   var p=document.createElement('p');p.className='np vFim';p.innerHTML='<button class="sec" onclick="voltarCamada()">← Voltar</button>';e.appendChild(p)}
-var _irOrig=ir;ir=function(t,m){_irOrig(t,m);try{if(t==='guardar')document.querySelectorAll('.endOp').forEach(function(x){x.classList.remove('aberta')});vFim(TELA_ATUAL||t);prepararListas()}catch(e){}};
+var _irOrig=ir;ir=function(t,m){_irOrig(t,m);try{if(t==='pesq')setTimeout(function(){pqPrecarregar()},50);if(t==='guardar')document.querySelectorAll('.endOp').forEach(function(x){x.classList.remove('aberta')});vFim(TELA_ATUAL||t);prepararListas()}catch(e){}};
 document.addEventListener('DOMContentLoaded',prepararListas);
 window.addEventListener('popstate',function(){if(document.body.classList.contains('lsOn'))fecharLista()});
 
@@ -3784,6 +3820,10 @@ function recTempoDecidir(usar){var faz=function(){chamar('apiRecTempoDecidir',[q
 (function(){var vv=window.visualViewport;if(!vv)return;function aj(){var j=$('lsJan');if(!j)return;j.style.top=vv.offsetTop+'px';j.style.maxHeight=Math.round(vv.height-8)+'px'}vv.addEventListener('resize',aj);vv.addEventListener('scroll',aj)})();
 
 
+/* Pesquisa de produto rápida: ao abrir a tela, o estoque vem por trás (sem bolinha) e fica no celular por 2 minutos */
+var PQ_CACHE={t:0,m:{}},PQ_CARR=0;
+function pqPrecarregar(forcar){if(MODO==='tv'||PQ_CARR||(!forcar&&PQ_CACHE.t&&Date.now()-PQ_CACHE.t<60000))return;PQ_CARR=1;TOQUE.el=null;
+  chamar('apiSaldoTudo',[],function(r){PQ_CARR=0;if(!r||!r.ok)return;var m={};(r.itens||[]).forEach(function(x){m[String(x.codigo).toUpperCase()]=x});PQ_CACHE={t:Date.now(),m:m}})}
 /* =================== 05/11/2026 =================== */
 /* Texto da pergunta ao cancelar (sair da tela ou botão da caixinha) */
 function txCancelar(t){return 'Cancelar operação? '+(t==='guardar'&&(QR_TV.gCod||QR_TV.mCod)?'A etiqueta lida não será endereçada e o número dela não será criado. O que você já confirmou continua gravado.':'O que ainda não foi confirmado não será gravado.')}
