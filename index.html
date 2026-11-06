@@ -1955,7 +1955,7 @@ function etiqTotvs(t){var p=String(t||'').split('|').map(function(x){return x.tr
   var d=p[4].split('/'),a=d[2].length===2?'20'+d[2]:d[2];
   /* RG do pallet (29/10/2026): código|quantidade|unidade|nota|data|hora — igual etiqueta = mesmo pallet */
   var rg=[p[0],p[1],p[2]||'',p[3]||'',p[4],p[5]||''].join('|').toUpperCase().replace(/\s+/g,'');
-  return {cod:p[0].toUpperCase(),qtd:p[1],unid:p[2]||'',nf:p[3],data:a+'-'+d[1]+'-'+d[0],hora:p[5]||'',rg:rg}}
+  return {cod:p[0].toUpperCase(),qtd:p[1],unid:p[2]||'',nf:p[3],data:a+'-'+d[1]+'-'+d[0],hora:p[5]||'',rg:rg,desc:(p[6]&&/[A-Za-z]{3}/.test(p[6]))?p.slice(6).join(' ').trim():''}}
 /* ---------- PROCEDIMENTOS PROLOG (29/10/2026): modelo de procedimento + tempo médio medido pelo uso do app ---------- */
 var PROCS={
  1:{n:'PROLOG 001',t:'Procedimento de segurança',area:'Logística (todas as áreas)',obj:'Garantir que toda operação da logística comece com o equipamento conferido e o operador protegido.',aplic:'Todo operador da logística, todos os turnos, antes de qualquer operação no app ou com equipamento.',resp:'Execução: operador. Acompanhamento: líder de logística.',rec:['Empilhadeira (checklist antes de usar)','EPIs: colete refletivo, óculos, protetor auricular, sapato de segurança e boné de segurança (casquete) da Johnson'],
@@ -2160,12 +2160,16 @@ var SEM_BOLA={};   /* chamadas de fundo que não mostram a bolinha (ex.: confer�
 /* pesquisas que podem rodar ao abrir a tela (sem toque recente): também mostram a bolinha. As de fundo ficam de fora */
 var PROC_BUSCA=/^api(MeusLanc|Transfs|Faltas|ResultadoInv)$/;
 var COM_TOKEN={apiOcorrencia:1,apiEtqUso:1,apiTempo:1,apiTempos:1,apiItens:1,apiPosicao:1,apiTirar:1,apiItem:1,apiReorganizar:1,apiLerQR:1,apiSaldoItem:1,apiSaldoTudo:1,apiZerarPos:1,apiZerarInv:1,apiPainel:1};
+var GRAV_ANDA={};
 function chamar(fn,args,cb){if(COM_TOKEN[fn])args=[quem()].concat(args||[]);
   if(navigator.onLine===false){if(MODO!=='tv')avisoJan('Sem internet no celular. Confira o Wi-Fi ou os dados móveis e tente de novo. Nada foi gravado.');return}
+  /* 05/11/2026: toque duplo não grava duas vezes (vale para todas as gravações do app) */
+  var gk=PROC_GRAVA.test(fn)?fn+'|'+JSON.stringify(args||[]):'';
+  if(gk){if(GRAV_ANDA[gk]&&Date.now()-GRAV_ANDA[gk]<60000){toast('Aguarde, já está gravando.');return}GRAV_ANDA[gk]=Date.now()}
   var b=(MODO!=='tv'&&TOQUE.el&&Date.now()-TOQUE.t<4000)?TOQUE.el:null;TOQUE.el=null;espera(true,b);
   var bola=!!b||(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn]);
   if(bola)procLiga(fn);if(PROC_GRAVA.test(fn)){AV_T=0;if(window.PQ_CACHE)PQ_CACHE.t=0}var fim=function(){espera(false,b);if(bola)procDesliga()};
-  servidor(fn,args,function(r){fim();if(r&&r.msg&&String(r.msg).indexOf('Sessão expirada')>=0&&MODO!=='tv'){['jeTok','jeAdm','jePerf'].forEach(function(k){LS.removeItem(k)});avisoJan(r.msg);ir('nome');return}cb(r)},function(e){fim();avisoJan(navigator.onLine===false?'A internet caiu antes da resposta. Confira em Meus lançamentos se a ação foi gravada antes de repetir.':'Falha de conexão: '+e.message)});
+  servidor(fn,args,function(r){fim();if(gk)delete GRAV_ANDA[gk];if(r&&r.msg&&String(r.msg).indexOf('Sessão expirada')>=0&&MODO!=='tv'){['jeTok','jeAdm','jePerf'].forEach(function(k){LS.removeItem(k)});avisoJan(r.msg);ir('nome');return}cb(r)},function(e){fim();if(gk)delete GRAV_ANDA[gk];avisoJan(navigator.onLine===false?'A internet caiu antes da resposta. Confira em Meus lançamentos se a ação foi gravada antes de repetir.':'Falha de conexão: '+e.message)});
 }
 var LIMPAR={guardar:['gCod','gRes','gInf','mInf'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
 var PEND=null;
@@ -2592,11 +2596,12 @@ function sugerir(){
   var c=val('gCod'), q=Number(String(val('gQtd')).replace(',','.'))||0;
   if(!c||!(QR_TV.gCod&&QR_TV.gCod.cod===c.toUpperCase())){$('gRes').innerHTML=msg('erro','Leia a etiqueta do TOTVS do produto.');return}
   if(q<=0||String(q)!==String(Number(String(QR_TV.gCod.qtd).replace(',','.')))){$('gRes').innerHTML=msg('erro','A quantidade vem da etiqueta do TOTVS. Leia a etiqueta de novo.');return}
+  if(ITENS&&ITENS.length&&!ITMAP[c.toUpperCase()]){cadSimples(c);return}
   cronoIni('end');var pd=Number((ITMAP[c.toUpperCase()]||[])[2])||0, n=pd>0?Math.ceil(q/pd):1;
   END_QTDS=[];for(var k=0;k<n;k++)END_QTDS.push(pd>0?(k<n-1?pd:q-pd*(n-1)):q);
   $('gRes').innerHTML='Procurando...';
   chamar('apiGuardar',[c,n,quem(),MODO!=='tv'],function(r){
-    if(!r.ok){$('gRes').innerHTML=msg('erro',(r.naoCad?'⚠️ ':'')+r.msg);if(r.naoCad)avisoJan(r.msg);return}
+    if(!r.ok){if(r.naoCad){$('gRes').innerHTML='';cadSimples(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
     var h=cabItem(r.codigo,r.desc,'Já tem '+r.jaTem+' posição(ões) com este item no porta-pallets.<br><small>Família: '+esc(r.familia||'-')+' · Giro: '+esc(r.giro)+' · Nível máximo: N0'+r.nivelMax+'</small>');
     if(r.faltam>0) h+=msg('aviso','Faltam '+r.faltam+' posição(ões) livres para completar.');
     if(r.ate) h+=msg('ok','Posições guardadas para você enquanto estiver nesta tela.');
@@ -2653,9 +2658,11 @@ function salvarFaltaCad(){var it=ITMAP[FALTA_COD]||[],pad=$('faPad')?val('faPad'
 
 /* ---------- TIRAR ---------- */
 function tirar(){cronoIni('abs');ETQ_TIRAR=null;
+  var c0=String(val('tCod')||'').toUpperCase();
+  if(c0&&ITENS&&ITENS.length&&!ITMAP[c0]){$('tRes').innerHTML=msg('erro','Produto sem cadastro. Chame o líder.');avisoJan('Produto sem cadastro ('+c0+'). Chame o líder.');TOQUE.el=null;chamar('apiTirar',[c0],function(){});return}
   $('tRes').innerHTML='Procurando...';
   chamar('apiTirar',[val('tCod')],function(r){
-    if(!r.ok){$('tRes').innerHTML=msg('erro',(r.naoCad?'⚠️ ':'')+r.msg);if(r.naoCad)avisoJan(r.msg);return}
+    if(!r.ok){$('tRes').innerHTML=msg('erro',r.naoCad?'Produto sem cadastro. Chame o líder.':r.msg);if(r.naoCad)avisoJan('Produto sem cadastro ('+val('tCod')+'). Chame o líder.');return}
     if(!r.lista.length){$('tRes').innerHTML=msg('aviso','Nenhum componente deste item no porta-pallets.');return}
     checarFalta(r.codigo);TIRAR_R=r;
     var h=cabItem(r.codigo,r.desc,'Saldo total: <b>'+esc(qtdU(r.total,r.codigo))+'</b>');
@@ -3824,6 +3831,15 @@ function recTempoDecidir(usar){var faz=function(){chamar('apiRecTempoDecidir',[q
 var PQ_CACHE={t:0,m:{}},PQ_CARR=0;
 function pqPrecarregar(forcar){if(MODO==='tv'||PQ_CARR||(!forcar&&PQ_CACHE.t&&Date.now()-PQ_CACHE.t<60000))return;PQ_CARR=1;TOQUE.el=null;
   chamar('apiSaldoTudo',[],function(r){PQ_CARR=0;if(!r||!r.ok)return;var m={};(r.itens||[]).forEach(function(x){m[String(x.codigo).toUpperCase()]=x});PQ_CACHE={t:Date.now(),m:m}})}
+/* Cadastro simples (05/11/2026): no Endereçar, produto sem cadastro abre uma janela para cadastrar só o código
+   (da etiqueta lida, não digitado). Descrição, quantidade padrão e peso, só o administrador completa depois. */
+function cadSimples(c){var tv=QR_TV.gCod;if(!tv||tv.cod!==String(c).toUpperCase()){avisoJan('Produto sem cadastro ('+c+'). Leia a etiqueta do produto para cadastrar.');return}
+  var grava=function(mot){chamar('apiCadSimples',[quem(),tv.rg,mot],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para cadastrar.');return}
+      var x=[r.codigo,r.desc||'','','','','','','','','',''];if(!ITMAP[r.codigo]){ITENS.push(x);ITMAP[r.codigo]=x}
+      toast(r.ja?'Já estava cadastrado.':'Cadastrado! Seguindo o endereçamento.');sugerir()})};
+  perguntar('Produto sem cadastro: '+c+'.\n\nCadastrar agora só com o código da etiqueta? A descrição, a quantidade padrão e o peso o líder completa depois.',function(){
+    /* 06/11/2026: motor nunca vai para o N01; sem descrição o app não sabe, então pergunta */
+    setTimeout(function(){perguntar('Este produto é motor?',function(){grava(true)},function(){grava(false)},{ok:'Sim, é motor',no:'Não, é componente'})},250)},null,{ok:'Cadastrar',no:'Cancelar'})}
 /* =================== 05/11/2026 =================== */
 /* Texto da pergunta ao cancelar (sair da tela ou botão da caixinha) */
 function txCancelar(t){return 'Cancelar operação? '+(t==='guardar'&&(QR_TV.gCod||QR_TV.mCod)?'A etiqueta lida não será endereçada e o número dela não será criado. O que você já confirmou continua gravado.':'O que ainda não foi confirmado não será gravado.')}
@@ -3871,9 +3887,9 @@ function verSemGiro(){$('rgSemGiroRes').innerHTML='Carregando...';chamar('apiSem
 /* Lidos sem cadastro: aparecem no Cadastro de itens para o administrador completar */
 function semCadLista(){var b=$('cSemCad');if(!b)return;if(LS.getItem('jeAdm')!=='1'){b.innerHTML='';return}TOQUE.el=null;
   chamar('apiSemCad',[quem()],function(r){if(!r||!r.ok||!r.lista.length){b.innerHTML='';return}
-    b.innerHTML='<div class="semCadBox"><b>Lidos sem cadastro</b><br><small>O operador viu "Chame o líder". Toque no código para cadastrar.</small><br>'+
+    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Lidos sem cadastro e cadastros simples feitos pelos operadores (só o código). Toque no código para completar a descrição, a quantidade padrão e o peso.</small><br>'+
       r.lista.map(function(x){return '<button type="button" class="sec" onclick="limparCad();$(\'cCod\').value=\''+esc(x.cod).replace(/'/g,'')+'\';buscarCad()">'+esc(x.cod)+'</button>'}).join('')+
-      '<br><small>'+r.lista.map(function(x){return esc(x.cod)+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
+      '<br><small>'+r.lista.map(function(x){return esc(x.cod)+(x.simples?' (cadastro simples'+(x.motor?', motor':', componente')+')':' (sem cadastro)')+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
 
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
