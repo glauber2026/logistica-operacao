@@ -995,6 +995,17 @@ html body main .cancLin button.sec.cancOp{width:auto!important;padding:8px 16px!
 .invUrg{border:2px solid #9F3A3A!important}.urgTag{display:inline-block;background:#9F3A3A;color:#fff;font-weight:800;font-size:13px;border-radius:999px;padding:3px 10px;margin-bottom:6px}
 
 #rsNum .numGo{cursor:pointer;border-radius:12px;transition:background .12s}#rsNum .numGo:active{background:#FFFFFF33}
+
+/* 09/11/2026: Endereçar mais limpo */
+.itMini{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 1px 4px #0000001a;cursor:pointer;font-size:16px}
+.itMini .itDetL{color:#C25E00;font-weight:700;white-space:nowrap;font-size:14px}
+.jnSo{background:transparent!important;box-shadow:none!important;padding:0!important}
+.ltBtWg{margin-top:10px}
+.detJan{position:fixed;inset:0;background:#000000a0;display:none;align-items:flex-end;justify-content:center;z-index:60}.detJan.on{display:flex}
+.djCx{background:#fff;border-radius:18px 18px 0 0;padding:16px 18px 20px;width:100%;max-width:560px;max-height:85vh;overflow:auto}
+.djTop{display:flex;justify-content:space-between;align-items:center;font-size:20px}.djX{background:transparent!important;color:#F58321!important;font-size:22px!important;width:auto!important;padding:4px 8px!important;box-shadow:none!important}
+.djD{color:#444;margin:4px 0 10px}.djF{display:flex;gap:8px;margin-bottom:10px}.djF img{width:48%;border-radius:12px;object-fit:cover;max-height:220px}
+.djL{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #EEE;font-size:15px}.djL span{color:#666}
 </style>
 </head>
 <body>
@@ -2113,12 +2124,10 @@ function sugJuntarHtml(r){if(!r||!r.ok)return msg('erro',(r&&r.msg)||'Não deu p
     (x.mesmo?' <span class="sjTag'+(x.acabando?' ac':'')+'">'+(x.acabando?'Mesmo produto · acabando':'Mesmo produto')+'</span>':' <span class="sjTag fam">Mesma família</span>')+
     '<br><small>'+esc(x.item)+(x.desc?' · '+esc(x.desc):'')+' · '+esc(String(x.qtd))+' · recebido em '+esc(x.data)+'</small></div>'}).join('')+'</div>'}
 /* Juntar no N1 (03/11/2026): o operador decide que o pallet pequeno cabe junto com o que já está na posição */
-function juntarN1(){var c=document.querySelector('.endCard:not(.feito)');
-  /* sem posição livre sugerida (porta-pallets cheio): cria o cartão da embalagem aqui mesmo */
-  if(!c){var n=document.querySelectorAll('.endCard').length,jb=document.querySelector('.jnBox');if(!jb)return;
-    jb.insertAdjacentHTML('beforebegin','<div class="endCard" id="ec'+n+'"><div class="endTop"><span class="endN">'+(n+1)+'º</span><span class="endE">Juntar no N1</span><span class="endSt" id="es'+n+'">Pendente</span></div><div id="eb'+n+'"></div></div>');
-    c=$('ec'+n)}
-  var i=Number(c.id.slice(2));
+function juntarN1(){var box=$('jnRes');if(!box)return;
+  /* 09/11/2026: o resultado aparece logo abaixo do botão (antes ia para o primeiro cartão, lá em cima) */
+  var n=document.querySelectorAll('.endCard').length;if(!document.querySelector('#jnRes .endCard')){box.innerHTML='<div class="endCard" id="ec'+n+'" data-j="1"><div class="endTop"><span class="endN">+</span><span class="endE">Juntar no N1</span><span class="endSt" id="es'+n+'">Procurando...</span></div><div id="eb'+n+'"></div></div>';$('ec'+n).setAttribute('data-jid','1');box.firstChild.id='ec'+n;box.setAttribute('data-i',n);$('ec'+n).classList.add('ecJ')}
+  var i=Number(box.getAttribute('data-i'));
   chamar('apiSugJuntar',[quem(),END_ITEM,''],function(r){$('es'+i).textContent='Juntar';$('es'+i).className='endSt';
     $('eb'+i).innerHTML=sugJuntarHtml(r)+'<button class="endLer" onclick="juntarLer('+i+')">Ler QR Code da posição para juntar</button>';rolarPara($('eb'+i),true)})}
 function juntarLer(i){
@@ -2127,7 +2136,7 @@ function juntarLer(i){
     chamar('apiPosicao',[lido],function(p){if(!p||!p.ok){avisoJan(p&&p.msg||'Posição não encontrada.');return}
       if((p.nprod||0)>=2&&(p.prods||[]).indexOf(String(END_ITEM).toUpperCase())<0){avisoJan('A posição '+p.end+' já tem dois produtos. O máximo é dois.');return}
       if(p.status!=='Ocupado'&&p.status!=='Livre'){avisoJan('A posição '+p.end+' está '+String(p.status).toLowerCase()+'.');return}
-      var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(it[2]||'');
+      var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(END_QTDS[0]!=null?END_QTDS[0]:(it[2]||''));
       $('es'+i).textContent='Juntar em '+p.end;$('es'+i).className='endSt ok';
       $('eb'+i).innerHTML=msg('ok',p.status==='Ocupado'?'Vai junto com '+esc(p.item)+' ('+esc(String(p.qtd))+') na posição '+esc(p.end)+'.':'A posição '+esc(p.end)+' está livre.')+
         '<div class="lin"><div><label>Quantidade nesta embalagem</label><input id="eq'+i+'" type="number" inputmode="decimal" readonly value="'+qp+'"></div>'+
@@ -2618,6 +2627,17 @@ function cabItem(cod,desc,extra){
   var cl=it&&(it[7]||it[8])?'<br><span class="clsTag">'+esc(it[7]||'')+(it[8]?' · Classe '+esc(it[8]):'')+'</span>':'';
   return '<div class="itcab">'+img+'<div><b>'+esc(cod)+'</b> '+esc(desc)+cl+(extra?'<br>'+extra:'')+'</div></div>';
 }
+var END_DET=null;
+/* 09/11/2026: detalhes do produto numa janela (foto, classe, família, giro, nível máximo, posições) — a tela do Endereçar fica enxuta */
+function verDetItem(){var r=END_DET;if(!r)return;var j=$('detJan');if(!j){j=document.createElement('div');j.id='detJan';j.className='detJan';j.onclick=function(e){if(e.target===j)j.classList.remove('on')};document.body.appendChild(j)}
+  var it=ITMAP[String(r.codigo).toUpperCase()]||[];
+  var fotos=[it[3],it[4]].filter(Boolean).map(function(f){return '<img src="'+esc(f)+'" onclick="zoomFoto(this.src)" loading="lazy">'}).join('');
+  var lin=function(t,v){return '<div class="djL"><span>'+t+'</span><b>'+esc(String(v))+'</b></div>'};
+  j.innerHTML='<div class="djCx"><div class="djTop"><b>'+esc(r.codigo)+'</b><button type="button" class="djX" onclick="$(\'detJan\').classList.remove(\'on\')" aria-label="Fechar">✕</button></div><div class="djD">'+esc(r.desc)+'</div>'+
+    (fotos?'<div class="djF">'+fotos+'</div>':'<p class="rcDica">Sem foto no cadastro.</p>')+
+    lin('Tipo',[it[7],it[8]?'Classe '+it[8]:''].filter(Boolean).join(' · ')||'-')+lin('Família',r.familia||'-')+lin('Giro',r.giro||'-')+lin('Nível máximo','N0'+r.nivelMax)+lin('Posições com este item',r.jaTem)+
+    '<p><button type="button" class="sec" onclick="$(\'detJan\').classList.remove(\'on\')">Fechar</button></p></div>';
+  j.classList.add('on')}
 function zoomFoto(src){$('zoomImg').src=src.replace('sz=w600','sz=w1200');$('zoom').style.display='flex'}
 
 /* ---------- GUARDAR ---------- */
@@ -2632,9 +2652,9 @@ function sugerir(){
   $('gRes').innerHTML='Procurando...';
   chamar('apiGuardar',[c,n,quem(),MODO!=='tv'],function(r){
     if(!r.ok){if(r.naoCad){$('gRes').innerHTML='';cadSimples(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
-    var h=cabItem(r.codigo,r.desc,'Já tem '+r.jaTem+' posição(ões) com este item no porta-pallets.<br><small>Família: '+esc(r.familia||'-')+' · Giro: '+esc(r.giro)+' · Nível máximo: N0'+r.nivelMax+'</small>');
+    END_DET=r;var h='<div class="itMini" role="button" tabindex="0" onclick="verDetItem()"><div><b>'+esc(r.codigo)+'</b> '+esc(r.desc)+'</div><span class="itDetL">Detalhes ›</span></div>';
     if(r.fora>0) h+=msg('aviso','Fora da regra: não há posição livre até o nível N0'+r.nivelMax+'. O app sugeriu a posição livre mais baixa acima. Depois o pallet aparece em Reorganizar para descer.');
-    if(r.faltam>0) h+=msg('aviso','Não há nenhuma posição livre para '+(r.faltam===1?'este pallet':r.faltam+' pallets')+'. Use Juntar com outro pallet no N1 ou chame o líder.');
+    if(r.faltam>0) h+=msg('aviso','Não há nenhuma posição livre para '+(r.faltam===1?'este pallet':r.faltam+' pallets')+'. '+(r.podeN1?'Use Juntar com outro pallet no N1 ou chame o líder.':'Chame o líder.'));
     if(r.ate) h+=msg('ok','Posições guardadas para você enquanto estiver nesta tela.');
     END_ITEM=r.codigo;
     checarFalta(r.codigo);
@@ -2650,9 +2670,9 @@ function sugerir(){
           '<div id="eb'+i+'"><button class="endLer" onclick="lerPosEnd('+i+',\''+p.end+'\')"><svg class="icB" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg>Ler QR Code da posição</button></div></div>';
       });
     }
-    if(Array.isArray(r.posicoes))h+='<div class="jnBox"><p>Pallet pequeno? Pode ir junto com outro pallet no nível 1 (no máximo dois produtos por posição).</p><button type="button" class="sec" onclick="juntarN1()">Juntar com outro pallet no N1</button></div>';
+    if(Array.isArray(r.posicoes)&&r.podeN1)h+='<div class="jnBox jnSo"><button type="button" class="sec" onclick="juntarN1()">Juntar com outro pallet no N1</button><div id="jnRes"></div></div>';
     h+='<div class="np endFim"><p>Terminou? Escolha:</p><p><button onclick="finalizarEnd()">➕ Continuar</button> <button class="sec" onclick="sairEnd()">← Voltar</button></p></div>';
-    $('gRes').innerHTML=h; voltarTV();
+    $('gRes').innerHTML=h; voltarTV(); ltPintar('g');
     if(r.ate&&MODO!=='tv')segurarIni(r.codigo,(r.posicoes||[]).map(function(p){return p.end}));
   });
 }
@@ -3878,13 +3898,17 @@ function ltTotal(k){return ltTodos(k).reduce(function(t,x){return t+x.qtd},0)}
 function ltMexeu(k){if(LT[k])LT[k].conf=0;if(k==='g'&&$('gRes'))$('gRes').innerHTML='';ltPintar(k)}
 function ltResumo(k){var L=ltTodos(k).slice().sort(function(a,b){return a.data<b.data?-1:a.data>b.data?1:0});
   return '<b>'+L.length+' lote(s) · total '+esc(qtdU(ltTotal(k),LT[k].cod))+'</b>'+L.map(function(x){return '<div class="cxLin">Nota '+esc(x.nf||'-')+' · recebido em '+esc(String(x.data).split('-').reverse().join('/'))+': '+esc(qtdU(x.qtd,LT[k].cod))+'</div>'}).join('')}
-function ltPintar(k){var b=$(k+'Cx');if(!b)return;var L=LT[k];if(!L||!ltPrim(k)){b.innerHTML='';return}
+function ltPintar(k){var b=$(k+'Cx');if(!b)return;var L=LT[k];if(!L||!ltPrim(k)){b.innerHTML='';document.querySelectorAll('.ltBtW'+k).forEach(function(x){x.remove()});return}
   var h='';
   L.lista.forEach(function(x,i){h+='<div class="ltLin"><div class="ltTx">Lote '+(i+2)+': nota '+esc(x.tv.nf||'-')+' · recebido em '+esc(String(x.tv.data).split('-').reverse().join('/'))+'<br><small>Cada caixa: '+esc(qtdU(ltQ(x.tv.qtd),L.cod))+'</small></div>'+
     '<div><label>Total deste lote</label><input type="number" min="1" inputmode="decimal" value="'+esc(x.qtd)+'" oninput="LT.'+k+'.lista['+i+'].qtd=this.value;ltMexeu(\''+k+'\')"></div></div>'});
   if(L.lista.length)h+='<div class="cxCont">'+(L.lista.length+1)+' lotes · total '+esc(qtdU(ltTotal(k),L.cod))+'</div>';
-  h+='<div class="lin"><button type="button" class="sec" onclick="ltLer(\''+k+'\')">➕ Ler mais lotes (mesmo produto)</button>'+(L.lista.length?'<button type="button" class="sec" onclick="ltDesfazer(\''+k+'\')">↩ Desfazer último lote</button>':'')+'</div>';
-  b.innerHTML=h}
+  var bt='<div class="lin ltBt"><button type="button" class="sec" onclick="ltLer(\''+k+'\')">➕ Ler mais lotes (mesmo produto)</button>'+(L.lista.length?'<button type="button" class="sec" onclick="ltDesfazer(\''+k+'\')">↩ Desfazer último lote</button>':'')+'</div>';
+  /* 09/11/2026: os botões ficam embaixo, no cartão da posição pendente (logo acima do Cancelar operação); antes de ver as posições, ficam aqui */
+  document.querySelectorAll('.ltBtW'+k).forEach(function(x){x.remove()});
+  var alvo=k==='g'?document.querySelector('#gRes .endCard:not(.feito):not(.ecJ)'):null;
+  if(alvo){var w=document.createElement('div');w.className='ltBtW'+k;w.innerHTML=bt;alvo.appendChild(w);b.innerHTML=h}
+  else b.innerHTML=h+bt}
 function ltLer(k){var L=LT[k];if(!L)return;QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);
   if(!tv){avisoJan('Isso não é a etiqueta do produto. Leia a etiqueta de uma caixa do outro lote.');return}
   if(tv.cod!==L.cod){avisoJan('Produto diferente! Esta etiqueta é do '+tv.cod+', e você está endereçando o '+L.cod+'. Separe este material.');return}
