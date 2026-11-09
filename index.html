@@ -996,6 +996,8 @@ html body main .cancLin button.sec.cancOp{width:auto!important;padding:8px 16px!
 
 #rsNum .numGo{cursor:pointer;border-radius:12px;transition:background .12s}#rsNum .numGo:active{background:#FFFFFF33}
 
+.infDet{margin-top:6px}.infDet .infDetB{background:transparent!important;color:#C25E00!important;font-weight:700!important;padding:2px 0!important;width:auto!important;min-height:0!important;box-shadow:none!important;font-size:15px!important}
+.resNota{font-size:13px;color:#8A8B90;text-align:center;margin:14px 0 2px}
 /* 09/11/2026: Endereçar mais limpo */
 .itMini{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 1px 4px #0000001a;cursor:pointer;font-size:16px}
 .itMini .itDetL{color:#C25E00;font-weight:700;white-space:nowrap;font-size:14px}
@@ -2040,7 +2042,8 @@ function limpaEtq(alvo){if(alvo==='gCod'){delete QR_TV.gCod;LT.g=null;ltPintar('
 function infoEtq(alvo,tv){var b=$(alvo==='gCod'?'gInf':'mInf');if(!b)return;var it=ITMAP[String(tv.cod).toUpperCase()]||[];
   var q=unidDe(tv.cod)?qtdU(tv.qtd,tv.cod):tv.qtd+(tv.unid?' '+tv.unid:'');
   b.innerHTML='<b>'+esc(tv.cod)+'</b>'+(it[1]?' · '+esc(it[1]):' · <i>sem cadastro</i>')+'<br>Quantidade: <b>'+esc(q)+'</b>'+(tv.nf?' · NF <b>'+esc(tv.nf)+'</b>':'')+
-    '<br>Recebido em <b>'+esc(String(tv.data).split('-').reverse().join('/'))+'</b>'+(tv.hora?' às '+esc(tv.hora):'');b.hidden=false}
+    '<br>Recebido em <b>'+esc(String(tv.data).split('-').reverse().join('/'))+'</b>'+(tv.hora?' às '+esc(tv.hora):'')+
+    (it[1]?'<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(tv.cod).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>':'');b.hidden=false}
 /* Quantidade da etiqueta diferente do padrão do cadastro: não trava, só pergunta (29/10/2026) */
 function etqPadrao(alvo,tv){var pd=Number((ITMAP[String(tv.cod).toUpperCase()]||[])[2])||0,q=Number(String(tv.qtd).replace(',','.'))||0;if(!pd||!q)return;
   var fora=alvo==='mCod'?q!==pd:Math.abs(q/pd-Math.round(q/pd))>1e-9;if(!fora)return;vib('erro');
@@ -2629,13 +2632,16 @@ function cabItem(cod,desc,extra){
 }
 var END_DET=null;
 /* 09/11/2026: detalhes do produto numa janela (foto, classe, família, giro, nível máximo, posições) — a tela do Endereçar fica enxuta */
-function verDetItem(){var r=END_DET;if(!r)return;var j=$('detJan');if(!j){j=document.createElement('div');j.id='detJan';j.className='detJan';j.onclick=function(e){if(e.target===j)j.classList.remove('on')};document.body.appendChild(j)}
+function verDetItem(cod){cod=String(cod||(END_DET&&END_DET.codigo)||'').toUpperCase();if(!cod)return;
+  if(END_DET&&END_DET.codigo===cod){detPinta(END_DET);return}
+  chamar('apiGuardar',[cod,1,quem(),false],function(r){if(!r||!r.ok){var it=ITMAP[cod]||[];detPinta({codigo:cod,desc:it[1]||'',familia:'',giro:'',nivelMax:'',jaTem:''});return}detPinta(r)})}
+function detPinta(r){var j=$('detJan');if(!j){j=document.createElement('div');j.id='detJan';j.className='detJan';j.onclick=function(e){if(e.target===j)j.classList.remove('on')};document.body.appendChild(j)}
   var it=ITMAP[String(r.codigo).toUpperCase()]||[];
   var fotos=[it[3],it[4]].filter(Boolean).map(function(f){return '<img src="'+esc(f)+'" onclick="zoomFoto(this.src)" loading="lazy">'}).join('');
   var lin=function(t,v){return '<div class="djL"><span>'+t+'</span><b>'+esc(String(v))+'</b></div>'};
   j.innerHTML='<div class="djCx"><div class="djTop"><b>'+esc(r.codigo)+'</b><button type="button" class="djX" onclick="$(\'detJan\').classList.remove(\'on\')" aria-label="Fechar">✕</button></div><div class="djD">'+esc(r.desc)+'</div>'+
     (fotos?'<div class="djF">'+fotos+'</div>':'<p class="rcDica">Sem foto no cadastro.</p>')+
-    lin('Tipo',[it[7],it[8]?'Classe '+it[8]:''].filter(Boolean).join(' · ')||'-')+lin('Família',r.familia||'-')+lin('Giro',r.giro||'-')+lin('Nível máximo','N0'+r.nivelMax)+lin('Posições com este item',r.jaTem)+
+    lin('Tipo',[it[7],it[8]?'Classe '+it[8]:''].filter(Boolean).join(' · ')||'-')+lin('Família',r.familia||'-')+lin('Giro',r.giro||'-')+(r.nivelMax?lin('Nível máximo','N0'+r.nivelMax):'')+(r.jaTem!==''?lin('Posições com este item',r.jaTem):'')+
     '<p><button type="button" class="sec" onclick="$(\'detJan\').classList.remove(\'on\')">Fechar</button></p></div>';
   j.classList.add('on')}
 function zoomFoto(src){$('zoomImg').src=src.replace('sz=w600','sz=w1200');$('zoom').style.display='flex'}
@@ -2652,10 +2658,10 @@ function sugerir(){
   $('gRes').innerHTML='Procurando...';
   chamar('apiGuardar',[c,n,quem(),MODO!=='tv'],function(r){
     if(!r.ok){if(r.naoCad){$('gRes').innerHTML='';cadSimples(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
-    END_DET=r;var h='<div class="itMini" role="button" tabindex="0" onclick="verDetItem()"><div><b>'+esc(r.codigo)+'</b> '+esc(r.desc)+'</div><span class="itDetL">Detalhes ›</span></div>';
+    END_DET=r;var h='';   /* 09/11/2026: o produto já aparece no quadro da etiqueta (com Detalhes); aqui não repete */
     if(r.fora>0) h+=msg('aviso','Fora da regra: não há posição livre até o nível N0'+r.nivelMax+'. O app sugeriu a posição livre mais baixa acima. Depois o pallet aparece em Reorganizar para descer.');
     if(r.faltam>0) h+=msg('aviso','Não há nenhuma posição livre para '+(r.faltam===1?'este pallet':r.faltam+' pallets')+'. '+(r.podeN1?'Use Juntar com outro pallet no N1 ou chame o líder.':'Chame o líder.'));
-    if(r.ate) h+=msg('ok','Posições guardadas para você enquanto estiver nesta tela.');
+
     END_ITEM=r.codigo;
     checarFalta(r.codigo);
     if(MODO==='tv'){
@@ -2671,6 +2677,7 @@ function sugerir(){
       });
     }
     if(Array.isArray(r.posicoes)&&r.podeN1)h+='<div class="jnBox jnSo"><button type="button" class="sec" onclick="juntarN1()">Juntar com outro pallet no N1</button><div id="jnRes"></div></div>';
+    if(r.ate)h+='<p class="resNota">As posições ficam guardadas para você enquanto esta tela estiver aberta.</p>';
     h+='<div class="np endFim"><p>Terminou? Escolha:</p><p><button onclick="finalizarEnd()">➕ Continuar</button> <button class="sec" onclick="sairEnd()">← Voltar</button></p></div>';
     $('gRes').innerHTML=h; voltarTV(); ltPintar('g');
     if(r.ate&&MODO!=='tv')segurarIni(r.codigo,(r.posicoes||[]).map(function(p){return p.end}));
@@ -3298,7 +3305,7 @@ function pesqTudo(){PQ_ULT=pesqTudo;chamar('apiSaldoTudo',[],function(r){if(!r.o
 /* ---------- VOLTAR no final de toda tela (padrão) ---------- */
 function vFim(t){if(MODO==='tv'||['menu','nome','seg','troca'].indexOf(t)>=0)return;var e=$('s-'+t);if(!e||e.querySelector('.vFim'))return;
   var p=document.createElement('p');p.className='np vFim';p.innerHTML='<button class="sec" onclick="voltarCamada()">← Voltar</button>';e.appendChild(p)}
-var _irOrig=ir;ir=function(t,m){_irOrig(t,m);try{if(t==='pesq')setTimeout(function(){pqPrecarregar()},50);if(t==='guardar')document.querySelectorAll('.endOp').forEach(function(x){x.classList.remove('aberta')});vFim(TELA_ATUAL||t);prepararListas()}catch(e){}};
+var _irOrig=ir;ir=function(t,m){_irOrig(t,m);try{if(t==='pesq')setTimeout(function(){pqPrecarregar()},50);if(t==='guardar')document.querySelectorAll('.endOp').forEach(function(x){x.classList.toggle('aberta',x.id==='opInt')});   /* 09/11/2026: o Endereçar fica sempre aberto (antes fechava e a barra dos passos sumia) */vFim(TELA_ATUAL||t);prepararListas()}catch(e){}};
 document.addEventListener('DOMContentLoaded',prepararListas);
 window.addEventListener('popstate',function(){if(document.body.classList.contains('lsOn'))fecharLista()});
 
@@ -3398,12 +3405,14 @@ PASSOS.tend=function(){var fim=!!document.querySelector('#xfRes .endFim'),i=fim?
   return {k:'xf',i:i,nomes:['Ler o endereço atual','Ler a etiqueta do produto','Ler o endereço novo','Motivo e confirmar'],bl:[$('psX1'),$('psX2'),$('psX3'),$('psX4')],
     fim:fim,fimBl:document.querySelector('#xfRes .endFim'),ativo:!fim&&!!val('xfOrig')}};
 
-PASSOS.guardar=function(){var op=document.querySelector('#s-guardar .endOp.aberta');if(!op)return null;
+PASSOS.guardar=function(){var op=$('opMan')&&$('opMan').classList.contains('aberta')&&val('mCod')&&!val('gCod')?$('opMan'):$('opInt');   /* manual (administrador) só quando ele está em uso */if(!op)return null;
   if(op.id==='opInt'){var cards=[].slice.call(document.querySelectorAll('#gRes .endCard')),pend=cards.filter(function(c){return !c.classList.contains('feito')}),
-      i=!val('gCod')?0:!cards.length?1:pend.length?2:3;
-    return {k:'gi',i:i,nomes:['Ler a etiqueta do produto','Ver as posições','Guardar e confirmar cada embalagem'],
-      bl:[$('psG1'),$('psG2'),pend[0]||null],sub:i===2&&cards.length>1?'Embalagem '+(cards.length-pend.length+1)+' de '+cards.length:'',
-      fim:i===3,fimBl:document.querySelector('#gRes .endFim'),ativo:i>0&&i<3}}
+      /* 09/11/2026: depois de Ver posições, o passo 2 é ir até a posição (destacado); lida a posição, passo 3 é confirmar */
+      lida=!!(pend[0]&&pend[0].querySelector('button[onclick^="confirmarEnd"]')),
+      i=!cards.length?0:!pend.length?3:lida?2:1;
+    return {k:'gi',i:i,nomes:[!val('gCod')?'Ler a etiqueta do produto':'Ver as posições','Ir até a posição e ler o QR Code','Confirmar a embalagem'],
+      bl:[!val('gCod')?$('psG1'):$('psG2'),pend[0]||null,pend[0]||null],sub:i>0&&i<3&&cards.length>1?'Embalagem '+(cards.length-pend.length+1)+' de '+cards.length:'',
+      fim:i===3,fimBl:document.querySelector('#gRes .endFim'),ativo:!!val('gCod')&&i<3}}
   var ok=!!document.querySelector('#mRes .endFim'),j=ok?3:!val('mCod')?0:!val('mPos')?1:2;
   return {k:'gm',i:j,nomes:['Ler a etiqueta do produto','Ler a posição','Registrar'],bl:[$('psM1'),$('psM2'),$('psM3')],
     fim:ok,fimBl:document.querySelector('#mRes .endFim'),ativo:!ok&&!!val('mCod')}};
