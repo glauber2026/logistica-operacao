@@ -1037,6 +1037,11 @@ html body main .endCard.pAtual .endSt{order:1;margin-left:auto}
 #gResumo .gResL{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:var(--raio);padding:10px 14px;margin-bottom:var(--esp);box-shadow:0 1px 4px #0000001a;font-size:var(--tP)}
 .pEntra{animation:pEntra .28s ease}@keyframes pEntra{from{opacity:.2;transform:translateX(24px)}to{opacity:1;transform:none}}
 #acFix{display:none!important}
+#mercSvg{overflow-x:auto;background:#fff;border-radius:14px;padding:8px}#mercSvg svg{min-width:760px;display:block}
+.mercTitP{display:none}
+@media print{body.pm,body.pm main,body.pm .esc,body.pm .card{background:#fff!important;box-shadow:none!important}body.pm *{visibility:hidden!important}body.pm #mercFolha,body.pm #mercFolha *{visibility:visible!important}
+  body.pm #mercFolha{position:fixed;left:0;top:0;width:100%}body.pm #mercSvg{overflow:visible;padding:0}body.pm #mercSvg svg{min-width:0;width:100%;height:auto}
+  body.pm .mercTitP{display:block;font:700 18pt Arial,sans-serif;color:#F58321;margin:0 0 4mm}}
 /* 09/11/2026: Endereçar mais limpo */
 .itMini{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 1px 4px #0000001a;cursor:pointer;font-size:16px}
 .itMini .itDetL{color:#C25E00;font-weight:700;white-space:nowrap;font-size:14px}
@@ -1276,6 +1281,7 @@ html body main .endCard.pAtual .endSt{order:1;margin-left:auto}
   <div class="menu">
     <button data-k="tirar" onclick="ir('tirar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 17h20M4 20a1.5 1.5 0 1 0 0-.1M12 20a1.5 1.5 0 1 0 0-.1M20 20a1.5 1.5 0 1 0 0-.1M18 11.5h4M20.5 10l1.5 1.5-1.5 1.5" stroke="#2E2E30"/><path d="M4 10h5v5H4zM11 8h5v7h-5z" stroke="#F58321"/></svg>Abastecer produção</button>
     <button data-k="trf" onclick="ir('trf')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F58321"/></svg>Movimentações</button>
+    <button data-k="merc" onclick="ir('merc');mercPintar()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v14H3z" stroke="#2E2E30"/><path d="M6 8h3v3H6zM10.5 8h3v3h-3zM15 8h3v3h-3zM6 13.5h3v3H6zM10.5 13.5h3v3h-3z" stroke="#F58321"/></svg>Layout do mercado</button>
     <button data-k="proc4" onclick="abrirProc(4)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F58321"/></svg>Procedimento</button>
   </div>
   <div class="grpT" onclick="recolher(this)" data-g="inv"><span>Inventário</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
@@ -1609,6 +1615,12 @@ button:disabled.ocup{opacity:1!important}
     <label>Observação <small>(obrigatória em Outro)</small></label><input id="xfObs" maxlength="150" autocomplete="off" placeholder="ex.: travessa amassada">
     <p class="np"><button onclick="xfConf()">✅ Confirmar transferência</button></p></div>
   <div id="xfRes"></div>
+</div>
+
+<div id="s-merc" class="esc card">
+  <div class="tit">Layout do mercado</div>
+  <div id="mercFolha"><div id="mercSvg"></div></div>
+  <p class="np"><button type="button" onclick="imprimirMerc()">🖨 Imprimir em A4</button></p>
 </div>
 
 <div id="s-reorg" class="esc card">
@@ -2684,6 +2696,41 @@ function detPinta(r){var j=$('detJan');if(!j){j=document.createElement('div');j.
     lin('Tipo',[it[7],it[8]?'Classe '+it[8]:''].filter(Boolean).join(' · ')||'-')+lin('Família',r.familia||'-')+lin('Giro',r.giro||'-')+(r.nivelMax?lin('Nível máximo','N0'+r.nivelMax):'')+(r.jaTem!==''?lin('Posições com este item',r.jaTem):'')+
     '<p><button type="button" class="sec" onclick="$(\'detJan\').classList.remove(\'on\')">Fechar</button></p></div>';
   j.classList.add('on')}
+
+/* 10/11/2026: Layout do mercado de motores e embalagens (área de piso). Desenho em escala, gerado a partir destes dados;
+   para mudar um motor de posição, basta mudar a lista MERC.pos (ordem = posição 1, 2, 3...). Imprime em A4 deitado. */
+var MERC={pos:[["5001800-CIB", "1800-CIB", 180], ["5001515", "1515", 320], ["5002025", "2025", 162], ["5002035", "2035", 216], ["1999-5YY1343", "1343", 216], ["5000949-M", "0949-M", 200], ["5001427", "1427", 320], ["5001611", "1611", 320], ["1999-5YY1385", "1385", 356], ["1999-5YY0770", "0770", 320], ["1999-5YY0576-M", "0576-M", 360], ["5001851", "1851", 320], ["5001314RY", "1314RY", 360], ["5001878-M", "1878-M", 200]],
+  emb:['C1','C2','C3','C4','EXTRA'],EW:140,MW:120,MH:100,CM:140,CR:150,faixa:5};
+function mercSvg(){var M=MERC,EH=(500+M.CM)/6,X0=40,Y0=90,x=X0,cols=[],h=[];
+  for(var i=0;i<5;i++){cols.push({t:'E',i:i,x:x});x+=M.EW}var xRet=x;x+=M.CR;
+  for(i=0;i<5;i++){cols.push({t:'M',i:i,x:x});x+=M.MW}var xCor=x;x+=M.CM;for(i=5;i<12;i++){cols.push({t:'M',i:i,x:x});x+=M.MW}
+  var X1=x,yT=Y0,yC=yT+3*M.MH,yB=yC+M.CM,Y1=yB+2*M.MH,W=X1+60,H=Y1+140;
+  var T=function(x,y,t,sz,cor,w){return '<text x="'+x+'" y="'+y+'" font-size="'+sz+'" font-weight="'+(w||700)+'" fill="'+cor+'" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">'+esc(t)+'</text>'};
+  var cx=function(c,w){return c+w/2};
+  h.push('<rect x="'+(X0-20)+'" y="'+(Y0-75)+'" width="'+(X1-X0+40)+'" height="'+(Y1-Y0+95)+'" rx="18" fill="#C9CBCF"/>');
+  var vaga=function(x,y,w,hh,fill,borda){return '<rect x="'+(x+3)+'" y="'+(y+5)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="#A9ABB0"/><rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="'+fill+'" stroke="'+(borda||'#FF9A3C')+'" stroke-width="'+(borda?2:M.faixa)+'"/>'};
+  var bola=function(x,y,n,on){return '<circle cx="'+x+'" cy="'+y+'" r="15" fill="'+(on?'#2E2F33':'#8E9095')+'"/>'+T(x,y+6,n,16,'#fff')};
+  cols.forEach(function(c){if(c.t==='E'){h.push(T(cx(c.x,M.EW),yT-30,M.emb[c.i],20,'#2E2F33'));for(var r=0;r<6;r++){var y=yT+r*EH;h.push(vaga(c.x,y,M.EW,EH,'#F4F5F6')+T(cx(c.x,M.EW),y+EH/2+7,'EMB.',19,'#3F4045'))}return}
+    var n=c.i+1,m=M.pos[c.i];h.push(bola(cx(c.x,M.MW),yT-35,n,!!m));
+    for(var j=0;j<3;j++){var y=yT+j*M.MH;h.push(cel(c.x,y,m,true))}
+    var n2=13+c.i,m2=M.pos[12+c.i];h.push(bola(cx(c.x,M.MW),yB-30,n2,!!m2));
+    for(j=0;j<2;j++){y=yB+j*M.MH;h.push(cel(c.x,y,m2,false))}});
+  function cel(x,y,m,top){if(!m)return '<rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(M.MW-6)+'" height="'+(M.MH-6)+'" rx="9" fill="#E4E5E8" stroke="#8E9095" stroke-width="2"/>'+T(cx(x,M.MW),y+M.MH/2+6,'livre',16,'#6B6C70',400);
+    var sz=m[1].length>6?17:m[1].length>4?19:24;return vaga(x,y,M.MW,M.MH,'#fff')+(top?'<rect x="'+(x+8)+'" y="'+(y+8)+'" width="'+(M.MW-16)+'" height="5" fill="#F58321"/>':'')+T(cx(x,M.MW),y+46,m[1],sz,'#111')+T(cx(x,M.MW),y+74,m[2],16,'#3F4045')}
+  'RETORNO'.split('').forEach(function(ch,k){h.push(T(xRet+M.CR/2,yT+25+k*24,ch,16,'#5A5B60'))});
+  'EMBALAGENS'.split('').forEach(function(ch,k){h.push(T(xRet+M.CR/2,yT+205+k*22,ch,15,'#5A5B60'))});
+  'CORREDOR'.split('').forEach(function(ch,k){h.push(T(xCor+M.CM/2,yT+30+k*30,ch,17,'#5A5B60'))});
+  h.push(T((cols[5].x+xCor)/2,yC+M.CM/2-22,'◀  corredor  ▶',16,'#5A5B60'),T((xCor+M.CM+X1)/2,yC+M.CM/2-22,'◀  corredor  ▶',16,'#5A5B60'));
+  var cota=function(x0,x1,y,t){return '<path d="M'+x0+' '+y+'H'+x1+'M'+x0+' '+(y-7)+'v14M'+x1+' '+(y-7)+'v14" stroke="#2E2F33" stroke-width="2"/><rect x="'+((x0+x1)/2-28)+'" y="'+(y-11)+'" width="56" height="20" fill="#fff"/>'+T((x0+x1)/2,y+5,t,14,'#2E2F33')};
+  var cotaV=function(x,y0,y1,t){return '<path d="M'+x+' '+y0+'V'+y1+'M'+(x-7)+' '+y0+'h14M'+(x-7)+' '+y1+'h14" stroke="#2E2F33" stroke-width="2"/><g transform="translate('+(x+5)+','+((y0+y1)/2)+') rotate(-90)"><rect x="-34" y="-15" width="68" height="20" fill="#fff"/>'+T(0,0,t,14,'#2E2F33')+'</g>'};
+  var f=function(v){return (v/100).toFixed(2).replace('.',',')};
+  var yc=Y1+40;h.push(cota(cols[0].x,cols[0].x+M.EW,yc,f(M.EW)),cota(xRet,xRet+M.CR,yc,f(M.CR)),cota(cols[5].x,cols[5].x+M.MW,yc,f(M.MW)),cota(xCor,xCor+M.CM,yc,f(M.CM)),cota(X0,X1,yc+36,'Total '+f(X1-X0)+' m'));
+  h.push(cotaV(X1+30,yT,yT+M.MH,f(M.MH)),cotaV(X1+30,yC,yC+M.CM,f(M.CM)),cotaV(X0-30,yT,Y1,'Total '+f(Y1-yT)+' m'));
+  h.push('<text x="'+X0+'" y="'+(yc+80)+'" font-size="15" fill="#3F4045" font-family="Arial,Helvetica,sans-serif">Medidas em metros. Motor: pallet '+f(M.MW)+' × '+f(M.MH)+' · Embalagem: '+f(M.EW)+' × '+f(EH)+' · Faixa laranja: '+M.faixa+' cm · Posição 1 = o motor que mais gira (3 vagas até a 12, 2 vagas da 13 em diante).</text>');
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Layout do mercado de motores e embalagens">'+h.join('')+'</svg>'}
+function mercPintar(){var b=$('mercSvg');if(b)b.innerHTML='<div class="mercTitP">Layout do mercado de motores e embalagens</div>'+mercSvg()}
+function imprimirMerc(){mercPintar();document.body.classList.add('pm');var st=document.createElement('style');st.id='pmPage';st.textContent='@page{size:A4 landscape;margin:8mm}';document.head.appendChild(st);
+  var fim=function(){document.body.classList.remove('pm');var x=$('pmPage');if(x)x.remove();window.removeEventListener('afterprint',fim)};window.addEventListener('afterprint',fim);setTimeout(function(){window.print();setTimeout(fim,1500)},80)}
 function zoomFoto(src){$('zoomImg').src=src.replace('sz=w600','sz=w1200');$('zoom').style.display='flex'}
 
 /* ---------- GUARDAR ---------- */
