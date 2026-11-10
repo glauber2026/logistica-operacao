@@ -3493,6 +3493,8 @@ function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var
 function acaoFixa(){var f=$('acFix');if(!f){f=document.createElement('div');f.id='acFix';document.body.appendChild(f)}
   /* 09/11/2026: o rodapé leva as opções do passo atual (até 3, lado a lado); os originais somem da tela para nada se repetir.
      Botões de risco (Cancelar operação, Material não encontrado, Desfazer) ficam no meio da tela, longe do polegar. */
+  /* primeiro decide se o Ver posições aparece (antes de ler a etiqueta e depois de ver as posições ele some) */
+  var vp=$('psG2');if(vp)vp.classList.toggle('vpOculto',!!document.querySelector('#gRes .endCard')||!val('gCod'));   /* antes de ler a etiqueta também some: o passo é ler a etiqueta */
   var a=MODO!=='tv'&&document.querySelector('.esc .pAtual');
   var ok=function(b){return (vis(b)||b.classList.contains('fixOrig'))&&!b.disabled&&!b.closest('.cancLin')&&!b.closest('.ltBtWg')&&!b.closest('.infDet')&&!b.closest('.tOutBox')&&!b.closest('.jnSo')&&!b.closest('.passoBar')
     &&!b.classList.contains('infDetB')&&!b.classList.contains('pvBt')&&!b.classList.contains('verm')&&!b.classList.contains('perigo')&&!/Desfazer|Cancelar|Voltar|Bloquear|Zerar|Excluir/i.test(b.textContent)};
@@ -3508,7 +3510,6 @@ function acaoFixa(){var f=$('acFix');if(!f){f=document.createElement('div');f.id
       else{n.textContent=t;if(b.classList.contains('sec'))n.className='fxSec'}
       n.onclick=function(){if(document.body.contains(b))b.click()};f.appendChild(n)})}
   bs.forEach(function(b){b.classList.add('fixOrig')});
-  var vp=$('psG2');if(vp)vp.classList.toggle('vpOculto',!!document.querySelector('#gRes .endCard'));
   f.classList.toggle('on',bs.length>0);document.body.classList.toggle('comFix',bs.length>0)}
 /* 09/11/2026: o app fala o endereço quando o passo é ir até a posição */
 var FALA_K='';function falarEnd(el,nome){try{if(!window.speechSynthesis||LS.getItem('jeFala')==='0')return;if(!/Ir até|Ler a posição/.test(String(nome||'')))return;
