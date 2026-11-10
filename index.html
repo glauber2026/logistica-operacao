@@ -1000,10 +1000,14 @@ html body main .cancLin button.sec.cancOp{width:auto!important;padding:8px 16px!
 .resNota{font-size:13px;color:#8A8B90;text-align:center;margin:14px 0 2px}
 #vistoOk{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:80;opacity:0}#vistoOk>div{width:140px;height:140px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px #16A34A66;transform:scale(.6)}#vistoOk.on{animation:vkF 1s ease forwards}#vistoOk.on>div{animation:vkS 1s ease forwards}@keyframes vkF{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}@keyframes vkS{0%{transform:scale(.6)}20%{transform:scale(1.05)}30%{transform:scale(1)}100%{transform:scale(1)}}
 #acFix{position:fixed;left:12px;right:12px;bottom:calc(var(--navH,0px) + 10px);z-index:45;display:none}#acFix.on{display:block}
-#acFix button{width:100%!important;min-height:56px!important;font-size:18px!important;font-weight:800!important;border-radius:999px!important;box-shadow:0 8px 22px #1E243040!important}
+#acFix.on{display:flex!important;gap:8px}#acFix button{flex:1 1 0;min-width:0;width:auto!important;margin:0!important;min-height:56px!important;font-size:17px!important;font-weight:800!important;border-radius:999px!important;box-shadow:0 8px 22px #1E243040!important;padding:0 10px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#acFix button.fxIc{flex:0 0 56px;font-size:24px!important;padding:0!important}#acFix button.fxSec{background:#E4E6E9!important;color:#2B2C30!important}
 body.comFix main{padding-bottom:calc(var(--navH,0px) + 90px)!important}
-html body main .endCard.pAtual .endE .nvChip,html body main .endCard.pAtual .endE{font-size:30px!important;line-height:1.15}
-html body main .endCard.pAtual .endE .nvChip{padding:6px 14px;border-radius:12px}
+html body main .endCard.pAtual .endTop{flex-wrap:wrap;row-gap:6px}
+html body main .endCard.pAtual .endE{flex:1 1 calc(100% - 40px);min-width:0;font-size:clamp(21px,6.6vw,28px)!important;line-height:1.15;white-space:nowrap}
+html body main .endCard.pAtual .endE .nvChip{font-size:inherit;padding:5px 12px;border-radius:12px;max-width:100%;box-sizing:border-box}
+html body main .endCard.pAtual .endSt{order:3;margin-left:38px}
+body.comFix .fixOrig{display:none!important}
+#psG2.vpOculto{display:none!important}
 .tOutBox{margin:10px 0}.tOutBox>button{width:100%}
 /* 09/11/2026: Endereçar mais limpo */
 .itMini{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 1px 4px #0000001a;cursor:pointer;font-size:16px}
@@ -3486,9 +3490,26 @@ function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var
   if(origem!=='entrada'&&!d.fim&&alvo)falarEnd(alvo,d.nomes[d.i]);
   if(!d.fim)focar(d.foco!==undefined?d.foco:primeiroVazio(alvo||s))}
 /* 09/11/2026: botão do passo atual fixo no rodapé (ao alcance do polegar) — só quando o passo tem um único botão principal */
-function acaoFixa(){var f=$('acFix');if(!f){f=document.createElement('div');f.id='acFix';f.innerHTML='<button type="button"></button>';document.body.appendChild(f);f.firstChild.onclick=function(){var b=f._b;if(b&&document.body.contains(b))b.click()}}
-  var a=MODO!=='tv'&&document.querySelector('.esc .pAtual'),bs=a?[].filter.call(a.querySelectorAll('button'),function(b){return vis(b)&&!b.disabled&&!b.classList.contains('sec')&&!b.classList.contains('cam')&&!b.closest('.cancLin')&&!b.closest('.ltBtWg')&&!b.closest('.infDet')&&!b.classList.contains('infDetB')}):[];
-  var b=bs.length===1?bs[0]:null;f._b=b;if(b)f.firstChild.textContent=b.textContent.trim();f.classList.toggle('on',!!b);document.body.classList.toggle('comFix',!!b)}
+function acaoFixa(){var f=$('acFix');if(!f){f=document.createElement('div');f.id='acFix';document.body.appendChild(f)}
+  /* 09/11/2026: o rodapé leva as opções do passo atual (até 3, lado a lado); os originais somem da tela para nada se repetir.
+     Botões de risco (Cancelar operação, Material não encontrado, Desfazer) ficam no meio da tela, longe do polegar. */
+  var a=MODO!=='tv'&&document.querySelector('.esc .pAtual');
+  var ok=function(b){return (vis(b)||b.classList.contains('fixOrig'))&&!b.disabled&&!b.closest('.cancLin')&&!b.closest('.ltBtWg')&&!b.closest('.infDet')&&!b.closest('.tOutBox')&&!b.closest('.jnSo')&&!b.closest('.passoBar')
+    &&!b.classList.contains('infDetB')&&!b.classList.contains('pvBt')&&!b.classList.contains('verm')&&!b.classList.contains('perigo')&&!/Desfazer|Cancelar|Voltar|Bloquear|Zerar|Excluir/i.test(b.textContent)};
+  var bs=a?[].filter.call(a.querySelectorAll('button'),ok):[];
+  if(bs.length>3)bs=[];
+  document.querySelectorAll('.fixOrig').forEach(function(x){if(bs.indexOf(x)<0)x.classList.remove('fixOrig')});
+  var pt=document.querySelector('.esc.on .passoBar .pbT')||document.querySelector('.passoBar .pbT'),nm=(pt&&pt.textContent.trim())||'';
+  var k=bs.map(function(b){return b.textContent.trim()+'|'+b.className}).join('#')+'@'+nm;
+  if(f._k!==k){f._k=k;f.innerHTML='';
+    bs.forEach(function(b,ix){var n=document.createElement('button');n.type='button';var t=b.textContent.trim();
+      if(b.classList.contains('mic')){n.innerHTML='🎤';n.className='fxIc';n.setAttribute('aria-label','Falar')}
+      else if(b.classList.contains('cam')){if(bs.length===1)n.textContent='📷 '+(nm||'Ler com a câmera');else{n.innerHTML='📷';n.className='fxIc';n.setAttribute('aria-label','Câmera')}}
+      else{n.textContent=t;if(b.classList.contains('sec'))n.className='fxSec'}
+      n.onclick=function(){if(document.body.contains(b))b.click()};f.appendChild(n)})}
+  bs.forEach(function(b){b.classList.add('fixOrig')});
+  var vp=$('psG2');if(vp)vp.classList.toggle('vpOculto',!!document.querySelector('#gRes .endCard'));
+  f.classList.toggle('on',bs.length>0);document.body.classList.toggle('comFix',bs.length>0)}
 /* 09/11/2026: o app fala o endereço quando o passo é ir até a posição */
 var FALA_K='';function falarEnd(el,nome){try{if(!window.speechSynthesis||LS.getItem('jeFala')==='0')return;if(!/Ir até|Ler a posição/.test(String(nome||'')))return;
   var m=(el.innerText||'').match(/R(\d\d)-B(\d\d)-N(\d\d)-L([ED])/);if(!m)return;var k=m[0];if(k===FALA_K)return;FALA_K=k;
