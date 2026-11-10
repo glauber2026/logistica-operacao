@@ -1009,6 +1009,34 @@ html body main .endCard.pAtual .endSt{order:3;margin-left:38px}
 body.comFix .fixOrig{display:none!important}
 #psG2.vpOculto{display:none!important}
 .tOutBox{margin:10px 0}.tOutBox>button{width:100%}
+/* ===== 10/11/2026: PADRÃO VISUAL DO APP (régua única para todas as telas) =====
+   Três tamanhos de letra: grande (o mais importante da tela, ex.: endereço), médio (títulos, botões, passos), pequeno (informações).
+   Uma largura: tudo ocupa a largura do cartão, sem sobra para os lados. Espaços múltiplos de 4. Botões e campos com a mesma altura. */
+:root{--tG:34px;--tM:18px;--tP:14px;--esp:12px;--raio:14px;--hBtn:52px}
+html body main .esc .passo{margin:0 0 var(--esp)!important;padding:10px 12px!important;border-radius:var(--raio)}
+html body main .esc :is(.passoBar,.endCard,.xfInfo,.itMini,.cxRes,.jnBox,.tOutBox,.avBox,.msg,#gResumo .gResL){box-sizing:border-box;width:100%;margin-left:0!important;margin-right:0!important}
+html body main .esc .passoBar .pbN,html body main .esc .passoBar .pbT{font-size:var(--tM)!important}
+html body main .esc .passoBar .pbSub{font-size:var(--tP)!important}
+html body main .esc :is(button,input,select){min-height:var(--hBtn);font-size:var(--tM)}
+html body main .esc :is(label,small,.endInfo,.rcDica,.resNota){font-size:var(--tP)!important}
+html body main .esc .endE{font-size:var(--tM)!important}
+html body main .esc .endCard .endSt{font-size:var(--tP)!important}
+/* endereço do passo atual: o maior da tela, em duas linhas (cresce para baixo, nunca quebra no meio) */
+html body main .endCard.pAtual .endTop{flex-wrap:wrap;row-gap:8px}
+html body main .endCard.pAtual .endE{flex:1 1 100%;order:2;font-size:var(--tG)!important;line-height:1.1;white-space:normal}
+html body main .endCard.pAtual .endE .nvChip{display:block;width:100%;box-sizing:border-box;text-align:center;padding:12px 10px;border-radius:var(--raio);font-size:inherit}
+html body main .endCard.pAtual .endE :is(.e1,.e2){display:block}
+html body main .endCard.pAtual .endE .eh{display:none}
+html body main .endCard.pAtual .endN{order:1}
+html body main .endCard.pAtual .endSt{order:1;margin-left:auto}
+/* Endereçar: um passo por tela (o que já foi feito vira uma linha; os próximos ficam escondidos) */
+#s-guardar:is([data-ps="1"],[data-ps="2"],[data-ps="f"]) #psG1{display:none!important}
+#s-guardar:is([data-ps="1"],[data-ps="2"]) #gRes .endCard:not(.pAtual){display:none!important}
+#s-guardar:is([data-ps="1"],[data-ps="2"]) #gRes :is(.endFim,.resNota){display:none!important}
+#s-guardar:is([data-ps="1"],[data-ps="2"]) #opMan{display:none!important}
+#gResumo .gResL{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:var(--raio);padding:10px 14px;margin-bottom:var(--esp);box-shadow:0 1px 4px #0000001a;font-size:var(--tP)}
+.pEntra{animation:pEntra .28s ease}@keyframes pEntra{from{opacity:.2;transform:translateX(24px)}to{opacity:1;transform:none}}
+#acFix{display:none!important}
 /* 09/11/2026: Endereçar mais limpo */
 .itMini{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 1px 4px #0000001a;cursor:pointer;font-size:16px}
 .itMini .itDetL{color:#C25E00;font-weight:700;white-space:nowrap;font-size:14px}
@@ -1900,7 +1928,7 @@ function nivDe(e){var m=String(e||'').match(/-N(\d{2})/);return m?Number(m[1]):0
 function base2(e){return String(e||'').toUpperCase().replace(/-\d{1,2}$/,'')}
 function mesmaPos(lido,end){return base2(lido)===base2(end)}
 function endTx(e){var m=String(e||'').match(/-(\d{1,2})$/);return m?base2(e)+' ('+m[1]+'º da posição)':String(e||'')}
-function endCor(e){var c=NIV_COR[nivDe(e)];if(!c)return esc(endTx(e));return '<span class="nvChip" style="background:'+c[0]+';color:'+c[1]+'">'+esc(endTx(e))+'</span>'}
+function endCor(e){var c=NIV_COR[nivDe(e)],t=endTx(e),m=t.match(/^(R\d\d-B\d\d)-(.*)$/),h=m?'<span class="e1">'+esc(m[1])+'</span><span class="eh">-</span><span class="e2">'+esc(m[2])+'</span>':esc(t);if(!c)return h;return '<span class="nvChip" style="background:'+c[0]+';color:'+c[1]+'">'+h+'</span>'}
 function lerQR(id,cb){QR_ALVO=id;QR_CB=cb||null;$('qrArq').value='';QR_ESP=QR_ESP_PROX||(SO_ETQ[id]?'etq':(id==='mPos'||id==='trDest')?'pos':'');QR_ESP_PROX='';
   try{QR_AUD=QR_AUD||new (window.AudioContext||window.webkitAudioContext)();if(QR_AUD.state==='suspended')QR_AUD.resume()}catch(e){}
   /* Dentro do Google a câmera ao vivo é bloqueada: abre a câmera de foto direto, sem tela intermediária */
@@ -3472,6 +3500,7 @@ function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var
   var d=PASSOS[t]?PASSOS[t]():null;
   document.querySelectorAll('.pAtual,.pFeito').forEach(function(e){e.classList.remove('pAtual','pFeito')});
   barraPassos(s,d);legendaObr(s);
+  if(t==='guardar'){var ps=d&&d.k==='gi'?(d.fim?'f':String(d.i)):'';if(s.getAttribute('data-ps')!==ps)s.setAttribute('data-ps',ps);gResumo(ps)}
   if(!d){
     s.querySelectorAll('[id$="Res"]').forEach(function(r){var tem=r.innerHTML.trim()!=='',antes=r._tem;r._tem=tem;
       if(tem&&antes===false&&origem!=='entrada'&&vis(r))rolarPara(r,true)});
@@ -3486,35 +3515,23 @@ function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var
   if(origem==='mut'&&digitando(s))return;   /* a pessoa está digitando: espera ela terminar */
   if(GUIA.t===t&&GUIA.d===d.k&&(d.i>GUIA.i||d.fim))vib('ok');
   GUIA.k=key;GUIA.t=t;GUIA.d=d.k;GUIA.i=d.fim?99:d.i;
+  if(alvo&&origem!=='entrada'){alvo.classList.remove('pEntra');void alvo.offsetWidth;alvo.classList.add('pEntra')}
   if(alvo)setTimeout(function(){rolarPara(alvo,true,origem!=='entrada')},origem==='entrada'?60:120);
   if(origem!=='entrada'&&!d.fim&&alvo)falarEnd(alvo,d.nomes[d.i]);
   if(!d.fim)focar(d.foco!==undefined?d.foco:primeiroVazio(alvo||s))}
 /* 09/11/2026: botão do passo atual fixo no rodapé (ao alcance do polegar) — só quando o passo tem um único botão principal */
-function acaoFixa(){var f=$('acFix');if(!f){f=document.createElement('div');f.id='acFix';document.body.appendChild(f)}
-  /* 09/11/2026: o rodapé leva as opções do passo atual (até 3, lado a lado); os originais somem da tela para nada se repetir.
-     Botões de risco (Cancelar operação, Material não encontrado, Desfazer) ficam no meio da tela, longe do polegar. */
-  /* primeiro decide se o Ver posições aparece (antes de ler a etiqueta e depois de ver as posições ele some) */
-  var vp=$('psG2');if(vp)vp.classList.toggle('vpOculto',!!document.querySelector('#gRes .endCard')||!val('gCod'));   /* antes de ler a etiqueta também some: o passo é ler a etiqueta */
-  var a=MODO!=='tv'&&document.querySelector('.esc .pAtual');
-  var ok=function(b){return (vis(b)||b.classList.contains('fixOrig'))&&!b.disabled&&!b.closest('.cancLin')&&!b.closest('.ltBtWg')&&!b.closest('.infDet')&&!b.closest('.tOutBox')&&!b.closest('.jnSo')&&!b.closest('.passoBar')
-    &&!b.classList.contains('infDetB')&&!b.classList.contains('pvBt')&&!b.classList.contains('verm')&&!b.classList.contains('perigo')&&!/Desfazer|Cancelar|Voltar|Bloquear|Zerar|Excluir/i.test(b.textContent)};
-  var bs=a?[].filter.call(a.querySelectorAll('button'),ok):[];
-  if(bs.length>3)bs=[];
-  document.querySelectorAll('.fixOrig').forEach(function(x){if(bs.indexOf(x)<0)x.classList.remove('fixOrig')});
-  var pt=document.querySelector('.esc.on .passoBar .pbT')||document.querySelector('.passoBar .pbT'),nm=(pt&&pt.textContent.trim())||'';
-  var k=bs.map(function(b){return b.textContent.trim()+'|'+b.className}).join('#')+'@'+nm;
-  if(f._k!==k){f._k=k;f.innerHTML='';
-    bs.forEach(function(b,ix){var n=document.createElement('button');n.type='button';var t=b.textContent.trim();
-      if(b.classList.contains('mic')){n.innerHTML='🎤';n.className='fxIc';n.setAttribute('aria-label','Falar')}
-      else if(b.classList.contains('cam')){if(bs.length===1)n.textContent='📷 '+(nm||'Ler com a câmera');else{n.innerHTML='📷';n.className='fxIc';n.setAttribute('aria-label','Câmera')}}
-      else{n.textContent=t;if(b.classList.contains('sec'))n.className='fxSec'}
-      n.onclick=function(){if(document.body.contains(b))b.click()};f.appendChild(n)})}
-  bs.forEach(function(b){b.classList.add('fixOrig')});
-  f.classList.toggle('on',bs.length>0);document.body.classList.toggle('comFix',bs.length>0)}
+function acaoFixa(){   /* 10/11/2026: botão fixo do rodapé retirado a pedido do Glauber; fica só a regra do Ver posições */
+  var f=$('acFix');if(f)f.classList.remove('on');document.body.classList.remove('comFix');document.querySelectorAll('.fixOrig').forEach(function(x){x.classList.remove('fixOrig')});
+  var vp=$('psG2');if(vp)vp.classList.toggle('vpOculto',!!document.querySelector('#gRes .endCard')||!val('gCod'))}
 /* 09/11/2026: o app fala o endereço quando o passo é ir até a posição */
 var FALA_K='';function falarEnd(el,nome){try{if(!window.speechSynthesis||LS.getItem('jeFala')==='0')return;if(!/Ir até|Ler a posição/.test(String(nome||'')))return;
-  var m=(el.innerText||'').match(/R(\d\d)-B(\d\d)-N(\d\d)-L([ED])/);if(!m)return;var k=m[0];if(k===FALA_K)return;FALA_K=k;
+  var m=(el.textContent||'').replace(/\s/g,'').match(/R(\d\d)-B(\d\d)-N(\d\d)-L([ED])/);if(!m)return;var k=m[0];if(k===FALA_K)return;FALA_K=k;
   var u=new SpeechSynthesisUtterance('Rua '+Number(m[1])+', bloco '+Number(m[2])+', nível '+Number(m[3])+', lado '+(m[4]==='E'?'esquerdo':'direito'));u.lang='pt-BR';u.rate=1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+/* 10/11/2026: Endereçar um passo por tela — linha pequena com o que já foi feito (produto e quantidade) */
+function gResumo(ps){var r=$('gResumo'),g=$('gRes');if(!g)return;if(!r){r=document.createElement('div');r.id='gResumo';g.parentNode.insertBefore(r,g)}
+  var tv=QR_TV.gCod,mostra=(ps==='1'||ps==='2'||ps==='f')&&tv;if(!mostra){if(r.innerHTML)r.innerHTML='';return}
+  var q=ltMulti('g')?ltTotal('g'):tv.qtd,h='<div class="gResL"><div><b>'+esc(tv.cod)+'</b> · '+esc(qtdU(q,tv.cod))+(tv.nf?' · NF '+esc(tv.nf):'')+'</div><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(tv.cod).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>';
+  if(r._h!==h){r._h=h;r.innerHTML=h}}
 function agendarGuia(o){if(GUIA.tm)clearTimeout(GUIA.tm);GUIA.tm=setTimeout(function(){guia(o)},140)}
 (function(){var m=document.querySelector('main')||document.body;
   new MutationObserver(function(ls){for(var k=0;k<ls.length;k++){var x=ls[k].target;if(!(x.closest&&x.closest('.passoBar')))return agendarGuia('mut')}}).observe(m,{childList:true,subtree:true})})();
