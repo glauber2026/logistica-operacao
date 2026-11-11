@@ -1037,7 +1037,7 @@ html body main .endCard.pAtual .endSt{order:1;margin-left:auto}
 #gResumo .gResL{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:var(--raio);padding:10px 14px;margin-bottom:var(--esp);box-shadow:0 1px 4px #0000001a;font-size:var(--tP)}
 .pEntra{animation:pEntra .28s ease}@keyframes pEntra{from{opacity:.2;transform:translateX(24px)}to{opacity:1;transform:none}}
 #acFix{display:none!important}
-#mercSvg{overflow-x:auto;background:#fff;border-radius:14px;padding:8px}#mercSvg svg{min-width:1150px;display:block}
+#mercSvg{overflow-x:auto;background:#fff;border-radius:14px;padding:8px}#mercSvg svg{min-width:1150px;display:block}.mercV{cursor:pointer}.mercV:active rect{filter:brightness(.92)}
 .mercTitP{display:none}
 @media print{body.pm,body.pm main,body.pm .esc,body.pm .card{background:#fff!important;box-shadow:none!important}body.pm *{visibility:hidden!important}body.pm #mercFolha,body.pm #mercFolha *{visibility:visible!important}
   body.pm #mercFolha{position:fixed;left:0;top:0;width:100%}body.pm #mercSvg{overflow:visible;padding:0}body.pm #mercSvg svg{min-width:0;width:100%;height:auto}
@@ -2705,7 +2705,7 @@ function detPinta(r){var j=$('detJan');if(!j){j=document.createElement('div');j.
 
 /* 10/11/2026: Layout do mercado de motores e embalagens (área de piso). Desenho em escala, gerado a partir destes dados;
    para mudar um motor de posição, basta mudar a lista MERC.pos (ordem = posição 1, 2, 3...). Imprime em A4 deitado. */
-var MERC={pos:[["5001800-CIB", "1800-CIB", 180], ["5001515", "1515", 320], ["5002025", "2025", 162], ["5002035", "2035", 216], ["1999-5YY1343", "1343", 216], ["5000949-M", "0949-M", 200], ["5001427", "1427", 320], ["5001611", "1611", 320], ["1999-5YY1385", "1385", 356], ["1999-5YY0770", "0770", 320], ["1999-5YY0576-M", "0576-M", 360], ["5001851", "1851", 320], ["5001314RY", "1314RY", 360], ["5001878-M", "1878-M", 200]],
+var MERC={pos:[["5001800-CIB", "1800-CIB", 180], ["5001515", "1515", 320], ["5002025", "2025", 162], ["5002035", "2035", 216], ["1999-5YY1343", "1343", 216], ["5000949-M", "0949-M", 200], ["5001427", "1427", 320], ["5001611", "1611", 320], ["1999-5YY1385", "1385", 356], ["1999-5YY0770", "0770", 320], ["1999-5YY0576-M", "0576-M", 360], ["5001851", "1851", 320], ["5001314RY", "1314RY", 360], ["5001878-M", "1878-M", 200], ["1999-5YY0918-RY", "0918-RY", 360], ["1999-5YY1355-RY", "1355-RY", 360], ["1999-5YY1232-RY", "1232-RY", 360], ["1999-5YY0565-RY", "0565-RY", 360], ["1999-5YY0576-RY", "0576-RY", 360], ["1999-5YY1276-RY", "1276-RY", 360]],
   emb:['C1','C2','C3','C4','EXTRA'],EW:140,MW:120,MH:100,CM:140,CR:150,faixa:5};
 function mercSvg(){var M=MERC,EH=(500+M.CM)/6,X0=40,Y0=90,x=X0,cols=[],h=[];
   for(var i=0;i<5;i++){cols.push({t:'E',i:i,x:x});x+=M.EW}var xRet=x;x+=M.CR;
@@ -2713,8 +2713,8 @@ function mercSvg(){var M=MERC,EH=(500+M.CM)/6,X0=40,Y0=90,x=X0,cols=[],h=[];
   var X1=x,yT=Y0,yC=yT+3*M.MH,yB=yC+M.CM,Y1=yB+2*M.MH,W=X1+60,H=Y1+140;
   var T=function(x,y,t,sz,cor,w){return '<text x="'+x+'" y="'+y+'" font-size="'+sz+'" font-weight="'+(w||700)+'" fill="'+cor+'" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">'+esc(t)+'</text>'};
   var cx=function(c,w){return c+w/2};
-  h.push('<rect x="'+(X0-20)+'" y="'+(Y0-75)+'" width="'+(X1-X0+40)+'" height="'+(Y1-Y0+95)+'" rx="18" fill="#FFE3C7"/>');
-  var vaga=function(x,y,w,hh,fill,borda){return '<rect x="'+(x+3)+'" y="'+(y+5)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="#E2A66B"/><rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="'+fill+'" stroke="'+(borda||'#FF9A3C')+'" stroke-width="'+(borda?2:M.faixa)+'"/>'};
+  h.push('<rect x="'+(X0-20)+'" y="'+(Y0-75)+'" width="'+(X1-X0+40)+'" height="'+(Y1-Y0+95)+'" rx="18" fill="#E9EAEC"/>');
+  var vaga=function(x,y,w,hh,fill,borda){return '<rect x="'+(x+3)+'" y="'+(y+5)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="#B5B7BC"/><rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(w-6)+'" height="'+(hh-6)+'" rx="9" fill="'+fill+'" stroke="'+(borda||'#FF9A3C')+'" stroke-width="'+(borda?2:M.faixa)+'"/>'};
   var bola=function(x,y,n,on){return '<circle cx="'+x+'" cy="'+y+'" r="15" fill="'+(on?'#F58321':'#B0B2B7')+'"/>'+T(x,y+7,n,19,'#fff')};
   cols.forEach(function(c){if(c.t==='E'){h.push(T(cx(c.x,M.EW),yT-30,M.emb[c.i],24,'#1E3A8A'));for(var r=0;r<6;r++){var y=yT+r*EH;h.push(vaga(c.x,y,M.EW,EH,'#DCEBFF','#2563EB')+T(cx(c.x,M.EW),y+EH/2+8,'EMB.',22,'#1E3A8A'))}return}
     var n=c.i+1,m=M.pos[c.i];h.push(bola(cx(c.x,M.MW),yT-35,n,!!m));
@@ -2722,7 +2722,7 @@ function mercSvg(){var M=MERC,EH=(500+M.CM)/6,X0=40,Y0=90,x=X0,cols=[],h=[];
     var n2=13+c.i,m2=M.pos[12+c.i];h.push(bola(cx(c.x,M.MW),yB-30,n2,!!m2));
     for(j=0;j<2;j++){y=yB+j*M.MH;h.push(cel(c.x,y,m2,false))}});
   function cel(x,y,m,top){if(!m)return '<rect x="'+(x+3)+'" y="'+(y+3)+'" width="'+(M.MW-6)+'" height="'+(M.MH-6)+'" rx="9" fill="#E8F7EE" stroke="#16A34A" stroke-width="2" stroke-dasharray="8 5"/>'+T(cx(x,M.MW),y+M.MH/2+7,'livre',19,'#15803D',700);
-    var sz=m[1].length>6?20:m[1].length>4?23:28;return vaga(x,y,M.MW,M.MH,'#FFF4E8')+(top?'<rect x="'+(x+8)+'" y="'+(y+8)+'" width="'+(M.MW-16)+'" height="5" fill="#F58321"/>':'')+T(cx(x,M.MW),y+46,m[1],sz,'#111')+T(cx(x,M.MW),y+76,m[2],19,'#B45309')}
+    var sz=m[1].length>6?20:m[1].length>4?23:28;return '<g class="mercV" onclick="verDetItem(\''+esc(m[0])+'\')">'+vaga(x,y,M.MW,M.MH,'#FFF4E8')+(top?'<rect x="'+(x+8)+'" y="'+(y+8)+'" width="'+(M.MW-16)+'" height="5" fill="#F58321"/>':'')+T(cx(x,M.MW),y+46,m[1],sz,'#111')+T(cx(x,M.MW),y+76,m[2],19,'#B45309')+'</g>'}
   'RETORNO'.split('').forEach(function(ch,k){h.push(T(xRet+M.CR/2,yT+25+k*24,ch,16,'#5A5B60'))});
   'EMBALAGENS'.split('').forEach(function(ch,k){h.push(T(xRet+M.CR/2,yT+205+k*22,ch,15,'#5A5B60'))});
   'CORREDOR'.split('').forEach(function(ch,k){h.push(T(xCor+M.CM/2,yT+30+k*30,ch,17,'#5A5B60'))});
@@ -2732,7 +2732,7 @@ function mercSvg(){var M=MERC,EH=(500+M.CM)/6,X0=40,Y0=90,x=X0,cols=[],h=[];
   var f=function(v){return (v/100).toFixed(2).replace('.',',')};
   var yc=Y1+40;h.push(cota(cols[0].x,cols[0].x+M.EW,yc,f(M.EW)),cota(xRet,xRet+M.CR,yc,f(M.CR)),cota(cols[5].x,cols[5].x+M.MW,yc,f(M.MW)),cota(xCor,xCor+M.CM,yc,f(M.CM)),cota(X0,X1,yc+36,'Total '+f(X1-X0)+' m'));
   h.push(cotaV(X1+30,yT,yT+M.MH,f(M.MH)),cotaV(X1+30,yC,yC+M.CM,f(M.CM)),cotaV(X0-30,yT,Y1,'Total '+f(Y1-yT)+' m'));
-  h.push('<text x="'+X0+'" y="'+(yc+80)+'" font-size="15" fill="#3F4045" font-family="Arial,Helvetica,sans-serif">Medidas em metros. Motor: pallet '+f(M.MW)+' × '+f(M.MH)+' · Embalagem: '+f(M.EW)+' × '+f(EH)+' · Faixa laranja: '+M.faixa+' cm · Posição 1 = o motor que mais gira (3 vagas até a 12, 2 vagas da 13 em diante).</text>');
+  h.push('<text x="'+X0+'" y="'+(yc+80)+'" font-size="15" fill="#3F4045" font-family="Arial,Helvetica,sans-serif">Medidas em metros. Motor: pallet '+f(M.MW)+' × '+f(M.MH)+' · Embalagem: '+f(M.EW)+' × '+f(EH)+' · Faixa laranja: '+M.faixa+' cm · Posição 1 = o motor que mais gira (3 vagas até a 12, 2 vagas da 13 em diante). Motores da China: posições 15 a 20. Toque na vaga para ver a descrição e o giro.</text>');
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Layout do supermercado de motores e embalagens">'+h.join('')+'</svg>'}
 function mercPintar(){var b=$('mercSvg');if(b)b.innerHTML='<div class="mercTitP">Layout do supermercado de motores e embalagens</div>'+mercSvg()}
 function imprimirMerc(){mercPintar();document.body.classList.add('pm');var st=document.createElement('style');st.id='pmPage';st.textContent='@page{size:A4 landscape;margin:8mm}';document.head.appendChild(st);
