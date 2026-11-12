@@ -1130,7 +1130,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <div id="s-nome" class="esc card">
   <div class="tit">Logística de Operação · Entrar</div>
   <label>Nome</label><select id="nome"></select>
-  <label>Senha</label><div class="senhaBox"><input id="lSenha" type="password" onkeydown="if(event.key==='Enter')entrar()"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+  <label>Senha</label><div class="senhaBox"><input id="lSenha" type="password" autocomplete="off" data-lpignore="true" onkeydown="if(event.key==='Enter')entrar()"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
   <label class="chk"><input type="checkbox" id="lManter"> Manter conectado neste celular</label>
   <p><button class="b bP" onclick="entrar()">Entrar</button></p>
   <div id="lManut"></div>
@@ -1140,8 +1140,8 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <div id="s-troca" class="esc card">
   <div class="tit">Crie sua senha</div>
   <p>Escolha uma senha só sua, com pelo menos 4 caracteres.</p>
-  <label>Nova senha</label><div class="senhaBox"><input id="tS1" type="password"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
-  <label>Repita a senha</label><div class="senhaBox"><input id="tS2" type="password"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+  <label>Nova senha</label><div class="senhaBox"><input id="tS1" type="password" autocomplete="off" data-lpignore="true"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+  <label>Repita a senha</label><div class="senhaBox"><input id="tS2" type="password" autocomplete="off" data-lpignore="true"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
   <p><button class="b bP" onclick="trocarSenha()">Salvar senha</button></p>
   <div id="tMsg"></div>
 </div>
@@ -2128,7 +2128,7 @@ function qrPreLigar(){try{if(window.top!==window.self||QR_ST||!(navigator.mediaD
 function qrDesligar(){qrPararCam();try{$('qrVid').srcObject=null}catch(e){}}
 /* Bipe curto de leitura */
 var QR_AUD=null;function qrBipe(){try{QR_AUD=QR_AUD||new (window.AudioContext||window.webkitAudioContext)();var o=QR_AUD.createOscillator(),g=QR_AUD.createGain();if(QR_AUD.state==='suspended')QR_AUD.resume();var t0=QR_AUD.currentTime;o.type='square';o.frequency.value=2900;g.gain.setValueAtTime(1,t0);g.gain.setValueAtTime(1,t0+.22);g.gain.exponentialRampToValueAtTime(.001,t0+.28);o.connect(g);g.connect(QR_AUD.destination);o.start(t0);o.stop(t0+.29)}catch(e){}}
-function qrVarrer(){var v=$('qrVid'),c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true}),bd=null,ocup=false,feito=false;
+function qrVarrer(){var v=$('qrVid'),t0v=v.currentTime||0,abre=Date.now(),c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true}),bd=null,ocup=false,feito=false;
   /* só o miolo da imagem (a mira) é lido, para não pegar o QR Code do vizinho */
   var mc=document.createElement('canvas'),mx=mc.getContext('2d',{willReadFrequently:true});
   var mira=function(){var vw=v.videoWidth,vh=v.videoHeight,lado=Math.round(Math.min(vw,vh)*.62),k=Math.min(1,700/lado);mc.width=mc.height=Math.round(lado*k);
@@ -2141,9 +2141,10 @@ function qrVarrer(){var v=$('qrVid'),c=document.createElement('canvas'),x=c.getC
     var tp=tipoQR(t);if(QR_ESP&&tp&&tp!==QR_ESP){dicaMira(QR_ESP==='pos'?'Esse é o QR Code da etiqueta do produto. Mire no QR Code da posição.':'Esse é o QR Code da posição. Mire na etiqueta do produto.');return false}
     /* mesma leitura logo em seguida (a câmera reabriu na mesma etiqueta por engano) é ignorada */
     if(t===QR_ULT.txt&&Date.now()-QR_ULT.t<2500)return false;
+    var rep=tp==='pos'&&t===QR_ULT.txt&&Date.now()-QR_ULT.t<60000;
     feito=true;QR_ULT={t:Date.now(),txt:t};cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);
     $('qrVivo').classList.add('qrOk');var tx=$('qrVTx');tx.className='';tx.textContent='Lido!';qrBipe();if(navigator.vibrate)navigator.vibrate(80);
-    setTimeout(function(){qrFechar();qrEntregar(t)},350);return true};
+    setTimeout(function(){qrFechar();qrEntregaConf(t,rep)},350);return true};
   /* Dicas: pouca luz e demora para ler */
   clearInterval(QR_DICA);QR_DICA=setInterval(function(){if(!QR_ST||feito||v.readyState<2)return;var tx=$('qrVTx'),d='';
     try{lx.drawImage(v,0,0,24,24);var px=lx.getImageData(0,0,24,24).data,s=0;for(var i=0;i<px.length;i+=4)s+=px[i]*.3+px[i+1]*.59+px[i+2]*.11;
@@ -2151,7 +2152,9 @@ function qrVarrer(){var v=$('qrVid'),c=document.createElement('canvas'),x=c.getC
     if(!d&&Date.now()-QR_INI>8000)d='Não leu ainda? Aproxime ou afaste um pouco'+($('qrZoomR').hidden?'':', use o zoom')+' e toque na imagem para focar.';
     if(Date.now()-avisoMira<2500)return;
     if(d){tx.className='qrDica';tx.textContent=d}else{tx.className='';tx.textContent='Coloque o laser em cima do QR Code'}},1000);
-  (function tick(){if(!QR_ST||feito)return;QR_LOOP=requestAnimationFrame(tick);if(ocup||v.readyState<2)return;ocup=true;
+  /* 12/11/2026 (versão 120): ao reabrir, a imagem fica parada na última leitura; só lê depois que a imagem voltar a andar */
+  (function tick(){if(!QR_ST||feito)return;QR_LOOP=requestAnimationFrame(tick);if(ocup||v.readyState<2||v.paused)return;
+    if(Date.now()-abre<300||(v.currentTime||0)<=t0v+0.1)return;ocup=true;
     if(bd){bd.detect(mira()).then(function(l){ocup=false;if(l&&l.length>1){dicaMira('Tem mais de um QR Code na mira. Chegue mais perto.');return}if(l&&l.length)achou(l[0].rawValue)}).catch(function(){bd=null;ocup=false});return}
     if(window.jsQR){var cv=mira(),r=jsQR(mx.getImageData(0,0,cv.width,cv.height).data,cv.width,cv.height,{inversionAttempts:'dontInvert'});
       ocup=false;if(r&&r.data)achou(r.data);return}
@@ -2227,6 +2230,9 @@ function etqPadrao(alvo,tv){var pd=Number((ITMAP[String(tv.cod).toUpperCase()]||
   perguntar('Tem certeza que essa etiqueta está certa? A etiqueta tem '+qtdU(q,tv.cod)+' e o padrão do cadastro é '+qtdU(pd,tv.cod)+' por embalagem.',
     function(){chamar('apiOcorrencia',['Quantidade fora do padrão',tv.cod,'','Etiqueta com '+q+', padrão do cadastro '+pd+'. O operador confirmou que a etiqueta está certa.'],function(){})},
     function(){limpaEtq(alvo);avisoJan('Etiqueta descartada. Confira a etiqueta no TOTVS.')},{ok:'Sim',no:'Não'})}
+/* 12/11/2026 (versão 120): a mesma posição lida de novo logo em seguida pede confirmação (leitura sem querer) */
+function qrEntregaConf(t,rep){if(!rep){qrEntregar(t);return}var cb=QR_CB,al=QR_ALVO,es=QR_ESP;
+  qrSomErro();perguntar('Você leu de novo a mesma posição da leitura anterior ('+textoQR(t)+'). É essa mesmo?',function(){QR_CB=cb;QR_ALVO=al;QR_ESP=es;qrEntregar(t)},null,{ok:'Sim, é essa',no:'Ler de novo'})}
 function qrEntregar(txt){var tv=etiqTotvs(txt);if(!QR_CB&&SO_ETQ[QR_ALVO]&&!tv){avisoJan('Este QR não é a etiqueta do TOTVS. Leia a etiqueta do produto. Se ela estiver danificada, tire uma nova etiqueta no TOTVS antes de endereçar.');return}if(tv&&!QR_CB){var el0=$(QR_ALVO);if(el0){QR_TV[QR_ALVO]=tv;el0.value=tv.cod;el0.dispatchEvent(new Event('input',{bubbles:true}));el0.dispatchEvent(new Event('change',{bubbles:true}));
     var q={gCod:'gQtd',mCod:'mQtd'}[QR_ALVO];if(q&&$(q)){$(q).value=tv.qtd;$(q).dispatchEvent(new Event('input',{bubbles:true}))}
     if(QR_ALVO==='mCod'&&$('mData'))$('mData').value=tv.data;
@@ -2484,9 +2490,11 @@ function perfilUsu(){return LS.getItem('jePerf')||'Operador'}
 var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário'};
 function entrar(){
   $('lMsg').innerHTML='Entrando...';
-  chamar('apiLogin',[$('nome').value,$('lSenha').value,$('lManter')&&$('lManter').checked],function(r){
+  /* 12/11/2026 (versão 120): a senha sai do campo antes de ir ao sistema, para o Chrome não oferecer salvar */
+  var sn=$('lSenha').value;$('lSenha').value='';
+  chamar('apiLogin',[$('nome').value,sn,$('lManter')&&$('lManter').checked],function(r){
     if(!r.ok){$('lMsg').innerHTML=msg('erro',r.msg);return}
-    guardarSessao(r);$('lSenha').value='';$('lMsg').innerHTML='';
+    guardarSessao(r);marcaUso();$('lSenha').value='';$('lMsg').innerHTML='';
     if(r.trocar){ir('troca');return}
     aposEntrar(true);
   });
@@ -2498,6 +2506,15 @@ function trocarSenha(){
     if(r.ok){$('tS1').value='';$('tS2').value='';setTimeout(function(){$('tMsg').innerHTML='';aposEntrar(true)},1200)}
   });
 }
+/* 12/11/2026 (versão 120): sai sozinho depois de 30 minutos sem uso (celular compartilhado). Vale também
+   quando o app volta do fundo ou é aberto de novo. A TV não sai. */
+var INATIVO_MS=30*60000;
+function marcaUso(){try{LS.setItem('jeUso',String(Date.now()))}catch(e){}}
+function checaInativo(){if(MODO==='tv'||!quem())return false;var u=Number(LS.getItem('jeUso')||0);
+  if(u&&Date.now()-u>INATIVO_MS){sair();setTimeout(function(){avisoJan('Você ficou 30 minutos sem usar o app. Entre de novo com o seu nome e a sua senha.')},150);return true}return false}
+['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,function(){if(!checaInativo())marcaUso()},true)});
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')checaInativo()});
+setInterval(checaInativo,60000);setTimeout(function(){if(!checaInativo()&&quem())marcaUso()},500);
 function sair(){chamar('apiSair',[quem()],function(){});AV_T=0;if($('avisos'))$('avisos').innerHTML='';['jeTok','jeNome','jeAdm','jePerf','jeAvC'].forEach(function(k){LS.removeItem(k)});AV={meus:[],res:null,sis:[],ges:null};carregarNomes();ir('nome')}
 function avisoManut(){if(MODO==='tv'||!$('lManut'))return;chamar('apiAvisoManut',[],function(m){$('lManut').innerHTML=m&&m.ativo?msg('aviso','🔧 '+m.msg):''})}
 function carregarNomes(){avisoManut();chamar('apiNomes',[],function(l){if(!Array.isArray(l))return;$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n;
@@ -4939,7 +4956,10 @@ function rolarPara(el,meio,forca){if(!el||!vis(el))return;var r=el.getBoundingCl
   else if(r.top>=topo&&r.bottom<=base)return;
   var y=(meio&&r.height<base-topo)?window.scrollY+r.top-topo-((base-topo)-r.height)/2:window.scrollY+r.top-topo;
   window.scrollTo({top:Math.max(0,y),behavior:suave()})}
-function vib(t){if(MODO==='tv'||!navigator.vibrate)return;var n=Date.now();try{if(t==='erro'){VIB=n;navigator.vibrate([200,90,200])}else if(n-VIB>500&&n-ULT_T<15000){VIB=n;navigator.vibrate(40)}}catch(e){}}
+/* 12/11/2026 (versão 120): leitura errada tem som próprio (dois bipes graves), diferente do bipe agudo da leitura certa */
+function qrSomErro(){try{QR_AUD=QR_AUD||new (window.AudioContext||window.webkitAudioContext)();if(QR_AUD.state==='suspended')QR_AUD.resume();var t0=QR_AUD.currentTime;
+  [0,.22].forEach(function(d){var o=QR_AUD.createOscillator(),g=QR_AUD.createGain();o.type='square';o.frequency.value=420;g.gain.setValueAtTime(.9,t0+d);g.gain.exponentialRampToValueAtTime(.001,t0+d+.16);o.connect(g);g.connect(QR_AUD.destination);o.start(t0+d);o.stop(t0+d+.17)})}catch(e){}}
+function vib(t){if(MODO!=='tv'&&t==='erro')qrSomErro();if(MODO==='tv'||!navigator.vibrate)return;var n=Date.now();try{if(t==='erro'){VIB=n;navigator.vibrate([200,90,200])}else if(n-VIB>500&&n-ULT_T<15000){VIB=n;navigator.vibrate(40)}}catch(e){}}
 function primeiroVazio(a,tudo){if(!a)return null;return [].slice.call(a.querySelectorAll('[data-obr]')).filter(function(e){return vis(e)&&vazio(e)&&(tudo||(!e.readOnly&&!e.disabled))})[0]||null}
 function blocoCampo(f){return f.closest('.passo')||(f.parentNode&&f.parentNode.classList.contains('camBox')?f.parentNode:f)}
 function focar(f){if(!f||f.readOnly||f.disabled||!vis(f))return;setTimeout(function(){try{f.focus({preventScroll:true})}catch(e){}},380)}
