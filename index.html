@@ -878,6 +878,8 @@ html body main :is(#s-rec,#s-recd,#s-recag) .rcX{background:none!important;box-s
 .rcBts{display:flex;gap:8px;flex-wrap:wrap}html body main :is(#s-rec,#s-recd,#s-recag) .rcBts button{flex:1!important}
 .rcPrCab{display:none}
 body.pCompras #navb button:not([data-t="g-rec"]){display:none!important}
+html body.pInv #navb button[data-t="g-rec"],html body.pInv #navb button[data-t="g-op"],html body.pInv #navb button[data-t="g-abs"],html body.pInv #navb button[data-t="g-ges"],html body.pInv #navb #nvMaisB{display:none!important}
+html body.pInv #navb button[data-t="g-inv"]{display:flex!important}
 @media print{body.prRec .esc{display:none!important}body.prRec #s-recd{display:block!important;box-shadow:none;padding:0}
   body.prRec #s-recd .tit,body.prRec #s-recd .vFim,body.prRec #rdAcao,body.prRec #rdMsg,body.prRec .passoBar,body.prRec .obrLeg{display:none!important}
   body.prRec .rcPrCab{display:block;font-weight:700;margin-bottom:8px}body.prRec .rcInfo div,body.prRec .rcDet{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
@@ -1148,7 +1150,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <div class="tit">Usuários (só administrador)</div>
   <label>Nome</label><input id="uNome">
   <label>Senha provisória</label><input id="uSenha" type="text">
-  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (só Recebimento)</option></select>
+  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (só Recebimento)</option><option value="Inventário">Inventário (só Inventário)</option></select>
   <p><small>Operação e Gestor veem as telas do dia a dia e o painel. Administrador vê tudo, inclusive Equipe, Produtividade, Avisos e Usuários.</small></p>
   <p><button class="b bP" onclick="salvarUsu()">Cadastrar</button></p>
   <div id="uMsg"></div>
@@ -1196,7 +1198,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 </div>
 
 <div id="s-regras" class="esc card">
-  <div class="tit">Regras de armazenamento</div>
+  <div class="tit">Configurações</div>
   <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
   <div id="rgResumo"></div>
   <div id="rgNiveis"></div>
@@ -1211,12 +1213,6 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
     <label for="rgFolga">Folga (%)</label><input id="rgFolga" type="number" min="0" max="100" inputmode="numeric" placeholder="20">
     <p><button type="button" class="b bS sec" onclick="recalcReservas()">Recalcular agora</button></p>
     <div id="rgResMsg"></div>
-  </div>
-  <div class="jnBox" id="rgDes">
-    <p class="sjTit">Desempenho do app</p>
-    <p><small>Tempo de cada pesquisa e gravação, do toque até a resposta. "Servidor" é o tempo que o sistema levou; o resto é a internet. Só o administrador vê.</small></p>
-    <div class="perOp"><button type="button" class="b bS sec" onclick="verDesemp(1)">Hoje</button> <button type="button" class="b bS sec" onclick="verDesemp(7)">7 dias</button></div>
-    <div id="rgDesRes"></div>
   </div>
   <div class="jnBox" id="rgSemGiro">
     <p class="sjTit">Revisão anual: itens sem giro</p>
@@ -1350,6 +1346,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <div class="grpT" onclick="recolher(this)" data-g="inv"><span>Inventário</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="inv" onclick="ir('inv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2" stroke="#2E2E30"/><path d="M9 13.5l2 2 4-4" stroke="#F58321"/></svg>Contagem do dia</button>
+    <button class="invAj" data-k="invpos" onclick="ir('invpos');invPosIni()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2" stroke="#2E2E30"/><path d="M9 13.5l2 2 4-4" stroke="#F58321"/></svg>Contar uma posição</button>
     <button data-k="resinv" onclick="ir('resinv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2" stroke="#2E2E30"/><path d="M9 17v-3M12 17v-6M15 17v-4" stroke="#F58321"/></svg>Resultado do inventário</button>
     <button data-k="etq" onclick="ir('etq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" stroke="#2E2E30"/><path d="M7.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3z" stroke="#F58321"/></svg>Etiquetas</button>
   </div>
@@ -1363,7 +1360,8 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
     <button class="adm" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F58321"/></svg>Produtividade</button>
     <button class="adm" data-k="usu" onclick="ir('usu');listarUsu()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM4 21c0-4 4-7 8-7s8 3 8 7" stroke="#2E2E30"/><path d="M16.5 4.5l1.5 1.5 3-3" stroke="#F58321"/></svg>Usuários</button>
     <button class="adm" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F58321"/></svg>Cadastrar item</button>
-    <button class="adm" data-k="regras" onclick="ir('regras');abrirRegras()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z" stroke="#2E2E30"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2" stroke="#F58321"/></svg>Regras de armazenamento</button>
+    <button class="adm" data-k="regras" onclick="ir('regras');abrirRegras()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z" stroke="#2E2E30"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2" stroke="#F58321"/></svg>Configurações</button>
+    <button class="adm" data-k="desemp" onclick="ir('desemp');abrirDesemp()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2E2E30" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" stroke="#F58321" d="M5 10l6-4 4 3 5-4"/></svg>Desempenho do app</button>
     <button class="adm" data-k="sess" onclick="ir('sess')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4H5v16h5" stroke="#2E2E30"/><path d="M14 8l4 4-4 4M18 12H9" stroke="#F58321"/></svg>Deslogar todos</button>
   </div>
   <div id="avisos"></div>
@@ -1676,6 +1674,18 @@ html body main .msg.ok::before,html body main .msg.erro::before{color:inherit!im
   <div id="xfRes"></div>
 </div>
 
+<div id="s-desemp" class="esc card">
+  <div class="tit">Desempenho do app</div>
+  <p><small>Tempo de cada pesquisa e gravação, do toque até a resposta. "Servidor" é o tempo que o sistema levou; "Internet e celular" é o resto. Se o servidor está rápido e o total lento, o problema é a internet ou o celular daquela pessoa. Só o administrador vê.</small></p>
+  <div class="perOp"><button type="button" class="b bS sec" onclick="verDesemp(1)">Hoje</button> <button type="button" class="b bS sec" onclick="verDesemp(7)">7 dias</button></div>
+  <div id="rgDesRes"></div>
+</div>
+
+<div id="s-invpos" class="esc card">
+  <div class="tit">Contar uma posição</div>
+  <div id="ipBox"></div>
+</div>
+
 <div id="s-dev" class="esc card">
   <div class="tit">Devolução da produção</div>
   <div id="devBox"></div>
@@ -1796,9 +1806,13 @@ var FILA_SRV=[],FILA_T=0;
 function servidor(fn,args,ok,falha,rid){args=args||[];ok=ok||function(){};falha=falha||function(){};
   if(window.google&&google.script&&google.script.run){var t1=Date.now();google.script.run.withSuccessHandler(function(r){try{desAnota(fn,Date.now()-t1,0)}catch(e){}ok(r)}).withFailureHandler(falha)[fn].apply(null,args);return}
   if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\/]+\/exec$/.test(API_URL)){falha(new Error('o link do app (/exec) não foi colado no Index.html do GitHub'));return}
+  /* 12/11/2026 (versão 119): os avisos vão numa viagem própria e não seguram a abertura do app */
+  if(SOLO_SRV[fn]){enviarLote([{fn:fn,args:args,ok:ok,falha:falha,rid:rid}]);return}
   FILA_SRV.push({fn:fn,args:args,ok:ok,falha:falha,rid:rid});if(FILA_SRV.length>=20){clearTimeout(FILA_T);enviarFila();return}
   if(!FILA_T)FILA_T=setTimeout(enviarFila,25)}
-function enviarFila(){FILA_T=0;var l=FILA_SRV;FILA_SRV=[];if(!l.length)return;
+var SOLO_SRV={apiAvisos:1,apiMeusAvisos:1};
+function enviarFila(){FILA_T=0;var l=FILA_SRV;FILA_SRV=[];if(!l.length)return;enviarLote(l)}
+function enviarLote(l){
   var erroTodos=function(e){var m=String(e&&e.message||e);if(/Failed to fetch|NetworkError|Load failed/i.test(m)&&navigator.onLine!==false)m='sem conexão com o sistema';l.forEach(function(x){x.falha(new Error(m))})};
   var t0=Date.now();
   fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({lote:l.map(function(x){return x.rid?{fn:x.fn,args:x.args,rid:x.rid}:{fn:x.fn,args:x.args}})}),redirect:'follow'})
@@ -2392,7 +2406,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0};var PROC_GRAVA=/^api(Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0};var PROC_GRAVA=/^api(InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);document.body.classList.remove('proc')}}
 var SEM_BOLA={};   /* chamadas de fundo que não mostram a bolinha (ex.: conferência da sessão) */
@@ -2467,7 +2481,7 @@ function ir(t,manter){document.body.classList.remove('gj');fecharMais();fecharPe
 }
 function guardarSessao(r){LS.setItem('jeTok',r.token||quem());LS.setItem('jeNome',r.nome);LS.setItem('jeAdm',r.admin?'1':'0');LS.setItem('jePerf',r.perfil||(r.admin?'Administrador':'Operador'))}
 function perfilUsu(){return LS.getItem('jePerf')||'Operador'}
-var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria'};
+var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário'};
 function entrar(){
   $('lMsg').innerHTML='Entrando...';
   chamar('apiLogin',[$('nome').value,$('lSenha').value,$('lManter')&&$('lManter').checked],function(r){
@@ -2509,7 +2523,7 @@ function listarUsu(){
     var h='<table><tr><th>Nome</th><th>Perfil</th><th>Situação</th><th></th></tr>';
     r.lista.forEach(function(u){var n=esc(u.nome).replace(/'/g,'&#39;');
       h+='<tr><td><b>'+esc(u.nome)+'</b></td><td>'+esc(NOME_PERFIL[u.perfil]||u.perfil)+'</td><td>'+(u.ativo?'Ativo':'Inativo')+(u.trocar?'<br><small>aguardando criar senha</small>':'')+'</td>'+
-      '<td><button class="b bS sec" onclick="redefinir(\''+n+'\')">Redefinir senha</button> <button class="b bS sec" onclick="ativar(\''+n+'\','+(!u.ativo)+')">'+(u.ativo?'Desativar':'Ativar')+'</button> <select style="width:auto;margin-top:6px" onchange="mudarPerfil(\''+n+'\','+u.ativo+',this)">'+['Operador','Gestor','Administrador','Compras','Portaria'].map(function(p){return '<option value="'+p+'"'+(p===u.perfil?' selected':'')+'>'+NOME_PERFIL[p]+'</option>'}).join('')+'</select></td></tr>'});
+      '<td><button class="b bS sec" onclick="redefinir(\''+n+'\')">Redefinir senha</button> <button class="b bS sec" onclick="ativar(\''+n+'\','+(!u.ativo)+')">'+(u.ativo?'Desativar':'Ativar')+'</button> <select style="width:auto;margin-top:6px" onchange="mudarPerfil(\''+n+'\','+u.ativo+',this)">'+['Operador','Gestor','Administrador','Compras','Portaria','Inventário'].map(function(p){return '<option value="'+p+'"'+(p===u.perfil?' selected':'')+'>'+NOME_PERFIL[p]+'</option>'}).join('')+'</select></td></tr>'});
     $('uLista').innerHTML=h+'</table>';
   });
 }
@@ -2522,7 +2536,7 @@ function redefinir(n){
   chamar('apiRedefinirSenha',[quem(),n,p],function(r){$('uMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);listarUsu()})},null,{campo:1,ok:'Salvar'});
 }
 function mudarPerfil(n,at,sel){
-  var p=sel.value,txt={Operador:'Ele vai ver só as telas da operação e o painel.',Gestor:'Ele vai ver as telas da operação e o painel.',Administrador:'Ele vai ver tudo, inclusive Equipe, Produtividade, Avisos e Usuários.',Compras:'Ele vai ver só o Recebimento e agendar entregas.',Portaria:'Ele vai ver só o Recebimento e registrar a chegada dos motoristas na portaria.'};
+  var p=sel.value,txt={Operador:'Ele vai ver só as telas da operação e o painel.',Gestor:'Ele vai ver as telas da operação e o painel.',Administrador:'Ele vai ver tudo, inclusive Equipe, Produtividade, Avisos e Usuários.',Compras:'Ele vai ver só o Recebimento e agendar entregas.',Portaria:'Ele vai ver só o Recebimento e registrar a chegada dos motoristas na portaria.','Inventário':'Ele vai ver só o Inventário e a Pesquisa de produto, e pode ajustar o saldo das posições que contar.'};
   if(OKP==='perf'){OKP=''}else{perguntar('Mudar o perfil de '+n+' para '+NOME_PERFIL[p]+'? '+txt[p],function(){OKP='perf';mudarPerfil(n,at,sel)},listarUsu);return}
   chamar('apiSalvarUsuario',[quem(),{nome:n,ativo:at,perfil:p}],function(r){$('uMsg').innerHTML=msg(r.ok?'ok':'erro',r.ok?r.msg+' A mudança vale no próximo acesso dele.':r.msg);listarUsu()});
 }
@@ -4182,6 +4196,28 @@ function etqtImprimir(){etqtPintar();var W=Math.max(30,nIn(val('etW'))||100),H=M
    pelas regras de nível. Volta com a data de recebimento original (FIFO) e registra a transferência 06 → 01 para a TI. */
 var DEV={};
 /* 5. Devolução da produção (12/11/2026): passo a passo padrão, um passo por tela, e conclusão no cartão verde */
+/* 12/11/2026 (versão 119): Contar uma posição. Contagem cega (a tela não mostra o saldo do sistema); diferença grande pede
+   uma segunda contagem igual; o ajuste vai para as Movimentações. Só o perfil Inventário e o administrador. */
+var INVP={};
+function invPosIni(){INVP={};var b=$('ipBox');if(!b)return;
+  b.innerHTML='<div class="passo" id="ip1"><p class="rcDica">Vá até a posição e leia o QR Code dela.</p>'+botaoCam('invPosLer()','o QR Code da posição')+'</div>'}
+function invPosLer(){QR_ESP_PROX='pos';lerQR('',function(lido){chamar('apiInvPosItens',[quem(),lido],function(r){
+  if(!r||!r.ok){$('ipBox').innerHTML=aviso(r&&r.livre?'at':'er',(r&&r.msg)||'Não deu para ler a posição.')+'<div class="passo" id="ip1">'+botaoCam('invPosLer()','o QR Code da posição')+'</div>';vib('erro');return}
+  if(r.lista.length===1){invPosEsc(r.lista[0]);return}
+  $('ipBox').innerHTML='<div class="passo" id="ip1"><p class="rcDica">A posição '+esc(r.base)+' tem mais de um produto. Qual você vai contar?</p>'+
+    r.lista.map(function(x,k){return botao(x.item+(x.desc?' · '+x.desc:''),'invPosEsc(INVP.op['+k+'])','s')}).join('')+'</div>';INVP.op=r.lista})})}
+function invPosRes(){var x=INVP.p,it=ITMAP[x.item]||[];return '<div class="itMini"><div><div class="endG">'+endCor(baseVaga(x.end))+'</div><b>'+esc(x.item)+'</b> '+esc(x.desc||it[1]||'')+'</div></div>'}
+function invPosEsc(x){INVP.p=x;INVP.q1=null;invPosConta()}
+function invPosConta(extra){$('ipBox').innerHTML=invPosRes()+(extra||'')+'<div class="passo" id="ip2"><label class="obr">Quantidade contada</label><input id="ipQ" data-obr="1" type="number" inputmode="decimal" min="0">'+
+  botao('Registrar a contagem','invPosReg()','p')+botao('A posição está vazia','invPosVazia()','s')+'</div>';setTimeout(function(){var q=$('ipQ');if(q)q.focus()},200)}
+function invPosReg(){var t=val('ipQ');if(String(t).trim()===''){mostrarErro('Informe a quantidade contada.');return}var q=nIn(t);if(!(q>=0)){mostrarErro('A quantidade não pode ser negativa.');return}
+  if(INVP.q1!=null){invPosEnvia(INVP.q1,q);return}invPosEnvia(q)}
+function invPosVazia(){perguntar('A posição está vazia? O saldo vai para zero e a posição fica livre.',function(){INVP.q1=null;invPosEnvia(0,0)},null,{ok:'Sim, está vazia',no:'Voltar'})}
+function invPosEnvia(q,q2){chamar('apiInvAjuste',[quem(),INVP.p.end,q,q2],function(r){
+  if(!r||!r.ok){if(r&&r.recontar){if(r.difere){INVP.q1=null;invPosConta(aviso('er',r.msg))}else{INVP.q1=q;invPosConta(aviso('at',r.msg+' Digite a nova contagem.'))}vib('erro');return}mostrarErro((r&&r.msg)||'Erro.');return}
+  var x=INVP.p,L=[['Posição',endCor(baseVaga(x.end)),1],['Produto',x.item+(x.desc?' · '+x.desc:'')],['No sistema',qtdU(r.sis,x.item)],['Contado',qtdU(r.nova,x.item)]];
+  if(!r.confere)L.push(['Ajuste',(r.dif>0?'+':'')+numBR(r.dif)]);
+  $('ipBox').innerHTML=conclusao(r.confere?'Confere':'Saldo ajustado',L,'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})}
 function devIni(){DEV={};var b=$('devBox');if(!b)return;
   b.innerHTML='<div class="passo" id="dv1"><p class="rcDica">Leia a etiqueta do produto que voltou da produção.</p>'+botaoCam('devLerEtq()','a etiqueta do produto')+'</div>'}
 function devResumo(){var t=DEV.tv;return '<div class="itMini"><div><b>'+esc(t.cod)+'</b> '+esc((ITMAP[t.cod]||[])[1]||'')+'<br><small>NF '+esc(t.nf||'-')+' · recebido em '+esc(String(t.data).split('-').reverse().join('/'))+(DEV.q?' · volta <b>'+esc(qtdU(DEV.q,t.cod))+'</b>':'')+'</small></div></div>'}
@@ -5002,6 +5038,8 @@ PASSOS.tirar=function(){var N=['Escolher o produto','Ir até a posição e ler o
   var cf=cards.filter(function(c){return st(c,'ok')})[0];if(cf)return {k:'t',i:2,nomes:N,bl:[$('psT1'),null,cf],ativo:true};
   var al=$('tc'+TIRAR_FIFO)||cards.filter(function(c){return !c.classList.contains('feito')})[0];
   return {k:'t',i:1,nomes:N,bl:[$('psT1'),al],ativo:false}};
+PASSOS.invpos=function(){var b=$('ipBox');if(!b)return null;var c=b.querySelector('.concl');
+  var i=c?2:$('ip2')?1:0;return {k:'invpos',i:i,nomes:['Ler o QR Code da posição','Contar a quantidade'],bl:[$('ip1'),$('ip2')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
 PASSOS.dev=function(){var b=$('devBox');if(!b)return null;var c=b.querySelector('.concl');
   var i=c?3:$('dv3')?2:$('dv2')?1:0;return {k:'dev',i:i,nomes:['Ler a etiqueta do produto','Informar a quantidade','Ir até a posição e ler o QR Code'],bl:[$('dv1'),$('dv2'),$('dv3')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
 PASSOS.inv=function(){var todos=[].slice.call(document.querySelectorAll('#invRes .card')),pend=todos.filter(function(c){return c.querySelector('.passo')});
@@ -5107,13 +5145,19 @@ var REC={per:'d',lista:[],perm:{},info:null,sel:null,itens:[],hora:'',tm:0,rf:0}
 var DSEM=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 function ehRestrito(){return perfilUsu()==='Compras'||perfilUsu()==='Portaria'}   /* Compras e Portaria: só a área Recebimento */
 function podeAgendar(){return ['Compras','Gestor','Administrador'].indexOf(perfilUsu())>=0}
-function aplicarPerfilRec(){document.body.classList.toggle('pCompras',ehRestrito()&&MODO!=='tv');
+function ehInvPerf(){return perfilUsu()==='Inventário'}   /* 12/11/2026: perfil Inventário vê só o Início (Pesquisa de produto) e o Inventário */
+function podeAjInv(){return ['Inventário','Administrador'].indexOf(perfilUsu())>=0}
+function aplicarPerfilRec(){document.body.classList.toggle('pCompras',ehRestrito()&&MODO!=='tv');document.body.classList.toggle('pInv',ehInvPerf()&&MODO!=='tv');
+  document.querySelectorAll('.invAj').forEach(function(b){b.style.display=podeAjInv()?'':'none'});
+  var pi=ehInvPerf()&&MODO!=='tv';document.querySelectorAll('#navb button').forEach(function(b){var t=b.getAttribute('data-t');
+    if(pi){var so=t==='menu'||t==='g-inv';if(!so){b.hidden=true;b.setAttribute('data-ih','1')}if(t==='g-inv')b.style.setProperty('display','flex','important')}
+    else{if(b.getAttribute('data-ih')){b.hidden=false;b.removeAttribute('data-ih')}if(t==='g-inv')b.style.removeProperty('display')}})
   document.querySelectorAll('.agd').forEach(function(b){b.style.display=podeAgendar()?'':'none'});
   document.querySelectorAll('.prt').forEach(function(b){b.style.display=podePortaria()?'':'none'})}
 function podePortaria(){return ['Portaria','Gestor','Administrador'].indexOf(perfilUsu())>=0}
 function podeReceber(){return ['Operador','Gestor','Administrador'].indexOf(perfilUsu())>=0}
-var _mostrarGrupoR=mostrarGrupo;mostrarGrupo=function(){if(ehRestrito())GRUPO='rec';_mostrarGrupoR()};
-var _abrirGrupoR=abrirGrupo;abrirGrupo=function(g){if(ehRestrito())g='rec';_abrirGrupoR(g);if(g==='rec')setTimeout(recPrefetch,200)};
+var _mostrarGrupoR=mostrarGrupo;mostrarGrupo=function(){if(ehRestrito())GRUPO='rec';if(ehInvPerf()&&GRUPO!=='ini')GRUPO='inv';_mostrarGrupoR()};
+var _abrirGrupoR=abrirGrupo;abrirGrupo=function(g){if(ehRestrito())g='rec';if(ehInvPerf()&&g!=='ini')g='inv';_abrirGrupoR(g);if(g==='rec')setTimeout(recPrefetch,200)};
 var _aposEntrarR=aposEntrar;aposEntrar=function(f){setTimeout(recAlertaCk,1500);if(ehRestrito()&&MODO!=='tv'){GRUPO='rec';ir('menu');return}_aposEntrarR(f)};
 var _irRec=ir;ir=function(t,m){_irRec(t,m);aplicarPerfilRec();
   if(t==='rec')abrirRec();
@@ -5551,14 +5595,20 @@ function segurarFim(soltar){if(SEG.t)clearInterval(SEG.t);var c=SEG.cod;SEG={cod
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&SEG.cod)segurarTick()});
 /* Desempenho do app: mede cada pedido (total e servidor) e manda em lotes, sem atrasar a operação */
 var DES=[],DES_T=0;
-function desAnota(fn,ms,sv){if(MODO==='tv'||fn==='apiDesemp'||fn==='apiSegurar'||fn==='apiSoltar')return;DES.push({d:Date.now(),tl:TELA_ATUAL||'',f:fn,ms:Math.round(ms),sv:Math.round(sv||0)});if(DES.length>200)DES.splice(0,DES.length-200)}
+function desAnota(fn,ms,sv){if(MODO==='tv'||fn==='apiDesemp'||fn==='apiSegurar'||fn==='apiSoltar')return;DES.push({d:Date.now(),tl:TELA_ATUAL||'',f:fn,ms:Math.round(ms),sv:Math.round(sv||0),c:conexaoTipo()});if(DES.length>200)DES.splice(0,DES.length-200)}
 setInterval(function(){if(!DES.length||!quem()||PROC.n>0||FILA_SRV.length)return;var l=DES.splice(0,60);SEM_BOLA.apiDesemp=1;TOQUE.el=null;chamar('apiDesemp',[quem(),l],function(){})},120000);
+function conexaoTipo(){try{var c=navigator.connection||{};if(c.type==='wifi')return 'Wi-Fi';if(c.type==='cellular')return 'Dados móveis'+(c.effectiveType?' ('+String(c.effectiveType).toUpperCase()+')':'');if(c.effectiveType)return String(c.effectiveType).toUpperCase()}catch(e){}return ''}
 function fmtMs(x){x=Number(x)||0;return x>=1000?(x/1000).toFixed(1).replace('.',',')+' s':Math.round(x)+' ms'}
 var NOME_FN={apiTirar:'Pesquisa do Abastecer',apiGuardar:'Busca de posição (Endereçar)',apiEntrada:'Confirmar endereçamento',apiSaida:'Confirmar abastecimento',apiLerQR:'Leitura de QR Code',apiSaldoTudo:'Pesquisa de produto',apiMeusLanc:'Movimentações',apiTransferir:'Transferência de endereço',apiItens:'Lista de produtos',apiItensSe:'Lista de produtos (conferência)',apiPosicao:'Consulta de posição'};
+function abrirDesemp(){if($('rgDesRes'))$('rgDesRes').innerHTML=''}
 function verDesemp(d){$('rgDesRes').innerHTML='Carregando...';chamar('apiDesempInfo',[quem(),d],function(r){
   if(!r||!r.ok){$('rgDesRes').innerHTML=msg('erro',(r&&r.msg)||'Não deu para ler.');return}
   if(!r.total){$('rgDesRes').innerHTML=msg('aviso','Ainda não há medições nesse período. Elas chegam aos poucos, a cada 2 minutos de uso.');return}
-  var h='<p><small>'+r.total+' medições · '+(d===1?'hoje':'últimos '+r.dias+' dias')+'</small></p><table class="desT"><tr><th>O quê</th><th>Vezes</th><th>Média</th><th>Servidor</th><th>Pior</th></tr>';
+  var h='<p><small>'+r.total+' medições · '+(d===1?'hoje':'últimos '+r.dias+' dias')+'</small></p>';
+  if((r.pessoas||[]).length){h+='<p class="sjTit">Por pessoa</p><table class="desT"><tr><th>Quem</th><th>Vezes</th><th>Total</th><th>Servidor</th><th>Internet e celular</th><th>Conexão</th></tr>';
+    r.pessoas.forEach(function(x){h+='<tr><td>'+esc(x.q)+'</td><td class="n">'+x.n+'</td><td class="n"><b>'+fmtMs(x.media)+'</b></td><td class="n">'+fmtMs(x.srv)+'</td><td class="n">'+fmtMs(x.net)+'</td><td>'+esc(x.con||'-')+'</td></tr>'});
+    h+='</table><p class="sjTit" style="margin-top:12px">Por função</p>'}
+  h+='<table class="desT"><tr><th>O quê</th><th>Vezes</th><th>Média</th><th>Servidor</th><th>Pior</th></tr>';
   r.funcoes.forEach(function(f){h+='<tr><td>'+esc(NOME_FN[f.fn]||f.fn)+'</td><td class="n">'+f.n+'</td><td class="n"><b>'+fmtMs(f.media)+'</b></td><td class="n">'+fmtMs(f.srv)+'</td><td class="n">'+fmtMs(f.max)+'</td></tr>'});
   h+='</table><p class="sjTit" style="margin-top:12px">As 10 mais lentas</p><table class="desT"><tr><th>Quando</th><th>Quem</th><th>O quê</th><th>Tempo</th></tr>';
   r.lentas.forEach(function(x){h+='<tr><td>'+esc(x.d)+'</td><td>'+esc(x.q)+'</td><td>'+esc(NOME_FN[x.fn]||x.fn)+'</td><td class="n">'+fmtMs(x.ms)+'</td></tr>'});
