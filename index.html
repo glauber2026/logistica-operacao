@@ -2248,7 +2248,19 @@ function decodificarQR(inp){var f=inp.files&&inp.files[0];qrFechar();if(!f){avis
   }).catch(function(){msg('erro','Não consegui abrir a foto. Tente de novo.')})}
 function lerFoto(inp,n){var l=document.querySelector('label[for="'+inp.id+'"] span');if(l&&inp.files&&inp.files[0])l.textContent='Trocar foto';return lerFoto_(inp,n)}
 var END_ITEM='';
-function ebLer(i,end){return botaoCam("lerPosEnd("+i+",'"+end+"')",'o QR Code da posição')+botao('Não dá para usar esta posição',"naoUsar("+i+",'"+end+"')",'s')}
+function ebLer(i,end){return botaoCam("lerPosEnd("+i+",'"+end+"')",'o QR Code da posição')+botao('Não dá para usar esta posição',"naoUsar("+i+",'"+end+"')",'s')+
+  (END_ALT[i]?botao('Usar outra posição livre',"escolherPos("+i+",'"+end+"')",'s'):'')}
+/* 12/11/2026 (versão 116): depois de "Não dá para usar", o operador pode escolher uma posição livre perto dele.
+   Ele lê o QR Code da posição; o sistema confere (livre, nível certo, não guardada para outro) e já grava. */
+function escolherPos(i,ant){QR_ESP_PROX='pos';lerQR('',function(lido){
+  chamar('apiPosEscolha',[quem(),lido,END_ITEM,ant],function(r){
+    if(!r||!r.ok){$('eb'+i).innerHTML=aviso('er',(r&&r.msg)||'Não deu para usar esta posição.')+ebLer(i,ant);vib('erro');return}
+    var e=r.end,c=$('ec'+i),ee=c&&c.querySelector('.endE');if(ee)ee.innerHTML=endCor(e);
+    var inf=c&&c.querySelector('.endInfo');if(inf)inf.textContent='Rua '+r.rua+' · Bloco '+r.bloco+' · Nível '+r.nivel+' · Lado '+r.lado;
+    SEG.ends[i]=e;var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(it[2]||'');
+    $('es'+i).textContent='Posição escolhida';$('es'+i).className='endSt ok';
+    $('eb'+i).innerHTML=aviso('ok','Posição livre: '+e+'. Gravando...')+(ltMulti('g')?'':'<input id="eq'+i+'" type="hidden" value="'+esc(qp)+'"><input id="ed'+i+'" type="hidden" value="'+esc((QR_TV.gCod&&QR_TV.gCod.cod===END_ITEM&&QR_TV.gCod.data)||hojeISO())+'">');
+    confirmarEnd(i,e)})})}
 function lerPosEnd(i,end){QR_ESP_PROX='pos';lerQR('',function(lido){
   if(!mesmaPos(lido,end)){$('eb'+i).innerHTML=aviso('er','Posição errada! Você leu '+lido+', mas o material vai em '+end+'. Vá até a posição certa e leia de novo.')+ebLer(i,end);vib('erro');return}
   var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(it[2]||'');
@@ -2257,7 +2269,7 @@ function lerPosEnd(i,end){QR_ESP_PROX='pos';lerQR('',function(lido){
   $('eb'+i).innerHTML=aviso('ok','Posição certa: '+end+'. Gravando...')+(ltMulti('g')?'':'<input id="eq'+i+'" type="hidden" value="'+esc(qp)+'"><input id="ed'+i+'" type="hidden" value="'+esc((QR_TV.gCod&&QR_TV.gCod.cod===END_ITEM&&QR_TV.gCod.data)||hojeISO())+'">');
   confirmarEnd(i,end);
 })}
-var END_QTDS=[],END_PADRAO='',END_FEITO=[];
+var END_QTDS=[],END_PADRAO='',END_FEITO=[],END_ALT={};
 /* Quantidade travada (30/10/2026): vem só da etiqueta do TOTVS; aqui só refaz o cálculo das embalagens */
 function padraoEnd(){END_PADRAO=(ITMAP[val('gCod').toUpperCase()]||[])[2]||'';calcPallets()}
 /* unidade de medida e embalagem vêm do cadastro do item (colunas M e D da aba Itens) */
@@ -2280,7 +2292,7 @@ function finalizarEnd(){var t=$('s-guardar');if(!t||!$('gRes').innerHTML)return;
   piscar('guardar');
   $('gRes').innerHTML='';$('gCod').value='';$('gQtd').value='';$('gCalc').innerHTML='';$('gUnid').textContent='–';$('gEmb').textContent='–';END_QTDS=[];END_ITEM='';
   window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){$('gCod').focus()},350)}
-function sairEnd(){segurarFim(true);END_FEITO=[];LT.g=null;ltPintar('g');var gi=$('gInf');if(gi){gi.innerHTML='';gi.hidden=true}delete QR_TV.gCod;$('gRes').innerHTML='';$('gCod').value='';$('gQtd').value='';$('gCalc').innerHTML='';$('gUnid').textContent='–';$('gEmb').textContent='–';END_QTDS=[];END_ITEM='';voltarGrupo()}
+function sairEnd(){segurarFim(true);END_FEITO=[];END_ALT={};LT.g=null;ltPintar('g');var gi=$('gInf');if(gi){gi.innerHTML='';gi.hidden=true}delete QR_TV.gCod;$('gRes').innerHTML='';$('gCod').value='';$('gQtd').value='';$('gCalc').innerHTML='';$('gUnid').textContent='–';$('gEmb').textContent='–';END_QTDS=[];END_ITEM='';voltarGrupo()}
 /* Onde dá para juntar (03/11/2026): o app sugere posições do N1 com um produto só — o mesmo produto primeiro
    (o que está acabando e o mais antigo na frente), depois a mesma família. Quem decide se cabe é o operador, na frente do pallet. */
 function sugJuntarHtml(r){if(!r||!r.ok)return msg('erro',(r&&r.msg)||'Não deu para buscar as sugestões.');
@@ -2338,10 +2350,10 @@ function naoUsarMot(i,end,mot,dev){
   var outras=dev?[]:[].slice.call(document.querySelectorAll('#gRes .endCard:not(.feito)')).filter(function(c){return c.id!=='ec'+i}).map(function(c){return (c.querySelector('.endE')||{}).textContent||''}).map(function(t){return t.replace(/\s/g,'')}).filter(Boolean);
   chamar('apiNaoUsar',[quem(),end,dev?DEV.tv.cod:END_ITEM,mot,outras],function(r){
     if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');return}vib('ok');
-    if(dev){DEV.bloq=(DEV.bloq||[]).concat([end]);if(r.pos){DEV.end=r.pos.end;devPosPinta(aviso('at','Posição '+end+' bloqueada e enviada ao Inventário. Leve para a nova posição.'))}else $('dvB').innerHTML=aviso('er',r.msg2||'Não há outra posição livre. Chame o líder.');return}
+    if(dev){DEV.bloq=(DEV.bloq||[]).concat([end]);if(r.pos){DEV.orig=false;DEV.end=r.pos.end;devPosPinta(aviso('at','Posição '+end+' bloqueada e enviada ao Inventário. Leve para a nova posição.'))}else $('dvB').innerHTML=aviso('er',r.msg2||'Não há outra posição livre. Chame o líder.');return}
     var c=$('ec'+i);c.classList.add('feito','trocada');$('es'+i).textContent='Não usada';$('es'+i).className='endSt vz';$('eb'+i).innerHTML=aviso('at',r.msg);
     SEG.ends[i]='';
-    if(r.pos){var n=document.querySelectorAll('#gRes .endCard').length;END_QTDS[n]=END_QTDS[i];SEG.ends[n]=r.pos.end;var p=r.pos;
+    if(r.pos){var n=document.querySelectorAll('#gRes .endCard').length;END_QTDS[n]=END_QTDS[i];SEG.ends[n]=r.pos.end;END_ALT[n]=1;var p=r.pos;
       var h='<div class="endCard" id="ec'+n+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+n+'">Nova posição</span></div>'+
         '<div class="endInfo">Rua '+p.rua+' · Bloco '+p.bloco+' · Nível '+p.nivel+' · Lado '+p.lado+'</div>'+aviso('at','A posição '+end+' ficou bloqueada e foi para o Inventário. Leve o pallet para esta.')+'<div id="eb'+n+'">'+ebLer(n,p.end)+'</div></div>';
       c.insertAdjacentHTML('afterend',h);GUIA.k='';agendarGuia('mut');return}
@@ -2380,7 +2392,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0};var PROC_GRAVA=/^api(Entrada|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0};var PROC_GRAVA=/^api(Entrada|Devolver|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);document.body.classList.remove('proc')}}
 var SEM_BOLA={};   /* chamadas de fundo que não mostram a bolinha (ex.: conferência da sessão) */
@@ -4178,14 +4190,21 @@ function devLerEtq(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(t
    botao('Ver onde guardar','devSugerir()','p')+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
 function devSugerir(){var q=nIn(val('devQ')),e=nIn(DEV.tv&&DEV.tv.qtd);if(!(q>0)){mostrarErro('Informe a quantidade que voltou.');return}
   if(e>0&&q>e){mostrarErro('A quantidade é maior que a da etiqueta ('+numBR(e)+').');return}DEV.q=q;
-  chamar('apiGuardar',[DEV.tv.cod,1,quem(),true],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
-    var p=(r.posicoes||[])[0];if(!p){mostrarErro('Sem posição livre para este produto. Chame o líder.');return}DEV.end=p.end;devPosPinta()})}
-function devPosPinta(extra){$('devBox').innerHTML=devResumo()+(extra||'')+'<div class="passo" id="dv3"><p class="rcDica">Guardar em:</p><div class="endG">'+endCor(DEV.end)+'</div><div id="dvB">'+
-  botaoCam('devLerPos()','o QR Code da posição')+botao('Não dá para usar esta posição',"naoUsar(0,'"+DEV.end+"',1)",'s')+'</div></div>'}
+  /* 12/11/2026 (versão 116): primeiro o pallet de onde a etiqueta saiu; se não estiver mais lá, uma posição livre */
+  chamar('apiDevSugerir',[quem(),DEV.tv.cod,DEV.tv.rg],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+    var p=(r.posicoes||[])[0];if(!p){mostrarErro('Sem posição livre para este produto. Chame o líder.');return}DEV.orig=!!r.orig;DEV.end=p.end;devPosPinta()})}
+function devOutraPos(msgA){chamar('apiGuardar',[DEV.tv.cod,1,quem(),true],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+  var p=(r.posicoes||[])[0];if(!p){$('dvB').innerHTML=aviso('er','Não há posição livre para este produto. Chame o líder.');return}
+  DEV.orig=false;DEV.end=p.end;devPosPinta(aviso('at',msgA||'Guarde nesta posição livre.'))})}
+function devPosPinta(extra){$('devBox').innerHTML=devResumo()+(extra||'')+'<div class="passo" id="dv3"><p class="rcDica">'+(DEV.orig?'Devolver no mesmo pallet, na posição de onde saiu:':'Guardar em:')+'</p><div class="endG">'+endCor(DEV.end)+'</div><div id="dvB">'+
+  botaoCam('devLerPos()','o QR Code da posição')+botao('Não dá para usar esta posição',DEV.orig?'devOutraPos()':"naoUsar(0,'"+DEV.end+"',1)",'s')+'</div></div>'}
 function devLerPos(){QR_ESP_PROX='pos';lerQR('',function(lido){if(!mesmaPos(lido,DEV.end)){mostrarErro('Posição errada! Você leu '+lido+', mas o material vai em '+DEV.end+'.');return}
-  var t=DEV.tv;chamar('apiEntrada',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),data:t.data,rg:t.rg,nf:t.nf,devol:true}],function(r){
+  var t=DEV.tv;if(DEV.orig){chamar('apiDevolver',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),rg:t.rg,nf:t.nf}],function(r){
+    if(!r||!r.ok){if(r&&r.outra){devOutraPos(r.msg);vib('erro');return}mostrarErro((r&&r.msg)||'Erro.');return}devConcl(t,r,'Mesmo pallet')});return}
+  chamar('apiEntrada',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),data:t.data,rg:t.rg,nf:t.nf,devol:true}],function(r){
     if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
-    $('devBox').innerHTML=conclusao('Devolvido',[['Produto',t.cod+((ITMAP[t.cod]||[])[1]?' · '+ITMAP[t.cod][1]:'')],['Quantidade',qtdU(DEV.q,t.cod)],['Posição',endCor(baseVaga(r.end||DEV.end)),1],['Nº do pallet',r.num||'-']],'Devolver outro',"ir('dev');devIni()");vib('ok')})})}
+    devConcl(t,r)})})}
+function devConcl(t,r,obs){$('devBox').innerHTML=conclusao('Devolvido',[['Produto',t.cod+((ITMAP[t.cod]||[])[1]?' · '+ITMAP[t.cod][1]:'')],['Quantidade',qtdU(DEV.q,t.cod)],['Posição',endCor(baseVaga(r.end||DEV.end))+(obs?' <small>('+esc(obs.toLowerCase())+')</small>':''),1],['Nº do pallet',r.num||'-']],'Devolver outro',"ir('dev');devIni()");vib('ok')}
 function mercPintar(tec){if(!Object.keys(ITMAP||{}).length&&typeof recarregarItens==='function')try{recarregarItens()}catch(e){}var b=$('mercSvg');if(b)b.innerHTML='<div class="mercTitP">Layout do supermercado de motores e embalagens</div>'+mercSvg(tec)}
 function imprimirMerc(){mercPintar(true);document.body.classList.add('pm');var st=document.createElement('style');st.id='pmPage';st.textContent='@page{size:A4 landscape;margin:8mm}';document.head.appendChild(st);
   var fim=function(){document.body.classList.remove('pm');mercPintar();var x=$('pmPage');if(x)x.remove();window.removeEventListener('afterprint',fim)};window.addEventListener('afterprint',fim);setTimeout(function(){window.print();setTimeout(fim,1500)},80)}
@@ -5050,7 +5069,7 @@ function limparTela(t){var s=$('s-'+t);if(!s||ACAO.indexOf(t)<0)return;
   (LIMPAR[t]||[]).forEach(function(i){var e=$(i);if(!e)return;if('value' in e&&e.tagName!=='DIV')e.value='';else e.innerHTML=''});
   s.querySelectorAll('[id$="Msg"]').forEach(function(e){if(e.tagName==='DIV')e.innerHTML=''});
   s.querySelectorAll('.errIn').forEach(function(x){x.remove()});s.querySelectorAll('.campoErro,.blocoErro').forEach(function(x){x.classList.remove('campoErro','blocoErro')});
-  if(t==='guardar'){segurarFim(true);LT.g=null;LT.m=null;ltPintar('g');END_FEITO=[];if($('gInf')){$('gInf').innerHTML='';$('gInf').hidden=true}delete QR_TV.gCod;delete QR_TV.mCod;END_QTDS=[];END_ITEM='';$('gCalc').innerHTML='';$('gUnid').textContent='–';$('gEmb').textContent='–'}
+  if(t==='guardar'){segurarFim(true);LT.g=null;LT.m=null;ltPintar('g');END_FEITO=[];END_ALT={};if($('gInf')){$('gInf').innerHTML='';$('gInf').hidden=true}delete QR_TV.gCod;delete QR_TV.mCod;END_QTDS=[];END_ITEM='';$('gCalc').innerHTML='';$('gUnid').textContent='–';$('gEmb').textContent='–'}
   if(t==='tirar'){TIRAR_R=null;ETQ_TIRAR=null;TIRAR_FIFO=-1}
   if(t==='tend')xfLimpa();
   if(t==='pos'){$('pAcoes').innerHTML='';JUST=false;AREA='';ASS_OK=false}
