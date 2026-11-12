@@ -2392,7 +2392,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0};var PROC_GRAVA=/^api(Entrada|Devolver|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0};var PROC_GRAVA=/^api(Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);document.body.classList.remove('proc')}}
 var SEM_BOLA={};   /* chamadas de fundo que não mostram a bolinha (ex.: conferência da sessão) */
@@ -4186,13 +4186,17 @@ function devIni(){DEV={};var b=$('devBox');if(!b)return;
   b.innerHTML='<div class="passo" id="dv1"><p class="rcDica">Leia a etiqueta do produto que voltou da produção.</p>'+botaoCam('devLerEtq()','a etiqueta do produto')+'</div>'}
 function devResumo(){var t=DEV.tv;return '<div class="itMini"><div><b>'+esc(t.cod)+'</b> '+esc((ITMAP[t.cod]||[])[1]||'')+'<br><small>NF '+esc(t.nf||'-')+' · recebido em '+esc(String(t.data).split('-').reverse().join('/'))+(DEV.q?' · volta <b>'+esc(qtdU(DEV.q,t.cod))+'</b>':'')+'</small></div></div>'}
 function devLerEtq(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto. Leia a etiqueta do TOTVS.');return}
-  DEV={tv:tv};$('devBox').innerHTML=devResumo()+'<div class="passo" id="dv2"><label class="obr">Quantidade que voltou (a etiqueta diz '+esc(numBR(nIn(tv.qtd)))+')</label><input id="devQ" data-obr="1" type="number" inputmode="decimal">'+
-   botao('Ver onde guardar','devSugerir()','p')+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
+  DEV={tv:tv};$('devBox').innerHTML=devResumo()+'<div class="passo" id="dv2"><label class="obr">Quantidade total que voltou (todas as caixas deste lote)</label><input id="devQ" data-obr="1" type="number" inputmode="decimal">'+
+   '<p class="rcDica">Como está o material?</p>'+botao('Material bom','devSugerir()','p')+botao('Material com defeito','devDefeito()','s')+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
 function devSugerir(){var q=nIn(val('devQ')),e=nIn(DEV.tv&&DEV.tv.qtd);if(!(q>0)){mostrarErro('Informe a quantidade que voltou.');return}
-  if(e>0&&q>e){mostrarErro('A quantidade é maior que a da etiqueta ('+numBR(e)+').');return}DEV.q=q;
+  DEV.q=q;   /* 12/11/2026 (versão 118): o limite é o que saiu do lote para a produção (o sistema confere) */
   /* 12/11/2026 (versão 116): primeiro o pallet de onde a etiqueta saiu; se não estiver mais lá, uma posição livre */
-  chamar('apiDevSugerir',[quem(),DEV.tv.cod,DEV.tv.rg],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+  chamar('apiDevSugerir',[quem(),DEV.tv.cod,DEV.tv.rg,q,e],function(r){if(!r||!r.ok){DEV.q=0;mostrarErro((r&&r.msg)||'Erro.');return}
     var p=(r.posicoes||[])[0];if(!p){mostrarErro('Sem posição livre para este produto. Chame o líder.');return}DEV.orig=!!r.orig;DEV.end=p.end;devPosPinta()})}
+/* 12/11/2026 (versão 118): material com defeito não volta para o estoque */
+function devDefeito(){perguntar('O material está com defeito? Ele não vai voltar para o estoque.',function(){
+  chamar('apiDevDefeito',[quem(),DEV.tv.cod,DEV.tv.rg,nIn(val('devQ'))],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+    $('devBox').innerHTML=devResumo()+aviso('er','Material com defeito não volta para o estoque. Separe o material e chame a Qualidade. O líder foi avisado nas Ocorrências.')+botao('Devolver outro',"ir('dev');devIni()",'p');vib('erro')})},null,{ok:'Sim, está com defeito'})}
 function devOutraPos(msgA){chamar('apiGuardar',[DEV.tv.cod,1,quem(),true],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
   var p=(r.posicoes||[])[0];if(!p){$('dvB').innerHTML=aviso('er','Não há posição livre para este produto. Chame o líder.');return}
   DEV.orig=false;DEV.end=p.end;devPosPinta(aviso('at',msgA||'Guarde nesta posição livre.'))})}
