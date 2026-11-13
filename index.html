@@ -569,6 +569,12 @@ html body .tit::before{display:none!important}
 html body .tit button.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV{position:absolute!important;left:6px;top:50%;transform:translateY(-50%)!important;width:38px!important;height:38px!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;border-radius:8px!important;background:transparent!important;background-image:none!important;color:#FFFFFF!important;box-shadow:none!important;display:none;align-items:center;justify-content:center;z-index:2}
 html body .tit button.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV svg{display:block!important;width:24px!important;height:24px!important}
 html body .tit button.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV:active{background:#FFFFFF1F!important;filter:none!important}
+
+/* 12/11/2026 (versão 121): data de recebimento grande para o operador conferir com a etiqueta */
+.dtG{display:block;font-size:26px;font-weight:800;letter-spacing:.5px;line-height:1.15;margin:6px 0 2px;color:#1F2328}
+.dtG small{display:block;font-size:13px;font-weight:600;letter-spacing:0;color:#5B6270}
+.dtB{font-size:20px;font-weight:800}
+.verTx{text-align:center;font-size:13px;color:#8A909C;margin-top:14px}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style id="layoutPadrao">
@@ -1135,6 +1141,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <p><button class="b bP" onclick="entrar()">Entrar</button></p>
   <div id="lManut"></div>
   <div id="lMsg"></div>
+  <p class="verTx" id="lVer"></p>
 </div>
 
 <div id="s-troca" class="esc card">
@@ -1199,6 +1206,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 
 <div id="s-regras" class="esc card">
   <div class="tit">Configurações</div>
+  <div id="rgVer"></div>
   <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
   <div id="rgResumo"></div>
   <div id="rgNiveis"></div>
@@ -1802,6 +1810,11 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
   POS=String(q.p||'').toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,20);MODO=String(q.v||'').toLowerCase().replace(/[^a-z]/g,'').slice(0,10)})()}
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
+/* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
+var VER_TELA=121,VER_SRV=0;
+function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
+  if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
+  if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
 var FILA_SRV=[],FILA_T=0;
 function servidor(fn,args,ok,falha,rid){args=args||[];ok=ok||function(){};falha=falha||function(){};
   if(window.google&&google.script&&google.script.run){var t1=Date.now();google.script.run.withSuccessHandler(function(r){try{desAnota(fn,Date.now()-t1,0)}catch(e){}ok(r)}).withFailureHandler(falha)[fn].apply(null,args);return}
@@ -1817,7 +1830,7 @@ function enviarLote(l){
   var t0=Date.now();
   fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({lote:l.map(function(x){return x.rid?{fn:x.fn,args:x.args,rid:x.rid}:{fn:x.fn,args:x.args}})}),redirect:'follow'})
     .then(function(x){if(!x.ok)throw new Error('o servidor respondeu '+x.status);return x.json()})
-    .then(function(d){if(d&&d.erro)throw new Error(d.erro);var rs=(d&&d.lote)||[];
+    .then(function(d){if(d&&d.erro)throw new Error(d.erro);var rs=(d&&d.lote)||[];if(d&&d.v&&d.v!==VER_SRV){VER_SRV=Number(d.v)||0;pintaVer()}
       var ms=Date.now()-t0;l.forEach(function(x,k){var o=rs[k]||{erro:'sem resposta do servidor'};try{desAnota(x.fn,ms,o.t)}catch(e){}try{if(o.erro)x.falha(new Error(o.erro));else x.ok(o.r)}catch(e){console.error(e)}})})
     .catch(erroTodos)}
 var ITENS = [], ITMAP = {}, tvTimer = null;
@@ -1980,7 +1993,7 @@ function abrirInv(){$('invRes').innerHTML='Buscando as posições de hoje...';
     $('invRes').innerHTML=h})}
 var INV_BQ={};
 function invBqEtq(lin){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto. Leia a etiqueta do TOTVS.');return}
-  INV_BQ[lin]=tv;var it=ITMAP[tv.cod]||[];$('ivE'+lin).innerHTML=aviso('ok',tv.cod+(it[1]?' · '+it[1]:'')+' · NF '+(tv.nf||'-')+' · recebido em '+String(tv.data).split('-').reverse().join('/'))})}
+  INV_BQ[lin]=tv;var it=ITMAP[tv.cod]||[];$('ivE'+lin).innerHTML=aviso('ok',tv.cod+(it[1]?' · '+it[1]:'')+' · NF '+(tv.nf||'-'))+dataG(tv.data)})}
 function invBqPos(lin,end){var pp=val('ivP'+lin).toUpperCase();if(!pp){$('ivM'+lin).innerHTML=msg('erro','Leia o QR da posição.');return false}
   if(!mesmaPos(pp,end)){$('ivM'+lin).innerHTML=msg('erro','Esta não é a posição '+end+'. Confira se está no lugar certo.');return false}return true}
 function invBqReg(lin,end){if(!invBqPos(lin,end))return;if(!INV_BQ[lin]){$('ivM'+lin).innerHTML=msg('erro','Leia a etiqueta do pallet que está na posição.');return}
@@ -2219,10 +2232,13 @@ function etqJaUsada(alvo,tv){chamar('apiEtqUso',[tv.rg],function(r){if(!(QR_TV[a
   if(r&&r.ok&&r.onde&&r.onde.length){var bI=$(alvo==='gCod'?'gInf':'mInf');if(bI)bI.insertAdjacentHTML('beforeend',aviso('at',r.msg))}etqPadrao(alvo,tv)})}
 function limpaEtq(alvo){if(alvo==='gCod'){delete QR_TV.gCod;LT.g=null;ltPintar('g');['gCod','gQtd'].forEach(function(i){$(i).value=''});$('gCalc').innerHTML='';$('gRes').innerHTML='';var b=$('gInf');if(b){b.innerHTML='';b.hidden=true}}}
 /* Descrição, quantidade com unidade, nota fiscal e data da etiqueta lida, para o operador conferir */
+function dataG(d,rot){d=String(d||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10).split('-').reverse().join('/');if(!d)return '';
+  return '<span class="dtG"><small>'+esc(rot||'Recebido em')+'</small>'+esc(d)+'</span>'}
+function dataB(d){d=String(d||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10).split('-').reverse().join('/');return '<b class="dtB">'+esc(d)+'</b>'}
 function infoEtq(alvo,tv){var b=$(alvo==='gCod'?'gInf':'mInf');if(!b)return;var it=ITMAP[String(tv.cod).toUpperCase()]||[];
   var q=unidDe(tv.cod)?qtdU(tv.qtd,tv.cod):tv.qtd+(tv.unid?' '+tv.unid:'');
   b.innerHTML='<b>'+esc(tv.cod)+'</b>'+(it[1]?' · '+esc(it[1]):' · <i>sem cadastro</i>')+'<br>Quantidade: <b>'+esc(q)+'</b>'+(tv.nf?' · NF <b>'+esc(tv.nf)+'</b>':'')+
-    '<br>Recebido em <b>'+esc(String(tv.data).split('-').reverse().join('/'))+'</b>'+(tv.hora?' às '+esc(tv.hora):'')+
+    dataG(tv.data)+
     (it[1]?'<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(tv.cod).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>':'');b.hidden=false}
 /* Quantidade da etiqueta diferente do padrão do cadastro: não trava, só pergunta (29/10/2026) */
 function etqPadrao(alvo,tv){var pd=Number((ITMAP[String(tv.cod).toUpperCase()]||[])[2])||0,q=nIn(tv.qtd);if(!pd||!q)return;
@@ -2517,7 +2533,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 setInterval(checaInativo,60000);setTimeout(function(){if(!checaInativo()&&quem())marcaUso()},500);
 function sair(){chamar('apiSair',[quem()],function(){});AV_T=0;if($('avisos'))$('avisos').innerHTML='';['jeTok','jeNome','jeAdm','jePerf','jeAvC'].forEach(function(k){LS.removeItem(k)});AV={meus:[],res:null,sis:[],ges:null};carregarNomes();ir('nome')}
 function avisoManut(){if(MODO==='tv'||!$('lManut'))return;chamar('apiAvisoManut',[],function(m){$('lManut').innerHTML=m&&m.ativo?msg('aviso','🔧 '+m.msg):''})}
-function carregarNomes(){avisoManut();chamar('apiNomes',[],function(l){if(!Array.isArray(l))return;$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n;
+function carregarNomes(){pintaVer();avisoManut();chamar('apiNomes',[],function(l){if(!Array.isArray(l))return;$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n;
   try{LS.setItem('jeNomesC',JSON.stringify(l))}catch(e){}
   /* abertura rápida: se a tela de Movimentações já estiver aberta, a lista de pessoas é completada agora */
   if(typeof mvPessoas==='function'){mvPessoas('mv',MV.arm.r&&MV.arm.r.pessoas);mvPessoas('ab',MV.abs.r&&MV.abs.r.pessoas)}})}
@@ -4237,7 +4253,7 @@ function invPosEnvia(q,q2){chamar('apiInvAjuste',[quem(),INVP.p.end,q,q2],functi
   $('ipBox').innerHTML=conclusao(r.confere?'Confere':'Saldo ajustado',L,'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})}
 function devIni(){DEV={};var b=$('devBox');if(!b)return;
   b.innerHTML='<div class="passo" id="dv1"><p class="rcDica">Leia a etiqueta do produto que voltou da produção.</p>'+botaoCam('devLerEtq()','a etiqueta do produto')+'</div>'}
-function devResumo(){var t=DEV.tv;return '<div class="itMini"><div><b>'+esc(t.cod)+'</b> '+esc((ITMAP[t.cod]||[])[1]||'')+'<br><small>NF '+esc(t.nf||'-')+' · recebido em '+esc(String(t.data).split('-').reverse().join('/'))+(DEV.q?' · volta <b>'+esc(qtdU(DEV.q,t.cod))+'</b>':'')+'</small></div></div>'}
+function devResumo(){var t=DEV.tv;return '<div class="itMini"><div><b>'+esc(t.cod)+'</b> '+esc((ITMAP[t.cod]||[])[1]||'')+'<br><small>NF '+esc(t.nf||'-')+'</small>'+dataG(t.data)+'<small>'+(DEV.q?'Volta <b>'+esc(qtdU(DEV.q,t.cod))+'</b>':'')+'</small></div></div>'}
 function devLerEtq(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto. Leia a etiqueta do TOTVS.');return}
   DEV={tv:tv};$('devBox').innerHTML=devResumo()+'<div class="passo" id="dv2"><label class="obr">Quantidade total que voltou (todas as caixas deste lote)</label><input id="devQ" data-obr="1" type="number" inputmode="decimal">'+
    '<p class="rcDica">Como está o material?</p>'+botao('Material bom','devSugerir()','p')+botao('Material com defeito','devDefeito()','s')+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
@@ -4352,7 +4368,7 @@ function tirar(){cronoIni('abs');ETQ_TIRAR=null;
     r.lista.forEach(function(x,i){var h0=h;h='';
       var bl=x.status==='Bloqueado',fifo=!bl&&prim;if(fifo){prim=false;TIRAR_FIFO=i}
       h+='<div class="endCard'+(bl?' feito':fifo?' fifo':'')+'" id="tc'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(x.end)+'</span><span class="endSt'+(fifo?' fifoS':'')+'" id="ts'+i+'">'+(bl?'Bloqueado':fifo?'1º FIFO':'Pendente')+'</span></div>'+
-        '<div class="endInfo">Quantidade: <b>'+esc(qtdU(x.qtd,r.codigo))+'</b> · Recebido em '+x.data+(bl?' · '+esc(x.motivo):'')+'</div>'+(bl?'':loteLer(r,x))+
+        '<div class="endInfo">Quantidade: <b>'+esc(qtdU(x.qtd,r.codigo))+'</b>'+(bl?' · '+esc(x.motivo):'')+dataG(x.data)+'</div>'+(bl?'':loteLer(r,x))+
         (bl?'':'<div id="tb'+i+'">'+botaoCam("lerPosTirar("+i+",'"+x.end+"',"+(Number(x.qtd)||0)+")",'o QR Code da posição')+'</div>')+'</div>';
       CT.push({i:i,h:h});h=h0;
     });
@@ -4366,7 +4382,7 @@ function tirar(){cronoIni('abs');ETQ_TIRAR=null;
 /* 9. Lote exato (12/11/2026): quando a posição tem mais de um lote, mostra qual etiqueta ler (nota, data e número do pallet) */
 function loteLer(r,x){var b=String(x.end).replace(/-\d{1,2}$/,''),n=(r.lista||[]).filter(function(y){return String(y.end).replace(/-\d{1,2}$/,'')===b&&y.status!=='Bloqueado'}).length;
   if(n<2)return '';var lt=String(x.lote||''),pt=lt.split('#'),c=pt[0].split('|'),nf=c.length>3?c[3]:'',pl=pt[1]||'';
-  return '<div class="loteLer">Esta posição tem '+n+' lotes. Leia a etiqueta deste:<br><b>'+(nf?'NF '+esc(nf)+' · ':'')+'recebido em '+esc(x.data)+(pl?' · pallet '+esc(pl):'')+'</b></div>'}
+  return '<div class="loteLer">Esta posição tem '+n+' lotes. Leia a etiqueta deste:<br><b>'+(nf?'NF '+esc(nf)+' · ':'')+'recebido em '+dataB(x.data)+(pl?' · pallet '+esc(pl):'')+'</b></div>'}
 function lerPosTirar(i,end,qtd){QR_ESP_PROX='pos';lerQR('',function(lido){
   if(!mesmaPos(lido,end)){chamar('apiOcorrencia',['Posição errada',(TIRAR_R||{}).codigo||'',end,'Abastecer: leu '+lido+' no lugar de '+end+'.'],function(){});
     $('tb'+i).innerHTML=aviso('er','Posição errada! Você leu '+lido+', mas o material está em '+end+'. Vá até a posição certa e leia de novo.')+botaoCam("lerPosTirar("+i+",'"+end+"',"+qtd+")",'o QR Code da posição');vib('erro');return}
@@ -4692,7 +4708,7 @@ var RG_TIPOS=[];
 /* Reserva por giro (05/11/2026) */
 function infoReservas(){if(!$('rgResInfo'))return;TOQUE.el=null;chamar('apiBlocosInfo',[quem()],function(r){if(!r||!r.ok){$('rgRes').hidden=true;return}$('rgRes').hidden=false;$('rgFolga').value=r.folga;$('rgResInfo').textContent=r.em?'Último cálculo: '+r.em+' · folga '+r.folga+'%':'Ainda não foi calculado. Toque em Recalcular agora (ou ele calcula sozinho no próximo endereçamento).'})}
 function recalcReservas(){chamar('apiRecalcBlocos',[quem(),val('rgFolga')],function(r){$('rgResMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);if(r.ok)infoReservas()})}
-function abrirRegras(){$('rgMsg').innerHTML='';if($('rgDesRes'))$('rgDesRes').innerHTML='';if($('rgSemGiroRes'))$('rgSemGiroRes').innerHTML='';$('rgNiveis').innerHTML='Carregando...';infoReservas();if($('rgResMsg'))$('rgResMsg').innerHTML='';
+function abrirRegras(){pintaVer();$('rgMsg').innerHTML='';if($('rgDesRes'))$('rgDesRes').innerHTML='';if($('rgSemGiroRes'))$('rgSemGiroRes').innerHTML='';$('rgNiveis').innerHTML='Carregando...';infoReservas();if($('rgResMsg'))$('rgResMsg').innerHTML='';
   chamar('apiRegras',[quem()],function(r){
     if(!r.ok){$('rgNiveis').innerHTML=msg('erro',r.msg);return}
     RG_TIPOS=r.tipos;$('rgData').value=r.revalida||'';
@@ -5010,7 +5026,7 @@ function xfOrigLer(){QR_ESP_PROX='pos';lerQR('',function(l){l=String(l||'').trim
   chamar('apiPosicao',[l],function(p){if(!p||!p.ok){xfErro(p&&p.msg||'Endereço não encontrado.');return}
     if(p.status!=='Ocupado'){xfErro('O endereço '+p.end+' está '+String(p.status).toLowerCase()+'. Leia o endereço onde o pallet está.');return}
     XF={orig:p.end,p:p,p2:p.segundo||null,todos:[p].concat(p.outros||[])};if($('xfSug'))$('xfSug').innerHTML='';$('xfEtq').value='';$('xfDest').value='';xfPoe('xfOrig',p.end);
-    $('xfInfo').innerHTML='<div class="xfInfo"><b>'+esc(p.item)+'</b>'+(p.desc?' · '+esc(p.desc):'')+'<span>'+esc(qtdU(p.qtd,p.item))+' · recebido em '+esc(p.data)+'</span></div>';
+    $('xfInfo').innerHTML='<div class="xfInfo"><b>'+esc(p.item)+'</b>'+(p.desc?' · '+esc(p.desc):'')+'<span>'+esc(qtdU(p.qtd,p.item))+'</span>'+dataG(p.data)+'</div>';
     void 0})})}
 function xfEtqLer(){if(!XF.orig){xfErro('Primeiro leia o QR Code do endereço atual.');return}
   QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt),p=XF.p;
@@ -5565,10 +5581,10 @@ function ltMulti(k){var p=ltPrim(k);if(!p)return false;return LT[k].lista.length
 function ltTotal(k){return ltTodos(k).reduce(function(t,x){return t+x.qtd},0)}
 function ltMexeu(k){if(LT[k])LT[k].conf=0;if(k==='g'&&$('gRes'))$('gRes').innerHTML='';ltPintar(k)}
 function ltResumo(k){var L=ltTodos(k).slice().sort(function(a,b){return a.data<b.data?-1:a.data>b.data?1:0});
-  return '<b>'+L.length+' lote(s) · total '+esc(qtdU(ltTotal(k),LT[k].cod))+'</b>'+L.map(function(x){return '<div class="cxLin">Nota '+esc(x.nf||'-')+' · recebido em '+esc(String(x.data).split('-').reverse().join('/'))+': '+esc(qtdU(x.qtd,LT[k].cod))+'</div>'}).join('')}
+  return '<b>'+L.length+' lote(s) · total '+esc(qtdU(ltTotal(k),LT[k].cod))+'</b>'+L.map(function(x){return '<div class="cxLin">Nota '+esc(x.nf||'-')+' · recebido em '+dataB(x.data)+': '+esc(qtdU(x.qtd,LT[k].cod))+'</div>'}).join('')}
 function ltPintar(k){var b=$(k+'Cx');if(!b)return;var L=LT[k];if(!L||!ltPrim(k)){b.innerHTML='';if(k==='g'&&$('gCxBt'))$('gCxBt').innerHTML='';return}
   var h='';
-  L.lista.forEach(function(x,i){h+='<div class="ltLin"><div class="ltTx">Lote '+(i+2)+': nota '+esc(x.tv.nf||'-')+' · recebido em '+esc(String(x.tv.data).split('-').reverse().join('/'))+'<br><small>Cada caixa: '+esc(qtdU(ltQ(x.tv.qtd),L.cod))+'</small></div>'+
+  L.lista.forEach(function(x,i){h+='<div class="ltLin"><div class="ltTx">Lote '+(i+2)+': nota '+esc(x.tv.nf||'-')+' · recebido em '+dataB(x.tv.data)+'<br><small>Cada caixa: '+esc(qtdU(ltQ(x.tv.qtd),L.cod))+'</small></div>'+
     '<div><label>Total deste lote</label><input type="number" min="1" inputmode="decimal" value="'+esc(x.qtd)+'" oninput="LT.'+k+'.lista['+i+'].qtd=this.value;ltMexeu(\''+k+'\')"></div></div>'});
   if(L.lista.length)h+='<div class="cxCont">'+(L.lista.length+1)+' lotes · total '+esc(qtdU(ltTotal(k),L.cod))+'</div>';
   var bt=botao('Ler mais lotes (mesmo produto)',"ltLer('"+k+"')",'s')+(L.lista.length?botao('Desfazer último lote',"ltDesfazer('"+k+"')",'s'):'');
