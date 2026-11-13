@@ -913,10 +913,10 @@ html body .pbT{font-size:16px}
 
 /* Botões opção 1 (30/10/2026): principal laranja suave, Desfazer vinho (05/11/2026: testou vermelho clássico e voltou ao vinho), Voltar/secundários cinza clarinho */
 html body button.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao,html body button.sec.sec.sec.sec.sec.sec.sec.sec.sec,html body button.voltar.voltar.voltar.voltar.voltar.voltar.voltar.voltar.voltar{background:#E4E5E8!important;color:#2E2E30!important;border:0!important;box-shadow:none!important;background-image:none!important}
-html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm{background:#9F3A3A!important;color:#FFFFFF!important;border:0!important;box-shadow:none!important;background-image:none!important}
+html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm{background:rgba(220,38,38,.10)!important;color:#B91C1C!important;border:1.5px solid #DC2626!important;box-shadow:none!important;background-image:none!important}
 html body button.ver.ver.ver.ver.ver.ver.ver.ver.ver{background:#3F8F5A!important;color:#FFFFFF!important;border:0!important;box-shadow:none!important;background-image:none!important}
 html body button.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao.pergNao:active,html body button.sec.sec.sec.sec.sec.sec.sec.sec.sec:active,html body button.voltar.voltar.voltar.voltar.voltar.voltar.voltar.voltar.voltar:active{background:#D3D4D8!important}
-html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm:active{background:#86302F!important}
+html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm:active{background:rgba(220,38,38,.20)!important}
 html body button.ver.ver.ver.ver.ver.ver.ver.ver.ver:active{background:#33764A!important}
 html body .pergSim.pergSim.pergSim{background:#F2A766!important;color:#2E2E30!important;border:0!important;background-image:none!important}
 html body .pergSim.pergSim.pergSim:active,html body main :not(.menu)>button:not(.olho):not(.cam):not(.gjX):not(.setaV):not(.alOk):not(.decB):not(.endLer):active{background:#E8975A!important}
@@ -983,8 +983,8 @@ html body main button.endLer.endLer.endLer.endLer.endLer.endLer.endLer.endLer.en
 html body main label.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn{background:#F2A766!important;background-image:none!important;color:#2E2E30!important;border:0!important;box-shadow:none!important}
 html body main label.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn.fotoBtn:active{background:#E8975A!important}
 /* Cancelar operação: vinho (igual ao Desfazer), abaixo da caixinha e na janela */
-html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm{background:#9F3A3A!important;background-image:none!important;color:#FFFFFF!important;border:0!important}
-html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp:active,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm:active{background:#86302F!important}
+html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm{background:rgba(220,38,38,.10)!important;background-image:none!important;color:#B91C1C!important;border:1.5px solid #DC2626!important}
+html body main .cancLin button.sec.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp:active,html body button.pergSim.pergSim.pergSim.pergSim.cancVerm:active{background:rgba(220,38,38,.20)!important}
 
 /* ---- 05/11/2026: Endereçar abre direto (o manual, só do administrador, fica recolhido no fim) ---- */
 #s-guardar #opInt{background:transparent;box-shadow:none;margin:0;overflow:visible}
@@ -1081,7 +1081,7 @@ html body [hidden]:not(#z1):not(#z2){display:none!important}
 /* =====================================================================
    PEÇAS PADRÃO DO APP (12/11/2026) — toda tela usa só estas peças.
    Aviso: .av.ok (verde, sucesso) / .av.at (amarelo, atenção) / .av.er (vermelho, erro); .go = abre algo (seta ›)
-   Botões: .b.bP principal (laranja suave) / .b.bS secundário (cinza) / .b.bD perigo (vinho) — mesmo tamanho, sem emoji
+   Botões: .b.bP principal (laranja suave) / .b.bS secundário (cinza) / .b.bD perigo (vermelho clarinho com borda vermelha) — mesmo tamanho, sem emoji
    Câmera: .b.bCam (principal com ícone, sempre "Ler ..."); microfone: .b.bMic (mesmo modelo, secundário)
    ===================================================================== */
 .av{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:#fff;margin:10px 0;border-left:5px solid var(--cAv);box-shadow:0 4px 14px #1E24300D;font-size:15px;line-height:1.4;color:#333;font-weight:600;text-align:left;font-family:inherit}
@@ -1098,8 +1098,8 @@ html body button.b.bP.b.b.b.b.b.b:not(#z1):not(#z2){background:#F2A766;color:#2E
 html body button.b.bP.b.b.b.b.b.b:not(#z1):not(#z2):active{background:#E8975A}
 html body button.b.bS.b.b.b.b.b.b:not(#z1):not(#z2){background:#E4E5E8;color:#2E2E30}
 html body button.b.bS.b.b.b.b.b.b:not(#z1):not(#z2):active{background:#D3D5D9}
-html body button.b.bD.b.b.b.b.b.b:not(#z1):not(#z2){background:#9F3A3A;color:#fff}
-html body button.b.bD.b.b.b.b.b.b:not(#z1):not(#z2):active{background:#86302F}
+html body button.b.bD.b.b.b.b.b.b:not(#z1):not(#z2){background:rgba(220,38,38,.10);color:#B91C1C;border:1.5px solid #DC2626}
+html body button.b.bD.b.b.b.b.b.b:not(#z1):not(#z2):active{background:rgba(220,38,38,.20)}
 html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2):disabled:not(.trav){opacity:.5}
 html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2) svg{flex:0 0 22px;width:22px;height:22px;margin:0}
 html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#fff}
@@ -1811,12 +1811,19 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=121,VER_SRV=0;
+var VER_TELA=124,VER_SRV=0;
 function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
 var FILA_SRV=[],FILA_T=0;
-function servidor(fn,args,ok,falha,rid){args=args||[];ok=ok||function(){};falha=falha||function(){};
+/* 13/11/2026 (versão 122): tempo-limite em todo pedido (prática dos WMS). Antes, se a internet "pendurava" (não caía,
+   só parava de responder), a tela ficava na bolinha para sempre e bloqueava todos os toques (vídeos do Rafael, 12/11 23:04).
+   Pesquisa: 20 s. Gravação: 40 s. Passou disso, a bolinha some e aparece "O sistema não respondeu. Tente de novo.".
+   Repetir a gravação é seguro: o número do pedido (versão 114) impede gravar em dobro. Resposta que chega depois é ignorada. */
+var LIM_BUSCA=20000,LIM_GRAVA=40000;
+function servidor(fn,args,ok0,falha0,rid){args=args||[];ok0=ok0||function(){};falha0=falha0||function(){};
+  var feito=false,tm=setTimeout(function(){if(feito)return;feito=true;var e=new Error('o sistema não respondeu');e.tempo=1;falha0(e)},(typeof PROC_GRAVA!=='undefined'&&PROC_GRAVA.test(fn))?LIM_GRAVA:LIM_BUSCA);
+  var ok=function(r){if(feito)return;feito=true;clearTimeout(tm);ok0(r)},falha=function(e){if(feito)return;feito=true;clearTimeout(tm);falha0(e)};
   if(window.google&&google.script&&google.script.run){var t1=Date.now();google.script.run.withSuccessHandler(function(r){try{desAnota(fn,Date.now()-t1,0)}catch(e){}ok(r)}).withFailureHandler(falha)[fn].apply(null,args);return}
   if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\/]+\/exec$/.test(API_URL)){falha(new Error('o link do app (/exec) não foi colado no Index.html do GitHub'));return}
   /* 12/11/2026 (versão 119): os avisos vão numa viagem própria e não seguram a abertura do app */
@@ -1827,12 +1834,12 @@ var SOLO_SRV={apiAvisos:1,apiMeusAvisos:1};
 function enviarFila(){FILA_T=0;var l=FILA_SRV;FILA_SRV=[];if(!l.length)return;enviarLote(l)}
 function enviarLote(l){
   var erroTodos=function(e){var m=String(e&&e.message||e);if(/Failed to fetch|NetworkError|Load failed/i.test(m)&&navigator.onLine!==false)m='sem conexão com o sistema';l.forEach(function(x){x.falha(new Error(m))})};
-  var t0=Date.now();
-  fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({lote:l.map(function(x){return x.rid?{fn:x.fn,args:x.args,rid:x.rid}:{fn:x.fn,args:x.args}})}),redirect:'follow'})
+  var t0=Date.now(),ac=null,acT=0;try{ac=new AbortController();acT=setTimeout(function(){try{ac.abort()}catch(e){}},LIM_GRAVA+5000)}catch(e){}
+  fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},signal:ac?ac.signal:undefined,body:JSON.stringify({lote:l.map(function(x){return x.rid?{fn:x.fn,args:x.args,rid:x.rid}:{fn:x.fn,args:x.args}})}),redirect:'follow'})
     .then(function(x){if(!x.ok)throw new Error('o servidor respondeu '+x.status);return x.json()})
     .then(function(d){if(d&&d.erro)throw new Error(d.erro);var rs=(d&&d.lote)||[];if(d&&d.v&&d.v!==VER_SRV){VER_SRV=Number(d.v)||0;pintaVer()}
       var ms=Date.now()-t0;l.forEach(function(x,k){var o=rs[k]||{erro:'sem resposta do servidor'};try{desAnota(x.fn,ms,o.t)}catch(e){}try{if(o.erro)x.falha(new Error(o.erro));else x.ok(o.r)}catch(e){console.error(e)}})})
-    .catch(erroTodos)}
+    .catch(erroTodos).then(function(){clearTimeout(acT)})}
 var ITENS = [], ITMAP = {}, tvTimer = null;
 function $(i){return document.getElementById(i)}
 /* Janela de confirmação e de aviso do próprio app, no lugar das caixas do navegador (que mostram o endereço do Google) */
@@ -2428,9 +2435,11 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0};var PROC_GRAVA=/^api(InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
-function procLiga(fn){PROC.n++;var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
-function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);document.body.classList.remove('proc')}}
+var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+function procLiga(fn){PROC.n++;clearTimeout(PROC.w);PROC.w=setTimeout(procSolta,LIM_GRAVA+10000);var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
+function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);clearTimeout(PROC.w);document.body.classList.remove('proc')}}
+/* 13/11/2026 (versão 122): segurança extra. Se a bolinha passar do tempo-limite, ela some e o contador zera (não passa para as outras telas) */
+function procSolta(){PROC.n=0;clearTimeout(PROC.t);document.body.classList.remove('proc')}
 var SEM_BOLA={};   /* chamadas de fundo que não mostram a bolinha (ex.: conferência da sessão) */
 /* pesquisas que podem rodar ao abrir a tela (sem toque recente): também mostram a bolinha. As de fundo ficam de fora */
 var PROC_BUSCA=/^api(MeusLanc|Transfs|Faltas|ResultadoInv)$/;
@@ -2443,7 +2452,8 @@ function chamar(fn,args,cb){if(COM_TOKEN[fn])args=[quem()].concat(args||[]);
   if(gk){if(GRAV_ANDA[gk]&&Date.now()-GRAV_ANDA[gk]<60000){return}GRAV_ANDA[gk]=Date.now()}
   /* 12/11/2026 (versão 114): número do pedido. O mesmo toque repetido depois de uma falha leva o mesmo número,
      e o sistema não grava duas vezes. Depois que a resposta chega, o número é descartado (o próximo toque é outro pedido). */
-  var rid='';if(gk){var rp=RID_PEND[gk];if(rp&&Date.now()-rp.t<RID_VALE)rid=rp.id;else{rid=novoRid();RID_PEND[gk]={id:rid,t:Date.now()}}}
+  /* 13/11/2026 (versão 122): o número fica guardado no celular, e vale mesmo se o operador fechar e abrir o app */
+  var rk=gk?ridChave(gk):'',rid='';if(rk){ridCarregar();var rp=RID_PEND[rk];if(rp&&Date.now()-rp.t<RID_VALE)rid=rp.id;else{rid=novoRid();RID_PEND[rk]={id:rid,t:Date.now()};ridSalvar()}}
   var b=(MODO!=='tv'&&TOQUE.el&&Date.now()-TOQUE.t<4000)?TOQUE.el:null;TOQUE.el=null;espera(true,b);
   var bola=!!b||(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn]);
   if(bola)procLiga(fn);if(PROC_GRAVA.test(fn)){AV_T=0;if(window.PQ_CACHE)PQ_CACHE.t=0}var fim=function(){espera(false,b);if(bola)procDesliga()};
@@ -2451,13 +2461,16 @@ function chamar(fn,args,cb){if(COM_TOKEN[fn])args=[quem()].concat(args||[]);
      depois de 2 s. Gravação: não repete sozinha (pode ter gravado e só a resposta não chegou) e pede para conferir */
   var grava=PROC_GRAVA.test(fn),auto=!b&&!(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn]);
   var falhou=function(e,tent){
-    if(!grava&&!tent){setTimeout(function(){servidor(fn,args,okR,function(e2){falhou(e2,1)})},2000);return}
+    if(!grava&&!tent&&!(e&&e.tempo)){setTimeout(function(){servidor(fn,args,okR,function(e2){falhou(e2,1)})},2000);return}
     fim();if(gk)delete GRAV_ANDA[gk];if(auto||MODO==='tv')return;
-    avisoJan(MSG_SEM_NET)};
-  var okR=function(r){fim();if(gk){delete GRAV_ANDA[gk];delete RID_PEND[gk]}if(r&&r.confirmarQtd&&args&&args[0]&&typeof args[0]==='object'){perguntar(r.msg,function(){args[0].qtdConf=true;chamar(fn,args,cb)},function(){cb({ok:false,msg:'Cancelado. Confira a quantidade na etiqueta.'})},{ok:'Sim, está certa',no:'Cancelar'});return}if(r&&r.msg&&String(r.msg).indexOf('Sessão expirada')>=0&&MODO!=='tv'){['jeTok','jeAdm','jePerf'].forEach(function(k){LS.removeItem(k)});avisoJan(r.msg);ir('nome');return}cb(r)};
+    avisoJan(e&&e.tempo?MSG_SEM_RESP:MSG_SEM_NET)};
+  var okR=function(r){fim();if(gk){delete GRAV_ANDA[gk];delete RID_PEND[rk];ridSalvar()}if(r&&r.confirmarQtd&&args&&args[0]&&typeof args[0]==='object'){perguntar(r.msg,function(){args[0].qtdConf=true;chamar(fn,args,cb)},function(){cb({ok:false,msg:'Cancelado. Confira a quantidade na etiqueta.'})},{ok:'Sim, está certa',no:'Cancelar'});return}if(r&&r.msg&&String(r.msg).indexOf('Sessão expirada')>=0&&MODO!=='tv'){['jeTok','jeAdm','jePerf'].forEach(function(k){LS.removeItem(k)});avisoJan(r.msg);ir('nome');return}cb(r)};
   servidor(fn,args,okR,function(e){falhou(e,0)},rid);
 }
-var MSG_SEM_NET='Sem internet. Tente de novo.',RID_PEND={},RID_VALE=3*3600000;
+var MSG_SEM_NET='Sem internet. Tente de novo.',MSG_SEM_RESP='O sistema não respondeu. Tente de novo.',RID_PEND={},RID_VALE=3*3600000,RID_LIDO=false;
+function ridChave(t){var h1=5381,h2=52711;for(var i=0;i<t.length;i++){var c=t.charCodeAt(i);h1=(h1*33)^c;h2=(h2*33)^c}return (h1>>>0).toString(36)+(h2>>>0).toString(36)+t.length.toString(36)}
+function ridCarregar(){if(RID_LIDO)return;RID_LIDO=true;try{var o=JSON.parse(LS.getItem('jeRid')||'{}');Object.keys(o).forEach(function(k){if(o[k]&&o[k].id&&!RID_PEND[k])RID_PEND[k]=o[k]})}catch(e){}}
+function ridSalvar(){try{var ag=Date.now(),ks=Object.keys(RID_PEND).filter(function(k){return ag-RID_PEND[k].t<RID_VALE}).sort(function(a,b){return RID_PEND[b].t-RID_PEND[a].t}).slice(0,30),o={};ks.forEach(function(k){o[k]=RID_PEND[k]});RID_PEND=o;LS.setItem('jeRid',JSON.stringify(o))}catch(e){}}
 function novoRid(){var s='';try{var a=new Uint8Array(12);crypto.getRandomValues(a);for(var i=0;i<a.length;i++)s+=('0'+a[i].toString(16)).slice(-2)}catch(e){}return s||(Date.now().toString(36)+Math.random().toString(36).slice(2,12))}
 var LIMPAR={guardar:['gCod','gRes','gInf','mInf'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
 var PEND=null;
