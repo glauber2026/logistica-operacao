@@ -1574,6 +1574,30 @@ button:disabled.ocup{opacity:1!important}
 html body main .msg.ok,html body .msg.ok{background:#EAF6EE!important;color:#166534!important;border:1px solid #BFE3CA!important}
 html body main .msg.erro,html body .msg.erro{background:#FDEEEE!important;color:#A61B1B!important;border:1px solid #F3C4C4!important}
 html body main .msg.ok::before,html body main .msg.erro::before{color:inherit!important}
+
+/* ===== 13/11/2026 (versão 128.1): ajustes de layout nas peças padrão ===== */
+/* Quadro do passo rola junto com a tela (antes ficava preso no topo e cobria o conteúdo) */
+html body main .passoBar.passoBar.passoBar{position:relative!important;top:auto!important}
+/* Peça do botão secundário (.bS): cinza clarinho em todo o app; a regra geral dos botões estava deixando laranja */
+html body main button.b.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS:not(.bMic):not(.mic):not(.cam):not(.cancOp){background:#E4E5E8!important;background-image:none!important;color:#2E2E30!important;border:0!important;box-shadow:none!important}
+html body main button.b.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS.bS:not(.bMic):not(.mic):not(.cam):not(.cancOp):active{background:#D3D5D9!important}
+/* Cancelar operação: texto cinza escuro, sem fundo; a janela "Cancelar operação?" protege contra o toque sem querer */
+html body main .cancLin button.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp{background:transparent!important;background-image:none!important;color:#4A4B50!important;border:0!important;box-shadow:none!important;text-decoration:underline;text-underline-offset:3px;font-weight:600!important}
+html body main .cancLin button.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp.cancOp:active{background:#0000000d!important}
+/* Selo "Fora da regra": pílula suave na própria linha, sem quebrar o endereço */
+.seloF{display:inline-block;white-space:nowrap;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;background:#FEF3C7;color:#92400E}
+
+/* ===== 13/11/2026 (versão 128.2): peça de perigo sem vinho/vermelho cheio, em todo o app =====
+   Desfazer, Apagar, Excluir, Zerar, Bloquear e o confirmar das janelas: cinza clarinho com texto vermelho escuro,
+   sem contorno. A segurança fica na janela de confirmação (prática dos WMS e do padrão do Android). */
+html body button.b.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD:not(#z1):not(#z2),
+html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm,
+html body button.pergSim.pergSim.pergSim.pergSim.pergSim.pergSim.cancVerm.cancVerm,
+html body button.pergSim.pergSim.pergSim.pergSim.pergSim.pergSim.bD.bD{background:#E4E5E8!important;background-image:none!important;color:#991B1B!important;border:0!important;box-shadow:none!important;text-shadow:none!important}
+html body button.b.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD.bD:not(#z1):not(#z2):active,
+html body button.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm.verm:active,
+html body button.pergSim.pergSim.pergSim.pergSim.pergSim.pergSim.cancVerm.cancVerm:active,
+html body button.pergSim.pergSim.pergSim.pergSim.pergSim.pergSim.bD.bD:active{background:#D3D5D9!important}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
 <title>Empilhadeiras trabalhando</title><desc>Tela da TV: a operadora da contrabalançada traz o pallet; o operador da retrátil desce, bipa a etiqueta do pallet com o celular, sobe, leva até o porta-pallets, desce, bipa a etiqueta da posição e guarda.</desc>
 <defs><linearGradient id="gOr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA24A"/><stop offset="1" stop-color="#E2691A"/></linearGradient>
@@ -1811,8 +1835,8 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=128,VER_SRV=0;
-function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
+var VER_TELA=129,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
 var FILA_SRV=[],FILA_T=0;
@@ -2342,7 +2366,7 @@ function sugJuntarHtml(r){if(!r||!r.ok)return msg('erro',(r&&r.msg)||'Não deu p
   if(!r.lista.length)return '<p class="rcDica">'+esc(r.msg||'Não achei posição do N1 com o mesmo código. Se precisar juntar em outra, leia o QR Code dela: o app avisa se for outro produto.')+'</p>';
   return '<p class="sjTit">Dá para juntar em:</p><div class="sjLista">'+r.lista.map(function(x){return '<div class="sjIt">'+endCor(x.end)+
     ' <span class="sjTag'+(x.acabando?' ac':'')+'">'+(x.acabando?'Mesmo código · acabando':'Mesmo código')+'</span>'+
-    '<br><small>'+esc(x.item)+(x.desc?' · '+esc(x.desc):'')+' · '+esc(String(x.qtd))+' · recebido em '+esc(x.data)+'</small></div>'}).join('')+'</div>'}
+    '<br><small>'+esc(x.item)+(x.desc?' · '+esc(x.desc):'')+' · '+esc(String(x.qtd))+' · recebido em '+esc(x.data)+(x.outros?' · a posição tem mais '+x.outros+(x.outros>1?' produtos':' produto'):'')+'</small></div>'}).join('')+'</div>'}
 /* Juntar no N1 (03/11/2026): o operador decide que o pallet pequeno cabe junto com o que já está na posição */
 function juntarN1(){var box=$('jnRes');if(!box)return;
   /* 09/11/2026: o resultado aparece logo abaixo do botão (antes ia para o primeiro cartão, lá em cima) */
@@ -4334,7 +4358,7 @@ function sugerir(){
     } else {
       r.posicoes.forEach(function(p,i){
         h+='<div class="endCard" id="ec'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+i+'">Pendente</span></div>'+
-          '<div class="endInfo">Rua '+p.rua+' · Bloco '+p.bloco+' · Nível '+p.nivel+' · Lado '+p.lado+(p.fora?' · <b style="color:#B45309">fora da regra</b>':'')+'</div>'+
+          '<div class="endInfo">Rua '+p.rua+' · Bloco '+p.bloco+' · Nível '+p.nivel+' · Lado '+p.lado+'</div>'+(p.fora?'<div class="endInfo"><span class="seloF">Fora da regra</span></div>':'')+
           '<div id="eb'+i+'">'+ebLer(i,p.end)+'</div></div>';
       });
     }
@@ -4991,7 +5015,7 @@ function vazio(e){return !String(e&&e.value!=null?e.value:'').trim()}
 function msgSt(tipo,t){return aviso(tipo,t)}
 function telaVis(){var s=$('s-'+TELA_ATUAL);return s&&s.style.display!=='none'?s:null}
 function suave(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}
-function altTopo(){var h=document.querySelector('header'),b=document.querySelector('.esc .passoBar:not([hidden])');return (h?h.offsetHeight:68)+(b&&vis(b)?b.offsetHeight+8:0)+10}
+function altTopo(){var h=document.querySelector('header'),b=document.querySelector('.esc .passoBar:not([hidden])');return (h?h.offsetHeight:68)+10}   /* 13/11/2026: o quadro do passo não fica mais preso no topo */
 /* rola só se o bloco não estiver todo à vista, descontando o cabeçalho e a barra de baixo */
 function rolarPara(el,meio,forca){if(!el||!vis(el))return;var r=el.getBoundingClientRect(),h=window.innerHeight,topo=altTopo(),base=h-(($('navb')&&vis($('navb')))?$('navb').offsetHeight:0)-12;
   /* 09/11: no passo a passo, o passo novo vem para o meio da tela (forca), a não ser que já esteja perto do meio */
