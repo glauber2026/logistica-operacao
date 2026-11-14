@@ -1201,14 +1201,13 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 
 <div id="s-inv" class="esc card">
   <div class="tit">Inventário do dia</div>
-  <p>Hoje são 4 itens. Vá até cada posição, confira se os componentes estão lá e conte a quantidade.</p>
   <div id="invRes"></div>
 </div>
 
 <div id="s-regras" class="esc card">
   <div class="tit">Configurações</div>
   <div id="rgVer"></div>
-  <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
+  <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. Componente marcado no cadastro como embalagem lacrada pode ficar em qualquer nível liberado. O peso não trava: o mais pesado vai no nível mais baixo que tiver lugar e, sem lugar, vale o giro. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
   <div id="rgResumo"></div>
   <div id="rgNiveis"></div>
   <label>Data de revalidação</label><input id="rgData" type="date">
@@ -1368,7 +1367,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
     <button class="adm" data-k="falt" onclick="ir('falt');abrirFaltas()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM3 21c0-4 3-7 7-7" stroke="#2E2E30"/><path d="M16 15l5 5M21 15l-5 5" stroke="#F58321"/></svg>Faltas</button>
     <button class="adm" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F58321"/></svg>Produtividade</button>
     <button class="adm" data-k="usu" onclick="ir('usu');listarUsu()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM4 21c0-4 4-7 8-7s8 3 8 7" stroke="#2E2E30"/><path d="M16.5 4.5l1.5 1.5 3-3" stroke="#F58321"/></svg>Usuários</button>
-    <button class="adm" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F58321"/></svg>Cadastrar item</button>
+    <button class="ges" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F58321"/></svg>Cadastrar item</button>
     <button class="adm" data-k="regras" onclick="ir('regras');abrirRegras()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z" stroke="#2E2E30"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2" stroke="#F58321"/></svg>Configurações</button>
     <button class="adm" data-k="desemp" onclick="ir('desemp');abrirDesemp()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2E2E30" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" stroke="#F58321" d="M5 10l6-4 4 3 5-4"/></svg>Desempenho do app</button>
     <button class="adm" data-k="sess" onclick="ir('sess')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4H5v16h5" stroke="#2E2E30"/><path d="M14 8l4 4-4 4M18 12H9" stroke="#F58321"/></svg>Deslogar todos</button>
@@ -1379,15 +1378,15 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <div id="s-guardar" class="esc card">
   <div class="tit">Endereçar</div>
   <div class="endOp aberta" id="opInt"><div class="endOpCorpo">
-  <div class="passo" id="psG1"><input id="gCod" hidden readonly autocomplete="off" oninput="padraoEnd()" onchange="padraoEnd()"><div class="etqIlu" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="92" height="76" rx="10" stroke="#2E2E30" stroke-width="2.4"/><rect x="26" y="24" width="30" height="30" rx="3" stroke="#2E2E30" stroke-width="2.4"/><path d="M33 31h6v6h-6zM43 41h6v6h-6zM43 31h6M33 47h6" stroke="#2E2E30" stroke-width="2.4"/><path d="M64 28h30M64 38h22M64 48h26M26 68h68" stroke="#2E2E30" stroke-width="2.4"/><path d="M6 30V18a8 8 0 0 1 8-8h6M114 30V18a8 8 0 0 0-8-8h-6M6 66v12a8 8 0 0 0 8 8h6M114 66v12a8 8 0 0 1-8 8h-6" stroke="#F58321" stroke-width="3"/></svg></div><button type="button" class="b bP bCam" onclick="lerQR('gCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta</span></button></div>
-  <div class="passo" id="psG2"><div class="gCard"><div id="gInf"></div><div class="gGrid"><div class="gBx"><small>Quantidade</small><div class="gQv"><input id="gQtd" type="number" min="1" inputmode="decimal" aria-label="Quantidade" oninput="calcPallets();ltMexeu('g')"><span id="gQU"></span></div></div><div class="gBx"><small>Recebido</small><b id="gRec"></b></div></div><small id="gNF" class="gNF"></small></div><div id="gCalc" class="gCalc" hidden></div><div id="gCx"></div><div hidden><div id="gUnid">–</div><div id="gEmb">–</div></div><p class="np"><button class="b bP" onclick="sugerir()">Ver posições</button></p><div id="gCxBt"></div></div>
+  <div class="passo" id="psG1"><input id="gCod" hidden readonly autocomplete="off" oninput="padraoEnd()" onchange="padraoEnd()"><div class="etqIlu" aria-hidden="true"></div><button type="button" class="b bP bCam" onclick="lerQR('gCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta</span></button></div>
+  <div class="passo" id="psG2"><div class="gCard"><div id="gInf"></div><div class="gGrid"><div class="gBx"><small>Quantidade</small><div class="gQv"><input id="gQtd" type="number" min="1" inputmode="decimal" aria-label="Quantidade" oninput="calcPallets();ltMexeu('g')"><span id="gQU"></span></div></div><div class="gBx"><small>Recebido</small><b id="gRec"></b></div></div><div class="gBx gW" id="gNFb"><small>NF</small><b id="gNF"></b></div></div><div id="gCalc" class="gCalc" hidden></div><div id="gCx"></div><div hidden><div id="gUnid">–</div><div id="gEmb">–</div></div><p class="np"><button class="b bP" onclick="sugerir()">Ver posições</button></p><div id="gCxBt"></div></div>
   <div id="gRes"></div>
   </div></div>
 </div>
 
 <div id="s-tirar" class="esc card">
   <div class="tit">Abastecer produção</div>
-  <div class="passo" id="psT1"><label>Código do produto</label><div class="camBox"><input id="tCod" data-lista="1" autocomplete="off" onkeydown="if(event.key==='Enter')tirar()"></div><button type="button" class="b bP bCam" onclick="lerQR('tCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button><button type="button" class="b bS bMic mic" onclick="ouvir('tCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg><span>Falar o código</span></button>
+  <div class="passo" id="psT1"><label>Produto</label><div class="camBox"><input id="tCod" data-lista="1" autocomplete="off" placeholder="Código ou descrição" onkeydown="if(event.key==='Enter')tirar()"></div><button type="button" class="b bP bCam" onclick="lerQR('tCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button>
 </div>
   <div id="tRes"></div>
 </div>
@@ -1636,7 +1635,125 @@ html body main .concl .cTop i{flex:0 0 auto;width:62px;height:62px}html body mai
 #pergJan button:focus{outline:none!important}
 html body main .concl .bLin{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px}
 html body main .concl .bLin .bS{align-self:flex-end;width:auto!important;min-width:120px}
-html body main .gQv input#gQtd{width:7.5ch!important;flex:0 1 auto}
+
+/* ===== 13/11/2026 (versão 131): telas de ação no modelo do Endereçar ===== */
+html body main #psG1{min-height:max(230px,calc(100dvh - 560px))!important;gap:18px}
+.etqIlu{display:flex;justify-content:center}.iqB{position:relative;width:min(38vw,150px);aspect-ratio:1;background:#fff;border-radius:14px;padding:8px;box-sizing:border-box;box-shadow:0 0 0 2px #F2A766 inset}
+.iqB svg{width:100%;height:100%;display:block}.iqB img{position:absolute;left:50%;top:50%;width:26%;height:26%;transform:translate(-50%,-50%);border-radius:50%;object-fit:contain;background:#fff}
+.pIlu{display:flex;flex-direction:column;gap:18px;padding:14px 0}
+.endBig{margin:4px 0 10px;font-family:'Oswald','Roboto Condensed','Arial Narrow',sans-serif-condensed,sans-serif;font-weight:500;letter-spacing:.5px;font-size:clamp(28px,calc((100vw - 112px)/6.4),60px);line-height:1.1;white-space:nowrap}
+.endBig .nvChip{display:block;box-sizing:border-box;width:100%;text-align:center;padding:14px 6px;border-radius:var(--raio);overflow:hidden}
+.endBig :is(.e1,.e2,.eh){display:inline}
+.gCodM{font-size:var(--tM)!important}
+#s-dev .gGrid,#s-tend .gGrid,#s-tirar .gGrid{margin:6px 0 8px}
+.tProd{margin:2px 0 10px;font-size:var(--tP);color:#5A5A5A}.tProd b{color:#1F1F21}
+#s-tirar:is([data-ps="2"],[data-ps="3"]) #tOutBox{display:none!important}
+html body main .esc .endCard .endN{display:none!important}
+html body main .esc .endCard .endSt:empty{display:none!important}
+html body main .esc .endInfo{margin-left:0!important}
+#s-tend label{display:none}#s-tend #psX4 label{display:block}#s-tend #psX4 label.obr::after{content:none}
+#s-tend .camBox{display:none}
+#s-tend:has(.passo.pAtual) .passo:not(.pAtual){display:none!important}
+#s-tend:has(.concl) .passo{display:none!important}
+#s-invpos #ip2 label{display:block;margin-top:10px}#s-dev #devQ{margin-top:10px}
+
+/* ===== 13/11/2026 (versão 132): contornos, opções fora da caixa e distribuição ===== */
+html body main .passoBar.passoBar.fim{border-color:#16A34A!important}
+html body main .esc .concl{box-shadow:0 0 0 2px #16A34A,0 0 0 7px #16A34A24!important;border-radius:14px!important;margin:6px 0 14px!important}
+html body main .pAtual button.opc{display:none!important}
+.opsFora{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px}
+.opsFora .b{width:100%}
+.iqB{width:min(40vw,156px)!important;padding:0!important;overflow:hidden;box-shadow:0 0 0 2px #F2A766!important;display:flex;align-items:center;justify-content:center}
+.iqB svg{width:100%!important;height:100%!important;display:block}
+
+/* distribuição (versão 132): nome do passo sempre na 2ª linha; textos do cartão centralizados; campos numéricos sem setinhas */
+html body main .passoBar .pbTop{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:8px!important}
+.gCodG,.gDesc,.gNF,.tProd,#s-dev #dv2>label,#s-invpos #ip2>label{text-align:center!important}
+.tProd{margin:0 0 12px!important}
+.gDesc{margin:4px 0 10px!important}.gNF{margin:8px 0 2px!important}
+html body main .esc input[type=number]{text-align:center;-moz-appearance:textfield}
+html body main .esc input[type=number]::-webkit-inner-spin-button,html body main .esc input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+html body main .gQv input#gQtd{flex:0 0 auto!important;min-width:3ch!important}
+.concl .cBx{text-align:center}.concl .cBx b{white-space:nowrap}
+
+/* versão 132.1: passo de leitura com o mesmo espaço em cima, no meio e embaixo (QR Code e botão centralizados na caixa) */
+html body main .esc .passo.pIlu,html body main .esc #psG1{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:24px!important;padding:24px 16px!important;min-height:0!important}
+html body main .esc :is(.passo.pIlu,#psG1) > *{margin-top:0!important;margin-bottom:0!important}
+html body main .esc :is(.passo.pIlu,#psG1) .etqIlu{margin:0!important}
+
+/* ===== 13/11/2026 (versão 133): cartão da peça com NF, bolinha grande do Concluído e teclado numérico ===== */
+.gGrid .gBx.gW{grid-column:1/-1}
+html body main .concl .cTop i{display:none!important}
+html body main .concl .cTop{margin-top:4px}
+#okG{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+#okG.on{opacity:1;animation:okSai 1.1s forwards}
+#okG i{width:132px;height:132px;border-radius:50%;background:#16A34A;color:#fff;display:flex;align-items:center;justify-content:center;transform:scale(.6);transition:transform .25s cubic-bezier(.2,1.4,.4,1)}
+#okG.on i{transform:scale(1)}#okG i svg{width:72px;height:72px}
+@keyframes okSai{0%,75%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){#okG i{transition:none}}
+#tecJan{position:fixed;inset:0;z-index:95;display:none}#tecJan.on{display:block}
+#tecFundo{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+#tecCx{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 24px #0003}
+#tecTit{text-align:center;font-size:15px;color:#5A5A5A;margin-bottom:6px}
+#tecVal{text-align:center;font-size:40px;font-weight:800;color:#1F1F21;padding:6px 0 12px;letter-spacing:.5px}#tecVal.vz{color:#B5B7BC}
+#tecKs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.tecK{height:62px;border-radius:14px;background:#F1F2F4;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#1F1F21;user-select:none;-webkit-tap-highlight-color:transparent}
+.tecK:active{background:#DCDEE2}
+#tecOk .b{width:100%}
+
+/* versão 133: no cartão da posição o endereço é o maior; o código da peça fica médio e as caixinhas mais baixas */
+html body main .endCard .gCodG.gCodM,#s-tend .gCodG.gCodM{margin-top:2px}
+html body main .endCard .gDesc{margin:2px 0 8px!important}
+html body main .endCard .gGrid{gap:8px;margin:0 0 10px}html body main .endCard .gBx{padding:6px 8px}
+
+/* versão 133: cartão da peça mais compacto para caber na tela (todas as telas) */
+html body main .esc .gCodG{font-size:30px!important}html body main .esc .gCodG.gCodM{font-size:var(--tM)!important}
+html body main .esc .gGrid{gap:8px!important}html body main .esc .gBx{padding:6px 8px!important}
+html body main .esc .gDesc{margin:2px 0 8px!important}
+#s-dev #devQ{margin-top:8px}
+
+html body main .passoBar.passoBar{padding:10px 14px 10px!important;margin-bottom:10px!important}
+html body main .passoBar .pbTop{gap:6px!important}
+html body main .esc .passo{margin-bottom:10px!important}
+.opsFora{margin:10px 0 2px!important}
+html body main .esc .vFim{margin-top:10px!important}
+
+/* selo (1º FIFO etc.) preso na borda de cima do cartão, sem ocupar uma linha */
+html body main .endCard.pAtual{position:relative}
+html body main .esc .endCard.pAtual .endSt:not(:empty){position:absolute!important;top:-11px;right:14px;margin:0!important;z-index:2;box-shadow:0 0 0 3px #fff}
+html body main .esc .endCard.pAtual .endTop{row-gap:0!important}
+#s-dev #dv2 .gGrid{margin-bottom:8px!important}#s-dev #devQ{margin-top:0!important;margin-bottom:8px}
+
+html body main .esc>.tit{margin-bottom:10px!important}
+html body main #s-dev #devQ{min-height:46px!important;height:46px!important;padding-top:8px!important;padding-bottom:8px!important}
+
+/* ===== 134 (13/11/2026): cartão da peça num tamanho só em todas as telas; selo dentro da caixa; teclado com "Deve sobrar" ===== */
+html body main .gPeca{margin:4px 0 10px;text-align:center;min-width:0}
+html body main .gPeca .gCodG,html body main .esc .gCodG,html body main .esc .gCodG.gCodM,html body main .concl .gCodG{font-size:24px!important;font-weight:800!important;line-height:1.15!important;margin:0!important;overflow-wrap:anywhere;word-break:normal}
+html body main .gPeca .gDesc,html body main .esc .gDesc{font-size:15px!important;margin:2px 0 8px!important;overflow-wrap:anywhere}
+html body main .gPeca .gGrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:0!important}
+html body main .gPeca .gBx{padding:6px 8px!important;min-width:0}
+html body main .gPeca .gBx small{font-size:13px!important}
+html body main .gPeca .gBx b,html body main .esc .gBx b{font-size:18px!important;display:block;overflow-wrap:anywhere;white-space:normal}
+html body main .concl .cPeca{margin:10px 0 0}
+html body main .concl .cPeca .gPeca{margin:0}
+html body main .concl .cBx b{white-space:normal!important;overflow-wrap:anywhere}
+html body main .esc .endCard.pAtual .endSt:not(:empty){position:static!important;order:-1!important;flex:0 0 auto!important;margin:0 auto!important;box-shadow:none!important;top:auto;right:auto}
+html body main .esc .endCard.pAtual .endTop:has(.endSt:not(:empty)){row-gap:8px!important}
+html body main .esc .endCard.pAtual .endTop:has(.endSt:not(:empty)) .endE{flex:1 0 100%!important}
+#tecSub{text-align:center;font-size:15px;color:#5A5A5A;margin:-6px 0 14px;min-height:20px}#tecSub b{color:#1F1F21}#tecSub .tecEr{color:#B42318}
+
+/* ===== 135 (14/11/2026): nome da operação na pílula da barra; selo FIFO na linha do código ===== */
+html body main .concl .cTop{display:none!important}
+html body main .concl{padding-top:12px!important}
+html body main .gPeca{position:relative}
+html body main .gPeca>.endSt:empty{display:none!important}
+html body main .esc .endCard .gPeca>.endSt:not(:empty),html body main .esc .endCard.pAtual .gPeca>.endSt:not(:empty){position:absolute!important;right:0;top:0;margin:0!important;order:0!important;box-shadow:none!important;line-height:1!important;padding:6px 10px!important;font-size:13px!important}
+html body main .esc .gPeca:has(>.endSt:not(:empty)) .gCodG{padding:0 76px!important}html body main .esc .gPeca.cLongo:has(>.endSt:not(:empty)) .gCodG{padding:0 76px 0 0!important}
+
+/* ===== 136 (14/11/2026): Inventário do dia uma posição por vez ===== */
+html body main #invRes .card.invOut{padding:0!important;border:0!important;box-shadow:none!important;background:none!important;margin:0!important}
+html body main #invRes .invUrgT{color:#B42318;font-weight:700}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
 <title>Empilhadeiras trabalhando</title><desc>Tela da TV: a operadora da contrabalançada traz o pallet; o operador da retrátil desce, bipa a etiqueta do pallet com o celular, sobe, leva até o porta-pallets, desce, bipa a etiqueta da posição e guarda.</desc>
 <defs><linearGradient id="gOr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA24A"/><stop offset="1" stop-color="#E2691A"/></linearGradient>
@@ -1722,6 +1839,7 @@ html body main .gQv input#gQtd{width:7.5ch!important;flex:0 1 auto}
     <div><label>Giro informado (peças por semana)</label><input id="cGiro" type="number" min="0" inputmode="numeric" placeholder="Só motor novo ou sem histórico"></div>
     <div><label>Situação</label><select id="cSit"><option>Ativo</option><option>Em encerramento</option><option>Inativo</option></select></div>
   </div>
+  <label>Embalagem lacrada (componente que pode subir de nível)</label><select id="cLac"><option>Não</option><option>Sim</option></select>
   <div class="lin">
     <div><label>Foto do produto</label><input class="fotoIn" id="cFoto" type="file" accept="image/*" capture="environment" onchange="lerFoto(this,1)"><label for="cFoto" class="fotoBtn"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span>Tirar foto</span></label>
       <img id="cPrev" class="prevf" style="display:none"></div>
@@ -1736,11 +1854,11 @@ html body main .gQv input#gQtd{width:7.5ch!important;flex:0 1 auto}
 <div id="s-tend" class="esc card">
   <div class="tit">Transferência de endereço</div>
   
-  <div class="passo" id="psX1"><label class="obr">Endereço atual (leia o QR Code)</label><div class="camBox"><input id="xfOrig" readonly autocomplete="off" placeholder="Leia o QR do endereço onde o pallet está" onclick="xfOrigLer()"></div><button type="button" class="b bP bCam" onclick="xfOrigLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler o QR Code do endereço atual</span></button><div id="xfInfo"></div><div id="xfSug"></div></div>
-  <div class="passo" id="psX2"><label class="obr">Etiqueta do produto</label><div class="camBox"><input id="xfEtq" readonly autocomplete="off" placeholder="Leia a etiqueta do produto" onclick="xfEtqLer()"></div><button type="button" class="b bP bCam" onclick="xfEtqLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button></div>
-  <div class="passo" id="psX3"><label class="obr">Endereço novo (leia o QR Code)</label><div class="camBox"><input id="xfDest" readonly autocomplete="off" placeholder="Leia o QR do endereço livre para onde vai" onclick="xfDestLer()"></div><button type="button" class="b bP bCam" onclick="xfDestLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler o QR Code do endereço novo</span></button></div>
-  <div class="passo" id="psX4"><label class="obr">Motivo da transferência</label><select id="xfMot" data-obr="1"><option value="">Escolha o motivo</option><option>Avaria na estrutura ou na posição</option><option>Liberar espaço</option><option>Correção de endereçamento</option><option>Juntar pallets (2 no N1)</option><option>Pedido da qualidade</option><option>Outro</option></select>
-    <label>Observação <small>(obrigatória em Outro)</small></label><input id="xfObs" maxlength="150" autocomplete="off" placeholder="ex.: travessa amassada">
+  <div class="passo pIlu" id="psX1"><div class="etqIlu" aria-hidden="true"></div><label class="obr">Endereço atual (leia o QR Code)</label><div class="camBox"><input id="xfOrig" readonly autocomplete="off" placeholder="Leia o QR do endereço onde o pallet está" onclick="xfOrigLer()"></div><button type="button" class="b bP bCam" onclick="xfOrigLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler o QR Code da posição atual</span></button></div>
+  <div class="passo" id="psX2"><div id="xfInfo"></div><label class="obr">Etiqueta do produto</label><div class="camBox"><input id="xfEtq" readonly autocomplete="off" placeholder="Leia a etiqueta do produto" onclick="xfEtqLer()"></div><button type="button" class="b bP bCam" onclick="xfEtqLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button></div>
+  <div class="passo" id="psX3"><div id="xfSug"></div><label class="obr">Endereço novo (leia o QR Code)</label><div class="camBox"><input id="xfDest" readonly autocomplete="off" placeholder="Leia o QR do endereço livre para onde vai" onclick="xfDestLer()"></div><button type="button" class="b bP bCam" onclick="xfDestLer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler o QR Code da posição nova</span></button></div>
+  <div class="passo" id="psX4"><div id="xfDestG"></div><label class="obr">Motivo da transferência</label><select id="xfMot" data-obr="1" onchange="xfMotMuda()"><option value="">Escolha o motivo</option><option>Avaria na estrutura ou na posição</option><option>Liberar espaço</option><option>Correção de endereçamento</option><option>Juntar pallets (2 no N1)</option><option>Pedido da qualidade</option><option>Outro</option></select>
+    <div id="xfObsB" hidden><label class="obr">Qual é o motivo?</label><input id="xfObs" maxlength="150" autocomplete="off" placeholder="ex.: travessa amassada"></div>
     <p class="np"><button class="b bP" onclick="xfConf()">Confirmar transferência</button></p></div>
   <div id="xfRes"></div>
 </div>
@@ -1874,7 +1992,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=130,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=136,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -1921,6 +2039,42 @@ function perguntar(t,sim,nao,op){op=op||{};var j=$('pergJan'),f=$('pergFundo'),i
   PERG={aberta:1,so:!!op.so&&!op.lista,cancela:op.lista?function(){fecha()}:bn.onclick};
   f.classList.add('on');j.classList.add('on');document.addEventListener('keydown',tecla);setTimeout(function(){try{(op.campo?i:bs).focus()}catch(e){}},60)}
 function avisoJan(t){perguntar(t,null,null,{so:1})}
+/* Peça iluQR (13/11/2026, versão 131): desenho de um QR Code com o símbolo JE no meio, igual às etiquetas do porta-pallets.
+   Usada no passo de leitura das telas de ação, acima do botão da câmera. */
+/* Peça gGrid (versão 131): Quantidade e Recebido lado a lado, no mesmo modelo do cartão do produto do Endereçar */
+/* Peça okGrande (versão 133): ao concluir, a bolinha verde grande com o visto aparece no centro da tela, com o fundo escurecido, e some sozinha */
+/* Peça tecladoNum (versão 133): tocou num campo de quantidade, sobe uma tela com teclado numérico grande (estilo app de banco).
+   Vale para todo campo de número das telas de operação. No computador (sem toque) continua o teclado normal. */
+var TEC={inp:null,v:''};
+function tecAbrir(inp,op){var j=$('tecJan');if(!j){j=document.createElement('div');j.id='tecJan';j.className='np';
+  j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecKs">'+['1','2','3','4','5','6','7','8','9',',','0','⌫'].map(function(k){return '<div class="tecK" role="button" tabindex="0" data-k="'+k+'" aria-label="'+(k==='⌫'?'Apagar':k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
+  document.body.appendChild(j);$('tecOk').innerHTML=botao('Confirmar','tecOk()','p');$('tecFundo').onclick=tecFecha;
+  j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){tecTecla(b.getAttribute('data-k'))})})}
+  op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
+  $('tecTit').textContent=l||'Quantidade';tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
+function tecPinta(){$('tecVal').textContent=TEC.v||'0';$('tecVal').classList.toggle('vz',!TEC.v);var sb=$('tecSub'),f=TEC.op&&TEC.op.sub;if(sb){sb.innerHTML=f?f(nIn(TEC.v.replace(',','.'))):'';sb.hidden=!f}}
+function tecTecla(k){if(k==='⌫')TEC.v=TEC.v.slice(0,-1);else if(k===','){if(TEC.v.indexOf(',')<0)TEC.v=(TEC.v||'0')+','}else if(TEC.v.replace(',','').length<9)TEC.v=(TEC.v==='0'?'':TEC.v)+k;tecPinta();vib&&vib('tec')}
+function tecFecha(){var j=$('tecJan');if(j)j.classList.remove('on');TEC.inp=null;TEC.op=null}
+/* 134: op.valida devolve o erro (o teclado não fecha); op.ok faz a ação logo depois do Confirmar (ex.: grava o abastecimento) */
+function tecOk(){var i=TEC.inp,op=TEC.op||{},v=TEC.v.replace(',','.');if(op.valida){var er=op.valida(nIn(v));if(er){$('tecSub').innerHTML='<b class="tecEr">'+esc(er)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}}
+  if(i){i.value=v;i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}))}tecFecha();if(op.ok)op.ok()}
+document.addEventListener('keydown',function(e){var j=$('tecJan');if(!j||!j.classList.contains('on'))return;var k=e.key;
+  if(/^[0-9]$/.test(k))tecTecla(k);else if(k===','||k==='.')tecTecla(',');else if(k==='Backspace')tecTecla('⌫');else if(k==='Enter')tecOk();else if(k==='Escape')tecFecha();else return;e.preventDefault()});
+window.addEventListener('popstate',function(){var j=$('tecJan');if(j&&j.classList.contains('on'))tecFecha()});
+document.addEventListener('click',function(e){var i=e.target&&e.target.closest&&e.target.closest('main .esc input[type=number]');if(!i||i.readOnly||i.disabled||MODO==='tv'||document.body.classList.contains('semToque'))return;
+  if(!('ontouchstart' in window||navigator.maxTouchPoints>0))return;e.preventDefault();i.blur();tecAbrir(i)},true);
+document.addEventListener('focusin',function(e){var i=e.target;if(i&&i.matches&&i.matches('main .esc input[type=number]')&&('ontouchstart' in window||navigator.maxTouchPoints>0)&&!i.readOnly)i.setAttribute('inputmode','none')},true);
+function okGrande(){if(MODO==='tv')return;var o=$('okG');if(!o){o=document.createElement('div');o.id='okG';o.className='np';o.setAttribute('aria-hidden','true');o.innerHTML='<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>';document.body.appendChild(o)}
+  clearTimeout(o._t);o.classList.remove('on');void o.offsetWidth;o.classList.add('on');o._t=setTimeout(function(){o.classList.remove('on')},1100)}
+function gGrid(q,d,nf){d=String(d||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10).split('-').reverse().join('/');return '<div class="gGrid"><div class="gBx"><small>Quantidade</small><b>'+esc(q)+'</b></div><div class="gBx"><small>Recebido</small><b>'+esc(d||'-')+'</b></div>'+(nf?'<div class="gBx gW"><small>NF</small><b>'+esc(nf)+'</b></div>':'')+'</div>'}
+/* Peça cartaoPeca (versão 133): o cartão padrão da peça — código grande, descrição, Quantidade, Recebido e NF */
+function cartaoPeca(cod,desc,q,d,nf,peq){clearTimeout(cartaoPeca._t);cartaoPeca._t=setTimeout(chkPeca,0);return '<div class="gPeca"><div class="gCodG gCodM">'+esc(cod)+'</div><div class="gDesc">'+esc(desc||'')+'</div>'+gGrid(q,d,nf)+'</div>'}
+/* 134: cartão da peça do Endereçar (etiqueta lida), para o passo 3, o Juntar e a conclusão */
+function pecaEnd(q){var tv=QR_TV.gCod||{},c=END_ITEM||tv.cod||'',it=ITMAP[String(c).toUpperCase()]||[];return cartaoPeca(c,it[1]||'Produto sem cadastro',qtdU(q!=null&&q!==''?q:tv.qtd,c),tv.data,tv.nf,1)}
+function nfDoLote(l){var c=String(l||'').split('#')[0].split('|');return c.length>3?c[3]:''}
+/* Peça endBig (versão 131): o endereço grande na cor do nível, numa linha só (fitEnd ajusta a letra) */
+function endBig(e){return '<div class="endBig">'+endCor(e)+'</div>'}
+function iluQR(){return '<div class="etqIlu" aria-hidden="true"><div class="iqB">'+(typeof qrSvg==='function'?qrSvg('R01-B01-N01-LE',120):'')+'</div></div>'}
 /* Peça escolher (13/11/2026, versão 130): janela que sobe de baixo com uma lista de opções (botões cinza).
    escolher(titulo,[{t:'texto',a:function(){...}}]). Fecha tocando fora ou no voltar do celular. */
 function escolher(t,ops){perguntar(t,null,null,{so:1,lista:ops||[]})}
@@ -1949,9 +2103,16 @@ var ICO_CAM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 var ICO_MIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>';
 function botaoCam(acao,oQue,extra){return '<button type="button" class="b bP bCam'+(extra&&extra.cls?' '+extra.cls:'')+'"'+(extra&&extra.id?' id="'+extra.id+'"':'')+' onclick="'+esc(acao)+'">'+ICO_CAM+'<span>'+(extra&&extra.txt?esc(extra.txt):'Ler '+esc(oQue))+'</span></button>'}
 function botaoMic(campo){return '<button type="button" class="b bS bMic mic" onclick="ouvir(\''+campo+'\')">'+ICO_MIC+'<span>Falar o código</span></button>'}
-function conclusao(tit,linhas,contTxt,cont,volta){var h='',g=[],fl=function(){if(g.length)h+='<div class="cGrid">'+g.join('')+'</div>';g=[]};
-  linhas.forEach(function(l){if(l[2]){fl();h+='<div class="cBig">'+l[1]+'</div>';return}var tx=String(l[1]==null?'':l[1]);g.push('<div class="cBx'+(tx.length>16?' cW':'')+'"><span>'+esc(l[0])+'</span><b>'+esc(tx)+'</b></div>')});fl();
-  return '<div class="np endFim concl" role="status"><div class="cTop"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>'+esc(tit)+'</div>'+h+
+function conclusao(tit,linhas,contTxt,cont,volta){setTimeout(okGrande,0);var h='',g=[],fl=function(){if(g.length)h+='<div class="cGrid">'+g.join('')+'</div>';g=[]};
+  var pc=null,px=[];
+  linhas.forEach(function(l){if(l[0]==='_peca'){fl();pc=l[1];h+='<div class="cPeca">\u0001</div>';return}if(l[2]){fl();h+='<div class="cBig">'+l[1]+'</div>';return}var tx=String(l[1]==null?'':l[1]);if(pc!=null){px.push([l[0],tx]);return}g.push('<div class="cBx'+(tx.length>12?' cW':'')+'"><span>'+esc(l[0])+'</span><b>'+esc(tx)+'</b></div>')});fl();
+  /* 134: as caixinhas depois do cartão da peça (Nº do pallet, Ficou na posição...) entram na mesma grade, sem buraco */
+  if(pc!=null){var temNF=pc.indexOf(' gW"')>=0,cu=px.filter(function(x){return x[1].length<=12}),lg=px.filter(function(x){return x[1].length>12}),nh=cu.length+(temNF?1:0);
+    var bx=function(x,w){return '<div class="gBx'+(w?' gW':'')+'"><small>'+esc(x[0])+'</small><b>'+esc(x[1])+'</b></div>'};
+    if(temNF&&cu.length)pc=pc.replace(' gW"','"');
+    var cx=cu.map(function(x,k){return bx(x,k===cu.length-1&&nh%2)}).join('')+lg.map(function(x){return bx(x,1)}).join('');
+    h=h.replace('\u0001',pc.replace(/<\/div><\/div>$/,cx+'</div></div>'))}
+  return '<div class="np endFim concl" role="status" data-tit="'+esc(tit)+'"><div class="cTop"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>'+esc(tit)+'</div>'+h+
   '<div class="bLin">'+botao(contTxt,cont,'p')+botao('Voltar',volta||'voltarGrupo()','s')+'</div></div>'}
 function msg(tipo,t){
   if(tipo==='erro'&&MODO!=='tv'){mostrarErro(t);return ''}
@@ -2037,35 +2198,48 @@ function ligarArraste(btn){var tm=null,arr=false,mexeu=false;
     else{var c=cartao(btn.getAttribute('data-k'));if(c)c.click()}
     arr=false}
   btn.addEventListener('pointerup',solta);btn.addEventListener('pointercancel',function(){clearTimeout(tm);btn.classList.remove('arr');arr=false})}
-function abrirInv(){$('invRes').innerHTML='Buscando as posições de hoje...';
+/* 136 (14/11/2026): Inventário do dia uma posição por vez, no mesmo modelo do Contar uma posição:
+   endereço grande, cartão da peça (contagem cega, sem a quantidade do sistema) e um passo de cada vez */
+var INVD={};
+function abrirInv(){$('invRes').innerHTML=aviso('in','Buscando as posições de hoje...');
   chamar('apiInventarioDia',[quem()],function(r){
-    if(!r.ok){$('invRes').innerHTML=msg('erro',r.msg);return}
-    if(!r.itens.length){$('invRes').innerHTML=msg('aviso','Não há itens guardados para conferir hoje.');return}
-    var h=r.falta?msg('aviso','Faltam '+r.falta+' de '+r.total+' posições.'):msg('ok','Inventário do dia concluído. Obrigado!');
-    var cam=function(id){return botaoCam("lerQR('"+id+"')",/^ivP/.test(id)?'o QR Code da posição':'a etiqueta do produto')};
-    r.itens.forEach(function(it){var d=ITMAP[it.item],ds=it.desc||(d?d[1]:'');
-      it.pos.forEach(function(p){
-        if(p.limpeza){h+='<div class="card"><div class="end">Sem posição</div><div><b>'+esc(it.item)+'</b> '+esc(ds)+'</div><div>Item parado há mais de 90 dias. Procure no almoxarifado se ele ainda existe.</div>';
-          if(p.res!=='Pendente'){h+=msgSt(p.res==='Existe'?'ok':'aviso',p.res+(p.quem?' · '+esc(p.quem):''))}
-          else{h+='<div class="passo" data-nome="Contar a quantidade"><label class="obr">Quantidade encontrada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="numeric" min="0"></div>'+
-            '<div class="passo" data-nome="Confirmar"><p style="display:flex;gap:8px">'+botao('Existe','confirmarInv('+p.lin+',true)','p',{style:'flex:1'})+botao('Não existe','confirmarLimp('+p.lin+')','s',{cls:'sec',style:'flex:1'})+'</p><div id="ivM'+p.lin+'"></div></div>'}
-          h+='</div>';return}
-        var bq=String(p.obs||'').indexOf('URGENTE: posição bloqueada')===0;
-        if(bq){h+='<div class="card'+(p.res==='Pendente'?' invUrg':'')+'">'+(p.res==='Pendente'?'<div class="urgTag">URGENTE · posição bloqueada no endereçamento</div>':'')+'<div class="end">'+esc(p.end)+'</div><div>'+esc(String(p.obs).split('— ')[1]||'')+'</div>';
-          if(p.res!=='Pendente'){h+=aviso(p.res==='Pallet registrado'?'ok':'at',p.res+(p.quem?' · '+p.quem:''))}
-          else h+='<div class="passo" data-nome="Ler a posição"><label class="obr">Posição (leia o QR da posição)</label><div class="camBox"><input id="ivP'+p.lin+'" data-obr="1" autocomplete="off" placeholder="'+esc(p.end)+'"></div>'+cam('ivP'+p.lin)+'</div>'+
-            '<div class="passo" data-nome="Ler a etiqueta do pallet"><p class="rcDica">Tem pallet na posição? Leia a etiqueta dele. Se a posição estiver vazia, toque em A posição está vazia.</p><div id="ivE'+p.lin+'"></div>'+botaoCam("invBqEtq("+p.lin+")",'a etiqueta do produto')+botao('A posição está vazia',"invBqVazia("+p.lin+",'"+esc(p.end)+"')",'s')+'</div>'+
-            '<div class="passo" data-nome="Contar a quantidade"><label class="obr">Quantidade contada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="numeric" min="0"></div>'+
-            '<div class="passo" data-nome="Registrar o pallet">'+botao('Registrar o pallet nesta posição',"invBqReg("+p.lin+",'"+esc(p.end)+"')",'p')+'<div id="ivM'+p.lin+'"></div></div>';
-          h+='</div>';return}
-        h+='<div class="card'+(p.urg&&p.res==='Pendente'?' invUrg':'')+'">'+(p.urg&&p.res==='Pendente'?'<div class="urgTag">URGENTE · '+esc(/ainda tem material/.test(p.obs)?'sobrou material depois de abastecer tudo':'material não encontrado no abastecimento')+'</div>':'')+'<div class="end">'+esc(p.end)+'</div>';
-        if(p.res!=='Pendente'){h+=msgSt(p.res==='Confere'?'ok':'erro',p.res+(p.quem?' · '+esc(p.quem):''))}
-        else{h+='<div class="passo" data-nome="Ler a posição"><label class="obr">Posição (leia o QR da posição)</label><div class="camBox"><input id="ivP'+p.lin+'" data-obr="1" autocomplete="off" placeholder="'+esc(p.end)+'">'+'</div>'+cam('ivP'+p.lin)+'</div>'+
-          '<div class="passo" data-nome="Conferir o código"><label class="obr">Código que está na etiqueta da embalagem</label><div class="camBox"><input id="ivC'+p.lin+'" data-obr="1" autocomplete="off">'+'</div>'+cam('ivC'+p.lin)+'</div>'+
-          '<div class="passo" data-nome="Contar a quantidade"><label class="obr">Quantidade contada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="numeric" min="0"></div>'+
-          '<div class="passo" data-nome="Confirmar"><p style="display:flex;gap:8px">'+botao('Confirmar','confirmarInvCod('+p.lin+',\''+esc(p.end)+'\')','p',{style:'flex:1'})+botao('Componentes não estão','confirmarInv('+p.lin+',false)','s',{cls:'sec',style:'flex:1'})+'</p><div id="ivM'+p.lin+'"></div></div>'}
-        h+='</div>'})});
-    $('invRes').innerHTML=h})}
+    if(!r.ok){$('invRes').innerHTML=aviso('er',r.msg);return}
+    var L=[];(r.itens||[]).forEach(function(it){var d=ITMAP[it.item];it.pos.forEach(function(p){L.push({it:it,p:p,ds:it.desc||(d?d[1]:'')})})});
+    if(!L.length){$('invRes').innerHTML=aviso('at','Não há itens guardados para conferir hoje.');guia();return}
+    var pend=L.filter(function(x){return x.p.res==='Pendente'});
+    INVD={L:L,pend:pend,st:0,x:pend[0]||null,cod:''};
+    if(!pend.length){$('invRes').innerHTML=conclusao('Inventário feito',[['Hoje',L.length+(L.length>1?' posições conferidas':' posição conferida')]],'Atualizar','abrirInv()');guia();return}
+    invdPinta()})}
+function invdPinta(extra){var x=INVD.x,p=x.p,it=x.it,ds=x.ds,h='';
+  if(p.limpeza){h='<div class="card invOut"><div class="passo" data-nome="Contar a quantidade"><div class="jCap">Item sem posição no porta-pallets</div><div class="gPeca"><div class="gCodG gCodM">'+esc(it.item)+'</div><div class="gDesc">'+esc(ds)+'</div></div>'+
+      aviso('at','Item parado há mais de 90 dias. Procure no almoxarifado se ele ainda existe.')+
+      '<label class="obr">Quantidade encontrada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="numeric" min="0">'+
+      botao('Existe','confirmarInv('+p.lin+',true)','p')+botao('Não existe','confirmarLimp('+p.lin+')','s',{cls:'opc'})+'<div id="ivM'+p.lin+'"></div></div></div>';
+    $('invRes').innerHTML=h;guia();return}
+  var bq=String(p.obs||'').indexOf('URGENTE: posição bloqueada')===0;
+  if(bq){h='<div class="card invOut"><div class="urgTag">URGENTE · posição bloqueada no endereçamento</div>'+
+      '<div class="passo" data-nome="Ler a posição">'+endBig(p.end)+'<div>'+esc(String(p.obs).split('— ')[1]||'')+'</div><label class="obr">Posição (leia o QR da posição)</label><div class="camBox"><input id="ivP'+p.lin+'" data-obr="1" autocomplete="off" placeholder="'+esc(p.end)+'"></div>'+botaoCam("lerQR('ivP"+p.lin+"')",'o QR Code da posição')+'</div>'+
+      '<div class="passo" data-nome="Ler a etiqueta do pallet"><p class="rcDica">Tem pallet na posição? Leia a etiqueta dele. Se a posição estiver vazia, toque em A posição está vazia.</p><div id="ivE'+p.lin+'"></div>'+botaoCam("invBqEtq("+p.lin+")",'a etiqueta do produto')+botao('A posição está vazia',"invBqVazia("+p.lin+",'"+esc(p.end)+"')",'s')+'</div>'+
+      '<div class="passo" data-nome="Contar a quantidade"><label class="obr">Quantidade contada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="numeric" min="0"></div>'+
+      '<div class="passo" data-nome="Registrar o pallet">'+botao('Registrar o pallet nesta posição',"invBqReg("+p.lin+",'"+esc(p.end)+"')",'p')+'<div id="ivM'+p.lin+'"></div></div></div>';
+    $('invRes').innerHTML=h;guia();return}
+  var urg=p.urg?'<div class="jCap invUrgT">Urgente · '+esc(/ainda tem material/.test(p.obs)?'sobrou material depois de abastecer tudo':'material não encontrado no abastecimento')+'</div>':'';
+  var peca='<div class="gPeca"><div class="gCodG gCodM">'+esc(it.item)+'</div><div class="gDesc">'+esc(ds)+'</div></div>',acao;
+  if(INVD.st===0)acao=botaoCam('invdPos()','o QR Code da posição');
+  else if(INVD.st===1)acao=botaoCam('invdEtq()','a etiqueta do produto')+botao('Os componentes não estão','confirmarInv('+p.lin+',false)','s',{cls:'opc'});
+  else acao='<label class="obr">Quantidade contada</label><input id="ivQ'+p.lin+'" data-obr="1" type="number" inputmode="decimal" min="0">'+botao('Registrar a contagem','invdReg()','p')+botao('Os componentes não estão','confirmarInv('+p.lin+',false)','s',{cls:'opc'});
+  $('invRes').innerHTML='<div class="passo" id="ivd">'+urg+endBig(p.end)+peca+(extra||'')+acao+'<div id="ivM'+p.lin+'"></div></div>';
+  guia();if(INVD.st===2)setTimeout(function(){var q=$('ivQ'+p.lin);if(q&&!('ontouchstart' in window))q.focus()},200)}
+function invdPos(){var p=INVD.x.p;QR_ESP_PROX='pos';lerQR('',function(lido){
+  if(!mesmaPos(String(lido||'').toUpperCase(),p.end)){vib('erro');invdPinta(aviso('er','Esta não é a posição '+p.end+'. Confira se está no lugar certo.'));return}
+  vib('ok');INVD.st=1;invdPinta()})}
+function invdEtq(){var x=INVD.x;QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);
+  if(!tv){vib('erro');invdPinta(aviso('er','Isso não é a etiqueta do produto. Leia a etiqueta da embalagem.'));return}
+  INVD.cod=tv.cod;vib('ok');INVD.st=2;invdPinta(normCod_(tv.cod)!==normCod_(x.it.item)?aviso('at','A etiqueta é do '+tv.cod+', não do '+x.it.item+'. Conte assim mesmo: vai ficar registrado como divergência.'):'')})}
+function normCod_(c){return String(c||'').toUpperCase().replace(/\s+/g,'')}
+function invdReg(){var p=INVD.x.p,q=val('ivQ'+p.lin);if(String(q).trim()===''){mostrarErro('Informe a quantidade contada.');return}if(!(nIn(q)>=0)){mostrarErro('A quantidade não pode ser negativa.');return}
+  chamar('apiConfirmarInvCod',[quem(),p.lin,INVD.cod||INVD.x.it.item,q],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+    if(r.diverg)avisoJan(r.msg);else vib('ok');abrirInv()})}
 var INV_BQ={};
 function invBqEtq(lin){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto.');return}
   INV_BQ[lin]=tv;var it=ITMAP[tv.cod]||[];$('ivE'+lin).innerHTML=aviso('ok',tv.cod+(it[1]?' · '+it[1]:'')+' · NF '+(tv.nf||'-'))+dataG(tv.data)})}
@@ -2314,7 +2488,7 @@ function dataB(d){d=String(d||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10
 function infoEtq(alvo,tv){var b=$(alvo==='gCod'?'gInf':'mInf');if(!b)return;var it=ITMAP[String(tv.cod).toUpperCase()]||[];
   if(alvo==='gCod'){var d=String(tv.data||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10).split('-').reverse().join('/');
     b.innerHTML='<div class="gCodG">'+esc(tv.cod)+'</div><div class="gDesc">'+(it[1]?esc(it[1]):'Produto sem cadastro')+'</div>';
-    $('gQU').textContent=tv.unid||'';$('gRec').textContent=d;$('gNF').textContent=tv.nf?'NF '+tv.nf:'';b.hidden=false;return}
+    $('gQU').textContent=tv.unid||'';var gq=$('gQtd');if(gq)gq.style.width=(String(tv.qtd).length+1)+'ch';$('gRec').textContent=d;$('gNF').textContent=tv.nf||'';$('gNFb').hidden=!tv.nf;b.hidden=false;return}
   var q=unidDe(tv.cod)?qtdU(tv.qtd,tv.cod):tv.qtd+(tv.unid?' '+tv.unid:'');
   b.innerHTML='<b>'+esc(tv.cod)+'</b>'+(it[1]?' · '+esc(it[1]):' · <i>sem cadastro</i>')+'<br>Quantidade: <b>'+esc(q)+'</b>'+(tv.nf?' · NF <b>'+esc(tv.nf)+'</b>':'')+
     dataG(tv.data)+
@@ -2363,7 +2537,7 @@ function decodificarQR(inp){var f=inp.files&&inp.files[0];qrFechar();if(!f){avis
   }).catch(function(){msg('erro','Não consegui abrir a foto. Tente de novo.')})}
 function lerFoto(inp,n){var l=document.querySelector('label[for="'+inp.id+'"] span');if(l&&inp.files&&inp.files[0])l.textContent='Trocar foto';return lerFoto_(inp,n)}
 var END_ITEM='';
-function ebLer(i,end){return botaoCam("lerPosEnd("+i+",'"+end+"')",'o QR Code da posição')+botao('Escolher outra posição',"outraPos("+i+",'"+end+"')",'s')}
+function ebLer(i,end){return botaoCam("lerPosEnd("+i+",'"+end+"')",'o QR Code da posição')+botao('Escolher outra posição',"outraPos("+i+",'"+end+"')",'s',{cls:'opc'})}
 /* 13/11/2026 (versão 130): um botão só para sair da posição sugerida. Abre a janela com as saídas:
    Posição com problema (diz o motivo, vai para o Inventário e o app mostra a próxima livre), Juntar onde já tem o mesmo código
    e, depois de uma troca, Escolher posição livre perto. */
@@ -2426,7 +2600,7 @@ function sugJuntarHtml(r){if(!r||!r.ok)return msg('erro',(r&&r.msg)||'Não deu p
 /* Juntar no N1 (03/11/2026): o operador decide que o pallet pequeno cabe junto com o que já está na posição */
 function juntarN1(){var box=$('jnRes');if(!box)return;
   /* 13/11/2026 (versão 130): com a posição do mesmo código já conhecida, o cartão é igual ao da posição: endereço grande e ler o QR Code */
-  var n=document.querySelectorAll('.endCard').length,alvo=END_JT&&END_JT.end;if(!document.querySelector('#jnRes .endCard')){box.innerHTML='<div class="endCard ecJ" id="ec'+n+'" data-j="1" data-jid="1">'+(alvo?'<div class="jCap">Juntar com o mesmo código</div>':'')+'<div class="endTop"><span class="endN">+</span><span class="endE">'+(alvo?endCor(alvo):'Juntar no N1')+'</span><span class="endSt" id="es'+n+'"></span></div><div id="eb'+n+'"></div></div>';box.setAttribute('data-i',n)}
+  var n=document.querySelectorAll('.endCard').length,alvo=END_JT&&END_JT.end;if(!document.querySelector('#jnRes .endCard')){box.innerHTML='<div class="endCard ecJ" id="ec'+n+'" data-j="1" data-jid="1">'+(alvo?'<div class="jCap">Juntar com o mesmo código</div>':'')+'<div class="endTop"><span class="endN">+</span><span class="endE">'+(alvo?endCor(alvo):'Juntar no N1')+'</span><span class="endSt" id="es'+n+'"></span></div>'+pecaEnd(ltMulti('g')?ltTotal('g'):(END_QTDS[0]!=null?END_QTDS[0]:''))+'<div id="eb'+n+'"></div></div>';box.setAttribute('data-i',n)}
   var i=Number(box.getAttribute('data-i'));
   if(alvo){$('eb'+i).innerHTML=botaoCam('juntarLer('+i+')','o QR Code da posição',{cls:'endLer'});return}
   chamar('apiSugJuntar',[quem(),END_ITEM,''],function(r){
@@ -2452,8 +2626,7 @@ function endOk(i,end,r,q){var jp=$('jtPre');if(jp)jp.innerHTML='';$('es'+i).text
 /* 8. Tela de conclusão do Endereçar (12/11/2026): cartão verde com produto, quantidade, posição e número do pallet */
 function endConcl(){if(!END_FEITO.length)return;var tv=QR_TV.gCod||{},tot=0,L=[];
   END_FEITO.forEach(function(f){tot+=Number(f.q)||0});
-  END_FEITO.forEach(function(f,k){var n=END_FEITO.length>1?' '+(k+1):'';L.push(['Posição'+n,endCor(baseVaga(f.end))+(f.junto?'<small class="cJunto">junto</small>':''),1]);L.push(['Nº do pallet'+n,f.num||'-'])});
-  L.push(['Quantidade',qtdU(tot||tv.qtd,END_ITEM)]);
+  END_FEITO.forEach(function(f,k){var n=END_FEITO.length>1?' '+(k+1):'';L.push(['Posição'+n,endCor(baseVaga(f.end))+(f.junto?'<small class="cJunto">junto</small>':''),1]);if(!k)L.push(['_peca',pecaEnd(tot||tv.qtd)])});
   $('gRes').insertAdjacentHTML('beforeend',conclusao('Endereçado',L,'Endereçar outro','finalizarEnd()','sairEnd()'));vib('ok')}
 function baseVaga(e){return String(e||'').replace(/-\d{1,2}$/,'')}
 function confirmarEnd(i,end,dividir){var b=$('eb'+i);
@@ -2478,11 +2651,11 @@ function naoUsarMot(i,end,mot,dev){if(!dev){var jp=$('jtPre');if(jp)jp.innerHTML
   var outras=dev?[]:[].slice.call(document.querySelectorAll('#gRes .endCard:not(.feito)')).filter(function(c){return c.id!=='ec'+i}).map(function(c){return (c.querySelector('.endE')||{}).textContent||''}).map(function(t){return t.replace(/\s/g,'')}).filter(Boolean);
   chamar('apiNaoUsar',[quem(),end,dev?DEV.tv.cod:END_ITEM,mot,outras],function(r){
     if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');return}vib('ok');
-    if(dev){DEV.bloq=(DEV.bloq||[]).concat([end]);if(r.pos){DEV.orig=false;DEV.end=r.pos.end;devPosPinta(aviso('at','Posição '+end+' bloqueada e enviada ao Inventário. Leve para a nova posição.'))}else $('dvB').innerHTML=aviso('er',r.msg2||'Não há outra posição livre. Chame o líder.');return}
+    if(dev){DEV.bloq=(DEV.bloq||[]).concat([end]);if(r.pos){DEV.orig=false;DEV.end=r.pos.end;devPosPinta(aviso('at','A posição '+end+' foi para o Inventário. Leve para esta.'))}else $('dvB').innerHTML=aviso('er',r.msg2||'Não há outra posição livre. Chame o líder.');return}
     var c=$('ec'+i);c.classList.add('feito','trocada');$('es'+i).textContent='Não usada';$('es'+i).className='endSt vz';$('eb'+i).innerHTML=aviso('at',r.msg);
     SEG.ends[i]='';
     if(r.pos){var n=document.querySelectorAll('#gRes .endCard').length;END_QTDS[n]=END_QTDS[i];SEG.ends[n]=r.pos.end;END_ALT[n]=1;var p=r.pos;
-      var h='<div class="endCard" id="ec'+n+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+n+'"></span></div>'+aviso('at','A posição '+end+' foi para o Inventário. Leve o pallet para esta.')+'<div id="eb'+n+'">'+ebLer(n,p.end)+'</div></div>';
+      var h='<div class="endCard" id="ec'+n+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+n+'"></span></div>'+pecaEnd(END_QTDS[i])+aviso('at','A posição '+end+' foi para o Inventário. Leve o pallet para esta.')+'<div id="eb'+n+'">'+ebLer(n,p.end)+'</div></div>';
       c.insertAdjacentHTML('afterend',h);GUIA.k='';agendarGuia('mut');return}
     var jb=document.querySelector('#gRes .jnBox');if(jb)jb.insertAdjacentHTML('afterbegin',aviso('er',r.msg2||'Não há outra posição livre.')+(r.podeN1?botao('Juntar com outro pallet no N1','juntarN1()','p'):''));
     END_QTDS[document.querySelectorAll('#gRes .endCard').length]=END_QTDS[i];GUIA.k='';agendarGuia('mut')})}
@@ -4337,30 +4510,30 @@ var DEV={};
    uma segunda contagem igual; o ajuste vai para as Movimentações. Só o perfil Inventário e o administrador. */
 var INVP={};
 function invPosIni(){INVP={};var b=$('ipBox');if(!b)return;
-  b.innerHTML='<div class="passo" id="ip1"><p class="rcDica">Vá até a posição e leia o QR Code dela.</p>'+botaoCam('invPosLer()','o QR Code da posição')+'</div>'}
+  b.innerHTML='<div class="passo pIlu" id="ip1">'+iluQR()+botaoCam('invPosLer()','o QR Code da posição')+'</div>'}
 function invPosLer(){QR_ESP_PROX='pos';lerQR('',function(lido){chamar('apiInvPosItens',[quem(),lido],function(r){
   if(!r||!r.ok){$('ipBox').innerHTML=aviso(r&&r.livre?'at':'er',(r&&r.msg)||'Não deu para ler a posição.')+'<div class="passo" id="ip1">'+botaoCam('invPosLer()','o QR Code da posição')+'</div>';vib('erro');return}
   if(r.lista.length===1){invPosEsc(r.lista[0]);return}
   $('ipBox').innerHTML='<div class="passo" id="ip1"><p class="rcDica">A posição '+esc(r.base)+' tem mais de um produto. Qual você vai contar?</p>'+
     r.lista.map(function(x,k){return botao(x.item+(x.desc?' · '+x.desc:''),'invPosEsc(INVP.op['+k+'])','s')}).join('')+'</div>';INVP.op=r.lista})})}
-function invPosRes(){var x=INVP.p,it=ITMAP[x.item]||[];return '<div class="itMini"><div><div class="endG">'+endCor(baseVaga(x.end))+'</div><b>'+esc(x.item)+'</b> '+esc(x.desc||it[1]||'')+'</div></div>'}
+function invPosRes(){var x=INVP.p,it=ITMAP[x.item]||[];return endBig(baseVaga(x.end))+'<div class="gPeca"><div class="gCodG gCodM">'+esc(x.item)+'</div><div class="gDesc">'+esc(x.desc||it[1]||'')+'</div></div>'}   /* contagem cega: sem a quantidade do sistema */
 function invPosEsc(x){INVP.p=x;INVP.q1=null;invPosConta()}
-function invPosConta(extra){$('ipBox').innerHTML=invPosRes()+(extra||'')+'<div class="passo" id="ip2"><label class="obr">Quantidade contada</label><input id="ipQ" data-obr="1" type="number" inputmode="decimal" min="0">'+
-  botao('Registrar a contagem','invPosReg()','p')+botao('A posição está vazia','invPosVazia()','s')+'</div>';setTimeout(function(){var q=$('ipQ');if(q)q.focus()},200)}
+function invPosConta(extra){$('ipBox').innerHTML='<div class="passo" id="ip2">'+invPosRes()+(extra||'')+'<label class="obr">Quantidade contada</label><input id="ipQ" data-obr="1" type="number" inputmode="decimal" min="0">'+
+  botao('Registrar a contagem','invPosReg()','p')+botao('A posição está vazia','invPosVazia()','s',{cls:'opc'})+'</div>';setTimeout(function(){var q=$('ipQ');if(q)q.focus()},200)}
 function invPosReg(){var t=val('ipQ');if(String(t).trim()===''){mostrarErro('Informe a quantidade contada.');return}var q=nIn(t);if(!(q>=0)){mostrarErro('A quantidade não pode ser negativa.');return}
   if(INVP.q1!=null){invPosEnvia(INVP.q1,q);return}invPosEnvia(q)}
 function invPosVazia(){perguntar('A posição está vazia? O saldo vai para zero e a posição fica livre.',function(){INVP.q1=null;invPosEnvia(0,0)},null,{ok:'Sim, está vazia',no:'Voltar'})}
 function invPosEnvia(q,q2){chamar('apiInvAjuste',[quem(),INVP.p.end,q,q2],function(r){
   if(!r||!r.ok){if(r&&r.recontar){if(r.difere){INVP.q1=null;invPosConta(aviso('er',r.msg))}else{INVP.q1=q;invPosConta(aviso('at',r.msg+' Digite a nova contagem.'))}vib('erro');return}mostrarErro((r&&r.msg)||'Erro.');return}
-  var x=INVP.p,L=[['Posição',endCor(baseVaga(x.end)),1],['Produto',x.item+(x.desc?' · '+x.desc:'')],['No sistema',qtdU(r.sis,x.item)],['Contado',qtdU(r.nova,x.item)]];
+  var x=INVP.p,L=[['Posição',endCor(baseVaga(x.end)),1],['_peca',cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(r.nova,x.item),x.data,nfDoLote(x.lote),1)],['No sistema',qtdU(r.sis,x.item)]];
   if(!r.confere)L.push(['Ajuste',(r.dif>0?'+':'')+numBR(r.dif)]);
   $('ipBox').innerHTML=conclusao(r.confere?'Confere':'Saldo ajustado',L,'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})}
 function devIni(){DEV={};var b=$('devBox');if(!b)return;
-  b.innerHTML='<div class="passo" id="dv1"><p class="rcDica">Leia a etiqueta do produto que voltou da produção.</p>'+botaoCam('devLerEtq()','a etiqueta do produto')+'</div>'}
-function devResumo(){var t=DEV.tv;return '<div class="itMini"><div><b>'+esc(t.cod)+'</b> '+esc((ITMAP[t.cod]||[])[1]||'')+'<br><small>NF '+esc(t.nf||'-')+'</small>'+dataG(t.data)+'<small>'+(DEV.q?'Volta <b>'+esc(qtdU(DEV.q,t.cod))+'</b>':'')+'</small></div></div>'}
+  b.innerHTML='<div class="passo pIlu" id="dv1">'+iluQR()+botaoCam('devLerEtq()','',{txt:'Ler a etiqueta'})+'</div>'}
+function devResumo(){var t=DEV.tv;return cartaoPeca(t.cod,(ITMAP[t.cod]||[])[1]||'Produto sem cadastro',qtdU(nIn(t.qtd),t.cod),t.data,t.nf)}
 function devLerEtq(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto.');return}
-  DEV={tv:tv};$('devBox').innerHTML=devResumo()+'<div class="passo" id="dv2"><label class="obr">Quantidade total que voltou (todas as caixas deste lote)</label><input id="devQ" data-obr="1" type="number" inputmode="decimal">'+
-   '<p class="rcDica">Como está o material?</p>'+botao('Material bom','devSugerir()','p')+botao('Material com defeito','devDefeito()','s')+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
+  DEV={tv:tv};$('devBox').innerHTML='<div class="passo" id="dv2">'+devResumo()+'<input id="devQ" data-obr="1" type="number" inputmode="decimal" placeholder="Quantidade que voltou" aria-label="Quantidade que voltou">'+
+   botao('Material bom','devSugerir()','p')+botao('Material com defeito','devDefeito()','s',{cls:'opc'})+'</div>';setTimeout(function(){var q=$('devQ');if(q)q.focus()},200)})}
 function devSugerir(){var q=nIn(val('devQ')),e=nIn(DEV.tv&&DEV.tv.qtd);if(!(q>0)){mostrarErro('Informe a quantidade que voltou.');return}
   DEV.q=q;   /* 12/11/2026 (versão 118): o limite é o que saiu do lote para a produção (o sistema confere) */
   /* 12/11/2026 (versão 116): primeiro o pallet de onde a etiqueta saiu; se não estiver mais lá, uma posição livre */
@@ -4369,19 +4542,21 @@ function devSugerir(){var q=nIn(val('devQ')),e=nIn(DEV.tv&&DEV.tv.qtd);if(!(q>0)
 /* 12/11/2026 (versão 118): material com defeito não volta para o estoque */
 function devDefeito(){perguntar('O material está com defeito? Ele não vai voltar para o estoque.',function(){
   chamar('apiDevDefeito',[quem(),DEV.tv.cod,DEV.tv.rg,nIn(val('devQ'))],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
-    $('devBox').innerHTML=devResumo()+aviso('er','Material com defeito não volta para o estoque. Separe o material e chame a Qualidade. O líder foi avisado nas Ocorrências.')+botao('Devolver outro',"ir('dev');devIni()",'p');vib('erro')})},null,{ok:'Sim, está com defeito'})}
+    $('devBox').innerHTML=aviso('er','Material com defeito não volta para o estoque. Separe o material e chame a Qualidade. O líder foi avisado nas Ocorrências.')+botao('Devolver outro',"ir('dev');devIni()",'p');vib('erro')})},null,{ok:'Sim, está com defeito'})}
 function devOutraPos(msgA){chamar('apiGuardar',[DEV.tv.cod,1,quem(),true],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
   var p=(r.posicoes||[])[0];if(!p){$('dvB').innerHTML=aviso('er','Não há posição livre para este produto. Chame o líder.');return}
   DEV.orig=false;DEV.end=p.end;devPosPinta(aviso('at',msgA||'Guarde nesta posição livre.'))})}
-function devPosPinta(extra){$('devBox').innerHTML=devResumo()+(extra||'')+'<div class="passo" id="dv3"><p class="rcDica">'+(DEV.orig?'Devolver no mesmo pallet, na posição de onde saiu:':'Guardar em:')+'</p><div class="endG">'+endCor(DEV.end)+'</div><div id="dvB">'+
-  botaoCam('devLerPos()','o QR Code da posição')+botao('Não dá para usar esta posição',DEV.orig?'devOutraPos()':"naoUsar(0,'"+DEV.end+"',1)",'s')+'</div></div>'}
+function devPosPinta(extra){$('devBox').innerHTML='<div class="passo" id="dv3">'+endBig(DEV.end)+devPeca()+(extra||'')+'<div id="dvB">'+
+  botaoCam('devLerPos()','o QR Code da posição')+botao('Escolher outra posição',DEV.orig?'devOutraPos()':"probPosDev('"+DEV.end+"')",'s',{cls:'opc'})+'</div></div>'}
+function probPosDev(end){escolher('Qual é o problema?',MOT_NAO_USAR.map(function(m){return {t:m,a:function(){naoUsarMot(0,end,m,1)}}}).concat([{t:'Outro motivo',a:function(){naoUsarOutro(0,end,1)}}]))}
 function devLerPos(){QR_ESP_PROX='pos';lerQR('',function(lido){if(!mesmaPos(lido,DEV.end)){mostrarErro('Posição errada! Você leu '+lido+', mas o material vai em '+DEV.end+'.');return}
   var t=DEV.tv;if(DEV.orig){chamar('apiDevolver',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),rg:t.rg,nf:t.nf}],function(r){
     if(!r||!r.ok){if(r&&r.outra){devOutraPos(r.msg);vib('erro');return}mostrarErro((r&&r.msg)||'Erro.');return}devConcl(t,r,'Mesmo pallet')});return}
   chamar('apiEntrada',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),data:t.data,rg:t.rg,nf:t.nf,devol:true}],function(r){
     if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
     devConcl(t,r)})})}
-function devConcl(t,r,obs){$('devBox').innerHTML=conclusao('Devolvido',[['Produto',t.cod+((ITMAP[t.cod]||[])[1]?' · '+ITMAP[t.cod][1]:'')],['Quantidade',qtdU(DEV.q,t.cod)],['Posição',endCor(baseVaga(r.end||DEV.end))+(obs?' <small>('+esc(obs.toLowerCase())+')</small>':''),1],['Nº do pallet',r.num||'-']],'Devolver outro',"ir('dev');devIni()");vib('ok')}
+function devPeca(){var t=DEV.tv||{};return cartaoPeca(t.cod,(ITMAP[t.cod]||[])[1]||'Produto sem cadastro',qtdU(DEV.q||nIn(t.qtd),t.cod),t.data,t.nf,1)}
+function devConcl(t,r,obs){$('devBox').innerHTML=conclusao('Devolvido',[['Posição',endCor(baseVaga(r.end||DEV.end)),1],['_peca',devPeca()]],'Devolver outro',"ir('dev');devIni()");vib('ok')}
 function mercPintar(tec){if(!Object.keys(ITMAP||{}).length&&typeof recarregarItens==='function')try{recarregarItens()}catch(e){}var b=$('mercSvg');if(b)b.innerHTML='<div class="mercTitP">Layout do supermercado de motores e embalagens</div>'+mercSvg(tec)}
 function imprimirMerc(){mercPintar(true);document.body.classList.add('pm');var st=document.createElement('style');st.id='pmPage';st.textContent='@page{size:A4 landscape;margin:8mm}';document.head.appendChild(st);
   var fim=function(){document.body.classList.remove('pm');mercPintar();var x=$('pmPage');if(x)x.remove();window.removeEventListener('afterprint',fim)};window.addEventListener('afterprint',fim);setTimeout(function(){window.print();setTimeout(fim,1500)},80)}
@@ -4410,7 +4585,7 @@ function sugerir(){
       h+='</table>';
     } else {
       r.posicoes.forEach(function(p,i){
-        h+='<div class="endCard" id="ec'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+i+'"></span></div>'+
+        h+='<div class="endCard" id="ec'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(p.end)+'</span><span class="endSt" id="es'+i+'"></span></div>'+pecaEnd(END_QTDS[i])+
           '<div id="eb'+i+'">'+ebLer(i,p.end)+'</div></div>';
       });
     }
@@ -4461,7 +4636,7 @@ function tirar(){cronoIni('abs');ETQ_TIRAR=null;
     if(!r.ok){$('tRes').innerHTML=msg('erro',r.naoCad?'Produto sem cadastro. Chame o líder.':r.msg);if(r.naoCad)avisoJan('Produto sem cadastro ('+val('tCod')+'). Chame o líder.');return}
     if(!r.lista.length){$('tRes').innerHTML=msg('aviso','Nenhum componente deste item no porta-pallets.');return}
     checarFalta(r.codigo);TIRAR_R=r;
-    var h='<div class="itMini"><div><b>'+esc(r.codigo)+'</b> '+esc(r.desc)+'<br><small>Saldo total: <b>'+esc(qtdU(r.total,r.codigo))+'</b></small></div><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(r.codigo).toUpperCase()).replace(/\'/g,'')+'\')">Detalhes ›</button></div>';
+    var h='';   /* 131: sem saldo e sem Detalhes (tela clean) */
     if(MODO==='tv'){
       h+='<table><tr><th>Ordem</th><th>Endereço</th><th>Qtd</th><th>Recebido</th><th>Situação</th></tr>';
       r.lista.forEach(function(x,i){h+='<tr><td>'+(i+1)+'</td><td><b>'+x.end+'</b></td><td>'+x.qtd+'</td><td>'+x.data+'</td><td>'+esc(x.status==='Bloqueado'?'Bloqueado: '+x.motivo:x.status)+'</td></tr>'});
@@ -4469,8 +4644,8 @@ function tirar(){cronoIni('abs');ETQ_TIRAR=null;
     var prim=true;TIRAR_FIFO=-1,CT=[];
     r.lista.forEach(function(x,i){var h0=h;h='';
       var bl=x.status==='Bloqueado',fifo=!bl&&prim;if(fifo){prim=false;TIRAR_FIFO=i}
-      h+='<div class="endCard'+(bl?' feito':fifo?' fifo':'')+'" id="tc'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(x.end)+'</span><span class="endSt'+(fifo?' fifoS':'')+'" id="ts'+i+'">'+(bl?'Bloqueado':fifo?'1º FIFO':'Pendente')+'</span></div>'+
-        '<div class="endInfo">Quantidade: <b>'+esc(qtdU(x.qtd,r.codigo))+'</b>'+(bl?' · '+esc(x.motivo):'')+dataG(x.data)+'</div>'+(bl?'':loteLer(r,x))+
+      h+='<div class="endCard'+(bl?' feito':fifo?' fifo':'')+'" id="tc'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(x.end)+'</span></div>'+
+        (bl?'<div class="endInfo">'+esc(x.motivo)+'</div>':'')+cartaoPeca(r.codigo,r.desc,qtdU(x.qtd,r.codigo),x.data,nfDoLote(x.lote),1).replace('<div class="gPeca">','<div class="gPeca"><span class="endSt'+(fifo?' fifoS':'')+'" id="ts'+i+'">'+(bl?'Bloqueado':fifo?'1º FIFO':'')+'</span>')+(bl?'':loteLer(r,x))+
         (bl?'':'<div id="tb'+i+'">'+botaoCam("lerPosTirar("+i+",'"+x.end+"',"+(Number(x.qtd)||0)+")",'o QR Code da posição')+'</div>')+'</div>';
       CT.push({i:i,h:h});h=h0;
     });
@@ -4488,10 +4663,10 @@ function loteLer(r,x){var b=String(x.end).replace(/-\d{1,2}$/,''),n=(r.lista||[]
 function lerPosTirar(i,end,qtd){QR_ESP_PROX='pos';lerQR('',function(lido){
   if(!mesmaPos(lido,end)){chamar('apiOcorrencia',['Posição errada',(TIRAR_R||{}).codigo||'',end,'Abastecer: leu '+lido+' no lugar de '+end+'.'],function(){});
     $('tb'+i).innerHTML=aviso('er','Posição errada! Você leu '+lido+', mas o material está em '+end+'. Vá até a posição certa e leia de novo.')+botaoCam("lerPosTirar("+i+",'"+end+"',"+qtd+")",'o QR Code da posição');vib('erro');return}
-  $('ts'+i).textContent='Posição conferida';$('ts'+i).className='endSt ok';
+  $('ts'+i).className='endSt lido'+(i===TIRAR_FIFO?' fifoS':'');if(i!==TIRAR_FIFO)$('ts'+i).textContent='';
   pedirEtqTirar(i,end,qtd)})}
 /* Depois da posição, a etiqueta do TOTVS do pallet é obrigatória: código e data têm que bater com a posição */
-function pedirEtqTirar(i,end,qtd,erro){$('tb'+i).innerHTML=(erro?aviso('er',erro):aviso('ok','Posição certa: '+end+'.'))+botaoCam("lerEtqTirar("+i+",'"+end+"',"+qtd+")",'a etiqueta do produto')+botao('Material não encontrado',"posVazia("+i+",'"+end+"')",'s');if(erro)vib('erro')}
+function pedirEtqTirar(i,end,qtd,erro){$('tb'+i).innerHTML=(erro?aviso('er',erro):'')+botaoCam("lerEtqTirar("+i+",'"+end+"',"+qtd+")",'a etiqueta do produto')+botao('Material não encontrado',"posVazia("+i+",'"+end+"')",'s',{cls:'opc'});if(erro)vib('erro')}
 /* Posição vazia (03/11/2026): registra, manda para o Inventário e leva o operador para a próxima posição do FIFO */
 function tOutras(f){var l=$('tOutL'),b=$('tOutBt');if(!l)return;var ab=f===undefined?l.hidden:f;l.hidden=!ab;if(b)b.textContent=(ab?'Esconder outras posições (':'Ver outras posições (')+l.querySelectorAll('.endCard').length+')'}
 function posVazia(i,end){perguntar('O material não está na posição '+base2(end)+'? O app zera este lote, manda o produto para o Inventário como urgente e você segue para a próxima posição do FIFO.',function(){
@@ -4501,7 +4676,7 @@ function posVazia(i,end){perguntar('O material não está na posição '+base2(e
     if(k<0){$('tb'+i).insertAdjacentHTML('beforeend',msg('erro','Não tem outra posição deste produto no porta-pallets. Avise o líder.'));rolarPara($('tb'+i),true);return}
     var c=$('tc'+k);if(c.closest('#tOutL')){$('tOutBox').insertAdjacentElement('beforebegin',c);var nl=$('tOutL').querySelectorAll('.endCard').length;if(!nl)$('tOutBox').remove();else tOutras(!$('tOutL').hidden)}c.classList.add('fifo');$('ts'+k).textContent='Próxima';$('ts'+k).className='endSt fifoS';rolarPara(c,true)})},null,{ok:'Não está aqui',no:'Voltar'})}
 function lerEtqTirar(i,end,qtd){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt),x=(TIRAR_R&&TIRAR_R.lista[i])||{};
-  if(!tv){pedirEtqTirar(i,end,qtd,'Isso não é a etiqueta do TOTVS. Leia a etiqueta do produto. Se estiver danificada, tire uma nova etiqueta.');return}
+  if(!tv){pedirEtqTirar(i,end,qtd,'Isso não é a etiqueta do produto. Se estiver danificada, tire uma nova etiqueta.');return}
   var oc=function(t,d){chamar('apiOcorrencia',[t,TIRAR_R.codigo,end,d],function(){})};
   if(tv.cod!==String(TIRAR_R.codigo).toUpperCase()){oc('Produto errado','Abastecer: etiqueta do '+tv.cod+' na posição do '+TIRAR_R.codigo+'.');pedirEtqTirar(i,end,qtd,'Produto errado! A etiqueta é do '+esc(tv.cod)+', mas a posição '+end+' tem o '+esc(TIRAR_R.codigo)+'. Não leve este material.');return}
   var d=String(x.data||'').split('/'),dp=d.length===3?d[2]+'-'+d[1]+'-'+d[0]:'';
@@ -4513,7 +4688,7 @@ function abrirAcoesTirar(i,end,qtd){
   /* tira os campos de outra posição aberta antes, para não misturar */
   [].forEach.call(document.querySelectorAll('.acT'),function(e){e.innerHTML=''});$('pAcoes').innerHTML='';
   POS=end;POS_FIFO=(i===TIRAR_FIFO);RES_FIM="contTela('tirar','tCod')";
-  var h=aviso('ok','Etiqueta conferida: produto e data certos.');
+  var h='';
   var qc=nIn(ETQ_TIRAR&&ETQ_TIRAR.qtd||''),cod=ETQ_TIRAR.cod;
   /* 7. uma ação por tela: a escolha principal e "Outra quantidade" (fracionado). Bloquear fica na tela da Posição (QR Code) */
   if(POS_FIFO)h+='<div id="tch'+i+'">'+(qc>0&&qc<Number(qtd)?botao('Abastecer esta caixa ('+qtdU(qc,cod)+')',"caixaTirar("+i+",'"+end+"',"+qtd+","+qc+")",'p'):botao('Abastecer tudo ('+qtdU(qtd,cod)+')',"confirmarTirar("+i+",'"+end+"',true)",'p'))+
@@ -4524,13 +4699,15 @@ function abrirAcoesTirar(i,end,qtd){
   if(!POS_FIFO)formJust();
 }
 var TIRAR_FIFO=-1;
-function caixaTirar(i,end,qtd,q){fracTirar(i,end,qtd);$('tq'+i).value=q;sobraTirar(i,qtd);confirmarTirar(i,end,false)}
+function fracIn(i){var f=$('tf'+i);if(f&&!$('tq'+i))f.innerHTML='<input id="tq'+i+'" type="hidden">'}
+function caixaTirar(i,end,qtd,q){fracIn(i);$('tq'+i).value=q;confirmarTirar(i,end,false)}
 /* 11. Fracionado: uma linha mostra quanto deve sobrar na posição (sem pedir contagem) */
-function fracTirar(i,end,qtd){var c=$('tch'+i);if(c)c.innerHTML='';
-  $('tf'+i).innerHTML='<label class="obr">Quantidade para abastecer (tem '+esc(qtdU(qtd,(TIRAR_R||{}).codigo))+')</label><input id="tq'+i+'" data-obr="1" type="number" inputmode="decimal" oninput="sobraTirar('+i+','+qtd+')">'+
-  '<p class="sobraLin" id="tsb'+i+'"></p>'+botao('Confirmar abastecimento',"confirmarTirar("+i+",'"+end+"',false)",'p');$('tq'+i).focus()}
-function sobraTirar(i,qtd){var q=nIn(val('tq'+i)),e=$('tsb'+i);if(!e)return;var r=Math.round((Number(qtd)-q)*1000)/1000,cod=(TIRAR_R||{}).codigo;
-  e.innerHTML=!(q>0)?'':r<0?'<b style="color:#DC2626">A posição tem só '+esc(qtdU(qtd,cod))+'.</b>':'Deve sobrar na posição: <b>'+esc(qtdU(r,cod))+'</b>'}
+/* 134: "Outra quantidade" abre o teclado grande; embaixo do número aparece quanto deve sobrar e o Confirmar já grava o abastecimento */
+function fracTirar(i,end,qtd){fracIn(i);var cod=(TIRAR_R||{}).codigo,inp=$('tq'+i);inp.value='';
+  tecAbrir(inp,{tit:'Quantidade para abastecer',
+    sub:function(q){var r=Math.round((Number(qtd)-q)*1000)/1000;return !(q>0)?'Deve sobrar na posição: <b>'+esc(qtdU(qtd,cod))+'</b>':r<0?'<b class="tecEr">A posição tem só '+esc(qtdU(qtd,cod))+'.</b>':'Deve sobrar na posição: <b>'+esc(qtdU(r,cod))+'</b>'},
+    valida:function(q){return !(q>0)?'Digite a quantidade.':q>Number(qtd)?'A posição tem só '+qtdU(qtd,cod)+'.':''},
+    ok:function(){confirmarTirar(i,end,false)}})}
 var TIRAR_OK=null;
 function confirmarTirar(i,end,inteiro){var b=$('tb'+i);
   chamar('apiSaida',[{quem:quem(),end:end,inteiro:inteiro,qtd:inteiro?'':val('tq'+i),etq:ETQ_TIRAR}],function(r){if(r&&r.ok)cronoFim('abs');
@@ -4543,8 +4720,9 @@ function tirarVazia(sim){var r=TIRAR_OK;if(!r)return;if(sim){tirarConcl();return
   chamar('apiSobraPos',[quem(),r.end,r.item],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para registrar.');return}r.sobra=x.msg;tirarConcl()})}
 /* 8. Tela de conclusão do Abastecer (12/11/2026) */
 function tirarConcl(){var r=TIRAR_OK;if(!r)return;var i=r.i;$('ts'+i).className='endSt fim';$('tc'+i).classList.add('feito');$('tb'+i).innerHTML='';
-  var L=[['Produto',r.item+(r.desc?' · '+r.desc:'')],['Quantidade',qtdU(r.qtd,r.item)],['Posição',endCor(r.base||r.end),1],['Nº do pallet',r.num||'-']];
-  if(r.resto>0)L.push(['Ficou na posição',qtdU(r.resto,r.item)]);
+  var x=((TIRAR_R||{}).lista||[])[i]||{},tr=TIRAR_R||{},c=r.item||tr.codigo;
+  var L=[['Posição',endCor(r.base||r.end),1],['_peca',cartaoPeca(c,tr.desc||(ITMAP[c]||[])[1]||'',qtdU(r.qtd,c),x.data,nfDoLote(x.lote),1)]];
+  if(r.resto>0)L.push(['Ficou na posição',qtdU(r.resto,c)]);
   $('tRes').insertAdjacentHTML('beforeend',(r.sobra?aviso('at',r.sobra):'')+conclusao('Abastecido',L,'Abastecer outro',"contTela('tirar','tCod')"));vib('ok')}
 /* ---------- POSIÇÃO (QR Code) ---------- */
 function abrirPos(end){
@@ -4827,13 +5005,13 @@ var FOTO='',FOTO2='';
 function abrirCad(){semCadLista();chamar('apiItem',[''],function(r){if(!r.ok)return;var op=function(l){return '<option value=""></option>'+(l||[]).map(function(t){return '<option>'+esc(t)+'</option>'}).join('')};$('cTipo').innerHTML=op(r.tipos);$('cUnid').innerHTML=op(r.unidades)})}
 /* põe no select o valor antigo que não está mais na lista (ex.: tipo de volume antigo), para não apagar sem querer */
 function selVal(id,v){var e=$(id);v=String(v||'');if(v&&![].some.call(e.options,function(o){return o.value===v})){var o=document.createElement('option');o.textContent=v;e.appendChild(o)}e.value=v}
-function limparCad(){['cCod','cDesc','cPad','cPeso','cGiro'].forEach(function(i){$(i).value=''});$('cSit').value='Ativo';$('cTipo').value='';$('cUnid').value='';$('cFoto').value='';$('cFoto2').value='';FOTO='';FOTO2='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'});$('cMsg').innerHTML=''}
+function limparCad(){['cCod','cDesc','cPad','cPeso','cGiro'].forEach(function(i){$(i).value=''});$('cSit').value='Ativo';$('cLac').value='Não';$('cTipo').value='';$('cUnid').value='';$('cFoto').value='';$('cFoto2').value='';FOTO='';FOTO2='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'});$('cMsg').innerHTML=''}
 function buscarCad(){
   $('cMsg').innerHTML='Buscando...';
   chamar('apiItem',[val('cCod')],function(r){
     if(!r.ok){$('cMsg').innerHTML=msg('erro',r.msg);return}
     if(!r.existe){$('cMsg').innerHTML=msg('aviso','Item novo. Preencha e salve.');return}
-    $('cDesc').value=r.desc;$('cPad').value=r.padrao;$('cPeso').value=r.peso;$('cGiro').value=r.giro||'';selVal('cSit',r.sit||'Ativo');selVal('cTipo',r.tipo);selVal('cUnid',r.unid);FOTO='';FOTO2='';
+    $('cDesc').value=r.desc;$('cPad').value=r.padrao;$('cPeso').value=r.peso;$('cGiro').value=r.giro||'';selVal('cSit',r.sit||'Ativo');$('cLac').value=r.lacrado?'Sim':'Não';selVal('cTipo',r.tipo);selVal('cUnid',r.unid);FOTO='';FOTO2='';
     if(r.foto){$('cPrev').src=r.foto;$('cPrev').style.display='block'}else $('cPrev').style.display='none';
     if(r.foto2){$('cPrev2').src=r.foto2;$('cPrev2').style.display='block'}else $('cPrev2').style.display='none';
     $('cMsg').innerHTML=msg('ok','Item já cadastrado. Altere o que quiser e salve.');
@@ -4860,7 +5038,7 @@ function apagarCad(){
 function salvarCad(){
   if(!FOTO2&&$('cPrev2').style.display==='none'){$('cMsg').innerHTML=msg('erro','Tire a foto da embalagem para salvar o cadastro.');return}
   $('cMsg').innerHTML='Salvando...';
-  chamar('apiCadastrar',[quem(),{codigo:val('cCod'),desc:val('cDesc'),padrao:val('cPad'),tipo:$('cTipo').value,unid:$('cUnid').value,peso:val('cPeso'),giro:val('cGiro'),sit:$('cSit').value,foto:FOTO,foto2:FOTO2}],function(r){
+  chamar('apiCadastrar',[quem(),{codigo:val('cCod'),desc:val('cDesc'),padrao:val('cPad'),tipo:$('cTipo').value,unid:$('cUnid').value,peso:val('cPeso'),giro:val('cGiro'),sit:$('cSit').value,lacrado:$('cLac').value,foto:FOTO,foto2:FOTO2}],function(r){
     $('cMsg').innerHTML=msg(r.ok?'ok':'erro',r.ok?'Item salvo!':r.msg)+(r.ok?blocoFim("limparCad();contTela('cad','cCod')"):'');
     if(r.ok){FOTO='';FOTO2='';semCadLista();chamar('apiItens',[],function(l){ITENS=l;ITMAP={};l.forEach(function(x){ITMAP[x[0]]=x});
       $('listaItens').innerHTML=l.map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')})}
@@ -4878,15 +5056,15 @@ function reorg(){
     REORG=r.lista;
     var h=msg('aviso',r.nEtapa+' embalagem(ns) num nível que o item não pode usar pelas regras de armazenamento.')+
       '<p><b>Fora da regra</b>: '+r.nEtapa+' movimento(s)'+(r.nEtapa>r.lista.length?' (mostrando os '+r.lista.length+' primeiros)':'')+'. Todos vão para posições livres, então pode fazer na hora, em qualquer ordem. Ao terminar, toque em Continuar para o app recalcular o próximo passo.</p>';
-    r.lista.forEach(function(x,i){h+='<div class="endCard" id="rc'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(x.end)+' → '+endCor(x.dest)+'</span><span class="endSt" id="rs'+i+'">'+(x.prio===0?'Regra':'Pendente')+'</span></div>'+
-      '<div class="endInfo">Item '+esc(x.item)+' · '+esc(x.motivo)+'</div><div id="rb'+i+'">'+botaoCam('reorgOrig('+i+')','QR da posição atual',{cls:'endLer'})+'</div></div>'});
+    r.lista.forEach(function(x,i){h+='<div class="endCard" id="rc'+i+'"><div class="endTop"><span class="endN">'+(i+1)+'º</span><span class="endE">'+endCor(x.end)+' → '+endCor(x.dest)+'</span><span class="endSt" id="rs'+i+'">'+(x.prio===0?'Regra':'')+'</span></div>'+
+      '<div class="endInfo">Item '+esc(x.item)+' · '+esc(x.motivo)+'</div><div id="rb'+i+'">'+botaoCam('reorgOrig('+i+')','o QR Code da posição atual',{cls:'endLer'})+'</div></div>'});
     $('rRes').innerHTML=h+blocoFim("contTela('reorg','rRes');reorg()");
   });
 }
 function reorgOrig(i){var x=REORG[i];QR_ESP_PROX='pos';lerQR('',function(l){
   if(!mesmaPos(l,x.end)){$('rb'+i).innerHTML=msg('erro','Posição errada! Você leu '+esc(l)+', mas os componentes estão em '+x.end+'.')+botaoCam('reorgOrig('+i+')','o QR Code de novo',{cls:'endLer'})+'';return}
   $('rs'+i).textContent='Componentes conferidos';$('rs'+i).className='endSt ok';
-  $('rb'+i).innerHTML=msg('ok','Pegue os componentes e leve para '+x.dest+'.')+botaoCam('reorgDest('+i+')','QR da posição de destino',{cls:'endLer'})+'';rolarPara($('rb'+i),true)})}
+  $('rb'+i).innerHTML=msg('ok','Pegue os componentes e leve para '+x.dest+'.')+botaoCam('reorgDest('+i+')','o QR Code da posição nova',{cls:'endLer'})+'';rolarPara($('rb'+i),true)})}
 function reorgDest(i){var x=REORG[i];QR_ESP_PROX='pos';lerQR('',function(l){
   if(l!==x.dest){$('rb'+i).innerHTML=msg('erro','Destino errado! Você leu '+esc(l)+', mas o app mandou para '+x.dest+'.')+botaoCam('reorgDest('+i+')','o QR Code de novo',{cls:'endLer'})+'';return}
   chamar('apiTransferir',[{quem:quem(),orig:x.end,dest:x.dest}],function(r){
@@ -5069,6 +5247,8 @@ function suave(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: 
 function altTopo(){var h=document.querySelector('header'),b=document.querySelector('.esc .passoBar:not([hidden])');return (h?h.offsetHeight:68)+10}   /* 13/11/2026: o quadro do passo não fica mais preso no topo */
 /* rola só se o bloco não estiver todo à vista, descontando o cabeçalho e a barra de baixo */
 function rolarPara(el,meio,forca){if(!el||!vis(el))return;var r=el.getBoundingClientRect(),h=window.innerHeight,topo=altTopo(),base=h-(($('navb')&&vis($('navb')))?$('navb').offsetHeight:0)-12;
+  /* 13/11/2026 (versão 131): se o cartão inteiro da tela cabe, a tela fica no topo, com o cinza aparecendo em cima e embaixo */
+  var sc=el.closest&&el.closest('.esc');if(sc&&!document.body.classList.contains('tv')){var sb=sc.getBoundingClientRect().bottom+window.scrollY,ht=document.querySelector('header');if(sb+(ht?0:0)<=base){if(window.scrollY>0)window.scrollTo({top:0,behavior:'smooth'});return}}
   /* 09/11: no passo a passo, o passo novo vem para o meio da tela (forca), a não ser que já esteja perto do meio */
   if(forca&&r.height<base-topo){var c=(r.top+r.bottom)/2,m=(topo+base)/2;if(Math.abs(c-m)<(base-topo)*0.18)return}
   else if(r.top>=topo&&r.bottom<=base)return;
@@ -5121,24 +5301,26 @@ mostrarErro=function(t){t=String(t==null?'':t);var s=telaVis();
 var PASSOS={};
 /* ---------- TRANSFERÊNCIA DE ENDEREÇO (29/10/2026): endereço atual → etiqueta do produto → endereço novo → motivo ---------- */
 var XF={};
-function xfLimpa(){XF={};['xfOrig','xfEtq','xfDest','xfObs'].forEach(function(i){var e=$(i);if(e)e.value=''});if($('xfMot'))$('xfMot').value='';['xfInfo','xfSug','xfRes'].forEach(function(i){var e=$(i);if(e)e.innerHTML=''})}
+function xfLimpa(){XF={};['xfOrig','xfEtq','xfDest','xfObs'].forEach(function(i){var e=$(i);if(e)e.value=''});if($('xfMot'))$('xfMot').value='';if($('xfObsB'))$('xfObsB').hidden=true;['xfInfo','xfSug','xfRes','xfDestG'].forEach(function(i){var e=$(i);if(e)e.innerHTML=''})}
+function xfMotMuda(){var b=$('xfObsB');if(b)b.hidden=val('xfMot')!=='Outro';if(b&&b.hidden&&$('xfObs'))$('xfObs').value=''}
+function xfPeca(){var p=XF.p||{};return cartaoPeca(p.item,p.desc,qtdU(p.qtd,p.item),p.data,nfDoLote(p.lote),1)}
 function xfErro(t){vib('erro');avisoJan(t)}
 function xfPoe(i,v){var e=$(i);if(!e)return;e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))}
 function xfOrigLer(){QR_ESP_PROX='pos';lerQR('',function(l){l=String(l||'').trim().toUpperCase();if(!l)return;
   chamar('apiPosicao',[l],function(p){if(!p||!p.ok){xfErro(p&&p.msg||'Endereço não encontrado.');return}
     if(p.status!=='Ocupado'){xfErro('O endereço '+p.end+' está '+String(p.status).toLowerCase()+'. Leia o endereço onde o pallet está.');return}
     XF={orig:p.end,p:p,p2:p.segundo||null,todos:[p].concat(p.outros||[])};if($('xfSug'))$('xfSug').innerHTML='';$('xfEtq').value='';$('xfDest').value='';xfPoe('xfOrig',p.end);
-    $('xfInfo').innerHTML='<div class="xfInfo"><b>'+esc(p.item)+'</b>'+(p.desc?' · '+esc(p.desc):'')+'<span>'+esc(qtdU(p.qtd,p.item))+'</span>'+dataG(p.data)+'</div>';
+    $('xfInfo').innerHTML=endBig(p.end)+cartaoPeca(p.item,p.desc,qtdU(p.qtd,p.item),p.data,nfDoLote(p.lote),1);
     void 0})})}
 function xfEtqLer(){if(!XF.orig){xfErro('Primeiro leia o QR Code do endereço atual.');return}
   QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt),p=XF.p;
     if(tv&&XF.todos&&XF.todos.length>1){var ach=XF.todos.filter(function(x){return tv.cod===String(x.item).toUpperCase()&&(!x.lote||loteChaveC(x.lote)===loteChaveC(tv.rg))})[0];if(ach&&ach!==p){p=ach;XF.p=p;XF.orig=p.end}}
-    if(!tv){xfErro('Este QR não é a etiqueta do produto. Leia a etiqueta que está no pallet.');return}
+    if(!tv){xfErro('Este QR Code não é a etiqueta do produto. Leia a etiqueta que está no pallet.');return}
     if(tv.cod!==String(p.item).toUpperCase()){xfErro('Produto errado: a etiqueta é do '+tv.cod+', mas o endereço '+XF.orig+' tem o '+p.item+'.');return}
     if(p.lote&&String(p.lote).indexOf('|')>0&&loteChaveC(p.lote)!==loteChaveC(tv.rg)){xfErro('Lote errado: a nota ou a data desta etiqueta não é a do material que está em '+XF.orig+'.');return}
     var dp=String(p.data||'').split('/');if(!p.lote&&dp.length===3&&tv.data!==dp[2]+'-'+dp[1]+'-'+dp[0]){xfErro('Pallet errado: a data da etiqueta não é a do pallet de '+XF.orig+' (recebido em '+p.data+').');return}
     XF.etq=tv;xfPoe('xfEtq',tv.cod+' · '+tv.qtd+(tv.unid?' '+tv.unid:''));void 0;
-    if(nivDe(XF.orig)>0)chamar('apiSugJuntar',[quem(),p.item,XF.orig],function(r){if(r&&r.ok&&r.lista&&r.lista.length&&$('xfSug'))$('xfSug').innerHTML='<div class="jnBox">'+sugJuntarHtml(r)+'<p><small>Para juntar, leia o QR Code de uma delas no endereço novo. Ou leia uma posição livre para transferir normal.</small></p></div>'})})}
+    if(nivDe(XF.orig)>0)chamar('apiSugJuntar',[quem(),p.item,XF.orig],function(r){if(r&&r.ok&&r.lista&&r.lista.length&&$('xfSug'))$('xfSug').innerHTML='<div class="jnBox">'+sugJuntarHtml(r)+'</div>'})})}
 function xfDestLer(){if(!XF.etq){xfErro(XF.orig?'Leia a etiqueta do produto antes do endereço novo.':'Primeiro leia o QR Code do endereço atual.');return}
   QR_ESP_PROX='pos';lerQR('',function(l){l=String(l||'').trim().toUpperCase();if(!l)return;
     if(l===XF.orig){xfErro('O endereço novo é o mesmo de onde o pallet está. Leia o QR do endereço livre para onde vai levar.');return}
@@ -5147,17 +5329,17 @@ function xfDestLer(){if(!XF.etq){xfErro(XF.orig?'Leia a etiqueta do produto ante
         if((p.nprod||0)>=3&&(p.prods||[]).indexOf(String(XF.p.item).toUpperCase())<0){xfErro('A posição '+p.end+' já tem três produtos. O máximo é três.');return}
         var outroX=(p.prods||[p.item]).map(function(c){return String(c).toUpperCase()}).indexOf(String(XF.p.item).toUpperCase())<0;  /* 13/11/2026 (versão 125) */
         perguntar((outroX?'Atenção: produto diferente. ':'')+'A posição '+p.end+' já tem '+p.item+' ('+p.qtd+')'+(outroX?', e o pallet é do '+XF.p.item:', o mesmo código')+'. O pallet cabe junto? A posição pode ter até três produtos.',function(){
-          XF.dest=p.end;XF.juntar=true;xfPoe('xfDest',p.end+' (juntar)');if($('xfMot')&&!val('xfMot'))$('xfMot').value='Juntar pallets (2 no N1)';void 0},null,{ok:'Cabe junto',no:'Não cabe'});return}
+          XF.dest=p.end;XF.juntar=true;xfPoe('xfDest',p.end+' (juntar)');$('xfDestG').innerHTML='<div class="jCap">Juntar com o que já está na posição</div>'+endBig(p.end)+xfPeca();if($('xfMot')&&!val('xfMot'))$('xfMot').value='Juntar pallets (2 no N1)';void 0},null,{ok:'Cabe junto',no:'Não cabe'});return}
       if(p.status!=='Livre'){xfErro('O endereço '+p.end+' está '+String(p.status).toLowerCase()+'. Escolha um endereço livre'+(nivDe(p.end)===1?'':' (juntar produtos só no nível 1)')+'.');return}
-      XF.dest=p.end;XF.juntar=false;xfPoe('xfDest',p.end);void 0})})}
+      XF.dest=p.end;XF.juntar=false;xfPoe('xfDest',p.end);$('xfDestG').innerHTML=endBig(p.end)+xfPeca();void 0})})}
 function xfConf(){if(!XF.orig||!XF.etq||!XF.dest){xfErro('Faça as três leituras: endereço atual, etiqueta do produto e endereço novo.');return}
   var m=val('xfMot'),o=val('xfObs');limparErros();if(!m){recErroCampo({campo:'xfMot',msg:'Escolha o motivo da transferência.'});return}
   if(m==='Outro'&&!o){recErroCampo({campo:'xfObs',msg:'Escreva a observação do motivo.'});return}
   chamar('apiTransferir',[{quem:quem(),orig:XF.orig,dest:XF.dest,juntar:!!XF.juntar,cartao:true,motivo:m+(o?' — '+o:''),etq:{cod:XF.etq.cod,data:XF.etq.data,rg:XF.etq.rg}}],function(r){
     if(!r||!r.ok){xfErro(r&&r.msg||'Não deu para transferir.');return}
-    vib('ok');$('xfRes').innerHTML=msg('ok','✅ '+r.msg)+blocoFim("xfLimpa();contTela('tend','xfOrig')")})}
+    vib('ok');var o=XF.orig,d=XF.dest,jt=XF.juntar;$('xfRes').innerHTML=conclusao('Transferido',[['Posição',endCor(baseVaga(d))+(jt?'<small class="cJunto">junto</small>':''),1],['_peca',xfPeca()],['Saiu de',baseVaga(o)],['Motivo',m]],'Transferir outro',"xfLimpa();contTela('tend','xfOrig')")})}
 PASSOS.tend=function(){var fim=!!document.querySelector('#xfRes .endFim'),i=fim?4:!val('xfOrig')?0:!val('xfEtq')?1:!val('xfDest')?2:3;
-  return {k:'xf',i:i,nomes:['Ler o endereço atual','Ler a etiqueta do produto','Ler o endereço novo','Motivo e confirmar'],bl:[$('psX1'),$('psX2'),$('psX3'),$('psX4')],
+  return {k:'xf',i:i,nomes:['Posição atual','Conferir o produto','Posição nova','Motivo'],bl:[$('psX1'),$('psX2'),$('psX3'),$('psX4')],
     fim:fim,fimBl:document.querySelector('#xfRes .endFim'),ativo:!fim&&!!val('xfOrig')}};
 
 PASSOS.guardar=function(){var op=$('opInt');if(!op)return null;
@@ -5167,36 +5349,46 @@ PASSOS.guardar=function(){var op=$('opInt');if(!op)return null;
   return {k:'gi',i:i,nomes:['Identificar o produto','Conferir o produto','Ir até a posição'],
     bl:[$('psG1'),$('psG2'),pend[0]||null],sub:i===2&&cards.length>1?'Embalagem '+(cards.length-pend.length+1)+' de '+cards.length:'',
     fim:!!cc,fimBl:cc,ativo:!!val('gCod')&&!cc}};
-PASSOS.tirar=function(){var N=['Escolher o produto','Ir até a posição e ler o QR Code','Ler a etiqueta do pallet','Abastecer'],
+PASSOS.tirar=function(){var N=['Escolher o produto','Ir até a posição','Conferir o pallet','Abastecer'],
     cards=[].slice.call(document.querySelectorAll('#tRes .endCard')),st=function(c,k){var x=c.querySelector('.endSt');return x&&x.classList.contains(k)};
   if(!cards.length)return {k:'t',i:0,nomes:N,bl:[$('psT1')],ativo:false};
   var cc=document.querySelector('#tRes .concl');
   if(cc)return {k:'t',i:4,nomes:N,bl:[$('psT1')],fim:true,fimBl:cc,ativo:false};
   var ab=cards.filter(function(c){return c.querySelector('.acT,[id^="tch"],.bLin')})[0];if(ab)return {k:'t',i:3,nomes:N,bl:[$('psT1'),null,null,ab],ativo:true};
-  var cf=cards.filter(function(c){return st(c,'ok')})[0];if(cf)return {k:'t',i:2,nomes:N,bl:[$('psT1'),null,cf],ativo:true};
+  var cf=cards.filter(function(c){return st(c,'ok')||st(c,'lido')})[0];if(cf)return {k:'t',i:2,nomes:N,bl:[$('psT1'),null,cf],ativo:true};
   var al=$('tc'+TIRAR_FIFO)||cards.filter(function(c){return !c.classList.contains('feito')})[0];
   return {k:'t',i:1,nomes:N,bl:[$('psT1'),al],ativo:false}};
 PASSOS.invpos=function(){var b=$('ipBox');if(!b)return null;var c=b.querySelector('.concl');
-  var i=c?2:$('ip2')?1:0;return {k:'invpos',i:i,nomes:['Ler o QR Code da posição','Contar a quantidade'],bl:[$('ip1'),$('ip2')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
+  var i=c?2:$('ip2')?1:0;return {k:'invpos',i:i,nomes:['Ir até a posição','Contar a quantidade'],bl:[$('ip1'),$('ip2')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
 PASSOS.dev=function(){var b=$('devBox');if(!b)return null;var c=b.querySelector('.concl');
-  var i=c?3:$('dv3')?2:$('dv2')?1:0;return {k:'dev',i:i,nomes:['Ler a etiqueta do produto','Informar a quantidade','Ir até a posição e ler o QR Code'],bl:[$('dv1'),$('dv2'),$('dv3')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
-PASSOS.inv=function(){var todos=[].slice.call(document.querySelectorAll('#invRes .card')),pend=todos.filter(function(c){return c.querySelector('.passo')});
+  var i=c?3:$('dv3')?2:$('dv2')?1:0;return {k:'dev',i:i,nomes:['Identificar o produto','Informar a quantidade','Ir até a posição'],bl:[$('dv1'),$('dv2'),$('dv3')],fim:!!c,fimBl:c,ativo:i>0&&!c}};
+PASSOS.inv=function(){var b=$('invRes');if(!b||!INVD.L)return null;var tot=INVD.L.length,feitas=tot-INVD.pend.length,c=b.querySelector('.concl');
+  if(c)return {k:'inv',i:3,nomes:['Ir até a posição','Conferir o produto','Contar a quantidade'],bl:[],fim:true,fimBl:c};
+  var v=$('ivd');if(v){var bl=[null,null,null];bl[INVD.st]=v;return {k:'inv'+INVD.x.p.lin,i:INVD.st,nomes:['Ir até a posição','Conferir o produto','Contar a quantidade'],bl:bl,sub:'Posição '+(feitas+1)+' de '+tot,ativo:INVD.st>0}}
+  var todos=[].slice.call(document.querySelectorAll('#invRes .card')),pend=todos.filter(function(c){return c.querySelector('.passo')});
   if(!pend.length)return null;
   var c=pend.filter(function(x){return [].some.call(x.querySelectorAll('input'),function(i){return !vazio(i)})})[0]||pend[0],
     ps=[].slice.call(c.querySelectorAll('.passo')),i=0;
   while(i<ps.length-1){var f=ps[i].querySelector('input');if(f&&!vazio(f))i++;else break}
   return {k:'inv'+todos.indexOf(c),i:i,nomes:ps.map(function(p){return p.getAttribute('data-nome')}),bl:ps,
-    sub:'Posição '+(todos.length-pend.length+1)+' de '+todos.length,
+    sub:'Posição '+(INVD.L?(INVD.L.length-INVD.pend.length+1)+' de '+INVD.L.length:(todos.length-pend.length+1)+' de '+todos.length),
     ativo:pend.some(function(x){return [].some.call(x.querySelectorAll('input'),function(i){return !vazio(i)})})}};
 
 function barraPassos(s,d){var b=s.querySelector('.passoBar');
   if(!d){if(b)b.hidden=true;return}
   if(!b){b=document.createElement('div');b.className='passoBar';b.setAttribute('aria-live','polite');var ti=s.querySelector('.tit');if(ti)ti.insertAdjacentElement('afterend',b);else s.insertBefore(b,s.firstChild)}
-  var n=d.nomes.length,h='<div class="pbTop"><span class="pbN'+(d.fim?' ok':'')+'">'+(d.fim?'Concluído':'Passo '+(d.i+1)+' de '+n)+'</span><span class="pbT">'+esc(d.fim?'':d.nomes[d.i])+'</span></div>'+
-    '<div class="pbDots">'+d.nomes.map(function(x,k){return '<i class="'+(d.fim||k<d.i?'f':k===d.i?'a':'')+'"></i>'}).join('')+'</div>'+(d.sub&&!d.fim?'<small class="pbSub">'+esc(d.sub)+'</small>':'');
+  b.classList.toggle('fim',!!d.fim);var n=d.nomes.length,h='<div class="pbTop"><span class="pbN'+(d.fim?' ok':'')+'">'+(d.fim?((s.querySelector('.concl[data-tit]')||{}).getAttribute?s.querySelector('.concl[data-tit]').getAttribute('data-tit'):'Concluído'):'Passo '+(d.i+1)+' de '+n)+'</span><span class="pbT">'+esc(d.fim?'':d.nomes[d.i])+'</span></div>'+
+    '<div class="pbDots">'+d.nomes.map(function(x,k){return '<i class="'+(d.fim||k<d.i?'f':k===d.i?'a':'')+'"></i>'}).join('')+'</div>'/* 136: sem o contador "Posição X de Y" embaixo da barra */;
   if(b._h!==h){b._h=h;b.innerHTML=h}b.hidden=false}
 /* 13/11/2026 (versão 130): o endereço grande fica numa linha só; se não couber, a letra diminui até caber */
-function fitEnd(s){if(!s)return;s.querySelectorAll('.endCard.pAtual .endE .nvChip,.concl .cBig .nvChip').forEach(function(c){var e=c.closest('.endE,.cBig');if(!e)return;e.style.fontSize='';var f=parseFloat(getComputedStyle(e).fontSize)||30,k=0;while(c.scrollWidth>c.clientWidth+1&&f>18&&k<40){f-=1;k++;e.style.setProperty('font-size',f+'px','important')}})}
+/* 135: com o selo na linha do código, código comprido que quebraria a linha fica alinhado à esquerda do selo */
+function chkPeca(){document.querySelectorAll('main .gPeca').forEach(function(g){var c=g.querySelector('.gCodG');if(!c||!c.offsetParent)return;g.classList.remove('cLongo');if(g.querySelector(':scope>.endSt:not(:empty)')&&c.scrollHeight>parseFloat(getComputedStyle(c).lineHeight)*1.5)g.classList.add('cLongo')})}
+function fitEnd(s){if(!s)return;chkPeca();s.querySelectorAll('.endCard.pAtual .endE .nvChip,.concl .cBig .nvChip,.endBig .nvChip').forEach(function(c){var e=c.closest('.endE,.cBig,.endBig');if(!e)return;e.style.fontSize='';var f=parseFloat(getComputedStyle(e).fontSize)||30,k=0;while(c.scrollWidth>c.clientWidth+1&&f>18&&k<40){f-=1;k++;e.style.setProperty('font-size',f+'px','important')}})}
+/* 13/11/2026 (versão 132): os botões cinza de opção (classe opc) aparecem fora da caixa laranja do passo, logo abaixo dela.
+   A caixa fica só com o que fazer agora. Os de dentro ficam escondidos e as cópias de fora tocam neles. */
+function opsFora(s){var a=s&&s.querySelector('.pAtual'),bs=a?[].slice.call(a.querySelectorAll('button.opc')):[],sig=bs.map(function(b){return b.textContent}).join('|'),f=s&&s.querySelector('.opsFora');
+  if(f&&f._sig===sig&&a&&f.previousElementSibling===a)return;if(f)f.remove();if(!a||!bs.length)return;
+  var d=document.createElement('div');d.className='opsFora np';d._sig=sig;bs.forEach(function(b){var c=b.cloneNode(true);c.classList.remove('opc');c.removeAttribute('id');c.removeAttribute('onclick');c.addEventListener('click',function(){b.click()});d.appendChild(c)});a.insertAdjacentElement('afterend',d)}
 function legendaObr(s){var l0=s.querySelector('.obrLeg');if(l0)l0.remove();return;var tem=s.querySelector('label.obr');var l=s.querySelector('.obrLeg');
   if(tem&&!l){l=document.createElement('p');l.className='obrLeg';l.textContent='* Campo obrigatório';var v=s.querySelector('.vFim');if(v)s.insertBefore(l,v);else s.appendChild(l)}
   if(l)l.hidden=!tem||!vis(tem)}
@@ -5216,7 +5408,7 @@ function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var
     if(origem==='entrada')focar(px);
     else if(origem==='change'&&px&&kx!==GUIA.k&&!digitando(s)){var bx=px.closest('.passo')||px.closest('.camBox')||px;setTimeout(function(){rolarPara(bx,true)},120);focar(px)}
     GUIA.k=kx;GUIA.t=t;GUIA.d='';GUIA.i=-1;return}
-  d.bl.forEach(function(b,k){if(!b)return;if(k<d.i||d.fim){if(!b.classList.contains('endCard'))b.classList.add('pFeito')}else if(k===d.i)b.classList.add('pAtual')});
+  d.bl.forEach(function(b,k){if(!b)return;if(k<d.i||d.fim){if(!b.classList.contains('endCard'))b.classList.add('pFeito')}else if(k===d.i)b.classList.add('pAtual')});opsFora(s);
   var alvo=d.fim?d.fimBl:d.bl[d.i],key=t+'|'+d.k+'|'+d.i+'|'+(d.nomes[d.i]||'')+'|'+(d.sub||'')+'|'+(d.fim?1:0);   /* 09/11: o nome do passo também conta (ex.: Ler a etiqueta → Ver as posições), para a tela andar sozinha */
   if(key===GUIA.k)return;
   if(origem==='mut'&&digitando(s))return;   /* a pessoa está digitando: espera ela terminar */
@@ -5243,7 +5435,7 @@ function marcarObrFixos(){OBR_FIXOS.forEach(function(id){var e=$(id);if(!e||e.ha
   var n=e.parentNode&&e.parentNode.classList.contains('camBox')?e.parentNode:e,l=n.previousElementSibling;
   if(!(l&&l.tagName==='LABEL')){var p=n.parentNode;l=p&&p.querySelector('label')}if(l)l.classList.add('obr')})}
 function medirTopo(){var h=document.querySelector('header');if(h)document.documentElement.style.setProperty('--hdrH',h.offsetHeight+'px')}
-document.addEventListener('DOMContentLoaded',function(){marcarObrFixos();medirTopo()});window.addEventListener('resize',medirTopo);
+document.addEventListener('DOMContentLoaded',function(){marcarObrFixos();medirTopo();document.querySelectorAll('#psG1 .etqIlu,#psX1 .etqIlu').forEach(function(g){g.outerHTML=iluQR()})});window.addEventListener('resize',medirTopo);
 try{document.fonts.ready.then(function(){fitEnd(telaVis())})}catch(e){}window.addEventListener('resize',function(){fitEnd(telaVis())});
 
 /* Sair da tela: apaga tudo o que foi preenchido; no meio da tarefa, pergunta antes */
@@ -5692,7 +5884,7 @@ function ltPintar(k){var b=$(k+'Cx');if(!b)return;var L=LT[k];if(!L||!ltPrim(k))
   L.lista.forEach(function(x,i){h+='<div class="ltLin"><div class="ltTx">Lote '+(i+2)+': nota '+esc(x.tv.nf||'-')+' · recebido em '+dataB(x.tv.data)+'<br><small>Cada caixa: '+esc(qtdU(ltQ(x.tv.qtd),L.cod))+'</small></div>'+
     '<div><label>Total deste lote</label><input type="number" min="1" inputmode="decimal" value="'+esc(x.qtd)+'" oninput="LT.'+k+'.lista['+i+'].qtd=this.value;ltMexeu(\''+k+'\')"></div></div>'});
   if(L.lista.length)h+='<div class="cxCont">'+(L.lista.length+1)+' lotes · total '+esc(qtdU(ltTotal(k),L.cod))+'</div>';
-  var bt=botao('Ler mais lotes',"ltLer('"+k+"')",'s')+(L.lista.length?botao('Desfazer último lote',"ltDesfazer('"+k+"')",'s'):'');
+  var bt=botao('Ler mais lotes',"ltLer('"+k+"')",'s',{cls:'opc'})+(L.lista.length?botao('Desfazer último lote',"ltDesfazer('"+k+"')",'s',{cls:'opc'}):'');
   /* 09/11/2026: os botões ficam embaixo, no cartão da posição pendente (logo acima do Cancelar operação); antes de ver as posições, ficam aqui */
   document.querySelectorAll('.ltBtW'+k).forEach(function(x){x.remove()});
   var alvo=k==='g'?$('gCxBt'):null;   /* 12/11/2026: uma ação por tela — mais lotes só antes de ver as posições */
