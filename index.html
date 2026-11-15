@@ -2063,7 +2063,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=140,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=141,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2121,7 +2121,7 @@ function tecAbrir(inp,op){var j=$('tecJan');if(!j){j=document.createElement('div
   j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecKs">'+['1','2','3','×','4','5','6','−','7','8','9','+',',','0','⌫','='].map(function(k){var op='×−+='.indexOf(k)>=0;return '<div class="tecK'+(op?' tecO':'')+(k==='='?' tecIg':'')+'" role="button" tabindex="0" data-k="'+k+'" aria-label="'+({'⌫':'Apagar','×':'Vezes','−':'Menos','+':'Mais','=':'Igual'}[k]||k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
   document.body.appendChild(j);$('tecOk').innerHTML=botao('Confirmar','tecOk()','p');$('tecFundo').onclick=tecFecha;
   j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){b.classList.add('tq');setTimeout(function(){b.classList.remove('tq')},140);tecTecla(b.getAttribute('data-k'))})})}
-  op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
+  op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');TEC.novo=!!TEC.v;   /* 141: o 1º número digitado troca o valor que já estava; começar com ×, + ou − usa o valor (ex.: 128 × 4) */var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
   $('tecTit').textContent=l||'Quantidade';tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
 /* 140 (15/11/2026): o teclado da quantidade virou calculadora (×, −, +, =), em tela escura. Ex.: 4 × 2.000 = 8.000.
    O resultado aparece embaixo da conta; o Confirmar grava o resultado. Sem divisão (quase não se usa em quantidade). */
@@ -2134,7 +2134,7 @@ function tecTemOp(v){return /[×−+]/.test(String(v||'').replace(/^−/,''))}
 function tecNum(n){return String(n).replace('.',',')}
 function tecPinta(){$('tecVal').textContent=TEC.v||'0';$('tecVal').classList.toggle('vz',!TEC.v);var r=tecConta(TEC.v),sb=$('tecSub'),f=TEC.op&&TEC.op.sub,h='';
   if(tecTemOp(TEC.v))h+='<span class="tecRes">= '+esc(numBR(r))+'</span>';if(f)h+=(h?'<br>':'')+f(r);if(sb){sb.innerHTML=h;sb.hidden=!h}}
-function tecTecla(k){var v=TEC.v,ult=v.slice(-1),num=v.split(/[×−+]/).pop();
+function tecTecla(k){if(TEC.novo){TEC.novo=false;if(/^[0-9,]$/.test(k))TEC.v=''}var v=TEC.v,ult=v.slice(-1),num=v.split(/[×−+]/).pop();
   if(k==='⌫')v=v.slice(0,-1);
   else if(k==='='){if(tecTemOp(v))v=tecNum(tecConta(v))}
   else if(TEC_OPS.indexOf(k)>=0){if(!v)return;if(TEC_OPS.indexOf(ult)>=0||ult===',')v=v.slice(0,-1);v+=k}
@@ -6082,13 +6082,19 @@ function ltPrim(k){var tv=QR_TV[k+'Cod'];if(!tv||!LT[k]||tv.cod!==LT[k].cod)retu
 function ltTodos(k){var p=ltPrim(k);if(!p)return [];return [p].concat(LT[k].lista.map(function(x){return {rg:x.tv.rg,nf:x.tv.nf||'',data:x.tv.data,qtd:ltQ(x.qtd),etq:ltQ(x.tv.qtd),caixas:1}}))}
 function ltMulti(k){var p=ltPrim(k);if(!p)return false;return LT[k].lista.length>0||(k==='g'&&p.qtd!==p.etq)}
 function ltTotal(k){return ltTodos(k).reduce(function(t,x){return t+x.qtd},0)}
-function ltMexeu(k){if(LT[k])LT[k].conf=0;if(k==='g'&&$('gRes'))$('gRes').innerHTML='';ltPintar(k)}
+/* 141 (15/11/2026): mexer num total não apaga mais as posições já mostradas (antes o app recalculava e mandava para outro endereço);
+   o total novo vale na hora de confirmar. Antes de ver as posições, nada muda. */
+function ltMexeu(k){if(LT[k])LT[k].conf=0;if(k==='g'&&document.querySelector('#gRes .endCard'))END_QTDS=[ltTotal('g')];ltPintar(k)}
+/* 141: o total do lote abre a calculadora (ex.: 4 × 128) e só grava ao Confirmar; o campo não é refeito enquanto se digita */
+function ltCalc(k,i,el){var x=LT[k]&&LT[k].lista[i];if(!x)return;tecAbrir(el,{tit:'Total do lote da nota '+(x.tv.nf||'-'),sub:function(){return 'Cada caixa: <b>'+esc(qtdU(ltQ(x.tv.qtd),LT[k].cod))+'</b>'}})}
+function ltSet(k,i,v){var x=LT[k]&&LT[k].lista[i];if(!x)return;x.qtd=v;LT[k].conf=0;if(k==='g'&&document.querySelector('#gRes .endCard'))END_QTDS=[ltTotal('g')];
+  var c=$(k+'Cx'),t=c&&c.querySelector('.cxCont');if(t)t.textContent=(LT[k].lista.length+1)+' lotes · total '+qtdU(ltTotal(k),LT[k].cod)}
 function ltResumo(k){var L=ltTodos(k).slice().sort(function(a,b){return a.data<b.data?-1:a.data>b.data?1:0});
   return '<b>'+L.length+' lote(s) · total '+esc(qtdU(ltTotal(k),LT[k].cod))+'</b>'+L.map(function(x){return '<div class="cxLin">Nota '+esc(x.nf||'-')+' · recebido em '+dataB(x.data)+': '+esc(qtdU(x.qtd,LT[k].cod))+'</div>'}).join('')}
 function ltPintar(k){var b=$(k+'Cx');if(!b)return;var L=LT[k];if(!L||!ltPrim(k)){b.innerHTML='';if(k==='g'&&$('gCxBt'))$('gCxBt').innerHTML='';return}
   var h='';
   L.lista.forEach(function(x,i){h+='<div class="ltLin"><div class="ltTx">Lote '+(i+2)+': nota '+esc(x.tv.nf||'-')+' · recebido em '+dataB(x.tv.data)+'<br><small>Cada caixa: '+esc(qtdU(ltQ(x.tv.qtd),L.cod))+'</small></div>'+
-    '<div><label>Total deste lote</label><input type="number" min="1" inputmode="decimal" value="'+esc(x.qtd)+'" oninput="LT.'+k+'.lista['+i+'].qtd=this.value;ltMexeu(\''+k+'\')"></div></div>'});
+    '<div><label>Total deste lote</label><input type="number" min="1" inputmode="none" readonly class="ltIn" value="'+esc(x.qtd)+'" onclick="ltCalc(\''+k+'\','+i+',this)" oninput="ltSet(\''+k+'\','+i+',this.value)"></div></div>'});
   if(L.lista.length)h+='<div class="cxCont">'+(L.lista.length+1)+' lotes · total '+esc(qtdU(ltTotal(k),L.cod))+'</div>';
   var bt=botao('Ler mais lotes',"ltLer('"+k+"')",'s',{cls:'opc'})+(L.lista.length?botao('Desfazer último lote',"ltDesfazer('"+k+"')",'s',{cls:'opc'}):'');
   /* 09/11/2026: os botões ficam embaixo, no cartão da posição pendente (logo acima do Cancelar operação); antes de ver as posições, ficam aqui */
