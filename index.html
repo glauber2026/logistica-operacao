@@ -2063,7 +2063,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=141,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=142,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2837,7 +2837,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(RegBloquear|RegDesbloquear|PosFantasma|PosSemMaterial|InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(InvPosBloqResolve|RegBloquear|RegDesbloquear|PosFantasma|PosSemMaterial|InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;clearTimeout(PROC.w);PROC.w=setTimeout(procSolta,LIM_GRAVA+10000);var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);clearTimeout(PROC.w);document.body.classList.remove('proc')}}
 /* 13/11/2026 (versão 122): segurança extra. Se a bolinha passar do tempo-limite, ela some e o contador zera (não passa para as outras telas) */
@@ -4655,10 +4655,11 @@ function invPosIni(){INVP={};var b=$('ipBox');if(!b)return;
   b.innerHTML='<div class="passo pIlu" id="ip1">'+iluQR()+botaoCam('invPosLer()','o QR Code da posição')+'</div>'}
 function invPosLer(){QR_ESP_PROX='pos';lerQR('',function(lido){chamar('apiInvPosItens',[quem(),lido],function(r){
   if(!r||!r.ok){$('ipBox').innerHTML=aviso(r&&r.livre?'at':'er',(r&&r.msg)||'Não deu para ler a posição.')+'<div class="passo" id="ip1">'+botaoCam('invPosLer()','o QR Code da posição')+'</div>';vib('erro');return}
+  if(r.bloqVazia){INVP.b=r;invBqTela();return}
   if(r.lista.length===1){invPosEsc(r.lista[0]);return}
   $('ipBox').innerHTML='<div class="passo" id="ip1"><p class="rcDica">A posição '+esc(r.base)+' tem mais de um produto. Qual você vai contar?</p>'+
     r.lista.map(function(x,k){return botao(x.item+(x.desc?' · '+x.desc:''),'invPosEsc(INVP.op['+k+'])','s')}).join('')+'</div>';INVP.op=r.lista})})}
-function invPosRes(){var x=INVP.p,it=ITMAP[x.item]||[];return endBig(baseVaga(x.end))+'<div class="gPeca"><div class="gCodG gCodM">'+esc(x.item)+'</div><div class="gDesc">'+esc(x.desc||it[1]||'')+'</div></div>'}   /* contagem cega: sem a quantidade do sistema */
+function invPosRes(){var x=INVP.p,it=ITMAP[x.item]||[];return endBig(baseVaga(x.end))+(x.bloq?aviso('at','Bloqueada'+(x.motivo?': '+x.motivo:'')+'. Ao registrar a contagem, ela sai do bloqueio.'):'')+'<div class="gPeca"><div class="gCodG gCodM">'+esc(x.item)+'</div><div class="gDesc">'+esc(x.desc||it[1]||'')+'</div></div>'}   /* contagem cega: sem a quantidade do sistema */
 function invPosEsc(x){INVP.p=x;INVP.q1=null;invPosConta()}
 function invPosConta(extra){$('ipBox').innerHTML='<div class="passo" id="ip2">'+invPosRes()+(extra||'')+'<label class="obr">Quantidade contada</label><input id="ipQ" data-obr="1" type="number" inputmode="decimal" min="0">'+
   botao('Registrar a contagem','invPosReg()','p')+botao('A posição está vazia','invPosVazia()','s',{cls:'opc'})+'</div>';setTimeout(function(){var q=$('ipQ');if(q)q.focus()},200)}
@@ -4669,7 +4670,25 @@ function invPosEnvia(q,q2){chamar('apiInvAjuste',[quem(),INVP.p.end,q,q2],functi
   if(!r||!r.ok){if(r&&r.recontar){if(r.difere){INVP.q1=null;invPosConta(aviso('er',r.msg))}else{INVP.q1=q;invPosConta(aviso('at',r.msg+' Digite a nova contagem.'))}vib('erro');return}mostrarErro((r&&r.msg)||'Erro.');return}
   var x=INVP.p,L=[['Posição',endCor(baseVaga(x.end)),1],['_peca',cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(r.nova,x.item),x.data,nfDoLote(x.lote),1)],['No sistema',qtdU(r.sis,x.item)]];
   if(!r.confere)L.push(['Ajuste',(r.dif>0?'+':'')+numBR(r.dif)]);
+  if(r.desbloq)L.push(['Bloqueio','Desbloqueada']);
   $('ipBox').innerHTML=conclusao(r.confere?'Confere':'Saldo ajustado',L,'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})}
+/* 142 (15/11/2026): posição bloqueada sem material no sistema (contagem avulsa). Mostra o bloqueio; quem conta registra o pallet
+   que está lá (etiqueta + quantidade, com a calculadora) ou diz que está vazia. Nos dois casos ela sai do bloqueio e da lista do dia. */
+function invBqTela(){var r=INVP.b;INVP.tv=null;
+  $('ipBox').innerHTML='<div class="passo" id="ip2">'+endBig(r.base)+aviso('at','Bloqueada'+(r.motivo?': '+r.motivo:'')+(r.quem?' ('+r.quem+(r.quando?' em '+r.quando:'')+')':'')+'. Sem material no sistema.')+
+    botaoCam('invBqLerEtq()','',{txt:'Registrar o pallet que está aqui'})+botao('Está vazia','invBqLivre()','s',{cls:'opc'})+'</div>';try{fitEnd($('ipBox'))}catch(e){}}
+function invBqLerEtq(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto.');return}
+  INVP.tv=tv;var it=ITMAP[tv.cod]||[];
+  $('ipBox').innerHTML='<div class="passo" id="ip2">'+endBig(INVP.b.base)+cartaoPeca(tv.cod,it[1]||'Produto sem cadastro','—',tv.data,tv.nf,1)+
+    '<label class="obr">Quantidade contada</label><input id="ipBq" data-obr="1" type="number" inputmode="decimal" min="0" aria-label="Quantidade contada">'+
+    botao('Registrar o pallet','invBqReg()','p')+botao('Ler outra etiqueta','invBqLerEtq()','s',{cls:'opc'})+'</div>';try{fitEnd($('ipBox'))}catch(e){}})}
+function invBqReg(){var q=nIn(val('ipBq')),t=INVP.tv;if(!t){invBqTela();return}if(!(q>0)){mostrarErro('Informe a quantidade contada.');return}
+  chamar('apiInvPosBloqResolve',[quem(),INVP.b.base,{cod:t.cod,data:t.data,nf:t.nf,rg:t.rg},q,false],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+    var L=[['Posição',endCor(r.end),1],['_peca',cartaoPeca(r.item,r.desc||'',qtdU(r.qtd,r.item),r.data,r.nf,1)],['Bloqueio','Desbloqueada']];
+    $('ipBox').innerHTML=conclusao('Pallet registrado',L,'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})}
+function invBqLivre(){var b=INVP.b;perguntar('A posição '+b.base+' está vazia?',function(){
+  chamar('apiInvPosBloqResolve',[quem(),b.base,null,0,true],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+    $('ipBox').innerHTML=conclusao('Posição livre',[['Posição',endCor(r.end),1],['Bloqueio','Desbloqueada']],'Contar outra posição',"ir('invpos');invPosIni()");vib('ok')})},null,{ok:'Sim, está vazia',no:'Voltar'})}
 function devIni(){DEV={};var b=$('devBox');if(!b)return;
   b.innerHTML='<div class="passo pIlu" id="dv1">'+iluQR()+botaoCam('devLerEtq()','',{txt:'Ler a etiqueta'})+'</div>'}
 function devResumo(){var t=DEV.tv;return cartaoPeca(t.cod,(ITMAP[t.cod]||[])[1]||'Produto sem cadastro',qtdU(nIn(t.qtd),t.cod),t.data,t.nf)}
