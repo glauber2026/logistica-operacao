@@ -599,7 +599,33 @@ html body main #pqRes .pqL b{font-size:18px!important}
 html body main #pqRes .pqL small{font-size:14px!important}
 /* 138: saldo fantasma no Endereçar — enquanto confirma, o cartão do produto da etiqueta fica escondido (nada repetido) */
 .endCard.fantOn>.gPeca{display:none}
+.endCard.ecOff{display:none!important}
 .cpUlt{font-size:14px;color:var(--t2);margin:8px 2px 0}
+
+/* ---- 139 (15/11/2026): versão pequenininha no cabeçalho; peça linkJan (link pequeno que abre janela) ---- */
+html body header .hVer{font-size:11px;color:#ffffffb0;margin-left:8px;align-self:center;white-space:nowrap}
+html body main button.lkJ.lkJ.lkJ{background:transparent!important;color:#C25E00!important;font-weight:700!important;padding:6px 0!important;width:auto!important;min-height:0!important;box-shadow:none!important;border:0!important;font-size:15px!important;display:inline-block}
+.lkLin{display:flex;justify-content:flex-start;margin:6px 0}
+.jnLst .sjIt,html body main .jnLst button.sjIt.cam{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:10px;background:transparent;border:0;font-size:16px}
+html body main .jnLst button.sjIt.cam{background:transparent!important;color:var(--txt,#1F1F21)!important;box-shadow:none!important;border-radius:10px!important;min-height:0!important}
+.jnLst .sjIt:nth-child(odd),html body main .jnLst button.sjIt.cam:nth-child(odd){background:#F4F5F6!important}.jnLst .sjIt b{display:block;font-size:17px}.jnLst .sjIt small{color:var(--t2);font-size:13px}
+
+/* ---- 140 (15/11/2026): calculadora da quantidade em tela escura. Toque nas teclas no laranja das pesquisas (#F58321);
+   o que é fixo e destaca (operações, resultado, = e Confirmar) em laranja brilhante (#FF9A3C). ---- */
+html body #tecCx{background:#1F1F21!important}
+html body #tecTit{color:#B5B7BC!important}
+html body #tecVal{color:#fff!important;font-size:38px!important;word-break:break-all}html body #tecVal.vz{color:#5A5A5E!important}
+html body #tecSub{color:#D1D3D8!important}html body #tecSub b{color:#fff!important}html body #tecSub .tecEr{color:#FF8A80!important}
+html body #tecSub .tecRes{color:#FF9A3C!important;font-size:24px;font-weight:800}
+html body #tecKs{grid-template-columns:repeat(4,1fr)!important}
+html body .tecK{background:#2E2E32!important;color:#fff!important;height:58px!important;transition:background .08s}
+html body .tecK:active,html body .tecK.tq{background:#F58321!important;color:#fff!important}
+html body .tecK.tecO{background:transparent!important;color:#FF9A3C!important;box-shadow:inset 0 0 0 2px #FF9A3C;font-size:30px}
+html body .tecK.tecO:active,html body .tecK.tecO.tq{background:#F58321!important;color:#fff!important;box-shadow:none}
+html body .tecK.tecIg{background:#FF9A3C!important;color:#1F1F21!important;box-shadow:none}
+html body .tecK.tecIg:active,html body .tecK.tecIg.tq{background:#F58321!important;color:#fff!important}
+html body #tecOk button.b.bP{background:#FF9A3C!important;color:#1F1F21!important}
+html body #tecOk button.b.bP:active{background:#F58321!important;filter:none!important}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style id="layoutPadrao">
@@ -1157,7 +1183,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <body>
 <header class="np">
   <img src="data:image/png;base64,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" alt="Johnson Electric">
-  <h1 id="htit">Logística de Operação</h1>
+  <h1 id="htit">Logística de Operação</h1><small id="hVer" class="hVer"></small>
   
 </header>
 <main>
@@ -1235,13 +1261,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <div id="s-regras" class="esc card">
   <div class="tit">Configurações</div>
   <div id="rgVer"></div>
-  <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. Componente marcado no cadastro como embalagem lacrada pode ficar em qualquer nível liberado. O peso não trava: o mais pesado vai no nível mais baixo que tiver lugar e, sem lugar, vale o giro. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
-  <div id="rgResumo"></div>
-  <div id="rgNiveis"></div>
-  <label>Data de revalidação</label><input id="rgData" type="date">
-  <p><small>Quando chegar essa data, o aviso aparece sozinho no Início.</small></p>
-  <p><button class="b bP" onclick="salvarRegras()">Salvar regras</button></p>
-  <div id="rgMsg"></div>
+
   <div class="jnBox" id="rgRes">
     <p class="sjTit">Reserva por giro (motores)</p>
     <p><small>Cada motor com saída recente tem um bloco de posições perto de onde ele já está. Tamanho = saída média por semana ÷ quantidade por pallet (coluna Padrão do cadastro) + folga. O app recalcula sozinho uma vez por semana e, se um lote não couber, o bloco cresce na hora. Os blocos ficam na aba "Reserva por giro" da planilha.</small></p>
@@ -1370,6 +1390,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
     <button data-k="tend" onclick="ir('tend');xfLimpa()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="13" width="7" height="7" rx="1" stroke="#2E2E30"/><rect x="14.5" y="4" width="7" height="7" rx="1" stroke="#2E2E30"/><path d="M6 10V7.5h6M10 5.5l2 2-2 2" stroke="#F58321"/></svg>Transferência de endereço</button>
     <button data-k="desfazer" onclick="ir('desfazer')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F58321"/></svg>Movimentações</button>
     <button data-k="trein" onclick="abrirProc(3)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F58321"/></svg>Procedimento</button>
+    <button class="adm" data-k="rarm" onclick="ir('rarm');abrirRArm()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#2E2E30"/><path d="M7 8h6M7 12h4M7 16h6" stroke="#2E2E30"/><rect x="14" y="12" width="6" height="7" rx="1" stroke="#F58321"/><path d="M15.5 12v-1.5a1.5 1.5 0 0 1 3 0V12" stroke="#F58321"/></svg>Regras da área</button>
     <button data-k="reorg" onclick="ir('reorg');reorg()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M14 5l3 3-3 3" stroke="#2E2E30"/><path d="M20 16H7M10 13l-3 3 3 3" stroke="#F58321"/></svg>Reorganizar</button>
   </div>
   <div class="grpT" onclick="recolher(this)" data-g="abs"><span>Abastecimento de produção</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
@@ -1420,10 +1441,25 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <div id="tRes"></div>
 </div>
 
+<div id="s-rarm" class="esc card">
+  <div class="tit">Regras da área: Armazenamento</div>
+  <p class="sjTit">Bloquear e desbloquear posição</p>
+  <div class="cbxPh" data-id="rbCod" data-o='{"cam":1,"up":1,"enter":"rbBuscar()","ph":"Endereço (ex.: R02-B05-N01-LE)"}'></div>
+  <div id="rbRes"></div>
+  <div id="rbLista"></div>
+  <p class="sjTit" style="margin-top:18px">Regras de nível</p>
+  <p>Escolha o que cada nível pode receber. Motor é todo item cuja descrição começa com MOTOR. Componente marcado no cadastro como embalagem lacrada pode ficar em qualquer nível liberado. O peso não trava: o mais pesado vai no nível mais baixo que tiver lugar e, sem lugar, vale o giro. O endereçamento, a transferência e o Reorganizar seguem estas regras na hora.</p>
+  <div id="rgResumo"></div>
+  <div id="rgNiveis"></div>
+  <label>Data de revalidação</label><input id="rgData" type="date">
+  <p><small>Quando chegar essa data, o aviso aparece sozinho no Início.</small></p>
+  <p><button class="b bP" onclick="salvarRegras()">Salvar regras</button></p>
+  <div id="rgMsg"></div>
+</div>
+
 <div id="s-cpos" class="esc card">
   <div class="tit">Consultar posição</div>
   <div class="cbxPh" data-id="cpCod" data-o='{"cam":1,"up":1,"enter":"cposBuscar()","ph":"Endereço (ex.: R01-B02-N01-LE)"}'></div>
-  <p class="np"><button class="b bP" type="button" onclick="cposBuscar()">Pesquisar</button></p>
   <div id="cpRes"></div>
 </div>
 
@@ -1448,8 +1484,8 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 <div id="s-pesq" class="esc card">
   <div class="tit">Pesquisa de produto</div>
   <div class="cbxPh" data-id="pqCod" data-o='{"cam":1,"mic":1,"lista":1,"lembra":1,"enter":"pesqItem()","ph":"Código ou descrição do produto"}'></div>
-  <p class="lin pqBt"><button class="b bP" onclick="pesqItem()">Pesquisar</button><button class="b bS sec" onclick="pesqTudo()">Pesquisar tudo</button></p>
   <div id="pqRes"></div>
+  <p class="lkLin" id="pqTudoL"></p>
 </div>
 
 <div id="s-painel" class="esc"><div id="painel"></div></div>
@@ -1859,8 +1895,8 @@ html body main #invRes .invUrgT{color:#B42318;font-weight:700}
 
 <div id="s-cad" class="esc card">
   <div class="tit">Cadastro de itens (restrito)</div>
-  <div id="cSemCad"></div>
   <div class="cbxPh" data-id="cCod" data-o='{"cam":1,"mic":1,"lista":1,"lembra":1,"enter":"buscarCad()","ph":"Código ou descrição do produto"}'></div>
+  <p class="lkLin" id="cSemCad"></p>
   <label>Descrição</label><input id="cDesc">
   <div class="lin">
     <div><label>Qtd padrão por embalagem</label><input id="cPad" type="number" inputmode="decimal"></div>
@@ -2027,8 +2063,8 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=138,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
-function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
+var VER_TELA=140,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
 var FILA_SRV=[],FILA_T=0;
@@ -2082,19 +2118,35 @@ function avisoJan(t){perguntar(t,null,null,{so:1})}
    Vale para todo campo de número das telas de operação. No computador (sem toque) continua o teclado normal. */
 var TEC={inp:null,v:''};
 function tecAbrir(inp,op){var j=$('tecJan');if(!j){j=document.createElement('div');j.id='tecJan';j.className='np';
-  j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecKs">'+['1','2','3','4','5','6','7','8','9',',','0','⌫'].map(function(k){return '<div class="tecK" role="button" tabindex="0" data-k="'+k+'" aria-label="'+(k==='⌫'?'Apagar':k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
+  j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecKs">'+['1','2','3','×','4','5','6','−','7','8','9','+',',','0','⌫','='].map(function(k){var op='×−+='.indexOf(k)>=0;return '<div class="tecK'+(op?' tecO':'')+(k==='='?' tecIg':'')+'" role="button" tabindex="0" data-k="'+k+'" aria-label="'+({'⌫':'Apagar','×':'Vezes','−':'Menos','+':'Mais','=':'Igual'}[k]||k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
   document.body.appendChild(j);$('tecOk').innerHTML=botao('Confirmar','tecOk()','p');$('tecFundo').onclick=tecFecha;
-  j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){tecTecla(b.getAttribute('data-k'))})})}
+  j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){b.classList.add('tq');setTimeout(function(){b.classList.remove('tq')},140);tecTecla(b.getAttribute('data-k'))})})}
   op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
   $('tecTit').textContent=l||'Quantidade';tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
-function tecPinta(){$('tecVal').textContent=TEC.v||'0';$('tecVal').classList.toggle('vz',!TEC.v);var sb=$('tecSub'),f=TEC.op&&TEC.op.sub;if(sb){sb.innerHTML=f?f(nIn(TEC.v.replace(',','.'))):'';sb.hidden=!f}}
-function tecTecla(k){if(k==='⌫')TEC.v=TEC.v.slice(0,-1);else if(k===','){if(TEC.v.indexOf(',')<0)TEC.v=(TEC.v||'0')+','}else if(TEC.v.replace(',','').length<9)TEC.v=(TEC.v==='0'?'':TEC.v)+k;tecPinta();vib&&vib('tec')}
+/* 140 (15/11/2026): o teclado da quantidade virou calculadora (×, −, +, =), em tela escura. Ex.: 4 × 2.000 = 8.000.
+   O resultado aparece embaixo da conta; o Confirmar grava o resultado. Sem divisão (quase não se usa em quantidade). */
+var TEC_OPS='×−+';
+function tecConta(v){var t=String(v||'').replace(/[×−+]$/,''),parts=t.split(/([×−+])/),termos=[],sinal=1,prod=null;
+  for(var k=0;k<parts.length;k++){var x=parts[k];if(x==='×')continue;if(x==='+'||x==='−'){termos.push(sinal*(prod==null?0:prod));sinal=x==='+'?1:-1;prod=null;continue}
+    var n=parseFloat(String(x).replace(',','.'));if(isNaN(n))n=0;prod=(prod==null)?n:(parts[k-1]==='×'?prod*n:n)}
+  termos.push(sinal*(prod==null?0:prod));var r=termos.reduce(function(a,b){return a+b},0);return Math.round(r*1000)/1000}
+function tecTemOp(v){return /[×−+]/.test(String(v||'').replace(/^−/,''))}
+function tecNum(n){return String(n).replace('.',',')}
+function tecPinta(){$('tecVal').textContent=TEC.v||'0';$('tecVal').classList.toggle('vz',!TEC.v);var r=tecConta(TEC.v),sb=$('tecSub'),f=TEC.op&&TEC.op.sub,h='';
+  if(tecTemOp(TEC.v))h+='<span class="tecRes">= '+esc(numBR(r))+'</span>';if(f)h+=(h?'<br>':'')+f(r);if(sb){sb.innerHTML=h;sb.hidden=!h}}
+function tecTecla(k){var v=TEC.v,ult=v.slice(-1),num=v.split(/[×−+]/).pop();
+  if(k==='⌫')v=v.slice(0,-1);
+  else if(k==='='){if(tecTemOp(v))v=tecNum(tecConta(v))}
+  else if(TEC_OPS.indexOf(k)>=0){if(!v)return;if(TEC_OPS.indexOf(ult)>=0||ult===',')v=v.slice(0,-1);v+=k}
+  else if(k===','){if(num.indexOf(',')<0)v+=(num===''?'0':'')+','}
+  else if(num.replace(',','').length<9)v=(num==='0'?v.slice(0,-1):v)+k;
+  TEC.v=v;tecPinta();vib&&vib('tec')}
 function tecFecha(){var j=$('tecJan');if(j)j.classList.remove('on');TEC.inp=null;TEC.op=null}
 /* 134: op.valida devolve o erro (o teclado não fecha); op.ok faz a ação logo depois do Confirmar (ex.: grava o abastecimento) */
-function tecOk(){var i=TEC.inp,op=TEC.op||{},v=TEC.v.replace(',','.');if(op.valida){var er=op.valida(nIn(v));if(er){$('tecSub').innerHTML='<b class="tecEr">'+esc(er)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}}
+function tecOk(){var i=TEC.inp,op=TEC.op||{},v=String(tecConta(TEC.v));if(!TEC.v)v='';if(op.valida){var er=op.valida(nIn(v));if(er){$('tecSub').innerHTML='<b class="tecEr">'+esc(er)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}}
   if(i){i.value=v;i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}))}tecFecha();if(op.ok)op.ok()}
 document.addEventListener('keydown',function(e){var j=$('tecJan');if(!j||!j.classList.contains('on'))return;var k=e.key;
-  if(/^[0-9]$/.test(k))tecTecla(k);else if(k===','||k==='.')tecTecla(',');else if(k==='Backspace')tecTecla('⌫');else if(k==='Enter')tecOk();else if(k==='Escape')tecFecha();else return;e.preventDefault()});
+  if(/^[0-9]$/.test(k))tecTecla(k);else if(k===','||k==='.')tecTecla(',');else if(k==='*'||k==='x'||k==='X')tecTecla('×');else if(k==='-')tecTecla('−');else if(k==='+')tecTecla('+');else if(k==='=')tecTecla('=');else if(k==='Backspace')tecTecla('⌫');else if(k==='Enter')tecOk();else if(k==='Escape')tecFecha();else return;e.preventDefault()});
 window.addEventListener('popstate',function(){var j=$('tecJan');if(j&&j.classList.contains('on'))tecFecha()});
 document.addEventListener('click',function(e){var i=e.target&&e.target.closest&&e.target.closest('main .esc input[type=number]');if(!i||i.readOnly||i.disabled||MODO==='tv'||document.body.classList.contains('semToque'))return;
   if(!('ontouchstart' in window||navigator.maxTouchPoints>0))return;e.preventDefault();i.blur();tecAbrir(i)},true);
@@ -2140,6 +2192,12 @@ function botaoCam(acao,oQue,extra){return '<button type="button" class="b bP bCa
 /* 138 (15/11/2026): peça campoBusca(id, {cam, mic, lista, enter, ph, lembra}) — o campo de pesquisa padrão:
    ícones de câmera e microfone dentro do campo, no canto direito, em laranja; em uso, laranja fluorescente.
    lista: tocar no campo abre a lista de produtos; lembra: a lista abre com o que já está no campo (para trocar só o final). */
+/* 139 (15/11/2026): peça linkJan(texto, ação) — link pequeno, sem fundo, no estilo do Detalhes. abrirJan(título, html) abre a janela
+   que sobe por cima (a mesma do Detalhes), com X para fechar. Usada nos Detalhes, em Cadastros para completar e em Ver todo o estoque. */
+function linkJan(t,acao){return '<button type="button" class="lkJ" onclick="'+esc(acao)+'">'+esc(t)+' ›</button>'}
+function abrirJan(tit,html){var j=$('detJan');if(!j){j=document.createElement('div');j.id='detJan';j.className='detJan';j.onclick=function(e){if(e.target===j)j.classList.remove('on')};document.body.appendChild(j)}
+  j.innerHTML='<div class="djCx"><div class="djTop"><b>'+esc(tit)+'</b><button type="button" class="djX" onclick="fecharJan()" aria-label="Fechar">✕</button></div>'+html+'</div>';j.classList.add('on')}
+function fecharJan(){var j=$('detJan');if(j)j.classList.remove('on')}
 function campoBusca(id,o){o=o||{};var n=(o.cam?1:0)+(o.mic?1:0),k=n,h='<div class="cbx c'+n+'"><input id="'+id+'" autocomplete="off"'+(o.lista?' data-lista="1"':'')+(o.lembra?' data-lembra="1"':'')+(o.ph?' placeholder="'+esc(o.ph)+'" aria-label="'+esc(o.ph)+'"':'')+(o.up?' style="text-transform:uppercase"':'')+(o.enter?' onkeydown="if(event.key===\'Enter\'){'+esc(o.enter)+'}"':'')+'>';
   if(o.cam)h+='<button type="button" class="cam cbxB cbxCam p'+(k--)+'" aria-label="Ler a etiqueta pela câmera" onclick="cbxCam(this,\''+id+'\')">'+ICO_CAM+'</button>';
   if(o.mic)h+='<button type="button" class="cam cbxB mic p'+(k--)+'" aria-label="Falar o código" onclick="ouvir(\''+id+'\')">'+ICO_MIC+'</button>';
@@ -2149,7 +2207,7 @@ function cbxApaga(){document.querySelectorAll('.cbxB.cbxCam.on').forEach(functio
 /* monta os campos de pesquisa que estão no HTML fixo como <div class="cbxPh" data-id data-o> */
 function montarCampos(){document.querySelectorAll('.cbxPh').forEach(function(d){var o={};try{o=JSON.parse(d.getAttribute('data-o')||'{}')}catch(e){}d.outerHTML=campoBusca(d.getAttribute('data-id'),o)})}
 function botaoMic(campo){return '<button type="button" class="b bS bMic mic" onclick="ouvir(\''+campo+'\')">'+ICO_MIC+'<span>Falar o código</span></button>'}
-try{montarCampos()}catch(e){}
+try{montarCampos();var pt=$('pqTudoL');if(pt)pt.innerHTML=linkJan('Ver todo o estoque','pesqTudo()')}catch(e){}
 function conclusao(tit,linhas,contTxt,cont,volta){setTimeout(okGrande,0);var h='',g=[],fl=function(){if(g.length)h+='<div class="cGrid">'+g.join('')+'</div>';g=[]};
   var pc=null,px=[];
   linhas.forEach(function(l){if(l[0]==='_peca'){fl();pc=l[1];h+='<div class="cPeca">\u0001</div>';return}if(l[2]){fl();h+='<div class="cBig">'+l[1]+'</div>';return}var tx=String(l[1]==null?'':l[1]);if(pc!=null){px.push([l[0],tx]);return}g.push('<div class="cBx'+(tx.length>12?' cW':'')+'"><span>'+esc(l[0])+'</span><b>'+esc(tx)+'</b></div>')});fl();
@@ -2195,7 +2253,7 @@ var ATAL_MAX=4,ATAL_PAD=['guardar','tirar'];
 function atalhos(){try{var l=JSON.parse(LS.getItem('jeAtal')||'null');if(Array.isArray(l))return l}catch(e){}return ATAL_PAD.slice()}
 function cartao(k){var b=document.querySelector('.menu button[data-k="'+k+'"]');if(!b||b.hidden)return null;if(b.classList.contains('adm')&&LS.getItem('jeAdm')!=='1')return null;return b}
 
-var ICO_LINHA={cpos:'<rect x="3" y="4" width="11" height="15" rx="1.5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/>',guardar:'<path d="M12 3v11m-4-4l4 4 4-4M4 17v3h16v-3"/>',tirar:'<path d="M12 15V4m-4 4l4-4 4 4M4 17v3h16v-3"/>',consulta:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
+var ICO_LINHA={rarm:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h6M7 12h4"/><rect x="14" y="12" width="6" height="7" rx="1"/>',cpos:'<rect x="3" y="4" width="11" height="15" rx="1.5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/>',guardar:'<path d="M12 3v11m-4-4l4 4 4-4M4 17v3h16v-3"/>',tirar:'<path d="M12 15V4m-4 4l4-4 4 4M4 17v3h16v-3"/>',consulta:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
 desfazer:'<path d="M4 8h13M20 16H7M14 5l3 3-3 3M10 13l-3 3 3 3"/>',trf:'<path d="M4 8h13M20 16H7M14 5l3 3-3 3M10 13l-3 3 3 3"/>',painel:'<path d="M4 20h16M6 16l4-5 4 3 5-7"/>',trein:'<path d="M12 5l10 5-10 5L2 10z"/><path d="M6 12v5c0 2 12 2 12 0v-5"/>',
 cad:'<path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/>',reorg:'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',cont:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 10l2 2 4-4M9 16h6"/>',
 eq:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 14c3 0 6 2 6 5"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
@@ -2325,7 +2383,7 @@ var QR_ESP='',QR_ESP_PROX='';
    Três jeitos de achar o produto: digitar (lista inteligente), ler a etiqueta pela câmera ou falar.
    A voz só preenche a pesquisa: código certo → pesquisa direto; senão abre a lista com o que foi falado, e a pessoa toca no produto. */
 var VOZ=null,VOZ_ACAO={pqCod:function(){pesqItem()},tCod:function(){tirar()}},AUTO_ACAO=VOZ_ACAO;
-AUTO_ACAO.cCod=function(){buscarCad()};AUTO_ACAO.cpCod=function(){cposBuscar()};   /* 137: no Cadastro, escolher na lista ou ler a etiqueta já abre o cadastro (sem botão Editar) */
+AUTO_ACAO.cCod=function(){buscarCad()};AUTO_ACAO.cpCod=function(){cposBuscar()};AUTO_ACAO.rbCod=function(){rbBuscar()};   /* 137: no Cadastro, escolher na lista ou ler a etiqueta já abre o cadastro (sem botão Editar) */
 /* Voz (05/11/2026, revisado): números por extenso viram dígitos e letras faladas viram letras ("xis um pê" -> X1P) */
 var VOZ_NUM={zero:0,um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,meia:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,treze:13,quatorze:14,catorze:14,quinze:15,dezesseis:16,dezessete:17,dezoito:18,dezenove:19,vinte:20,trinta:30,quarenta:40,cinquenta:50,sessenta:60,setenta:70,oitenta:80,noventa:90,cem:100,cento:100,duzentos:200,trezentos:300,quatrocentos:400,quinhentos:500,seiscentos:600,setecentos:700,oitocentos:800,novecentos:900,mil:1000};
 var VOZ_LET={a:'A',be:'B',bê:'B',ce:'C',cê:'C',de:'D',dê:'D',e:'E',efe:'F',ge:'G',gê:'G',aga:'H',i:'I',jota:'J',ka:'K',ca:'K',ele:'L',eme:'M',ene:'N',o:'O',pe:'P',pê:'P',que:'Q',quê:'Q',erre:'R',esse:'S',te:'T',tê:'T',u:'U',ve:'V',vê:'V',dablio:'W',dabliu:'W',xis:'X',ipsilon:'Y',ze:'Z',zê:'Z'};
@@ -2598,8 +2656,7 @@ var END_JT=null;
 var MOT_FIS=['Estrutura danificada','Posição obstruída','O pallet não cabe'];
 function outraPos(i,end){var ops=[{t:'Usar uma posição vazia que eu estou vendo',a:function(){escolherPos(i,end)}}];
   if(END_JT&&END_JT.end&&!document.querySelector('#gRes .endCard.ecJ'))ops.push({t:'Juntar em '+endTx(END_JT.end),a:function(){naoUsarJuntar(i)}});
-  ops.push({t:'Posição danificada ou obstruída',a:function(){probPos(i,end)}});
-  escolher('Escolher outra posição',ops)}
+  escolher('Escolher outra posição',ops)}   /* 140: bloquear posição saiu do operador; quem bloqueia é o administrador nas Regras da área */
 function probPos(i,end){escolher('Qual é o problema?',MOT_FIS.map(function(m){return {t:m,a:function(){naoUsarMot(i,end,m,0)}}}).concat([{t:'Outro motivo',a:function(){naoUsarOutro(i,end,0)}}]))}
 /* 12/11/2026 (versão 116): depois de "Não dá para usar", o operador pode escolher uma posição livre perto dele.
    Ele lê o QR Code da posição; o sistema confere (livre, nível certo, não guardada para outro) e já grava. */
@@ -2614,9 +2671,10 @@ var FANT={};
 function fantPinta(i,ant,r){FANT[i]={ant:ant,end:r.end};var c=$('ec'+i),ee=c&&c.querySelector('.endE');if(c)c.classList.add('fantOn');if(ee)ee.innerHTML=endCor(r.end);
   $('es'+i).textContent='';vib('erro');
   $('eb'+i).innerHTML=aviso('at','Pelo sistema, tem material nesta posição:')+(r.regs||[]).map(function(x){return cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(x.qtd,x.item),x.data,nfDoLote(x.lote),1)}).join('')+
-    botao('Confirmo que está vazia','fantConf('+i+')','p')+botao('Voltar','fantVolta('+i+')','s',{cls:'opc'});
+    botao('Confirmo que está vazia','fantConf('+i+')','p')+botao('Ler outra posição','fantOutra('+i+')','s',{cls:'opc'});   /* 140: sem segundo Voltar na tela */
   try{fitEnd($('gRes'))}catch(e){}}
 function fantVolta(i){var f=FANT[i];if(!f)return;var c=$('ec'+i),ee=c&&c.querySelector('.endE');if(c)c.classList.remove('fantOn');if(ee)ee.innerHTML=endCor(f.ant);$('eb'+i).innerHTML=ebLer(i,f.ant);delete FANT[i];try{fitEnd($('gRes'))}catch(e){}}
+function fantOutra(i){var f=FANT[i];if(!f)return;var a=f.ant;fantVolta(i);escolherPos(i,a)}
 function fantConf(i){var f=FANT[i];if(!f)return;
   chamar('apiPosFantasma',[quem(),f.end,END_ITEM,f.ant],function(r){
     if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');vib('erro');return}
@@ -2734,7 +2792,17 @@ function naoUsarMot(i,end,mot,dev){if(!dev){var jp=$('jtPre');if(jp)jp.innerHTML
    Versão 127: vale também com vários lotes e com mais de um pallet (o juntar fica no lugar do 1º). */
 function jaTemN1(r){var pre=$('jtPre');if(!pre||MODO==='tv'||!r.podeN1||!(r.posicoes||[]).length)return;
   chamar('apiSugJuntar',[quem(),r.codigo,''],function(s){if(!s||!s.ok||!s.lista||!s.lista.length||!$('jtPre'))return;
-    END_JT=s.lista[0]})}
+    END_JT=s.lista[0];if((r.posicoes||[]).length===1)juntarPrimeiro()})}
+/* 140 (15/11/2026): com o mesmo código já no N01, o app sugere primeiro juntar lá (consolidar, prática dos WMS); a posição livre
+   vira a segunda opção. O app não sabe se a posição está cheia: se não couber, o operador toca em Escolher outra posição.
+   Vale para um pallet por vez; com vários pallets, o juntar continua como opção. */
+var END_JPR='';
+function juntarPrimeiro(){var c0=$('ec0');if(!c0||c0.classList.contains('feito')||document.querySelector('#gRes .endCard.ecJ'))return;
+  END_JPR=String((c0.querySelector('.endE')||{}).textContent||'').replace(/\s/g,'');if(!END_JPR)return;
+  c0.classList.add('ecOff');naoUsarJuntar(0);var b=$('jnRes'),i=b?Number(b.getAttribute('data-i')):NaN;
+  if(!isNaN(i)&&$('eb'+i))$('eb'+i).insertAdjacentHTML('beforeend',botao('Escolher outra posição','juntarOutra()','s',{cls:'opc'}));GUIA.k='';agendarGuia('mut')}
+function juntarOutra(){escolher('Escolher outra posição',[{t:'Ir para a posição livre '+END_JPR,a:function(){juntarDesfaz()}},{t:'Usar uma posição vazia que eu estou vendo',a:function(){juntarDesfaz();escolherPos(0,END_JPR)}}])}
+function juntarDesfaz(){var b=$('jnRes');if(b)b.innerHTML='';var c0=$('ec0');if(!c0)return;c0.classList.remove('ecOff','feito','trocada');$('es0').textContent='';$('es0').className='endSt';$('eb0').innerHTML=ebLer(0,END_JPR);GUIA.k='';agendarGuia('mut');try{fitEnd($('gRes'))}catch(e){}}
 function jaTemJuntar(){var pre=$('jtPre');if(pre)pre.innerHTML='';var c=$('ec0');if(!c||c.classList.contains('feito'))return;naoUsarJuntar(0)}
 function naoUsarJuntar(i){var pre=$('jtPre');if(pre)pre.innerHTML='';var c=$('ec'+i);c.classList.add('feito','trocada');$('es'+i).textContent='Juntar no N1';$('es'+i).className='endSt vz';$('eb'+i).innerHTML='';
   END_QTDS[document.querySelectorAll('#gRes .endCard').length]=END_QTDS[i];juntarN1()}
@@ -2769,7 +2837,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(PosFantasma|PosSemMaterial|InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(RegBloquear|RegDesbloquear|PosFantasma|PosSemMaterial|InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;clearTimeout(PROC.w);PROC.w=setTimeout(procSolta,LIM_GRAVA+10000);var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);clearTimeout(PROC.w);document.body.classList.remove('proc')}}
 /* 13/11/2026 (versão 122): segurança extra. Se a bolinha passar do tempo-limite, ela some e o contador zera (não passa para as outras telas) */
@@ -2806,7 +2874,7 @@ function ridChave(t){var h1=5381,h2=52711;for(var i=0;i<t.length;i++){var c=t.ch
 function ridCarregar(){if(RID_LIDO)return;RID_LIDO=true;try{var o=JSON.parse(LS.getItem('jeRid')||'{}');Object.keys(o).forEach(function(k){if(o[k]&&o[k].id&&!RID_PEND[k])RID_PEND[k]=o[k]})}catch(e){}}
 function ridSalvar(){try{var ag=Date.now(),ks=Object.keys(RID_PEND).filter(function(k){return ag-RID_PEND[k].t<RID_VALE}).sort(function(a,b){return RID_PEND[b].t-RID_PEND[a].t}).slice(0,30),o={};ks.forEach(function(k){o[k]=RID_PEND[k]});RID_PEND=o;LS.setItem('jeRid',JSON.stringify(o))}catch(e){}}
 function novoRid(){var s='';try{var a=new Uint8Array(12);crypto.getRandomValues(a);for(var i=0;i<a.length;i++)s+=('0'+a[i].toString(16)).slice(-2)}catch(e){}return s||(Date.now().toString(36)+Math.random().toString(36).slice(2,12))}
-var LIMPAR={cpos:['cpCod','cpRes'],guardar:['gCod','gRes','gInf','mInf','gRec','gNF','gQU'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
+var LIMPAR={rarm:['rbCod','rbRes'],cpos:['cpCod','cpRes'],guardar:['gCod','gRes','gInf','mInf','gRec','gNF','gQU'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
 var PEND=null;
 function hojeStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function segFeito(){return MODO==='tv'||LS.getItem('jeSeg')===nomeUsu()+'|'+hojeStr()}
@@ -4621,7 +4689,16 @@ function devOutraPos(msgA){chamar('apiGuardar',[DEV.tv.cod,1,quem(),true],functi
   var p=(r.posicoes||[])[0];if(!p){$('dvB').innerHTML=aviso('er','Não há posição livre para este produto. Chame o líder.');return}
   DEV.orig=false;DEV.end=p.end;devPosPinta(aviso('at',msgA||'Guarde nesta posição livre.'))})}
 function devPosPinta(extra){$('devBox').innerHTML='<div class="passo" id="dv3">'+endBig(DEV.end)+devPeca()+(extra||'')+'<div id="dvB">'+
-  botaoCam('devLerPos()','o QR Code da posição')+botao('Escolher outra posição',DEV.orig?'devOutraPos()':"probPosDev('"+DEV.end+"')",'s',{cls:'opc'})+'</div></div>'}
+  botaoCam('devLerPos()','o QR Code da posição')+botao('Escolher outra posição',DEV.orig?'devOutraPos()':'devOutra()','s',{cls:'opc'})+'</div></div>'}
+/* 140: na Devolução também não se bloqueia mais posição; o operador usa uma posição vazia que está vendo */
+function devOutra(){escolher('Escolher outra posição',[{t:'Usar uma posição vazia que eu estou vendo',a:devEscPos}])}
+function devEscPos(){QR_ESP_PROX='pos';lerQR('',function(lido){chamar('apiPosEscolha',[quem(),lido,DEV.tv.cod,DEV.end],function(r){
+  if(r&&r.fantasma){$('dvB').innerHTML=aviso('at','Pelo sistema, tem material na posição '+r.end+':')+(r.regs||[]).map(function(x){return cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(x.qtd,x.item),x.data,nfDoLote(x.lote),1)}).join('')+
+    botao('Confirmo que está vazia',"devFantConf('"+r.end+"')",'p')+botao('Ler outra posição','devEscPos()','s',{cls:'opc'});vib('erro');return}
+  if(!r||!r.ok){$('dvB').insertAdjacentHTML('afterbegin',aviso('er',(r&&r.msg)||'Não deu para usar esta posição.'));vib('erro');return}devUsar(r.end)})})}
+function devFantConf(end){chamar('apiPosFantasma',[quem(),end,DEV.tv.cod,DEV.end],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');vib('erro');return}devUsar(r.end)})}
+function devUsar(end){DEV.end=end;DEV.orig=false;var t=DEV.tv;
+  chamar('apiEntrada',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),data:t.data,rg:t.rg,nf:t.nf,devol:true}],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}devConcl(t,r)})}
 function probPosDev(end){escolher('Qual é o problema?',MOT_NAO_USAR.map(function(m){return {t:m,a:function(){naoUsarMot(0,end,m,1)}}}).concat([{t:'Outro motivo',a:function(){naoUsarOutro(0,end,1)}}]))}
 function devLerPos(){QR_ESP_PROX='pos';lerQR('',function(lido){if(!mesmaPos(lido,DEV.end)){mostrarErro('Posição errada! Você leu '+lido+', mas o material vai em '+DEV.end+'.');return}
   var t=DEV.tv;if(DEV.orig){chamar('apiDevolver',[{quem:quem(),end:DEV.end,codigo:t.cod,qtd:DEV.q,etq:nIn(t.qtd),rg:t.rg,nf:t.nf}],function(r){
@@ -4816,8 +4893,33 @@ function cposPinta(){var r=CPOS;if(!r)return;var h='<div class="passo">'+endBig(
 function cposVazia(){var r=CPOS;if(!r)return;perguntar('Confirma que não tem nada na posição '+r.end+'?',function(){
   chamar('apiPosSemMaterial',[quem(),r.end],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para registrar.');vib('erro');return}
     vib('ok');$('cpRes').innerHTML=aviso('ok',x.msg)+blocoFim("contTela('cpos','cpCod')")})},null,{ok:'Sim, não tem nada',no:'Voltar'})}
+/* ---------- 140 (15/11/2026): REGRAS DA ÁREA — BLOQUEIOS (só o administrador) ----------
+   Lê o QR (ou digita) a posição: bloqueia (esta posição, o nível do bloco ou o bloco inteiro, com motivo) ou desbloqueia.
+   Desbloquear com saldo: o material está lá (volta ocupada) ou manda conferir no Inventário. Sem saldo: pergunta se tem material. */
+var RB=null,MOT_BLOQ=['Hidrante','Túnel','Estrutura danificada'];
+function abrirRArm(){rgNivPinta();rbLista()}
+function rbBuscar(){var e=String(val('rbCod')||'').trim().toUpperCase().replace(/\s+/g,'');if(!e){$('rbRes').innerHTML=aviso('er','Leia o QR Code da posição ou digite o endereço.');return}
+  chamar('apiConsPos',[quem(),e],function(r){if(!r||!r.ok){$('rbRes').innerHTML=aviso('er',(r&&r.msg)||'Não deu para consultar.');vib('erro');return}RB=r;rbPinta()})}
+function rbPinta(){var r=RB;if(!r)return;var bq=r.status==='Bloqueado'||r.status==='Desativado',h='<div class="passo">'+endBig(r.end);
+  h+=bq?aviso('at','Bloqueada'+(r.motivo?': '+String(r.motivo).replace(/^Endereçamento: /,''):'')+'.'):aviso('ok',r.status==='Ocupado'?'Ocupada.':'Livre.');
+  h+=(r.regs||[]).map(function(x){return cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(x.qtd,x.item),x.data,nfDoLote(x.lote),1)}).join('');
+  h+=bq?botao('Desbloquear','rbDesb()','p'):botao('Bloquear','rbBloq()','d');
+  $('rbRes').innerHTML=h+'</div>';try{fitEnd($('rbRes'))}catch(e){}}
+function rbBloq(){var r=RB;if(!r)return;var m=r.end.match(/^(R\d{2}-B\d{2})-(N\d{2})/);
+  escolher('O que bloquear?',[{t:'Só a posição '+r.end,a:function(){rbMot('pos')}},{t:'O nível '+(m?m[1]+'-'+m[2]:'')+' (LE e LD)',a:function(){rbMot('niv')}},{t:'O bloco '+(m?m[1]:'')+' inteiro',a:function(){rbMot('blo')}}])}
+function rbMot(esc_){setTimeout(function(){escolher('Qual é o motivo?',MOT_BLOQ.map(function(m){return {t:m,a:function(){rbBloqGrava(esc_,m)}}}).concat([{t:'Outro motivo',a:function(){setTimeout(function(){perguntar('Qual é o motivo?',function(m){if(String(m||'').trim())rbBloqGrava(esc_,m)},null,{campo:1,ok:'Bloquear'})},250)}}]))},250)}
+function rbBloqGrava(esc_,mot){chamar('apiRegBloquear',[quem(),RB.end,esc_,mot],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para bloquear.');vib('erro');return}vib('ok');avisoJan(x.msg);rbBuscar();rbLista()})}
+function rbDesb(){var r=RB;if(!r)return;var tem=(r.regs||[]).some(function(x){return x.item})&&r.status==='Bloqueado';
+  if(tem){escolher('Desbloquear '+r.end,[{t:'O material está lá: desbloquear',a:function(){rbDesbGrava('conf')}},{t:'Mandar para o Inventário conferir',a:function(){rbDesbGrava('inv')}}]);return}
+  if(r.status==='Desativado'){rbDesbGrava('livre');return}
+  perguntar('Tem material na posição '+r.end+'?',function(){rbDesbGrava('mat')},function(){rbDesbGrava('livre')},{ok:'Sim, tem material',no:'Não, está vazia'})}
+function rbDesbGrava(modo){chamar('apiRegDesbloquear',[quem(),RB.end,modo],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para desbloquear.');vib('erro');return}vib('ok');avisoJan(x.msg);rbBuscar();rbLista()})}
+function rbLista(){var b=$('rbLista');if(!b)return;chamar('apiRegBloqLista',[quem()],function(r){if(!r||!r.ok){b.innerHTML='';return}
+  if(!r.lista.length){b.innerHTML='<p class="rcDica">Nenhuma posição bloqueada.</p>';return}
+  b.innerHTML='<p class="sjTit">Bloqueadas ('+r.lista.length+')</p><div class="jnLst">'+r.lista.map(function(x){var e=esc(x.end);
+    return '<button type="button" class="cam sjIt" onclick="$(\'rbCod\').value=\''+e+'\';rbBuscar();window.scrollTo({top:0,behavior:\'smooth\'})"><b>'+e+'</b><small>'+esc(x.motivo||'Sem motivo')+(x.item?' · tem '+esc(x.item):'')+(x.quem?' · '+esc(x.quem)+' em '+esc(x.quando):'')+'</small></button>'}).join('')+'</div>'})}
 /* ---------- POSIÇÃO (QR Code) ---------- */
-function abrirPos(end){
+function abrirPos(end){ir('cpos');var c=$('cpCod');if(c)c.value=String(end||'').toUpperCase();cposBuscar();return;   /* 140: a tela Posição escondida saiu; tudo de posição fica na Consultar posição */
   ir('pos'); $('pCab').innerHTML='Carregando...'; $('pAcoes').innerHTML='';RES_FIM="ir('menu')";
   [].forEach.call(document.querySelectorAll('.acT'),function(e){e.innerHTML=''});
   chamar('apiPosicao',[end],function(r){
@@ -5080,7 +5182,9 @@ var RG_TIPOS=[];
 /* Reserva por giro (05/11/2026) */
 function infoReservas(){if(!$('rgResInfo'))return;TOQUE.el=null;chamar('apiBlocosInfo',[quem()],function(r){if(!r||!r.ok){$('rgRes').hidden=true;return}$('rgRes').hidden=false;$('rgFolga').value=r.folga;$('rgResInfo').textContent=r.em?'Último cálculo: '+r.em+' · folga '+r.folga+'%':'Ainda não foi calculado. Toque em Recalcular agora (ou ele calcula sozinho no próximo endereçamento).'})}
 function recalcReservas(){chamar('apiRecalcBlocos',[quem(),val('rgFolga')],function(r){$('rgResMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);if(r.ok)infoReservas()})}
-function abrirRegras(){pintaVer();$('rgMsg').innerHTML='';if($('rgDesRes'))$('rgDesRes').innerHTML='';if($('rgSemGiroRes'))$('rgSemGiroRes').innerHTML='';$('rgNiveis').innerHTML='Carregando...';infoReservas();if($('rgResMsg'))$('rgResMsg').innerHTML='';
+function abrirRegras(){pintaVer();if($('rgMsg'))$('rgMsg').innerHTML='';if($('rgDesRes'))$('rgDesRes').innerHTML='';if($('rgSemGiroRes'))$('rgSemGiroRes').innerHTML='';infoReservas();if($('rgResMsg'))$('rgResMsg').innerHTML='';rgNivPinta()}
+/* 140: regras de nível agora ficam nas Regras da área do Armazenamento */
+function rgNivPinta(){if(!$('rgNiveis'))return;$('rgNiveis').innerHTML='Carregando...';
   chamar('apiRegras',[quem()],function(r){
     if(!r.ok){$('rgNiveis').innerHTML=msg('erro',r.msg);return}
     RG_TIPOS=r.tipos;$('rgData').value=r.revalida||'';
@@ -5090,7 +5194,7 @@ function abrirRegras(){pintaVer();$('rgMsg').innerHTML='';if($('rgDesRes'))$('rg
     $('rgNiveis').innerHTML=h})}
 function salvarRegras(){var niv={};for(var n=1;$('rg'+n);n++)niv[n]=$('rg'+n).value;
   $('rgMsg').innerHTML='Salvando...';
-  chamar('apiSalvarRegras',[quem(),niv,$('rgData').value],function(r){$('rgMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);if(r.ok)abrirRegras();setTimeout(function(){},0)})}
+  chamar('apiSalvarRegras',[quem(),niv,$('rgData').value],function(r){$('rgMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);if(r.ok)rgNivPinta()})}
 
 /* ---------- CADASTRO DE ITENS ---------- */
 var FOTO='',FOTO2='';
@@ -5304,7 +5408,7 @@ document.addEventListener('keydown',function(ev){if(!document.body.classList.con
   else if(ev.key==='Enter'&&LS_POS>=0&&L[LS_POS]){ev.preventDefault();L[LS_POS].click()}});
 
 /* ---------- PESQUISA DE PRODUTO (Abastecimento): onde está, total e primeiro do FIFO ---------- */
-function pqDetB(c){return '<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(c).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>'}
+function pqDetB(c){return '<div class="infDet">'+linkJan('Detalhes',"verDetItem('"+String(c).toUpperCase().replace(/'/g,'')+"')")+'</div>'}
 /* 137 (15/11/2026): o produto aparece mesmo sem posição (saldo zero), e sempre com Detalhes, que traz o cadastro inteiro */
 function pqBloco(r){var n=(r.lista||[]).length,desc=r.desc||(ITMAP[String(r.codigo).toUpperCase()]||[])[1]||'';
   var h='<div class="pqIt"><div class="pqCab"><b>'+esc(r.codigo)+'</b><span>'+esc(desc)+'</span><small>'+(n?'Total: <b>'+esc(String(r.total))+'</b> · '+n+' posição(ões)':'Saldo: <b>0</b> · Sem posição no porta-pallets')+'</small>'+pqDetB(r.codigo)+'</div>';
@@ -6056,11 +6160,12 @@ function verSemGiro(){$('rgSemGiroRes').innerHTML='Carregando...';chamar('apiSem
   r.lista.forEach(function(x){h+='<tr><td>'+esc(x.cod)+'</td><td>'+esc(x.desc)+'</td><td>'+esc(x.sit)+'</td></tr>'});
   $('rgSemGiroRes').innerHTML=h+'</table>'})}
 /* Lidos sem cadastro: aparecem no Cadastro de itens para o administrador completar */
+/* 139: Cadastros para completar virou um link pequeno (peça linkJan) embaixo da pesquisa; a lista abre numa janela */
+var SEMCAD=[];
 function semCadLista(){var b=$('cSemCad');if(!b)return;if(LS.getItem('jeAdm')!=='1'){b.innerHTML='';return}TOQUE.el=null;
-  chamar('apiSemCad',[quem()],function(r){if(!r||!r.ok||!r.lista.length){b.innerHTML='';return}
-    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Lidos sem cadastro e cadastros simples feitos pelos operadores (só o código). Toque no código para completar.</small><br>'+
-      r.lista.map(function(x){return ''+botao(''+esc(x.cod)+'','limparCad();$(\'cCod\').value=\''+esc(x.cod).replace(/'/g,'')+'\';buscarCad(1)','s',{cls:'sec'})+''}).join('')+
-      '<br><small>'+r.lista.map(function(x){return esc(x.cod)+(x.simples?' (cadastro simples'+(x.lac?', pode subir':x.motor?', motor':', nível 1')+')':' (sem cadastro)')+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
+  chamar('apiSemCad',[quem()],function(r){SEMCAD=(r&&r.ok&&r.lista)||[];b.innerHTML=SEMCAD.length?linkJan('Cadastros para completar ('+SEMCAD.length+')','semCadJan()'):''})}
+function semCadJan(){abrirJan('Cadastros para completar','<p class="rcDica">Lidos sem cadastro e cadastros simples feitos pelos operadores. Toque no código para completar.</p><div class="jnLst">'+
+  SEMCAD.map(function(x){var c=esc(x.cod).replace(/'/g,'');return '<button type="button" class="sjIt" onclick="fecharJan();limparCad();$(\'cCod\').value=\''+c+'\';buscarCad(1)"><b>'+esc(x.cod)+'</b><small>'+(x.simples?'Cadastro simples'+(x.lac?', pode subir':x.motor?', motor':', nível 1'):'Sem cadastro')+' · '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')+'</small></button>'}).join('')+'</div>')}
 
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
