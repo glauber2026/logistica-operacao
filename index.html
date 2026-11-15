@@ -575,6 +575,31 @@ html body .tit button.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.setaV.seta
 .dtG small{display:block;font-size:13px;font-weight:600;letter-spacing:0;color:#5B6270}
 .dtB{font-size:20px;font-weight:800}
 .verTx{text-align:center;font-size:13px;color:#8A909C;margin-top:14px}
+
+/* ---- 138 (15/11/2026): peça campoBusca — câmera e microfone como ícones laranja dentro do campo, na mesma linha;
+   em uso ficam laranja fluorescente. Usada na Pesquisa de produto, no Cadastro de itens e na Consultar posição. ---- */
+.cbx{position:relative;margin:4px 0 10px}
+html body main .cbx>input{width:100%;padding-right:98px!important;font-size:18px!important;padding-top:14px!important;padding-bottom:14px!important}
+html body main .cbx.c1>input{padding-right:54px!important}
+html body main .cbx.c0>input{padding-right:14px!important}
+html body main .cbx>button.cbxB.cbxB.cbxB{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;width:44px!important;height:42px!important;min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;border-radius:12px!important;background:transparent!important;color:#F58321!important;box-shadow:none!important;display:flex!important;align-items:center;justify-content:center;filter:none!important}
+html body main .cbx>button.cbxB.cbxB.cbxB svg{width:25px!important;height:25px!important;margin:0!important}
+html body main .cbx>button.cbxB.cbxB.cbxB:active{background:#0000000F!important;transform:translateY(-50%)!important}
+html body main .cbx>button.cbxB.cbxB.cbxB.on{background:#FF9A3C!important;color:#fff!important;box-shadow:0 0 0 3px #FF9A3C40,0 0 14px #FF9A3C!important}
+html body main .cbx>button.cbxB.cbxB.cbxB.p1{right:4px!important}
+html body main .cbx>button.cbxB.cbxB.cbxB.p2{right:50px!important}
+html body main .cbx>button.cbxB[hidden]{display:none!important}
+html body main .cbx:has(button.mic[hidden])>input{padding-right:54px!important}
+html body main .cbx>button.lsSeta{display:none!important}
+/* resultado da Pesquisa de produto maior, principalmente o código */
+html body main #pqRes .pqCab b{font-size:22px!important;letter-spacing:.3px}
+html body main #pqRes .pqCab span{font-size:16px!important}
+html body main #pqRes .pqCab small{font-size:15px!important}
+html body main #pqRes .pqL b{font-size:18px!important}
+html body main #pqRes .pqL small{font-size:14px!important}
+/* 138: saldo fantasma no Endereçar — enquanto confirma, o cartão do produto da etiqueta fica escondido (nada repetido) */
+.endCard.fantOn>.gPeca{display:none}
+.cpUlt{font-size:14px;color:var(--t2);margin:8px 2px 0}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style id="layoutPadrao">
@@ -1341,6 +1366,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <div class="grpT" onclick="recolher(this)" data-g="op"><span>Armazenamento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="guardar" onclick="ir('guardar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V3M21 21V3M3 12h18M3 21h18" stroke="#2E2E30"/><path d="M9 15h6v6H9zM12 4.5v5M9.8 7.5 12 9.7l2.2-2.2" stroke="#F58321"/></svg>Endereçar</button>
+    <button data-k="cpos" onclick="ir('cpos')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="11" height="15" rx="1.5" stroke="#2E2E30"/><path d="M6 8h5M6 11.5h5" stroke="#2E2E30"/><circle cx="16.5" cy="15.5" r="3.5" stroke="#F58321"/><path d="M19 18l2.5 2.5" stroke="#F58321"/></svg>Consultar posição</button>
     <button data-k="tend" onclick="ir('tend');xfLimpa()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="13" width="7" height="7" rx="1" stroke="#2E2E30"/><rect x="14.5" y="4" width="7" height="7" rx="1" stroke="#2E2E30"/><path d="M6 10V7.5h6M10 5.5l2 2-2 2" stroke="#F58321"/></svg>Transferência de endereço</button>
     <button data-k="desfazer" onclick="ir('desfazer')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F58321"/></svg>Movimentações</button>
     <button data-k="trein" onclick="abrirProc(3)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F58321"/></svg>Procedimento</button>
@@ -1394,6 +1420,13 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
   <div id="tRes"></div>
 </div>
 
+<div id="s-cpos" class="esc card">
+  <div class="tit">Consultar posição</div>
+  <div class="cbxPh" data-id="cpCod" data-o='{"cam":1,"up":1,"enter":"cposBuscar()","ph":"Endereço (ex.: R01-B02-N01-LE)"}'></div>
+  <p class="np"><button class="b bP" type="button" onclick="cposBuscar()">Pesquisar</button></p>
+  <div id="cpRes"></div>
+</div>
+
 <div id="s-pos" class="esc card">
   <div class="tit">Posição</div>
   <div id="pCab"></div>
@@ -1414,7 +1447,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F58321;color:#
 
 <div id="s-pesq" class="esc card">
   <div class="tit">Pesquisa de produto</div>
-  <label>Código ou descrição do produto</label><div class="camBox"><input id="pqCod" data-lista="1" autocomplete="off" onkeydown="if(event.key==='Enter')pesqItem()"></div><button type="button" class="b bP bCam" onclick="lerQR('pqCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button><button type="button" class="b bS bMic mic" onclick="ouvir('pqCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg><span>Falar o código</span></button>
+  <div class="cbxPh" data-id="pqCod" data-o='{"cam":1,"mic":1,"lista":1,"lembra":1,"enter":"pesqItem()","ph":"Código ou descrição do produto"}'></div>
   <p class="lin pqBt"><button class="b bP" onclick="pesqItem()">Pesquisar</button><button class="b bS sec" onclick="pesqTudo()">Pesquisar tudo</button></p>
   <div id="pqRes"></div>
 </div>
@@ -1827,8 +1860,7 @@ html body main #invRes .invUrgT{color:#B42318;font-weight:700}
 <div id="s-cad" class="esc card">
   <div class="tit">Cadastro de itens (restrito)</div>
   <div id="cSemCad"></div>
-  <label>Código ou descrição do produto</label>
-  <div class="camBox"><input id="cCod" data-lista="1" autocomplete="off" onkeydown="if(event.key==='Enter')buscarCad()"></div><button type="button" class="b bP bCam" onclick="lerQR('cCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button>
+  <div class="cbxPh" data-id="cCod" data-o='{"cam":1,"mic":1,"lista":1,"lembra":1,"enter":"buscarCad()","ph":"Código ou descrição do produto"}'></div>
   <label>Descrição</label><input id="cDesc">
   <div class="lin">
     <div><label>Qtd padrão por embalagem</label><input id="cPad" type="number" inputmode="decimal"></div>
@@ -1995,7 +2027,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=137,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=138,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2105,7 +2137,19 @@ function botao(t,acao,tipo,extra){var k={p:'bP',s:'bS',d:'bD'}[tipo||'p']||'bP';
 var ICO_CAM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg>';
 var ICO_MIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>';
 function botaoCam(acao,oQue,extra){return '<button type="button" class="b bP bCam'+(extra&&extra.cls?' '+extra.cls:'')+'"'+(extra&&extra.id?' id="'+extra.id+'"':'')+' onclick="'+esc(acao)+'">'+ICO_CAM+'<span>'+(extra&&extra.txt?esc(extra.txt):'Ler '+esc(oQue))+'</span></button>'}
+/* 138 (15/11/2026): peça campoBusca(id, {cam, mic, lista, enter, ph, lembra}) — o campo de pesquisa padrão:
+   ícones de câmera e microfone dentro do campo, no canto direito, em laranja; em uso, laranja fluorescente.
+   lista: tocar no campo abre a lista de produtos; lembra: a lista abre com o que já está no campo (para trocar só o final). */
+function campoBusca(id,o){o=o||{};var n=(o.cam?1:0)+(o.mic?1:0),k=n,h='<div class="cbx c'+n+'"><input id="'+id+'" autocomplete="off"'+(o.lista?' data-lista="1"':'')+(o.lembra?' data-lembra="1"':'')+(o.ph?' placeholder="'+esc(o.ph)+'" aria-label="'+esc(o.ph)+'"':'')+(o.up?' style="text-transform:uppercase"':'')+(o.enter?' onkeydown="if(event.key===\'Enter\'){'+esc(o.enter)+'}"':'')+'>';
+  if(o.cam)h+='<button type="button" class="cam cbxB cbxCam p'+(k--)+'" aria-label="Ler a etiqueta pela câmera" onclick="cbxCam(this,\''+id+'\')">'+ICO_CAM+'</button>';
+  if(o.mic)h+='<button type="button" class="cam cbxB mic p'+(k--)+'" aria-label="Falar o código" onclick="ouvir(\''+id+'\')">'+ICO_MIC+'</button>';
+  return h+'</div>'}
+function cbxCam(b,id){cbxApaga();b.classList.add('on');lerQR(id)}
+function cbxApaga(){document.querySelectorAll('.cbxB.cbxCam.on').forEach(function(x){x.classList.remove('on')})}
+/* monta os campos de pesquisa que estão no HTML fixo como <div class="cbxPh" data-id data-o> */
+function montarCampos(){document.querySelectorAll('.cbxPh').forEach(function(d){var o={};try{o=JSON.parse(d.getAttribute('data-o')||'{}')}catch(e){}d.outerHTML=campoBusca(d.getAttribute('data-id'),o)})}
 function botaoMic(campo){return '<button type="button" class="b bS bMic mic" onclick="ouvir(\''+campo+'\')">'+ICO_MIC+'<span>Falar o código</span></button>'}
+try{montarCampos()}catch(e){}
 function conclusao(tit,linhas,contTxt,cont,volta){setTimeout(okGrande,0);var h='',g=[],fl=function(){if(g.length)h+='<div class="cGrid">'+g.join('')+'</div>';g=[]};
   var pc=null,px=[];
   linhas.forEach(function(l){if(l[0]==='_peca'){fl();pc=l[1];h+='<div class="cPeca">\u0001</div>';return}if(l[2]){fl();h+='<div class="cBig">'+l[1]+'</div>';return}var tx=String(l[1]==null?'':l[1]);if(pc!=null){px.push([l[0],tx]);return}g.push('<div class="cBx'+(tx.length>12?' cW':'')+'"><span>'+esc(l[0])+'</span><b>'+esc(tx)+'</b></div>')});fl();
@@ -2151,7 +2195,7 @@ var ATAL_MAX=4,ATAL_PAD=['guardar','tirar'];
 function atalhos(){try{var l=JSON.parse(LS.getItem('jeAtal')||'null');if(Array.isArray(l))return l}catch(e){}return ATAL_PAD.slice()}
 function cartao(k){var b=document.querySelector('.menu button[data-k="'+k+'"]');if(!b||b.hidden)return null;if(b.classList.contains('adm')&&LS.getItem('jeAdm')!=='1')return null;return b}
 
-var ICO_LINHA={guardar:'<path d="M12 3v11m-4-4l4 4 4-4M4 17v3h16v-3"/>',tirar:'<path d="M12 15V4m-4 4l4-4 4 4M4 17v3h16v-3"/>',consulta:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
+var ICO_LINHA={cpos:'<rect x="3" y="4" width="11" height="15" rx="1.5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/>',guardar:'<path d="M12 3v11m-4-4l4 4 4-4M4 17v3h16v-3"/>',tirar:'<path d="M12 15V4m-4 4l4-4 4 4M4 17v3h16v-3"/>',consulta:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
 desfazer:'<path d="M4 8h13M20 16H7M14 5l3 3-3 3M10 13l-3 3 3 3"/>',trf:'<path d="M4 8h13M20 16H7M14 5l3 3-3 3M10 13l-3 3 3 3"/>',painel:'<path d="M4 20h16M6 16l4-5 4 3 5-7"/>',trein:'<path d="M12 5l10 5-10 5L2 10z"/><path d="M6 12v5c0 2 12 2 12 0v-5"/>',
 cad:'<path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/>',reorg:'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',cont:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 10l2 2 4-4M9 16h6"/>',
 eq:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 14c3 0 6 2 6 5"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
@@ -2252,7 +2296,9 @@ function invBqReg(lin,end){if(!invBqPos(lin,end))return;if(!INV_BQ[lin]){$('ivM'
   var q=val('ivQ'+lin);if(q===''){$('ivM'+lin).innerHTML=msg('erro','Informe a quantidade contada.');return}
   var t=INV_BQ[lin];chamar('apiInvPosBloq',[quem(),lin,{cod:t.cod,data:t.data,nf:t.nf,rg:t.rg},q,false],function(r){if(!r||!r.ok){$('ivM'+lin).innerHTML=msg('erro',(r&&r.msg)||'Erro.');return}delete INV_BQ[lin];avisoJan(r.msg);abrirInv()})}
 function invBqVazia(lin,end){if(!invBqPos(lin,end))return;perguntar('A posição '+end+' está vazia?',function(){
-  chamar('apiInvPosBloq',[quem(),lin,null,0,true],function(r){if(!r||!r.ok){$('ivM'+lin).innerHTML=msg('erro',(r&&r.msg)||'Erro.');return}avisoJan(r.msg);abrirInv()})},null,{ok:'Sim, está vazia',no:'Voltar'})}
+  /* 138: vazia e boa para usar, a posição sai do bloqueio sozinha; com defeito, continua bloqueada */
+  setTimeout(function(){perguntar('A posição está boa para usar?',function(){invBqVaziaGrava(lin,true)},function(){invBqVaziaGrava(lin,false)},{ok:'Sim, liberar',no:'Não, continua bloqueada'})},250)},null,{ok:'Sim, está vazia',no:'Voltar'})}
+function invBqVaziaGrava(lin,boa){chamar('apiInvPosBloq',[quem(),lin,null,0,true,boa],function(r){if(!r||!r.ok){$('ivM'+lin).innerHTML=msg('erro',(r&&r.msg)||'Erro.');return}avisoJan(r.msg);abrirInv()})}
 function confirmarInvCod(lin,end){var pp=val('ivP'+lin).toUpperCase(),c=val('ivC'+lin),q=val('ivQ'+lin);
   if(!pp){$('ivM'+lin).innerHTML=msg('erro','Leia o QR da posição.');return}
   if(!mesmaPos(pp,end)){$('ivM'+lin).innerHTML=msg('erro','Esta não é a posição '+end+'. Confira se está no lugar certo.');return}
@@ -2279,7 +2325,7 @@ var QR_ESP='',QR_ESP_PROX='';
    Três jeitos de achar o produto: digitar (lista inteligente), ler a etiqueta pela câmera ou falar.
    A voz só preenche a pesquisa: código certo → pesquisa direto; senão abre a lista com o que foi falado, e a pessoa toca no produto. */
 var VOZ=null,VOZ_ACAO={pqCod:function(){pesqItem()},tCod:function(){tirar()}},AUTO_ACAO=VOZ_ACAO;
-AUTO_ACAO.cCod=function(){buscarCad()};   /* 137: no Cadastro, escolher na lista ou ler a etiqueta já abre o cadastro (sem botão Editar) */
+AUTO_ACAO.cCod=function(){buscarCad()};AUTO_ACAO.cpCod=function(){cposBuscar()};   /* 137: no Cadastro, escolher na lista ou ler a etiqueta já abre o cadastro (sem botão Editar) */
 /* Voz (05/11/2026, revisado): números por extenso viram dígitos e letras faladas viram letras ("xis um pê" -> X1P) */
 var VOZ_NUM={zero:0,um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,meia:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,treze:13,quatorze:14,catorze:14,quinze:15,dezesseis:16,dezessete:17,dezoito:18,dezenove:19,vinte:20,trinta:30,quarenta:40,cinquenta:50,sessenta:60,setenta:70,oitenta:80,noventa:90,cem:100,cento:100,duzentos:200,trezentos:300,quatrocentos:400,quinhentos:500,seiscentos:600,setecentos:700,oitocentos:800,novecentos:900,mil:1000};
 var VOZ_LET={a:'A',be:'B',bê:'B',ce:'C',cê:'C',de:'D',dê:'D',e:'E',efe:'F',ge:'G',gê:'G',aga:'H',i:'I',jota:'J',ka:'K',ca:'K',ele:'L',eme:'M',ene:'N',o:'O',pe:'P',pê:'P',que:'Q',quê:'Q',erre:'R',esse:'S',te:'T',tê:'T',u:'U',ve:'V',vê:'V',dablio:'W',dabliu:'W',xis:'X',ipsilon:'Y',ze:'Z',zê:'Z'};
@@ -2380,7 +2426,7 @@ function qrFocar(ev){var cx=$('qrCaixa'),r=cx.getBoundingClientRect(),x=(ev.clie
 function qrSemVivo(){$('qrVid').style.display='none';$('qrLuzB').hidden=true;$('qrZoomR').hidden=true;$('qrVTx').innerHTML='Toque no botão abaixo e tire uma foto do QR Code.<br><small>Deixe o QR Code no meio da foto, de perto e com boa luz.</small>'}
 function qrPararCam(){cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);if(QR_ST){QR_ST.getTracks().forEach(function(t){t.stop()});QR_ST=null}QR_TRK=null}
 var QR_DESL=0;document.addEventListener('visibilitychange',function(){if(document.hidden&&$('qrVivo').style.display==='none')qrDesligar()});
-function qrFechar(){cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);
+function qrFechar(){cbxApaga();cancelAnimationFrame(QR_LOOP);clearInterval(QR_DICA);
   /* desliga a lanterna e deixa a câmera ligada por 60 s, para a próxima leitura abrir na hora */
   if(QR_LUZ&&QR_TRK){try{QR_TRK.applyConstraints({advanced:[{torch:false}]}).catch(function(){})}catch(e){}QR_LUZ=false}
   clearTimeout(QR_DESL);QR_DESL=setTimeout(qrDesligar,60000);
@@ -2506,7 +2552,7 @@ function etqPadrao(alvo,tv){var pd=Number((ITMAP[String(tv.cod).toUpperCase()]||
 /* 12/11/2026 (versão 120): a mesma posição lida de novo logo em seguida pede confirmação (leitura sem querer) */
 function qrEntregaConf(t,rep){if(!rep){qrEntregar(t);return}var cb=QR_CB,al=QR_ALVO,es=QR_ESP;
   qrSomErro();perguntar('Você leu de novo a mesma posição da leitura anterior ('+textoQR(t)+'). É essa mesmo?',function(){QR_CB=cb;QR_ALVO=al;QR_ESP=es;qrEntregar(t)},null,{ok:'Sim, é essa',no:'Ler de novo'})}
-function qrEntregar(txt){var tv=etiqTotvs(txt);if(!QR_CB&&SO_ETQ[QR_ALVO]&&!tv){avisoJan('Este QR Code não é a etiqueta do produto. Se ela estiver danificada, tire uma nova etiqueta antes de endereçar.');return}if(tv&&!QR_CB){var el0=$(QR_ALVO);if(el0){QR_TV[QR_ALVO]=tv;el0.value=tv.cod;el0.dispatchEvent(new Event('input',{bubbles:true}));el0.dispatchEvent(new Event('change',{bubbles:true}));
+function qrEntregar(txt){cbxApaga();var tv=etiqTotvs(txt);if(!QR_CB&&SO_ETQ[QR_ALVO]&&!tv){avisoJan('Este QR Code não é a etiqueta do produto. Se ela estiver danificada, tire uma nova etiqueta antes de endereçar.');return}if(tv&&!QR_CB){var el0=$(QR_ALVO);if(el0){QR_TV[QR_ALVO]=tv;el0.value=tv.cod;el0.dispatchEvent(new Event('input',{bubbles:true}));el0.dispatchEvent(new Event('change',{bubbles:true}));
     var q={gCod:'gQtd',mCod:'mQtd'}[QR_ALVO];if(q&&$(q)){$(q).value=tv.qtd;$(q).dispatchEvent(new Event('input',{bubbles:true}))}
     if(QR_ALVO==='mCod'&&$('mData'))$('mData').value=tv.data;
     if(QR_ALVO==='mCod')cronoIni('endm');
@@ -2546,22 +2592,42 @@ function ebLer(i,end){return botaoCam("lerPosEnd("+i+",'"+end+"')",'o QR Code da
    Posição com problema (diz o motivo, vai para o Inventário e o app mostra a próxima livre), Juntar onde já tem o mesmo código
    e, depois de uma troca, Escolher posição livre perto. */
 var END_JT=null;
-function outraPos(i,end){var ops=[{t:'Posição com problema',a:function(){probPos(i,end)}}];
+/* 138 (15/11/2026): ordem das saídas — 1) usar uma posição vazia que o operador está vendo (lê o QR; se o sistema diz que tem
+   material, ele confirma que está vazia e o saldo vai para a Pendência do inventário), 2) juntar onde já tem o mesmo código,
+   3) posição danificada ou obstruída (só motivos físicos; bloqueia e vai para o Inventário). */
+var MOT_FIS=['Estrutura danificada','Posição obstruída','O pallet não cabe'];
+function outraPos(i,end){var ops=[{t:'Usar uma posição vazia que eu estou vendo',a:function(){escolherPos(i,end)}}];
   if(END_JT&&END_JT.end&&!document.querySelector('#gRes .endCard.ecJ'))ops.push({t:'Juntar em '+endTx(END_JT.end),a:function(){naoUsarJuntar(i)}});
-  if(END_ALT[i])ops.push({t:'Escolher posição livre perto',a:function(){escolherPos(i,end)}});
+  ops.push({t:'Posição danificada ou obstruída',a:function(){probPos(i,end)}});
   escolher('Escolher outra posição',ops)}
-function probPos(i,end){escolher('Qual é o problema?',MOT_NAO_USAR.map(function(m){return {t:m,a:function(){naoUsarMot(i,end,m,0)}}}).concat([{t:'Outro motivo',a:function(){naoUsarOutro(i,end,0)}}]))}
+function probPos(i,end){escolher('Qual é o problema?',MOT_FIS.map(function(m){return {t:m,a:function(){naoUsarMot(i,end,m,0)}}}).concat([{t:'Outro motivo',a:function(){naoUsarOutro(i,end,0)}}]))}
 /* 12/11/2026 (versão 116): depois de "Não dá para usar", o operador pode escolher uma posição livre perto dele.
    Ele lê o QR Code da posição; o sistema confere (livre, nível certo, não guardada para outro) e já grava. */
 function escolherPos(i,ant){QR_ESP_PROX='pos';lerQR('',function(lido){
   chamar('apiPosEscolha',[quem(),lido,END_ITEM,ant],function(r){
+    if(r&&r.fantasma){fantPinta(i,ant,r);return}
     if(!r||!r.ok){$('eb'+i).innerHTML=aviso('er',(r&&r.msg)||'Não deu para usar esta posição.')+ebLer(i,ant);vib('erro');return}
+    posEscolhida(i,ant,r)})})}
+/* 138: saldo fantasma — o sistema diz que tem material na posição que o operador está vendo vazia.
+   Mostra o endereço grande e o cartão do que o sistema acha que está lá; só "Confirmo que está vazia" e o Voltar. */
+var FANT={};
+function fantPinta(i,ant,r){FANT[i]={ant:ant,end:r.end};var c=$('ec'+i),ee=c&&c.querySelector('.endE');if(c)c.classList.add('fantOn');if(ee)ee.innerHTML=endCor(r.end);
+  $('es'+i).textContent='';vib('erro');
+  $('eb'+i).innerHTML=aviso('at','Pelo sistema, tem material nesta posição:')+(r.regs||[]).map(function(x){return cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(x.qtd,x.item),x.data,nfDoLote(x.lote),1)}).join('')+
+    botao('Confirmo que está vazia','fantConf('+i+')','p')+botao('Voltar','fantVolta('+i+')','s',{cls:'opc'});
+  try{fitEnd($('gRes'))}catch(e){}}
+function fantVolta(i){var f=FANT[i];if(!f)return;var c=$('ec'+i),ee=c&&c.querySelector('.endE');if(c)c.classList.remove('fantOn');if(ee)ee.innerHTML=endCor(f.ant);$('eb'+i).innerHTML=ebLer(i,f.ant);delete FANT[i];try{fitEnd($('gRes'))}catch(e){}}
+function fantConf(i){var f=FANT[i];if(!f)return;
+  chamar('apiPosFantasma',[quem(),f.end,END_ITEM,f.ant],function(r){
+    if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');vib('erro');return}
+    var c=$('ec'+i);if(c)c.classList.remove('fantOn');delete FANT[i];posEscolhida(i,f.ant,r)})}
+function posEscolhida(i,ant,r){
     var e=r.end,c=$('ec'+i),ee=c&&c.querySelector('.endE');if(ee)ee.innerHTML=endCor(e);
     var inf=c&&c.querySelector('.endInfo');if(inf)inf.textContent='Rua '+r.rua+' · Bloco '+r.bloco+' · Nível '+r.nivel+' · Lado '+r.lado;
     SEG.ends[i]=e;var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(it[2]||'');
     $('es'+i).textContent='Posição escolhida';$('es'+i).className='endSt ok';
-    $('eb'+i).innerHTML=aviso('ok','Posição livre: '+e+'. Gravando...')+(ltMulti('g')?'':'<input id="eq'+i+'" type="hidden" value="'+esc(qp)+'"><input id="ed'+i+'" type="hidden" value="'+esc((QR_TV.gCod&&QR_TV.gCod.cod===END_ITEM&&QR_TV.gCod.data)||hojeISO())+'">');
-    confirmarEnd(i,e)})})}
+    $('eb'+i).innerHTML=aviso('ok',(r.pend?'Saldo antigo enviado para a Pendência do inventário. ':'')+'Posição livre: '+e+'. Gravando...')+(ltMulti('g')?'':'<input id="eq'+i+'" type="hidden" value="'+esc(qp)+'"><input id="ed'+i+'" type="hidden" value="'+esc((QR_TV.gCod&&QR_TV.gCod.cod===END_ITEM&&QR_TV.gCod.data)||hojeISO())+'">');
+    confirmarEnd(i,e)}
 function lerPosEnd(i,end){QR_ESP_PROX='pos';lerQR('',function(lido){
   if(!mesmaPos(lido,end)){$('eb'+i).innerHTML=aviso('er','Posição errada! Você leu '+lido+', mas o material vai em '+end+'. Vá até a posição certa e leia de novo.')+ebLer(i,end);vib('erro');return}
   var it=ITMAP[END_ITEM]||[],qp=END_QTDS[i]!=null?END_QTDS[i]:(it[2]||'');
@@ -2703,7 +2769,7 @@ function espera(liga,b){if(!b)return;
   else{b.__n=Math.max(0,(b.__n||1)-1);if(!b.__n){b.classList.remove('trav');b.removeAttribute('aria-busy');if(b.tagName==='BUTTON')b.disabled=false}}}
 /* Enquanto processa: a tela inteira escurece com desfoque e mostra a bolinha laranja grande com o texto em branco.
    Só aparece se demorar mais de 0,3 s (para não piscar nas respostas rápidas). */
-var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
+var PROC={n:0,t:0,w:0};var PROC_GRAVA=/^api(PosFantasma|PosSemMaterial|InvAjuste|Entrada|Devolver|DevDefeito|PosEscolha|Saida|Transferir|Bloquear|Desbloquear|Desfazer|Cadastrar|Apagar|Salvar|Confirmar|Marcar|Enviar|Redefinir|Trocar|Rec(?:Agendar|Aval|Cancelar|Iniciar|Finalizar|Chegada|Etapa|TempoDecidir))/;
 function procLiga(fn){PROC.n++;clearTimeout(PROC.w);PROC.w=setTimeout(procSolta,LIM_GRAVA+10000);var tx=$('procTx');if(tx)tx.textContent=PROC_GRAVA.test(fn)?'Gravando…':'Carregando…';clearTimeout(PROC.t);PROC.t=setTimeout(function(){if(PROC.n>0)document.body.classList.add('proc')},300)}
 function procDesliga(){PROC.n=Math.max(0,PROC.n-1);if(!PROC.n){clearTimeout(PROC.t);clearTimeout(PROC.w);document.body.classList.remove('proc')}}
 /* 13/11/2026 (versão 122): segurança extra. Se a bolinha passar do tempo-limite, ela some e o contador zera (não passa para as outras telas) */
@@ -2740,7 +2806,7 @@ function ridChave(t){var h1=5381,h2=52711;for(var i=0;i<t.length;i++){var c=t.ch
 function ridCarregar(){if(RID_LIDO)return;RID_LIDO=true;try{var o=JSON.parse(LS.getItem('jeRid')||'{}');Object.keys(o).forEach(function(k){if(o[k]&&o[k].id&&!RID_PEND[k])RID_PEND[k]=o[k]})}catch(e){}}
 function ridSalvar(){try{var ag=Date.now(),ks=Object.keys(RID_PEND).filter(function(k){return ag-RID_PEND[k].t<RID_VALE}).sort(function(a,b){return RID_PEND[b].t-RID_PEND[a].t}).slice(0,30),o={};ks.forEach(function(k){o[k]=RID_PEND[k]});RID_PEND=o;LS.setItem('jeRid',JSON.stringify(o))}catch(e){}}
 function novoRid(){var s='';try{var a=new Uint8Array(12);crypto.getRandomValues(a);for(var i=0;i<a.length;i++)s+=('0'+a[i].toString(16)).slice(-2)}catch(e){}return s||(Date.now().toString(36)+Math.random().toString(36).slice(2,12))}
-var LIMPAR={guardar:['gCod','gRes','gInf','mInf','gRec','gNF','gQU'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
+var LIMPAR={cpos:['cpCod','cpRes'],guardar:['gCod','gRes','gInf','mInf','gRec','gNF','gQU'],tirar:['tCod','tRes'],reorg:['rRes'],usu:['uNome','uSenha','uMsg'],prod:['pRes'],eq:['eqMsg'],falt:['faMsg','faObs','faFim','faRes'],prog:['pgEd','pgMsg','pgFolha','pgObs','pgOutro'],cal:['calDia','feMsg','exMsg','frMsg','feObs','exMot','frNome'],etq:['eMsg','eFolhas'],cad:['cCod','cDesc','cPad','cPeso','cMsg']};
 var PEND=null;
 function hojeStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function segFeito(){return MODO==='tv'||LS.getItem('jeSeg')===nomeUsu()+'|'+hojeStr()}
@@ -4576,12 +4642,12 @@ function sugerir(){
   if(!c||!(QR_TV.gCod&&QR_TV.gCod.cod===c.toUpperCase())){$('gRes').innerHTML=msg('erro','Leia a etiqueta do produto.');return}
   var cxN=ltMulti('g');if(cxN){q=ltTotal('g');if(!LT.g.conf){ltConfere('g',function(){LT.g.conf=1;sugerir()});return}}
   if(q<=0||(!cxN&&String(q)!==String(nIn(QR_TV.gCod.qtd)))){$('gRes').innerHTML=msg('erro','A quantidade vem da etiqueta. Leia a etiqueta de novo.');return}
-  if(ITENS&&ITENS.length&&!ITMAP[c.toUpperCase()]){semCadAviso(c,1);return}
+  if(ITENS&&ITENS.length&&!ITMAP[c.toUpperCase()]){cadSimples(c);return}
   cronoIni('end');var pd=Number((ITMAP[c.toUpperCase()]||[])[2])||0, n=cxN?1:(pd>0?Math.ceil(q/pd):1);
   END_QTDS=[];if(cxN)END_QTDS=[q];else for(var k=0;k<n;k++)END_QTDS.push(pd>0?(k<n-1?pd:q-pd*(n-1)):q);
   $('gRes').innerHTML='Procurando...';
   chamar('apiGuardar',[c,n,quem(),MODO!=='tv'],function(r){
-    if(!r.ok){if(r.naoCad){semCadAviso(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
+    if(!r.ok){if(r.naoCad){$('gRes').innerHTML='';cadSimples(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
     END_DET=r;var h='';   /* 09/11/2026: o produto já aparece no quadro da etiqueta (com Detalhes); aqui não repete */
     if(r.faltam>0) h+=msg('aviso','Não há nenhuma posição livre para '+(r.faltam===1?'este pallet':r.faltam+' pallets')+'. '+(r.podeN1?'Use Juntar com outro pallet no N1 ou chame o líder.':'Chame o líder.'));
 
@@ -4732,6 +4798,24 @@ function tirarConcl(){var r=TIRAR_OK;if(!r)return;var i=r.i;$('ts'+i).className=
   var L=[['Posição',endCor(r.base||r.end),1],['_peca',cartaoPeca(c,tr.desc||(ITMAP[c]||[])[1]||'',qtdU(r.qtd,c),x.data,nfDoLote(x.lote),1)]];
   if(r.resto>0)L.push(['Ficou na posição',qtdU(r.resto,c)]);
   $('tRes').insertAdjacentHTML('beforeend',(r.sobra?aviso('at',r.sobra):'')+conclusao('Abastecido',L,'Abastecer outro',"contTela('tirar','tCod')"));vib('ok')}
+/* ---------- 138 (15/11/2026): CONSULTAR POSIÇÃO (operador) ----------
+   Lê o QR (ou digita o endereço) e vê, grande, o que o sistema diz que está lá. Se não tiver nada, "Não tem nada aqui"
+   manda a posição para o Inventário como urgente; quem ajusta o saldo é quem inventaria. */
+var CPOS=null;
+function cposBuscar(){var e=String(val('cpCod')||'').trim().toUpperCase().replace(/\s+/g,'');if(!e){$('cpRes').innerHTML=aviso('er','Leia o QR Code da posição ou digite o endereço.');return}
+  chamar('apiConsPos',[quem(),e],function(r){if(!r||!r.ok){$('cpRes').innerHTML=aviso('er',(r&&r.msg)||'Não deu para consultar.');vib('erro');return}CPOS=r;cposPinta()})}
+function cposPinta(){var r=CPOS;if(!r)return;var h='<div class="passo">'+endBig(r.end);
+  if(r.status==='Livre'&&!r.regs.length)h+=aviso('ok','Posição livre no sistema.');
+  else if(r.status==='Bloqueado')h+=aviso('at','Posição bloqueada'+(r.motivo?': '+r.motivo:'')+'.');
+  else if(r.status!=='Ocupado'&&r.status!=='Livre')h+=aviso('at','Posição '+String(r.status).toLowerCase()+'.');
+  h+=(r.regs||[]).map(function(x){return cartaoPeca(x.item,x.desc||(ITMAP[x.item]||[])[1]||'',qtdU(x.qtd,x.item),x.data,nfDoLote(x.lote),1)}).join('');
+  if(r.ult)h+='<p class="cpUlt">Último lançamento: '+esc(r.ult.quem||'-')+' em '+esc(r.ult.quando)+'</p>';
+  h+='</div>';
+  if((r.regs||[]).some(function(x){return x.item})&&r.status!=='Bloqueado')h+=botao('Não tem nada aqui','cposVazia()','s',{cls:'opc'});
+  $('cpRes').innerHTML=h;try{fitEnd($('cpRes'))}catch(e){}}
+function cposVazia(){var r=CPOS;if(!r)return;perguntar('Confirma que não tem nada na posição '+r.end+'?',function(){
+  chamar('apiPosSemMaterial',[quem(),r.end],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para registrar.');vib('erro');return}
+    vib('ok');$('cpRes').innerHTML=aviso('ok',x.msg)+blocoFim("contTela('cpos','cpCod')")})},null,{ok:'Sim, não tem nada',no:'Voltar'})}
 /* ---------- POSIÇÃO (QR Code) ---------- */
 function abrirPos(end){
   ir('pos'); $('pCab').innerHTML='Carregando...'; $('pAcoes').innerHTML='';RES_FIM="ir('menu')";
@@ -5181,11 +5265,11 @@ function prepararListas(){if(!(('ontouchstart' in window)||navigator.maxTouchPoi
   b.classList.add('comLs');var toque=('ontouchstart' in window)||navigator.maxTouchPoints>0;if(toque){inp.readOnly=true;inp.setAttribute('inputmode','none')}inp.addEventListener('click',function(){abrirLista(inp.id)});var s=document.createElement('button');s.type='button';s.className='lsSeta';s.setAttribute('aria-label',inp.getAttribute('data-lista')==='forn'?'Abrir lista de fornecedores':'Abrir lista de produtos');s.innerHTML='<i></i>';
   s.onclick=function(){abrirLista(inp.id)};b.insertBefore(s,inp.nextSibling)})}
 function abrirLista(id){LS_ALVO=id;var e=$(id);LS_TIPO=e&&e.getAttribute('data-lista')==='forn'?'forn':'item';LS_POS=-1;
-  $('lsTit').textContent=LS_TIPO==='forn'?'Escolher fornecedor':'Escolher produto';$('lsBusca').value='';
+  $('lsTit').textContent=LS_TIPO==='forn'?'Escolher fornecedor':'Escolher produto';$('lsBusca').value=(e&&e.hasAttribute('data-lembra'))?String(e.value||''):'';   /* 138: data-lembra = abre com o último código, para trocar só o final */
   if(LS_TIPO==='forn'){pintarLista();document.body.classList.add('lsOn');fornCarregar(function(){if(document.body.classList.contains('lsOn'))pintarLista()});var bf=$('lsBusca');bf.focus();setTimeout(function(){bf.focus()},60);return}
   pintarLista();
   /* Lista vazia (ex.: notebook que abriu a tela antes de carregar os produtos): busca os produtos na hora */
-  if(!(ITENS&&ITENS.length)){$('lsItens').innerHTML='<p class="sinoVazio">Carregando produtos...</p>';chamar('apiItens',[],function(l){ITENS=l||[];ITMAP={};ITENS.forEach(function(x){ITMAP[x[0]]=x});if(document.body.classList.contains('lsOn'))pintarLista()})}document.body.classList.add('lsOn');var b=$('lsBusca');b.focus();setTimeout(function(){b.focus()},60)}
+  if(!(ITENS&&ITENS.length)){$('lsItens').innerHTML='<p class="sinoVazio">Carregando produtos...</p>';chamar('apiItens',[],function(l){ITENS=l||[];ITMAP={};ITENS.forEach(function(x){ITMAP[x[0]]=x});if(document.body.classList.contains('lsOn'))pintarLista()})}document.body.classList.add('lsOn');var b=$('lsBusca'),fim=function(){b.focus();try{var n=b.value.length;b.setSelectionRange(n,n)}catch(e){}};fim();setTimeout(fim,60)}
 function fecharLista(){document.body.classList.remove('lsOn')}
 function semAc(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase()}
 /* Busca inteligente de produto: pelo código ou pela descrição, com as palavras em qualquer ordem
@@ -5875,10 +5959,14 @@ function recTempoDecidir(usar){var faz=function(){chamar('apiRecTempoDecidir',[q
 var PQ_CACHE={t:0,m:{}},PQ_CARR=0;
 function pqPrecarregar(forcar){if(MODO==='tv'||PQ_CARR||(!forcar&&PQ_CACHE.t&&Date.now()-PQ_CACHE.t<60000))return;PQ_CARR=1;TOQUE.el=null;
   chamar('apiSaldoTudo',[],function(r){PQ_CARR=0;if(!r||!r.ok)return;var m={};(r.itens||[]).forEach(function(x){m[String(x.codigo).toUpperCase()]=x});PQ_CACHE={t:Date.now(),m:m}})}
-/* 137 (15/11/2026): o cadastro simples pelo Endereçar saiu; cadastro de itens só com a gestão.
-   Produto sem cadastro: aviso e o Endereçar para ali. srv = avisar o sistema, para o código entrar na lista do Cadastro de itens. */
-function semCadAviso(c,srv){c=String(c||'').toUpperCase();$('gRes').innerHTML=msg('erro','Produto sem cadastro. Fale com a gestão.');avisoJan('Produto sem cadastro ('+c+'). Fale com a gestão.');vib('erro');
-  if(srv){TOQUE.el=null;chamar('apiGuardar',[c,1,quem(),false],function(){})}}
+/* Cadastro simples (05/11/2026; volta na 138): no Endereçar, produto sem cadastro cadastra só o código da etiqueta lida.
+   138: a pergunta é se o pallet pode ir do nível 2 para cima (não mais "é motor?"). A gestão completa o resto depois. */
+function cadSimples(c){var tv=QR_TV.gCod;if(!tv||tv.cod!==String(c).toUpperCase()){avisoJan('Produto sem cadastro ('+c+'). Leia a etiqueta do produto para cadastrar.');return}
+  var grava=function(sobe){chamar('apiCadSimples',[quem(),tv.rg,sobe],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para cadastrar.');return}
+      var x=[r.codigo,r.desc||'','','','','','','','','',''];if(!ITMAP[r.codigo]){ITENS.push(x);ITMAP[r.codigo]=x}
+      sugerir()})};
+  perguntar('Produto sem cadastro: '+c+'.\n\nCadastrar agora só com o código da etiqueta? O resto a gestão completa depois.',function(){
+    setTimeout(function(){perguntar('Este pallet pode ir do nível 2 para cima?',function(){grava(true)},function(){grava(false)},{ok:'Sim, pode subir',no:'Não, fica no nível 1'})},250)},null,{ok:'Cadastrar',no:'Cancelar'})}
 /* Lote = produto + nota fiscal + data (06/11/2026): a etiqueta master e as individuais do mesmo lote batem */
 function loteChaveC(rg){var p=String(rg||'').split('#')[0].toUpperCase().replace(/\s+/g,'').split('|');return p.length>=5?[p[0],p[3],p[4]].join('|'):''}
 /* Vários lotes do mesmo produto (06/11/2026, revisado): o operador lê a etiqueta de UMA caixa de cada lote e digita o total
@@ -5970,9 +6058,9 @@ function verSemGiro(){$('rgSemGiroRes').innerHTML='Carregando...';chamar('apiSem
 /* Lidos sem cadastro: aparecem no Cadastro de itens para o administrador completar */
 function semCadLista(){var b=$('cSemCad');if(!b)return;if(LS.getItem('jeAdm')!=='1'){b.innerHTML='';return}TOQUE.el=null;
   chamar('apiSemCad',[quem()],function(r){if(!r||!r.ok||!r.lista.length){b.innerHTML='';return}
-    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Produtos que os operadores leram sem cadastro. Toque no código para cadastrar.</small><br>'+
+    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Lidos sem cadastro e cadastros simples feitos pelos operadores (só o código). Toque no código para completar.</small><br>'+
       r.lista.map(function(x){return ''+botao(''+esc(x.cod)+'','limparCad();$(\'cCod\').value=\''+esc(x.cod).replace(/'/g,'')+'\';buscarCad(1)','s',{cls:'sec'})+''}).join('')+
-      '<br><small>'+r.lista.map(function(x){return esc(x.cod)+(x.simples?' (cadastro simples'+(x.motor?', motor':', componente')+')':' (sem cadastro)')+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
+      '<br><small>'+r.lista.map(function(x){return esc(x.cod)+(x.simples?' (cadastro simples'+(x.lac?', pode subir':x.motor?', motor':', nível 1')+')':' (sem cadastro)')+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
 
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
