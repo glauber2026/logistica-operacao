@@ -1004,6 +1004,9 @@ html body main .cancLin button.sec.cancOp{width:auto!important;padding:8px 16px!
 
 #rsNum .numGo{cursor:pointer;border-radius:12px;transition:background .12s}#rsNum .numGo:active{background:#FFFFFF33}
 
+/* 137: Detalhes na Pesquisa de produto, mesmo estilo de link do Endereçar; saldo numa linha só */
+html body main #pqRes .pqCab .infDet button.infDetB{background:transparent!important;color:#C25E00!important;font-weight:700!important;padding:2px 0!important;width:auto!important;min-height:0!important;box-shadow:none!important;font-size:15px!important;border:0!important}
+.pqCab small b{display:inline!important;font-size:inherit!important}
 .infDet{margin-top:6px}.infDet .infDetB{background:transparent!important;color:#C25E00!important;font-weight:700!important;padding:2px 0!important;width:auto!important;min-height:0!important;box-shadow:none!important;font-size:15px!important}
 .resNota{font-size:13px;color:#8A8B90;text-align:center;margin:14px 0 2px}
 #vistoOk{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:80;opacity:0}#vistoOk>div{width:140px;height:140px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px #16A34A66;transform:scale(.6)}#vistoOk.on{animation:vkF 1s ease forwards}#vistoOk.on>div{animation:vkS 1s ease forwards}@keyframes vkF{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}@keyframes vkS{0%{transform:scale(.6)}20%{transform:scale(1.05)}30%{transform:scale(1)}100%{transform:scale(1)}}
@@ -1824,8 +1827,8 @@ html body main #invRes .invUrgT{color:#B42318;font-weight:700}
 <div id="s-cad" class="esc card">
   <div class="tit">Cadastro de itens (restrito)</div>
   <div id="cSemCad"></div>
-  <label>Código do produto</label>
-  <div class="camBox"><input id="cCod" autocomplete="off"></div><button type="button" class="b bP bCam" onclick="lerQR('cCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button>
+  <label>Código ou descrição do produto</label>
+  <div class="camBox"><input id="cCod" data-lista="1" autocomplete="off" onkeydown="if(event.key==='Enter')buscarCad()"></div><button type="button" class="b bP bCam" onclick="lerQR('cCod')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span>Ler a etiqueta do produto</span></button>
   <label>Descrição</label><input id="cDesc">
   <div class="lin">
     <div><label>Qtd padrão por embalagem</label><input id="cPad" type="number" inputmode="decimal"></div>
@@ -1846,7 +1849,7 @@ html body main #invRes .invUrgT{color:#B42318;font-weight:700}
     <div><label class="obr">Foto da embalagem</label><input class="fotoIn" id="cFoto2" type="file" accept="image/*" capture="environment" onchange="lerFoto(this,2)"><label for="cFoto2" class="fotoBtn"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span>Tirar foto</span></label>
       <img id="cPrev2" class="prevf" style="display:none"></div>
   </div>
-  <div class="lin"><button class="b bP" onclick="salvarCad()">Salvar</button><button class="b bS sec" onclick="buscarCad()">Editar</button><button class="b bS sec" onclick="limparCad()">Novo</button><button id="cApagar" class="verm adm" onclick="apagarCad()">Apagar</button></div>
+  <div class="lin"><button class="b bP" onclick="salvarCad()">Salvar</button><button class="b bS sec" onclick="limparCad()">Novo</button><button id="cApagar" class="verm adm" onclick="apagarCad()">Apagar</button></div>
   <div id="cMsg"></div>
 </div>
 
@@ -1992,7 +1995,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=136,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=137,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2276,6 +2279,7 @@ var QR_ESP='',QR_ESP_PROX='';
    Três jeitos de achar o produto: digitar (lista inteligente), ler a etiqueta pela câmera ou falar.
    A voz só preenche a pesquisa: código certo → pesquisa direto; senão abre a lista com o que foi falado, e a pessoa toca no produto. */
 var VOZ=null,VOZ_ACAO={pqCod:function(){pesqItem()},tCod:function(){tirar()}},AUTO_ACAO=VOZ_ACAO;
+AUTO_ACAO.cCod=function(){buscarCad()};   /* 137: no Cadastro, escolher na lista ou ler a etiqueta já abre o cadastro (sem botão Editar) */
 /* Voz (05/11/2026, revisado): números por extenso viram dígitos e letras faladas viram letras ("xis um pê" -> X1P) */
 var VOZ_NUM={zero:0,um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,meia:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,treze:13,quatorze:14,catorze:14,quinze:15,dezesseis:16,dezessete:17,dezoito:18,dezenove:19,vinte:20,trinta:30,quarenta:40,cinquenta:50,sessenta:60,setenta:70,oitenta:80,noventa:90,cem:100,cento:100,duzentos:200,trezentos:300,quatrocentos:400,quinhentos:500,seiscentos:600,setecentos:700,oitocentos:800,novecentos:900,mil:1000};
 var VOZ_LET={a:'A',be:'B',bê:'B',ce:'C',cê:'C',de:'D',dê:'D',e:'E',efe:'F',ge:'G',gê:'G',aga:'H',i:'I',jota:'J',ka:'K',ca:'K',ele:'L',eme:'M',ene:'N',o:'O',pe:'P',pê:'P',que:'Q',quê:'Q',erre:'R',esse:'S',te:'T',tê:'T',u:'U',ve:'V',vê:'V',dablio:'W',dabliu:'W',xis:'X',ipsilon:'Y',ze:'Z',zê:'Z'};
@@ -2492,7 +2496,7 @@ function infoEtq(alvo,tv){var b=$(alvo==='gCod'?'gInf':'mInf');if(!b)return;var 
   var q=unidDe(tv.cod)?qtdU(tv.qtd,tv.cod):tv.qtd+(tv.unid?' '+tv.unid:'');
   b.innerHTML='<b>'+esc(tv.cod)+'</b>'+(it[1]?' · '+esc(it[1]):' · <i>sem cadastro</i>')+'<br>Quantidade: <b>'+esc(q)+'</b>'+(tv.nf?' · NF <b>'+esc(tv.nf)+'</b>':'')+
     dataG(tv.data)+
-    (it[1]?'<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(tv.cod).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>':'');b.hidden=false}
+    (ITMAP[String(tv.cod).toUpperCase()]?'<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(tv.cod).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>':'');b.hidden=false}
 /* Quantidade da etiqueta diferente do padrão do cadastro: não trava, só pergunta (29/10/2026) */
 function etqPadrao(alvo,tv){var pd=Number((ITMAP[String(tv.cod).toUpperCase()]||[])[2])||0,q=nIn(tv.qtd);if(!pd||!q)return;
   var fora=alvo==='mCod'?q!==pd:Math.abs(q/pd-Math.round(q/pd))>1e-9;if(!fora)return;vib('erro');
@@ -3172,16 +3176,20 @@ function cabItem(cod,desc,extra){
 }
 var END_DET=null;
 /* 09/11/2026: detalhes do produto numa janela (foto, classe, família, giro, nível máximo, posições) — a tela do Endereçar fica enxuta */
+/* 137 (15/11/2026): Detalhes = cadastro inteiro do produto + o que o app calcula (tipo, níveis permitidos, giro, saldo) */
 function verDetItem(cod){cod=String(cod||(END_DET&&END_DET.codigo)||'').toUpperCase();if(!cod)return;
-  if(END_DET&&END_DET.codigo===cod){detPinta(END_DET);return}
-  chamar('apiGuardar',[cod,1,quem(),false],function(r){if(!r||!r.ok){var it=ITMAP[cod]||[];detPinta({codigo:cod,desc:it[1]||'',familia:'',giro:'',nivelMax:'',jaTem:''});return}detPinta(r)})}
+  chamar('apiDetItem',[quem(),cod],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Não deu para abrir os detalhes.');return}detPinta(r)})}
 function detPinta(r){var j=$('detJan');if(!j){j=document.createElement('div');j.id='detJan';j.className='detJan';j.onclick=function(e){if(e.target===j)j.classList.remove('on')};document.body.appendChild(j)}
-  var it=ITMAP[String(r.codigo).toUpperCase()]||[];
-  var fotos=[it[3],it[4]].filter(Boolean).map(function(f){return '<img src="'+esc(f)+'" onclick="zoomFoto(this.src)" loading="lazy">'}).join('');
-  var lin=function(t,v){return '<div class="djL"><span>'+t+'</span><b>'+esc(String(v))+'</b></div>'};
-  j.innerHTML='<div class="djCx"><div class="djTop"><b>'+esc(r.codigo)+'</b><button type="button" class="djX" onclick="$(\'detJan\').classList.remove(\'on\')" aria-label="Fechar">✕</button></div><div class="djD">'+esc(r.desc)+'</div>'+
+  var fotos=[r.foto,r.foto2].filter(Boolean).map(function(f){return '<img src="'+esc(f)+'" onclick="zoomFoto(this.src)" loading="lazy">'}).join('');
+  var lin=function(t,v){return '<div class="djL"><span>'+t+'</span><b>'+esc(String(v===''||v==null?'-':v))+'</b></div>'},u=r.unid?' '+r.unid:'';
+  j.innerHTML='<div class="djCx"><div class="djTop"><b>'+esc(r.codigo)+'</b><button type="button" class="djX" onclick="$(\'detJan\').classList.remove(\'on\')" aria-label="Fechar">✕</button></div><div class="djD">'+esc(r.desc||'-')+'</div>'+
     (fotos?'<div class="djF">'+fotos+'</div>':'<p class="rcDica">Sem foto no cadastro.</p>')+
-    lin('Tipo',[it[7],it[8]?'Classe '+it[8]:''].filter(Boolean).join(' · ')||'-')+lin('Família',r.familia||'-')+lin('Giro',r.giro||'-')+(r.nivelMax?lin('Nível máximo','N0'+r.nivelMax):'')+(r.jaTem!==''?lin('Posições com este item',r.jaTem):'')+'</div>';
+    lin('Tipo',r.motor?'Motor':'Componente')+lin('Embalagem lacrada',r.lacrado?'Sim':'Não')+lin('Níveis permitidos',r.niveis)+
+    lin('Qtd padrão por embalagem',r.padrao!==''?numBR(r.padrao)+u:'')+lin('Peso da embalagem',r.peso!==''?numBR(r.peso)+' kg':'')+
+    lin('Tipo de embalagem',r.tipoEmb)+lin('Unidade de medida',r.unid)+lin('Situação',r.sit)+
+    lin('Classe',[r.classif,r.abc?'Classe '+r.abc:''].filter(Boolean).join(' · '))+lin('Família',r.familia)+lin('Giro',r.giro)+
+    (r.giroInf?lin('Giro informado',numBR(r.giroInf)+' peças por semana'):'')+
+    lin('Saldo em estoque',numBR(r.total)+u)+lin('Posições com este item',r.posicoes)+'</div>';
   j.classList.add('on')}
 
 /* 10/11/2026: Layout do mercado de motores e embalagens (área de piso). Desenho em escala, gerado a partir destes dados;
@@ -4568,12 +4576,12 @@ function sugerir(){
   if(!c||!(QR_TV.gCod&&QR_TV.gCod.cod===c.toUpperCase())){$('gRes').innerHTML=msg('erro','Leia a etiqueta do produto.');return}
   var cxN=ltMulti('g');if(cxN){q=ltTotal('g');if(!LT.g.conf){ltConfere('g',function(){LT.g.conf=1;sugerir()});return}}
   if(q<=0||(!cxN&&String(q)!==String(nIn(QR_TV.gCod.qtd)))){$('gRes').innerHTML=msg('erro','A quantidade vem da etiqueta. Leia a etiqueta de novo.');return}
-  if(ITENS&&ITENS.length&&!ITMAP[c.toUpperCase()]){cadSimples(c);return}
+  if(ITENS&&ITENS.length&&!ITMAP[c.toUpperCase()]){semCadAviso(c,1);return}
   cronoIni('end');var pd=Number((ITMAP[c.toUpperCase()]||[])[2])||0, n=cxN?1:(pd>0?Math.ceil(q/pd):1);
   END_QTDS=[];if(cxN)END_QTDS=[q];else for(var k=0;k<n;k++)END_QTDS.push(pd>0?(k<n-1?pd:q-pd*(n-1)):q);
   $('gRes').innerHTML='Procurando...';
   chamar('apiGuardar',[c,n,quem(),MODO!=='tv'],function(r){
-    if(!r.ok){if(r.naoCad){$('gRes').innerHTML='';cadSimples(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
+    if(!r.ok){if(r.naoCad){semCadAviso(c);return}$('gRes').innerHTML=msg('erro',r.msg);return}
     END_DET=r;var h='';   /* 09/11/2026: o produto já aparece no quadro da etiqueta (com Detalhes); aqui não repete */
     if(r.faltam>0) h+=msg('aviso','Não há nenhuma posição livre para '+(r.faltam===1?'este pallet':r.faltam+' pallets')+'. '+(r.podeN1?'Use Juntar com outro pallet no N1 ou chame o líder.':'Chame o líder.'));
 
@@ -4630,10 +4638,10 @@ function salvarFaltaCad(){var it=ITMAP[FALTA_COD]||[],pad=$('faPad')?val('faPad'
 /* ---------- TIRAR ---------- */
 function tirar(){cronoIni('abs');ETQ_TIRAR=null;
   var c0=String(val('tCod')||'').toUpperCase();
-  if(c0&&ITENS&&ITENS.length&&!ITMAP[c0]){$('tRes').innerHTML=msg('erro','Produto sem cadastro. Chame o líder.');avisoJan('Produto sem cadastro ('+c0+'). Chame o líder.');TOQUE.el=null;chamar('apiTirar',[c0],function(){});return}
+  if(c0&&ITENS&&ITENS.length&&!ITMAP[c0]){$('tRes').innerHTML=msg('erro','Produto sem cadastro. Fale com a gestão.');avisoJan('Produto sem cadastro ('+c0+'). Fale com a gestão.');TOQUE.el=null;chamar('apiTirar',[c0],function(){});return}
   $('tRes').innerHTML='Procurando...';
   chamar('apiTirar',[val('tCod')],function(r){
-    if(!r.ok){$('tRes').innerHTML=msg('erro',r.naoCad?'Produto sem cadastro. Chame o líder.':r.msg);if(r.naoCad)avisoJan('Produto sem cadastro ('+val('tCod')+'). Chame o líder.');return}
+    if(!r.ok){$('tRes').innerHTML=msg('erro',r.naoCad?'Produto sem cadastro. Fale com a gestão.':r.msg);if(r.naoCad)avisoJan('Produto sem cadastro ('+val('tCod')+'). Fale com a gestão.');return}
     if(!r.lista.length){$('tRes').innerHTML=msg('aviso','Nenhum componente deste item no porta-pallets.');return}
     checarFalta(r.codigo);TIRAR_R=r;
     var h='';   /* 131: sem saldo e sem Detalhes (tela clean) */
@@ -5006,7 +5014,13 @@ function abrirCad(){semCadLista();chamar('apiItem',[''],function(r){if(!r.ok)ret
 /* põe no select o valor antigo que não está mais na lista (ex.: tipo de volume antigo), para não apagar sem querer */
 function selVal(id,v){var e=$(id);v=String(v||'');if(v&&![].some.call(e.options,function(o){return o.value===v})){var o=document.createElement('option');o.textContent=v;e.appendChild(o)}e.value=v}
 function limparCad(){['cCod','cDesc','cPad','cPeso','cGiro'].forEach(function(i){$(i).value=''});$('cSit').value='Ativo';$('cLac').value='Não';$('cTipo').value='';$('cUnid').value='';$('cFoto').value='';$('cFoto2').value='';FOTO='';FOTO2='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'});$('cMsg').innerHTML=''}
-function buscarCad(){
+function cadNovoLista(){var nv=String(val('lsBusca')||'').trim().toUpperCase();fecharLista();limparCad();$('cCod').value=nv;$('cMsg').innerHTML=msg('aviso','Item novo. Preencha e salve.')}
+function buscarCad(direto){
+  /* 137 (15/11/2026): mesma pesquisa da Pesquisa de produto: código ou palavra da descrição; vários resultados abrem a lista */
+  var c=String(val('cCod')||'').trim();if(!c){$('cMsg').innerHTML=msg('erro','Digite ou escolha o produto.');return}
+  if(!direto&&ITENS&&ITENS.length&&!ITMAP[c]&&!ITMAP[c.toUpperCase()]){var a=achaItens(c);
+    if(a.length===1&&semAc(a[0][1]).indexOf(semAc(c))>=0){$('cCod').value=a[0][0]}
+    else if(a.length){abrirLista('cCod');$('lsBusca').value=c;pintarLista();return}}
   $('cMsg').innerHTML='Buscando...';
   chamar('apiItem',[val('cCod')],function(r){
     if(!r.ok){$('cMsg').innerHTML=msg('erro',r.msg);return}
@@ -5191,6 +5205,8 @@ function pintarLista(){var f=semAc(val('lsBusca')),n=0,h='',alvo=$(LS_ALVO),atua
   if(LS_TIPO==='forn'&&!FORN)h='<p class="sinoVazio">Carregando fornecedores...</p>';
   else if(!h)h='<p class="sinoVazio">'+(LS_TIPO==='forn'?'Nenhum fornecedor encontrado.':'Nenhum produto encontrado.')+'</p>';
   if(LS_TIPO==='forn'&&podeAgendar())h+='<p class="lsNovo">'+botao('Cadastrar fornecedor novo','fecharLista();abrirFornNovo(val(\'lsBusca\'))','s',{cls:'sec'})+'</p>';
+  /* 137: no Cadastro de itens, o código digitado na busca (com número, sem espaço) que ainda não existe vira item novo */
+  var nv=String(val('lsBusca')||'').trim().toUpperCase();if(LS_TIPO!=='forn'&&LS_ALVO==='cCod'&&/\d/.test(nv)&&!/\s/.test(nv)&&!ITMAP[nv])h+='<p class="lsNovo">'+botao('Cadastrar item novo: '+esc(nv),'cadNovoLista()','s',{cls:'sec'})+'</p>';
   $('lsItens').innerHTML=h;LS_POS=-1;var s=$('lsItens').querySelector('.lsSel');if(s)try{s.scrollIntoView({block:'center'})}catch(e){}}
 function escolherLista(c,bt){var e=$(LS_ALVO);if(bt){document.querySelectorAll('#lsItens .lsSel').forEach(function(x){x.classList.remove('lsSel')});bt.classList.add('lsSel')}
   setTimeout(function(){fecharLista();if(!e)return;
@@ -5204,7 +5220,10 @@ document.addEventListener('keydown',function(ev){if(!document.body.classList.con
   else if(ev.key==='Enter'&&LS_POS>=0&&L[LS_POS]){ev.preventDefault();L[LS_POS].click()}});
 
 /* ---------- PESQUISA DE PRODUTO (Abastecimento): onde está, total e primeiro do FIFO ---------- */
-function pqBloco(r){var h='<div class="pqIt"><div class="pqCab"><b>'+esc(r.codigo)+'</b><span>'+esc(r.desc||'')+'</span><small>Total: <b>'+esc(String(r.total))+'</b> · '+r.lista.length+' posição(ões)</small></div>';
+function pqDetB(c){return '<div class="infDet"><button type="button" class="infDetB" onclick="verDetItem(\''+esc(String(c).toUpperCase()).replace(/'/g,'')+'\')">Detalhes ›</button></div>'}
+/* 137 (15/11/2026): o produto aparece mesmo sem posição (saldo zero), e sempre com Detalhes, que traz o cadastro inteiro */
+function pqBloco(r){var n=(r.lista||[]).length,desc=r.desc||(ITMAP[String(r.codigo).toUpperCase()]||[])[1]||'';
+  var h='<div class="pqIt"><div class="pqCab"><b>'+esc(r.codigo)+'</b><span>'+esc(desc)+'</span><small>'+(n?'Total: <b>'+esc(String(r.total))+'</b> · '+n+' posição(ões)':'Saldo: <b>0</b> · Sem posição no porta-pallets')+'</small>'+pqDetB(r.codigo)+'</div>';
   r.lista.forEach(function(x){h+='<div class="pqL"><div><b>'+esc(x.end)+'</b><small>Recebido em '+esc(x.data)+(nfLote(x.lote)?' · NF '+esc(nfLote(x.lote)):'')+' · '+esc(String(x.qtd))+(x.status==='Bloqueado'?' · <b style="color:var(--verm)">Posição bloqueada</b>':'')+'</small></div>'+(x.fifo?'<span class="pqFifo">1º FIFO</span>':'')+'</div>'});
   return h+'</div>'}
 var PQ_ULT=null;
@@ -5215,7 +5234,7 @@ function pesqItem(){PQ_ULT=pesqItem;var c=val('pqCod');if(!c){$('pqRes').innerHT
     if(a.length===1){$('pqCod').value=a[0][0];c=a[0][0]}
     else if(a.length>1){abrirLista('pqCod');$('lsBusca').value=c;pintarLista();return}
     else{$('pqRes').innerHTML=msg('erro','Nenhum produto encontrado com "'+esc(c)+'". Confira o código ou tente outra palavra da descrição.');return}}
-  var pint=function(r){$('pqRes').innerHTML=r&&r.lista&&r.lista.length?pqBloco(r):msg('aviso','Este produto não está em nenhuma posição.')};
+  var pint=function(r){$('pqRes').innerHTML=pqBloco(r&&r.codigo?r:{codigo:k,desc:'',total:0,lista:[]})};
   /* 05/11/2026: com o estoque já carregado no celular, mostra na hora e confere com o servidor por trás */
   var k=String(c).toUpperCase();
   if(PQ_CACHE.t&&Date.now()-PQ_CACHE.t<120000){var loc=PQ_CACHE.m[k]||null,antes=JSON.stringify(loc&&loc.lista||[]);pint(loc);
@@ -5856,15 +5875,10 @@ function recTempoDecidir(usar){var faz=function(){chamar('apiRecTempoDecidir',[q
 var PQ_CACHE={t:0,m:{}},PQ_CARR=0;
 function pqPrecarregar(forcar){if(MODO==='tv'||PQ_CARR||(!forcar&&PQ_CACHE.t&&Date.now()-PQ_CACHE.t<60000))return;PQ_CARR=1;TOQUE.el=null;
   chamar('apiSaldoTudo',[],function(r){PQ_CARR=0;if(!r||!r.ok)return;var m={};(r.itens||[]).forEach(function(x){m[String(x.codigo).toUpperCase()]=x});PQ_CACHE={t:Date.now(),m:m}})}
-/* Cadastro simples (05/11/2026): no Endereçar, produto sem cadastro abre uma janela para cadastrar só o código
-   (da etiqueta lida, não digitado). Descrição, quantidade padrão e peso, só o administrador completa depois. */
-function cadSimples(c){var tv=QR_TV.gCod;if(!tv||tv.cod!==String(c).toUpperCase()){avisoJan('Produto sem cadastro ('+c+'). Leia a etiqueta do produto para cadastrar.');return}
-  var grava=function(mot){chamar('apiCadSimples',[quem(),tv.rg,mot],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para cadastrar.');return}
-      var x=[r.codigo,r.desc||'','','','','','','','','',''];if(!ITMAP[r.codigo]){ITENS.push(x);ITMAP[r.codigo]=x}
-      sugerir()})};
-  perguntar('Produto sem cadastro: '+c+'.\n\nCadastrar agora só com o código da etiqueta? A descrição, a quantidade padrão e o peso o líder completa depois.',function(){
-    /* 06/11/2026: motor nunca vai para o N01; sem descrição o app não sabe, então pergunta */
-    setTimeout(function(){perguntar('Este produto é motor?',function(){grava(true)},function(){grava(false)},{ok:'Sim, é motor',no:'Não, é componente'})},250)},null,{ok:'Cadastrar',no:'Cancelar'})}
+/* 137 (15/11/2026): o cadastro simples pelo Endereçar saiu; cadastro de itens só com a gestão.
+   Produto sem cadastro: aviso e o Endereçar para ali. srv = avisar o sistema, para o código entrar na lista do Cadastro de itens. */
+function semCadAviso(c,srv){c=String(c||'').toUpperCase();$('gRes').innerHTML=msg('erro','Produto sem cadastro. Fale com a gestão.');avisoJan('Produto sem cadastro ('+c+'). Fale com a gestão.');vib('erro');
+  if(srv){TOQUE.el=null;chamar('apiGuardar',[c,1,quem(),false],function(){})}}
 /* Lote = produto + nota fiscal + data (06/11/2026): a etiqueta master e as individuais do mesmo lote batem */
 function loteChaveC(rg){var p=String(rg||'').split('#')[0].toUpperCase().replace(/\s+/g,'').split('|');return p.length>=5?[p[0],p[3],p[4]].join('|'):''}
 /* Vários lotes do mesmo produto (06/11/2026, revisado): o operador lê a etiqueta de UMA caixa de cada lote e digita o total
@@ -5956,8 +5970,8 @@ function verSemGiro(){$('rgSemGiroRes').innerHTML='Carregando...';chamar('apiSem
 /* Lidos sem cadastro: aparecem no Cadastro de itens para o administrador completar */
 function semCadLista(){var b=$('cSemCad');if(!b)return;if(LS.getItem('jeAdm')!=='1'){b.innerHTML='';return}TOQUE.el=null;
   chamar('apiSemCad',[quem()],function(r){if(!r||!r.ok||!r.lista.length){b.innerHTML='';return}
-    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Lidos sem cadastro e cadastros simples feitos pelos operadores (só o código). Toque no código para completar a descrição, a quantidade padrão e o peso.</small><br>'+
-      r.lista.map(function(x){return ''+botao(''+esc(x.cod)+'','limparCad();$(\'cCod\').value=\''+esc(x.cod).replace(/'/g,'')+'\';buscarCad()','s',{cls:'sec'})+''}).join('')+
+    b.innerHTML='<div class="semCadBox"><b>Cadastros para completar</b><br><small>Produtos que os operadores leram sem cadastro. Toque no código para cadastrar.</small><br>'+
+      r.lista.map(function(x){return ''+botao(''+esc(x.cod)+'','limparCad();$(\'cCod\').value=\''+esc(x.cod).replace(/'/g,'')+'\';buscarCad(1)','s',{cls:'sec'})+''}).join('')+
       '<br><small>'+r.lista.map(function(x){return esc(x.cod)+(x.simples?' (cadastro simples'+(x.motor?', motor':', componente')+')':' (sem cadastro)')+': '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')}).join(' · ')+'</small></div>'})}
 
 </script>
