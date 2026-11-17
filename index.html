@@ -1515,11 +1515,13 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="rcFTxt">Hoje</span><span class="fAbre">Filtros<i></i></span></button>
   <div class="fBar"><div class="recPer segP" role="group" aria-label="Período"><button type="button" data-p="d" onclick="recPer('d')">Dia</button><button type="button" data-p="s" onclick="recPer('s')">Semana</button><button type="button" data-p="m" onclick="recPer('m')">Mês</button></div>
   <label class="vh" for="rcData">Data de referência</label>
-  <div class="rcNav"><button type="button" class="sec" onclick="recAndar(-1)" aria-label="Período anterior">‹</button><input id="rcData" type="date" data-fixo="1" onchange="recBuscar()"><button type="button" class="sec" onclick="recAndar(1)" aria-label="Próximo período">›</button></div></div>
+  <div class="rcNav"><button type="button" class="sec" onclick="recAndar(-1)" aria-label="Período anterior">‹</button><input id="rcData" type="date" data-fixo="1" onchange="recBuscar()"><button type="button" class="sec" onclick="recAndar(1)" aria-label="Próximo período">›</button></div>
+  <p><button type="button" class="b bS" onclick="recTV(true)">Modo TV</button></p></div>
   <div id="rcSum"></div>
   <div id="rcLista"></div>
   <div id="rcQuar"></div>
 </div>
+<button type="button" class="b bS" id="tvSair" onclick="recTV(false)">Sair do modo TV</button>
 
 <div id="s-recf" class="esc card">
   <div class="tit">Fornecedores</div>
@@ -1878,9 +1880,9 @@ body:has(#s-recag:not([style*="none"]) .passo.pAtual)::before{content:"";positio
 #s-recag .passo.pAtual{position:relative;z-index:41;background:#fff}
 #s-recag #agResumo{position:relative;z-index:41}
 /* ===== 17/11/2026 (versão 143): janela em grade, estilo agenda ===== */
-.agG{display:flex;flex-direction:column;min-height:calc(100dvh - 250px);margin:8px 0;border:1px solid #D7D9DD;border-radius:12px;overflow:hidden;background:#fff}
+.agG{display:flex;flex-direction:column;margin:8px 0;border:1px solid #D7D9DD;border-radius:12px;overflow:hidden;background:#fff}
 .agHead,.agRow{display:grid;grid-template-columns:46px repeat(var(--cols),minmax(0,1fr))}
-.agRow{flex:1 1 auto;min-height:52px;border-top:1px solid #E6E7EA}
+.agRow{flex:1 1 auto;min-height:72px;border-top:1px solid #E6E7EA}
 .agHead{border-bottom:2px solid #D7D9DD}
 .agHr{font-size:12px;font-weight:700;color:#555;text-align:right;padding:4px 6px 0 0;border-right:1px solid #E6E7EA;background:#F7F7F8}
 .agCel{position:relative;display:flex;flex-direction:column;gap:3px;padding:3px;border-left:1px solid #EEEFF1;min-width:0}
@@ -1905,14 +1907,35 @@ html body main #s-rec .agSem .agBl b{font-size:12px;white-space:normal;display:-
 .agAgora{position:absolute;left:0;right:0;height:0;border-top:2px solid #DC2626;z-index:3;pointer-events:none}
 .agAgora::before{content:"";position:absolute;left:-4px;top:-6px;width:9px;height:9px;border-radius:50%;background:#DC2626}
 .agFimL{display:grid;grid-template-columns:46px 1fr;border-top:2px solid #D7D9DD;background:#F7F7F8;font-size:12px;color:#666}.agFimL span{padding:4px 8px}.agFimL .agHr{background:none}
-@media (min-width:1000px){.agG{height:calc(100dvh - 300px);min-height:0}.agRow{min-height:0}.agG .agCel{overflow:hidden}.agHr{font-size:18px;width:auto}.agHead,.agRow{grid-template-columns:72px repeat(var(--cols),minmax(0,1fr))}.agFimL{grid-template-columns:72px 1fr;font-size:16px}
-  html body main #s-rec .agBl b{font-size:22px}html body main #s-rec .agBl span{font-size:17px}html body main #s-rec .agSem .agBl b{font-size:17px}.agDiaH b{font-size:20px}.agDiaH span{font-size:17px}.agLivre,.agAlmT{font-size:16px}}
+@media (min-width:1000px){.agG{height:auto;min-height:0}.agRow{min-height:92px}.agAlm{min-height:44px}.agHr{font-size:17px;width:auto;padding-top:10px}.agHead,.agRow{grid-template-columns:72px repeat(var(--cols),minmax(0,1fr))}.agFimL{grid-template-columns:72px 1fr;font-size:16px}
+  html body main #s-rec .agDia .agBl b{font-size:20px}html body main #s-rec .agDia .agBl span{font-size:16px}
+  html body main #s-rec .agSem .agBl b{font-size:15px}html body main #s-rec .agSem .agBl u{display:block;font-size:14px}.agDiaH b{font-size:18px}.agDiaH span{font-size:15px}.agLivre,.agAlmT{font-size:15px}}
 html body main #s-rec button.agDiaH:not(#z1):not(#z2):not(#z3){background:#fff!important;color:#1F1F21!important;border-radius:0!important}
 html body main #s-rec button.agDiaH.hoje:not(#z1):not(#z2):not(#z3){background:#F26A1B!important;color:#fff!important}
 html body main #s-rec button.agDiaH.hoje span:not(#z1){color:#fff!important}
 .agSem .agBl u{text-decoration:none}
-@media (max-width:600px){.agSem .agHead,.agSem .agRow,.agSem .agFimL{grid-template-columns:38px repeat(var(--cols),minmax(0,1fr))}.agSem .agHr{font-size:10px;padding-right:3px}.agSem .agCel{padding:2px}
-  html body main #s-rec .agSem .agBl{align-items:center!important;padding:3px 1px!important;border-left-width:3px!important}html body main #s-rec .agSem .agBl b{font-size:9px;text-overflow:clip;letter-spacing:-.3px}.agSem .agBl em{display:none}.agSem .agAlmT{display:none}}
+@media (max-width:600px){.agSem{overflow-x:auto;-webkit-overflow-scrolling:touch}.agSem .agHead,.agSem .agRow,.agSem .agFimL{min-width:calc(44px + var(--cols)*96px);grid-template-columns:44px repeat(var(--cols),minmax(0,1fr))}
+  .agSem .agHr{position:sticky;left:0;z-index:4;font-size:11px}.agSem .agRow{min-height:64px}.agSem .agFimL span{position:sticky;left:50px}
+  html body main #s-rec .agSem .agBl{padding:4px 6px!important}html body main #s-rec .agSem .agBl b{font-size:13px}html body main #s-rec .agSem .agBl u{display:block;font-size:12px;color:#555}}
+/* modo TV: só a grade, encaixada na altura da tela, letra grande; some tudo que não é janela */
+#tvSair{display:none}
+body.tvRec #tvSair{display:block;position:fixed;top:8px;right:10px;z-index:90;width:auto!important;min-width:0!important;padding:6px 14px!important;font-size:13px!important;opacity:.55}
+body.tvRec header,body.tvRec #navb,body.tvRec #s-rec>.tit,body.tvRec #s-rec .fTog,body.tvRec #s-rec .fBar,body.tvRec #rcQuar,body.tvRec #s-rec .vFim,body.tvRec #s-rec .voltar,body.tvRec #rcSum>*:not(.rcSumL){display:none!important}
+body.tvRec main{max-width:none!important;width:100%!important;margin:0!important;padding:6px 10px!important}
+html body.tvRec main #s-rec{padding:6px 10px!important;margin:0!important;box-shadow:none!important;border-radius:0!important}
+body.tvRec #rcSum{margin:0 0 4px;padding-right:150px}
+html body.tvRec main #s-rec .agG{height:calc(100dvh - 92px);min-height:0;margin:0}
+html body.tvRec .agHead,html body.tvRec .agRow,html body.tvRec .agFimL{grid-template-columns:clamp(70px,6.2vw,130px) repeat(var(--cols),minmax(0,1fr))}
+html body.tvRec .agFimL{grid-template-columns:clamp(70px,6.2vw,130px) 1fr}
+html body.tvRec button#tvSair.b{position:fixed!important;top:8px!important;right:10px!important;left:auto!important;bottom:auto!important}
+body.tvRec .agRow{min-height:0;flex:1 1 0}body.tvRec .agAlm{flex-grow:.4}
+body.tvRec .agHr{font-size:clamp(14px,2.6vh,30px);padding-top:4px}
+html body.tvRec main #s-rec .agBl.agBl{flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;flex-wrap:nowrap;column-gap:2vw!important;padding:0 1.2vw!important}
+html body.tvRec main #s-rec .agDia .agBl b{font-size:clamp(16px,3.4vh,40px);max-width:50%}
+html body.tvRec main #s-rec .agDia .agBl span{font-size:clamp(14px,2.8vh,34px)}
+html body.tvRec main #s-rec .agSem .agBl b{font-size:clamp(12px,2.2vh,26px)}
+html body.tvRec .agDiaH b{font-size:clamp(14px,2.6vh,30px)}html body.tvRec .agDiaH span{font-size:clamp(12px,2.2vh,26px)}
+html body.tvRec .agLivre,html body.tvRec .agAlmT{font-size:clamp(12px,2.2vh,26px)}
 /* toque: o laranja fecha (perto do queimado do RH) */
 html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.b.b:not(#z1):not(#z2):active,html body .pergSim.pergSim.pergSim:active{background:#D1581A!important;color:#fff!important}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
@@ -5838,7 +5861,7 @@ function fTxt(id,p,d){var e=$(id);if(!e)return;var hj=hojeISO(),nm={d:'Dia',s:'S
   e.textContent=nm+' · '+(p==='d'&&d===hj?'Hoje, ':'')+(d?(p==='m'?['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'][Number(d.slice(5,7))-1]+'/'+d.slice(0,4):dmy(d)):'')}
 function fTog(b,fechar){var bar=b.nextElementSibling,ab=fechar?false:!bar.classList.contains('on');bar.classList.toggle('on',ab);b.classList.toggle('on',ab);b.setAttribute('aria-expanded',ab?'true':'false')}
 function fFecha(){document.querySelectorAll('.fTog.on').forEach(function(b){fTog(b,true)})}
-function abrirRec(){fFecha();if(!$('rcData').value)$('rcData').value=hojeISO();recPer(REC.per);recQuarCarregar()}
+function abrirRec(){REC.centrar=true;fFecha();if(!$('rcData').value)$('rcData').value=hojeISO();recPer(REC.per);recQuarCarregar()}
 /* ----- Itens em quarentena (17/11/2026, versão 143): só dentro do Recebimento. Comprador e gestão decidem; o operador só vê. ----- */
 var QUAR={lista:[],decide:false,aberto:false};
 function recQuarCarregar(){if(MODO==='tv'||!quem()||!$('rcQuar'))return;
@@ -5897,6 +5920,15 @@ function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(functio
   return '<button type="button" class="rcCard '+e[0]+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
     '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
+/* ----- Centrar na hora atual e Modo TV (17/11/2026, versão 143) ----- */
+function recCentrar(){if(!REC.centrar||TELA_ATUAL!=='rec')return;var g=document.querySelector('#rcLista .agG');if(!g)return;REC.centrar=false;
+  var ag=document.querySelector('#rcLista .agAgora');if(!ag)return;var row=ag.closest('.agRow');
+  setTimeout(function(){if(row&&row.scrollIntoView)row.scrollIntoView({block:'center'});var sc=document.querySelector('#rcLista .agSem'),c=ag.parentNode;if(sc&&c)sc.scrollLeft=c.offsetLeft-sc.clientWidth/2+c.offsetWidth/2},60)}
+function recTV(on){document.body.classList.toggle('tvRec',!!on);
+  if(on){fFecha();$('rcData').value=hojeISO();REC.centrar=false;try{if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){})}catch(e){}window.scrollTo(0,0);recBuscar(true)}
+  else{try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}REC.centrar=true;recBuscar(true)}}
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&document.body.classList.contains('tvRec'))document.body.classList.remove('tvRec')});
+var _irTV=ir;ir=function(t,m){if(t!=='rec')document.body.classList.remove('tvRec');_irTV(t,m)};
 /* ----- Janela em grade, estilo agenda (17/11/2026, versão 143) -----
    Dia: uma coluna (uma doca só). Semana: uma coluna por dia. Linhas = horas (8h às 16h, com o almoço marcado; cresce se houver entrega crítica fora do horário).
    Cada entrega é um bloco; a crítica tem cor própria; uma linha marca a hora de agora. Cabe na TV sem rolar. */
@@ -5934,7 +5966,7 @@ function pintarRec(){var r=REC.info,F=REC.F,L=REC.lista,h='';if(!r)return;
     if(!ks.length)h+=msg('aviso','Nenhuma entrega agendada neste período.');
     ks.forEach(function(k){h+='<div class="rcDia"><button type="button" class="rcDiaT" onclick="recVerDia(\''+k+'\')">'+dSem(k)+', '+dmy(k)+(r.fechados[k]?' · '+esc(r.fechados[k]):'')+'<span>'+dias[k].length+'</span></button><div class="rcTempo">'+
       dias[k].map(function(x){return '<div class="rcLin"><div class="rcH">'+esc(x.ini)+'</div><div class="rcCel">'+cartaoRec(x)+'</div></div>'}).join('')+'</div></div>'})}
-  $('rcLista').innerHTML=h}
+  $('rcLista').innerHTML=h;recCentrar()}
 function recVerDia(k){$('rcData').value=k;recPer('d')}
 /* a cada minuto: atualiza as cores (atraso piscando); a cada 2 minutos busca de novo */
 setInterval(function(){if(TELA_ATUAL!=='rec'||!telaVis())return;REC.rf++;if(REC.rf%2===0)recBuscar(true);else pintarRec()},60000);
