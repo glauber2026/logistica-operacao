@@ -856,6 +856,12 @@ main .msg.errIn{margin:6px 0 10px}
 /* ---------- RECEBIMENTO (30/10/2026) ---------- */
 html body main :is(#s-rec,#s-recd,#s-recag) .recPer{display:flex;gap:6px;margin:6px 0 2px}html body main :is(#s-rec,#s-recd,#s-recag) .recPer button{flex:1!important;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 0!important;font-size:15px!important;box-shadow:none!important}html body main :is(#s-rec,#s-recd,#s-recag) .recPer button.at{background:#F26A1B!important;color:#2E2E30!important;font-weight:700!important}
 .rcNav{display:flex;gap:8px;align-items:center}.rcNav input{flex:1;margin:0}html body main :is(#s-rec,#s-recd,#s-recag) .rcNav button{width:46px!important;min-width:46px!important;padding:10px 0!important;font-size:22px!important;line-height:1!important}
+.rcEtTog{display:flex;justify-content:space-between;align-items:center;width:100%;margin:12px 0 4px;padding:10px 12px;border:0;border-radius:12px;background:#F1F2F4;color:#2E2E30;font-size:14px;font-weight:700;text-align:left}
+.rcTab[hidden]{display:none!important}
+.rgDias{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.rgDia{position:relative}.rgDia input{position:absolute;opacity:0}.rgDia span{display:block;min-width:44px;text-align:center;padding:9px 6px;border-radius:12px;background:#F1F2F4;color:#2E2E30;font-size:14px}.rgDia input:checked+span{background:#F26A1B33;box-shadow:inset 0 0 0 2px #F26A1B;font-weight:700}
+.rgIt{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;margin:4px 0;border-radius:10px;background:#F7F7F8;font-size:14px}
+.rgAdd{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.rcEtTog i{width:8px;height:8px;border-right:2px solid #777;border-bottom:2px solid #777;transform:rotate(45deg);margin-right:4px}.rcEtTog.ab i{transform:rotate(-135deg)}
 .rcPer2{margin:12px 0 0;font-weight:700;color:#2E2E30}.rcNumEr{color:#DC2626!important}
 .rcDica{color:#666;font-size:14px;margin:6px 0}
 .rcTempo{margin:10px 0 4px;border-left:2px solid #D7D9DD;margin-left:46px}
@@ -1381,6 +1387,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
     <button data-k="recp" class="prt" onclick="recPortaria()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12M3 21h18" stroke="#2E2E30"/><path d="M8 21v-7h8v7M8 17.5h8" stroke="#F26A1B"/></svg>Portaria e fiscal</button>
     <button data-k="rec" onclick="ir('rec')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16" stroke="#2E2E30"/><path d="M8 3v5M16 3v5M8 13.5h3.5v3H8z" stroke="#F26A1B"/></svg>Janelas de recebimento</button>
     <button data-k="recf" class="agd" onclick="ir('recf')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 20V8l5-3 5 3v12M14 20V11h6v9M3 20h18" stroke="#2E2E30"/><path d="M7 11h4M7 14.5h4M16.5 14.5h1.5" stroke="#F26A1B"/></svg>Fornecedores</button>
+    <button data-k="recr" class="adm" onclick="ir('recr')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2E2E30"/><path d="M12 7v5l3 2" stroke="#F26A1B"/></svg>Regras do Recebimento</button>
     <button data-k="proc2" onclick="abrirProc(2)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
   </div>
   <div class="grpT" onclick="recolher(this)" data-g="op"><span>Armazenamento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
@@ -1516,12 +1523,17 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="fBar"><div class="recPer segP" role="group" aria-label="Período"><button type="button" data-p="d" onclick="recPer('d')">Dia</button><button type="button" data-p="s" onclick="recPer('s')">Semana</button><button type="button" data-p="m" onclick="recPer('m')">Mês</button></div>
   <label class="vh" for="rcData">Data de referência</label>
   <div class="rcNav"><button type="button" class="sec" onclick="recAndar(-1)" aria-label="Período anterior">‹</button><input id="rcData" type="date" data-fixo="1" onchange="recBuscar()"><button type="button" class="sec" onclick="recAndar(1)" aria-label="Próximo período">›</button></div>
-  <p><button type="button" class="b bS" onclick="recTV(true)">Modo TV</button></p></div>
+  </div>
   <div id="rcSum"></div>
   <div id="rcLista"></div>
   <div id="rcQuar"></div>
 </div>
-<button type="button" class="b bS" id="tvSair" onclick="recTV(false)">Sair do modo TV</button>
+
+<div id="s-recr" class="esc card">
+  <div class="tit">Regras do Recebimento</div>
+  <div id="rgBox"></div>
+  <div id="rgMsg"></div>
+</div>
 
 <div id="s-recf" class="esc card">
   <div class="tit">Fornecedores</div>
@@ -1552,9 +1564,9 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   </div>
   <div class="passo" id="psR2"><label class="obr">Fornecedor</label><div class="camBox"><input id="agForn" data-lista="forn" maxlength="120" autocomplete="off" data-obr="1" placeholder="Toque para escolher na lista"></div>
     <p class="agOk np"><button type="button" class="b bP" onclick="agPronto()">Pronto</button></p></div>
-  <div class="passo" id="psR3"><label class="obr">Nota fiscal</label><input id="agNF" maxlength="20" autocomplete="off" inputmode="numeric" placeholder="Número da nota fiscal" oninput="recNF()">
+  <div class="passo" id="psR3"><label class="obr">Nota fiscal</label><input id="agNF" maxlength="9" autocomplete="off" inputmode="numeric" pattern="[0-9]*" placeholder="Número da nota fiscal (9 números)" oninput="recNF()">
+    <div id="agLista"></div>
     <div id="agItensBox" hidden>
-      <div id="agLista"></div>
       <div class="rcAdd">
         <label class="obr">Código do produto desta nota</label><div class="camBox"><input id="agCod" data-lista="1" autocomplete="off" onchange="recDesc()" oninput="agErroLimpa(this)"></div>
         <div id="agDesc" class="rcDica"></div>
@@ -1858,6 +1870,9 @@ html body main #agResumo .agRes{display:flex;flex-direction:column;align-items:f
 #s-recag .agIt{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid #ECECEE}
 #s-recag .agIt>div{flex:1;min-width:0}#s-recag .agIt small{display:block;color:#6B6B6F;font-size:12px}
 #s-recag .agIt>span{font-weight:700}
+#s-recag .agNotaR{display:flex;justify-content:space-between;align-items:center;width:100%;margin:6px 0;padding:10px 12px;border:0;border-radius:12px;background:#F1F2F4;color:#2E2E30;font-size:14px;text-align:left}
+#s-recag .agNotaR i{font-style:normal;color:#777;font-size:13px}
+#s-recag .agFecha{float:right;color:#777;font-size:13px;cursor:pointer}
 #s-recag .agNotaBt{display:flex;flex-direction:column;gap:10px;margin-top:12px}
 #s-recag .agNotaBt .b{width:100%}
 #s-recag .rcAdd input{opacity:1!important}
@@ -1917,25 +1932,6 @@ html body main #s-rec button.agDiaH.hoje span:not(#z1){color:#fff!important}
 @media (max-width:600px){.agSem{overflow-x:auto;-webkit-overflow-scrolling:touch}.agSem .agHead,.agSem .agRow,.agSem .agFimL{min-width:calc(44px + var(--cols)*96px);grid-template-columns:44px repeat(var(--cols),minmax(0,1fr))}
   .agSem .agHr{position:sticky;left:0;z-index:4;font-size:11px}.agSem .agRow{min-height:64px}.agSem .agFimL span{position:sticky;left:50px}
   html body main #s-rec .agSem .agBl{padding:4px 6px!important}html body main #s-rec .agSem .agBl b{font-size:13px}html body main #s-rec .agSem .agBl u{display:block;font-size:12px;color:#555}}
-/* modo TV: só a grade, encaixada na altura da tela, letra grande; some tudo que não é janela */
-#tvSair{display:none}
-body.tvRec #tvSair{display:block;position:fixed;top:8px;right:10px;z-index:90;width:auto!important;min-width:0!important;padding:6px 14px!important;font-size:13px!important;opacity:.55}
-body.tvRec header,body.tvRec #navb,body.tvRec #s-rec>.tit,body.tvRec #s-rec .fTog,body.tvRec #s-rec .fBar,body.tvRec #rcQuar,body.tvRec #s-rec .vFim,body.tvRec #s-rec .voltar,body.tvRec #rcSum>*:not(.rcSumL){display:none!important}
-body.tvRec main{max-width:none!important;width:100%!important;margin:0!important;padding:6px 10px!important}
-html body.tvRec main #s-rec{padding:6px 10px!important;margin:0!important;box-shadow:none!important;border-radius:0!important}
-body.tvRec #rcSum{margin:0 0 4px;padding-right:150px}
-html body.tvRec main #s-rec .agG{height:calc(100dvh - 92px);min-height:0;margin:0}
-html body.tvRec .agHead,html body.tvRec .agRow,html body.tvRec .agFimL{grid-template-columns:clamp(70px,6.2vw,130px) repeat(var(--cols),minmax(0,1fr))}
-html body.tvRec .agFimL{grid-template-columns:clamp(70px,6.2vw,130px) 1fr}
-html body.tvRec button#tvSair.b{position:fixed!important;top:8px!important;right:10px!important;left:auto!important;bottom:auto!important}
-body.tvRec .agRow{min-height:0;flex:1 1 0}body.tvRec .agAlm{flex-grow:.4}
-body.tvRec .agHr{font-size:clamp(14px,2.6vh,30px);padding-top:4px}
-html body.tvRec main #s-rec .agBl.agBl{flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;flex-wrap:nowrap;column-gap:2vw!important;padding:0 1.2vw!important}
-html body.tvRec main #s-rec .agDia .agBl b{font-size:clamp(16px,3.4vh,40px);max-width:50%}
-html body.tvRec main #s-rec .agDia .agBl span{font-size:clamp(14px,2.8vh,34px)}
-html body.tvRec main #s-rec .agSem .agBl b{font-size:clamp(12px,2.2vh,26px)}
-html body.tvRec .agDiaH b{font-size:clamp(14px,2.6vh,30px)}html body.tvRec .agDiaH span{font-size:clamp(12px,2.2vh,26px)}
-html body.tvRec .agLivre,html body.tvRec .agAlmT{font-size:clamp(12px,2.2vh,26px)}
 /* toque: o laranja fecha (perto do queimado do RH) */
 html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.b.b:not(#z1):not(#z2):active,html body .pergSim.pergSim.pergSim:active{background:#D1581A!important;color:#fff!important}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
@@ -2175,7 +2171,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=143,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=144,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2214,7 +2210,7 @@ function perguntar(t,sim,nao,op){op=op||{};var j=$('pergJan'),f=$('pergFundo'),i
   if(!j){if(sim)sim('');return}
   $('pergTx').textContent=String(t==null?'':t);i.value='';i.style.display=op.campo?'block':'none';
   var po=$('pergOps');if(po){po.innerHTML='';(op.lista||[]).forEach(function(o,k){po.insertAdjacentHTML('beforeend',botao(o.t,'','s',{cls:'pergOp'}));var bb=po.lastChild;bb.onclick=function(){fecha();if(o.a)o.a()}})}j.classList.toggle('lista',!!op.lista);
-  bs.textContent=op.ok||(op.so?'OK':'Confirmar');bs.style.display=op.lista?'none':'';var pg=/^(Cancelar opera|Cancelar$|Não está aqui|Bloquear|Excluir|Apagar|Zerar)/.test(bs.textContent);bs.classList.toggle('bD',pg);bs.classList.toggle('bP',!pg);bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
+  bs.textContent=op.ok||(op.so?'OK':'Confirmar');bs.style.display=op.lista?'none':'';var pg=/^(Cancelar opera|Cancelar agend|Cancelar$|Descartar|Não está aqui|Bloquear|Excluir|Apagar|Zerar)/.test(bs.textContent);bs.classList.toggle('bD',pg);bs.classList.toggle('bP',!pg);bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
   var tecla=function(e){if(e.key==='Escape'){e.preventDefault();bn.onclick()}else if(e.key==='Enter'){e.preventDefault();bs.onclick()}};
   var fecha=function(){PERG.aberta=0;j.classList.remove('on');f.classList.remove('on');document.removeEventListener('keydown',tecla)};
   bs.onclick=function(){var v=i.value.trim();if(op.campo&&!v){i.focus();return}fecha();if(sim)sim(op.campo?v:undefined)};
@@ -5798,10 +5794,15 @@ function emAndamento(t){if(MODO==='tv'||CONF_SAIR.indexOf(t)<0)return false;var 
 function sairSeguro(seguir){var t=TELA_ATUAL;
   if(emAndamento(t)){var pop=Date.now()-POP_T<1500;
     if(pop){try{history.pushState({c:PILHA.length},'')}catch(e){}}
-    perguntar(txCancelar(t),function(){limparTela(t);seguir()},null,{ok:'Cancelar',no:'Continuar'});return}
+    perguntar(txCancelar(t),function(){limparTela(t);seguir()},null,{ok:okCancelar(t),no:'Continuar'});return}
   limparTela(t);seguir()}
 window.addEventListener('popstate',function(){POP_T=Date.now()},true);
-var _voltarCamada=voltarCamada;voltarCamada=function(){sairSeguro(_voltarCamada)};
+var _voltarCamada=voltarCamada;voltarCamada=function(){
+  var t=TELA_ATUAL;
+  if(t==='recag'){var d=PASSOS.recag();
+    if(!d.fim&&d.i>0){if(REC.ver>=0&&REC.ver<d.i){REC.ver=-1}else if(d.i===3){REC.notasOk=false;REC.ver=-1}else if(d.i===2){REC.ver=1}else if(d.i===1){REC.ver=0}GUIA.k='';agendarGuia('change');return}}
+  if(t==='recag'||t==='recd'||t==='recf'||t==='recr'){sairSeguro(function(){PILHA.pop();VOLTANDO=true;try{GRUPO='rec';ir('menu',true)}finally{VOLTANDO=false}});return}
+  sairSeguro(_voltarCamada)};
 var _abrirGrupo=abrirGrupo;abrirGrupo=function(g){if(TELA_ATUAL&&TELA_ATUAL!=='menu'&&ACAO.indexOf(TELA_ATUAL)>=0)sairSeguro(function(){_abrirGrupo(g)});else _abrirGrupo(g)};
 sairEnd=function(){abrirGrupo(GRUPO||'ini')};
 /* ao entrar numa tela (sem ser voltando), ela abre limpa e já conduz para o primeiro passo */
@@ -5836,6 +5837,7 @@ var _irRec=ir;ir=function(t,m){_irRec(t,m);aplicarPerfilRec();
   if(t==='rec')abrirRec();
   if(t==='recag'&&!m)abrirRecAg();
   if(t==='recf'&&!m)abrirForn();
+  if(t==='recr')abrirRegras();
   if(t!=='recd'&&REC.tm){clearInterval(REC.tm);REC.tm=0}};
 ACAO.push('recag','recd','recf');CONF_SAIR.push('recag','recd','recf');
 
@@ -5900,7 +5902,8 @@ function recBuscar(quieto){fTxt('rcFTxt',REC.per,val('rcData'));var F=recFaixa()
     REC.lista=r.lista||[];REC.perm=r.perm||{};REC.info=r;REC.F=F;pintarRec()})}
 /* Ao entrar na área Recebimento, já busca as janelas de hoje por trás */
 function recPrefetch(){if(!quem()||MODO==='tv')return;var h=hojeISO(),F=[h,h],k=recChave(F),c=REC_CACHE[k];if(c&&Date.now()-c.t<60000)return;
-  try{servidor('apiRecLista',[quem(),h,h],function(r){if(r&&r.ok)recGuarda(k,r)})}catch(e){}}
+  try{servidor('apiRecLista',[quem(),h,h],function(r){if(r&&r.ok)recGuarda(k,r)})}catch(e){}
+  try{if(podeAgendar()&&!(REC.horC||{})[h])recHorasGet(h,0,false,function(){})}catch(e){}}
 /* Situação do cartão: cor e texto */
 function estadoRec(x){var hoje=hojeISO(),am=agoraMin(),et=x.et||{};
   if(x.sit==='Aguardando aval')return ['rcAval','Entrega crítica · aguardando aval'];
@@ -5920,15 +5923,10 @@ function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(functio
   return '<button type="button" class="rcCard '+e[0]+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
     '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
-/* ----- Centrar na hora atual e Modo TV (17/11/2026, versão 143) ----- */
+/* ----- Centrar na hora atual (17/11/2026, versão 143; Modo TV removido) ----- */
 function recCentrar(){if(!REC.centrar||TELA_ATUAL!=='rec')return;var g=document.querySelector('#rcLista .agG');if(!g)return;REC.centrar=false;
   var ag=document.querySelector('#rcLista .agAgora');if(!ag)return;var row=ag.closest('.agRow');
   setTimeout(function(){if(row&&row.scrollIntoView)row.scrollIntoView({block:'center'});var sc=document.querySelector('#rcLista .agSem'),c=ag.parentNode;if(sc&&c)sc.scrollLeft=c.offsetLeft-sc.clientWidth/2+c.offsetWidth/2},60)}
-function recTV(on){document.body.classList.toggle('tvRec',!!on);
-  if(on){fFecha();$('rcData').value=hojeISO();REC.centrar=false;try{if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(function(){})}catch(e){}window.scrollTo(0,0);recBuscar(true)}
-  else{try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}REC.centrar=true;recBuscar(true)}}
-document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&document.body.classList.contains('tvRec'))document.body.classList.remove('tvRec')});
-var _irTV=ir;ir=function(t,m){if(t!=='rec')document.body.classList.remove('tvRec');_irTV(t,m)};
 /* ----- Janela em grade, estilo agenda (17/11/2026, versão 143) -----
    Dia: uma coluna (uma doca só). Semana: uma coluna por dia. Linhas = horas (8h às 16h, com o almoço marcado; cresce se houver entrega crítica fora do horário).
    Cada entrega é um bloco; a crítica tem cor própria; uma linha marca a hora de agora. Cabe na TV sem rolar. */
@@ -5972,7 +5970,8 @@ function recVerDia(k){$('rcData').value=k;recPer('d')}
 setInterval(function(){if(TELA_ATUAL!=='rec'||!telaVis())return;REC.rf++;if(REC.rf%2===0)recBuscar(true);else pintarRec()},60000);
 
 /* ----- Detalhe da entrega ----- */
-function abrirRecDet(id){var x=REC.lista.filter(function(y){return y.id===id})[0];if(!x)return;REC.sel=x;ir('recd');pintarRecDet()}
+function recEtTog(b){REC.etAb=!REC.etAb;b.classList.toggle('ab',REC.etAb);var d=b.nextElementSibling;if(d)d.hidden=!REC.etAb}
+function abrirRecDet(id){REC.etAb=false;var x=REC.lista.filter(function(y){return y.id===id})[0];if(!x)return;REC.sel=x;ir('recd');pintarRecDet()}
 function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=estadoRec(x),fin=x.sit==='Concluído',et=x.et||{},hj=hojeISO(),cego=recCego(x);
   var h='<div class="rcPrCab">Johnson Electric · Logística · Controle de janela de recebimento</div>'+
     '<div class="rcDet '+e[0]+'"><b>'+esc(x.forn)+'</b><span class="rcSt">'+esc(e[1])+'</span></div>'+
@@ -5988,7 +5987,7 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
   if(x.irr)h+=irrHtml(x.irr);
   /* etapas com a hora e o tempo de cada uma */
   var feitas=REC_ETAPAS.filter(function(k){return et[k]});
-  if(feitas.length){var ant=0;h+='<p class="rcPer2">Etapas</p><div class="rcTab rcEt"><table><tr><th>Etapa</th><th>Hora</th><th>Tempo</th></tr>'+
+  if(feitas.length){var ant=0;h+='<button type="button" class="rcEtTog'+(REC.etAb?' ab':'')+'" onclick="recEtTog(this)"><span>Etapas · '+feitas.length+' de '+REC_ETAPAS.length+' feitas</span><i></i></button><div class="rcTab rcEt"'+(REC.etAb?'':' hidden')+'><table><tr><th>Etapa</th><th>Hora</th><th>Tempo</th></tr>'+
     feitas.map(function(k){var t=et[k][0],d=ant?fmtSeg((t-ant)/1000):'–';ant=t;return '<tr><td>'+esc(REC_NOME[k])+'<br><small>'+esc(et[k][1]||'')+'</small></td><td>'+hhmm(t)+'</td><td>'+d+'</td></tr>'}).join('')+'</table></div>';
     var aberto=!et.arm&&x.sit!=='Cancelado'&&x.sit!=='Recusado'&&!(fin&&!x.pend);
     h+='<div class="rcInfo"><div>Tempo total<b id="rdTot">'+(et.arm?fmtSeg((et.arm[0]-et[feitas[0]][0])/1000):'…')+'</b></div>'+(aberto?'<div>Nesta etapa<b id="rdEtp">…</b></div>':'')+
@@ -6116,17 +6115,20 @@ function recImprimir(){document.body.classList.add('prRec');setTimeout(function(
 /* 17/11/2026 (versão 143): um passo por vez (data e horário, fornecedor, nota e itens, volume total); nota fiscal primeiro, depois os itens dela;
    o volume vale para o container todo e é pedido no fim; passo fechado vira resumo que dá para tocar e alterar */
 REC.ver=-1;REC.notasOk=false;REC.reqH=0;REC.kHoras='';
-function abrirRecAg(){REC.kHoras='';REC.itens=[];REC.hora='';REC.ver=-1;REC.notasOk=false;delete $('agForn').dataset.cod;$('agForn').value='';fornCarregar();$('agCrit').checked=false;recCrit(true);$('agLista').innerHTML='';$('agDesc').textContent='';$('agMsg').innerHTML='';
+function abrirRecAg(){REC.kHoras='';REC.itens=[];REC.hora='';REC.ver=-1;REC.notasOk=false;delete $('agForn').dataset.cod;$('agForn').value='';fornCarregar();$('agCrit').checked=false;recCrit(true);$('agLista').innerHTML='';$('agLista')._h='';REC.abre={};$('agDesc').textContent='';$('agMsg').innerHTML='';
   ['agNF','agCod','agQtd','agVolT'].forEach(function(i){$(i).value=''});$('agItensBox').hidden=true;$('agVolDica').textContent='';
   $('agBtn').parentNode.hidden=false;$('agData').min=hojeISO();$('agData').value=hojeISO();$('agHoras').innerHTML='<p class="rcDica">Buscando horários...</p>';recHoras()}
 function recCrit(quieto){var c=$('agCrit').checked;$('agCritBox').hidden=!c;$('agPad').hidden=c;if(!quieto){limparErros();GUIA.k='';agendarGuia('change')}}
 function agDataOk(k){return /^\d{4}-\d{2}-\d{2}$/.test(k)&&Number(k.slice(0,4))>=2020&&Number(k.slice(0,4))<=2100}
+REC.horC={};
+function recHorasGet(k,vol,fresco,cb){var c=REC.horC[k];if(!fresco&&c&&Date.now()-c.t<45000){cb(c.r);return}
+  chamar('apiRecHorarios',[quem(),k,vol],function(r){if(r&&r.ok)REC.horC[k]={t:Date.now(),r:r};cb(r)})}
 function recHoras(manter){var k=val('agData');if(!manter&&k&&k===REC.kHoras&&$('agHoras').querySelector('.rcChips'))return;var ant=manter?REC.hora:'';REC.hora='';REC.kHoras=k;var n=++REC.reqH;
   if(!k||!agDataOk(k)){$('agHoras').innerHTML=k?'<p class="rcDica">Termine de digitar a data (dia, mês e ano).</p>':'<p class="rcDica">Escolha a data para ver os horários livres.</p>';return}
   if(k<hojeISO()){$('agHoras').innerHTML='<div class="rcFech">Essa data já passou. Escolha hoje ou uma data futura.</div>';return}
   var vol=0;
   $('agHoras').innerHTML='<p class="rcDica">Buscando horários...</p>';if(manter)TOQUE.el=null;
-  chamar('apiRecHorarios',[quem(),k,vol],function(r){if(n!==REC.reqH||val('agData')!==k)return;
+  recHorasGet(k,vol,manter,function(r){if(n!==REC.reqH||val('agData')!==k)return;
     if(!r.ok){$('agHoras').innerHTML=msg('erro',r.msg);return}REC.porVol=!!r.porVolume;
     if(r.fechado){$('agHoras').innerHTML='<div class="rcFech">Recebimento fechado: '+esc(r.fechado)+'. Escolha outro dia ou marque Entrega crítica.</div>';return}
     if(!r.livres.length){$('agHoras').innerHTML='<div class="rcFech">Não há mais horário livre neste dia. Escolha outro dia.</div>';if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.');return}
@@ -6136,12 +6138,14 @@ function recHoras(manter){var k=val('agData');if(!manter&&k&&k===REC.kHoras&&$('
 function recEscHora(b){REC.hora=b.getAttribute('data-h');document.querySelectorAll('#agHoras .rcChips button').forEach(function(x){x.classList.toggle('at',x===b)});
   var e=b.closest('.blocoErro');if(e)e.classList.remove('blocoErro');document.querySelectorAll('#psR1 .errIn').forEach(function(x){x.remove()});vib('ok');GUIA.k='';agendarGuia('change')}
 function agErroLimpa(f){var p=recRef(f),n=p&&p.nextElementSibling;if(n&&n.classList.contains('errIn'))n.remove();f.classList.remove('campoErro');var b=blocoCampo(f);if(b)b.classList.remove('blocoErro')}
-function recNF(){var tem=!!val('agNF').replace(/[^0-9A-Za-z-]/g,'');$('agItensBox').hidden=!tem;pintarItensRec();GUIA.k='';agendarGuia('change')}
+function recNF(){var el=$('agNF'),v=el.value.replace(/\D/g,'').slice(0,9);if(el.value!==v)el.value=v;var tem=!!v,mudou=($('agItensBox').hidden===tem);
+  if(mudou)$('agItensBox').hidden=!tem;pintarItensRec();agErroLimpa(el);if(mudou){GUIA.k='';agendarGuia('change')}}
 function recDesc(){var c=val('agCod').split(' — ')[0].trim().toUpperCase(),it=ITMAP[c];$('agDesc').textContent=c?(it?it[1]:'Produto fora do cadastro do app (pode agendar assim mesmo).'):''}
-function agNFAtual(){return val('agNF').replace(/[^0-9A-Za-z-]/g,'')}
+function agNFAtual(){return val('agNF').replace(/\D/g,'').slice(0,9)}
+function agNF9(nf){return nf.length===9}
 function agErro(id,t){var f=$(id);var d=document.createElement('div');d.className='msg erro errIn';d.setAttribute('role','alert');d.textContent=t;recRef(f).insertAdjacentElement('afterend',d);marcarCampo(f);rolarPara(f,true);vib('erro')}
 function recAddItem(){limparErros();document.querySelectorAll('#psR3 .errIn').forEach(function(x){x.remove()});var nf=agNFAtual(),c=val('agCod').split(' — ')[0].trim().toUpperCase(),q=Number(val('agQtd').replace(',','.'));
-  if(!nf)return agErro('agNF','Informe o número da nota fiscal.');
+  if(!agNF9(nf))return agErro('agNF','A nota fiscal tem 9 números.');
   if(!c)return agErro('agCod','Informe o código do produto.');
   if(!(q>0))return agErro('agQtd','Informe a quantidade.');
   var it=ITMAP[c];REC.itens.push({c:c,d:it?it[1]:'',q:q,nf:nf});REC.notasOk=false;
@@ -6151,20 +6155,26 @@ function recTiraItem(i){REC.itens.splice(i,1);pintarItensRec();GUIA.k='';agendar
 function agNotas(){var o={},l=[];REC.itens.forEach(function(p){if(!o[p.nf]){o[p.nf]=1;l.push(p.nf)}});return l}
 function recMaisNotas(){limparErros();document.querySelectorAll('#psR3 .errIn').forEach(function(x){x.remove()});var nf=agNFAtual();
   if(val('agCod')||val('agQtd'))return agErro(val('agCod')?'agCod':'agQtd','Toque em Acrescentar produto para incluir o produto que está no campo.');
+  if(!agNF9(nf))return agErro('agNF','A nota fiscal tem 9 números.');
   if(!REC.itens.some(function(p){return p.nf===nf}))return agErro('agNF','Acrescente pelo menos um produto da nota '+(nf||'')+' antes de incluir outra nota.');
   $('agNF').value='';$('agItensBox').hidden=true;pintarItensRec();GUIA.k='';agendarGuia('change');setTimeout(function(){$('agNF').focus()},200)}
 function recConcluirNotas(){limparErros();document.querySelectorAll('#psR3 .errIn').forEach(function(x){x.remove()});var nf=agNFAtual();
   if(val('agCod')||val('agQtd'))return agErro(val('agCod')?'agCod':'agQtd','Toque em Acrescentar produto para incluir o produto que está no campo.');
+  if(nf&&!agNF9(nf))return agErro('agNF','A nota fiscal tem 9 números.');
   if(nf&&!REC.itens.some(function(p){return p.nf===nf}))return agErro('agNF','A nota '+nf+' ainda não tem produto. Acrescente um produto ou apague o número.');
   if(!REC.itens.length)return agErro('agNF','Informe a nota fiscal e acrescente pelo menos um produto.');
   REC.notasOk=true;REC.ver=-1;GUIA.k='';agendarGuia('change')}
 function agVoltaNotas(){REC.notasOk=false;REC.ver=-1;GUIA.k='';agendarGuia('change')}
 function agVer(k){REC.ver=k;GUIA.k='';agendarGuia('change')}
 function agPronto(){REC.ver=-1;GUIA.k='';agendarGuia('change')}
-function pintarItensRec(){var L=REC.itens;if(!L.length){$('agLista').innerHTML='';return}
-  var h='';agNotas().forEach(function(nf){var its=[];L.forEach(function(p,i){if(p.nf===nf)its.push([p,i])});
-    h+='<div class="agNota"><div class="agNotaT">Nota fiscal <b>'+esc(nf)+'</b> · '+its.length+' produto(s)</div>'+its.map(function(x){var p=x[0];return '<div class="agIt"><div><b>'+esc(p.c)+'</b><small>'+esc(p.d)+'</small></div><span>'+numBR(p.q)+'</span><button type="button" class="rcX" onclick="recTiraItem('+x[1]+')" aria-label="Tirar '+esc(p.c)+'">×</button></div>'}).join('')+'</div>'});
-  $('agLista').innerHTML=h}
+function recAbreNota(nf){REC.abre=REC.abre||{};REC.abre[nf]=!REC.abre[nf];pintarItensRec()}
+function pintarItensRec(){var L=REC.itens,box=$('agLista');if(!L.length){if(box._h!==''){box._h='';box.innerHTML=''}return}
+  var atual=agNFAtual(),ab=REC.abre||{},h='';
+  agNotas().forEach(function(nf){var its=[];L.forEach(function(p,i){if(p.nf===nf)its.push([p,i])});
+    var aberta=nf===atual||ab[nf],cab=its.length+' produto'+(its.length===1?'':'s');
+    if(!aberta){h+='<button type="button" class="agNotaR" onclick="recAbreNota(\''+esc(nf)+'\')"><span>NF <b>'+esc(nf)+'</b> · '+cab+'</span><i>Ver</i></button>';return}
+    h+='<div class="agNota"><div class="agNotaT">Nota fiscal <b>'+esc(nf)+'</b> · '+cab+(nf!==atual?' <a class="agFecha" onclick="recAbreNota(\''+esc(nf)+'\')">Recolher</a>':'')+'</div>'+its.map(function(x){var p=x[0];return '<div class="agIt"><div><b>'+esc(p.c)+'</b><small>'+esc(p.d)+'</small></div><span>'+numBR(p.q)+'</span><button type="button" class="rcX" onclick="recTiraItem('+x[1]+')" aria-label="Tirar '+esc(p.c)+'">×</button></div>'}).join('')+'</div>'});
+  if(box._h!==h){box._h=h;box.innerHTML=h}}
 function agResumoTxt(k){if(k===0){var c=$('agCrit').checked;return esc(dmy(val('agData')))+' às '+esc(c?val('agHora'):REC.hora)+(c?' (crítica)':'')}
   if(k===1)return esc(val('agForn'));
   var n=agNotas();return 'NF '+esc(n.join(', '))+' · '+REC.itens.length+' produto(s)'}
@@ -6181,8 +6191,8 @@ function recAgendar(){limparErros();document.querySelectorAll('#psR4 .errIn').fo
   if(!(vol>=1))return agErro('agVolT','Informe o volume total do container (número inteiro).');
   var enviar=function(){var d={data:val('agData'),hora:crit?val('agHora'):REC.hora,critica:crit,obs:crit?val('agMot'):'',forn:val('agForn'),fornCod:$('agForn').dataset.cod||'',itens:REC.itens,vol:vol};
     chamar('apiRecAgendar',[quem(),d],function(r){
-      if(!r.ok){if(r.livres){REC.ver=0;recHoras();GUIA.k='';agendarGuia('change')}var f=r.campo&&$(r.campo);if(f&&vis(f)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
-      $('agBtn').parentNode.hidden=true;carregarAvisos();
+      if(!r.ok){REC.horC={};if(r.livres){REC.ver=0;recHoras();GUIA.k='';agendarGuia('change')}var f=r.campo&&$(r.campo);if(f&&vis(f)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
+      REC.horC={};$('agBtn').parentNode.hidden=true;carregarAvisos();
       $('agMsg').innerHTML=msg('ok',r.msg)+blocoFim("contTela('recag','agData')")})};
   var n=REC.itens.length;
   if(vol<n||vol>n*40)perguntar('O volume total ('+vol+') parece fora do esperado para '+n+' produto(s) em '+agNotas().length+' nota(s). Confirma '+vol+' volume(s)?',enviar,null,{ok:'Confirmar volume'});
@@ -6193,7 +6203,7 @@ PASSOS.recag=function(){var fimBl=document.querySelector('#agMsg .endFim'),crit=
   agResumo(fimBl?0:i);
   return {k:'rg',i:i,nomes:['Data e horário','Fornecedor','Nota e produtos','Volume total'],bl:[$('psR1'),$('psR2'),$('psR3'),$('psR4')],
     fim:!!fimBl,fimBl:fimBl,ativo:!fimBl&&(!!val('agData')||!!val('agForn')||REC.itens.length>0)}};
-var _limparTelaR=limparTela;limparTela=function(t){_limparTelaR(t);if(t==='recag'){REC.itens=[];REC.hora='';REC.ver=-1;REC.notasOk=false;var c=$('agCrit');if(c){c.checked=false;recCrit(true)}$('agLista').innerHTML=''}
+var _limparTelaR=limparTela;limparTela=function(t){_limparTelaR(t);if(t==='recag'){REC.itens=[];REC.hora='';REC.ver=-1;REC.notasOk=false;var c=$('agCrit');if(c){c.checked=false;recCrit(true)}$('agLista').innerHTML='';$('agLista')._h='';REC.abre={}}
   if(t==='recd'){ASS_OK=false;if(REC.tm){clearInterval(REC.tm);REC.tm=0}}};
 var _emAndamentoR=emAndamento;emAndamento=function(t){if(t==='recag'&&$('agMsg')&&$('agMsg').querySelector('.endFim'))return false;
   if(t==='recd'&&((ASS_OK&&$('rAss')&&vis($('rAss')))||($('rfVol')&&vis($('rfVol'))&&(val('rfVol')||document.querySelector('#rdFinBox input[id^=rfQ]')&&val(document.querySelector('#rdFinBox input[id^=rfQ]').id)))))return true;
@@ -6308,11 +6318,39 @@ function recAlertaResp(r){if(!r||!r.ok)return;var L=r.lista||[],novos=L.filter(f
 setInterval(recAlertaCk,30000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(recAlertaCk,800)});
 
+/* ----- Regras do Recebimento (18/11/2026, versão 144): só o administrador ----- */
+var RG=null;
+function abrirRegras(){$('rgMsg').innerHTML='';$('rgBox').innerHTML='<p class="rcDica">Carregando...</p>';
+  chamar('apiRecRegrasLer',[quem()],function(r){if(!r.ok){$('rgBox').innerHTML=msg('erro',r.msg);return}RG=r.regras;RG.cfg=r.cfg;RG.padrao=r.padrao;pintarRegras()})}
+function rgDiasOrd(){return [[1,'Seg'],[2,'Ter'],[3,'Qua'],[4,'Qui'],[5,'Sex'],[6,'Sáb'],[0,'Dom']]}
+function rgLista(o,tipo){var ks=(tipo==='f'?Object.keys(o):o.slice()).sort();if(!ks.length)return '<p class="rcDica">Nenhuma.</p>';
+  return ks.map(function(k){return '<div class="rgIt"><span><b>'+esc(dmy(k))+'</b>'+(tipo==='f'?' · '+esc(o[k]):'')+'</span><button type="button" class="rcX" onclick="rgTira(\''+tipo+'\',\''+k+'\')" aria-label="Tirar">×</button></div>'}).join('')}
+function pintarRegras(){var c=RG.cfg,h='<label for="rgIni">Início do recebimento</label><input id="rgIni" type="time" step="1800" value="'+RG.ini+'">'+
+  '<label for="rgFim">Fim do recebimento</label><input id="rgFim" type="time" step="1800" value="'+RG.fim+'">'+
+  '<label for="rgAI">Início do almoço</label><input id="rgAI" type="time" step="1800" value="'+RG.almI+'">'+
+  '<label for="rgAF">Fim do almoço</label><input id="rgAF" type="time" step="1800" value="'+RG.almF+'">'+
+  '<p class="rcPer2">Dias da semana que recebem</p><div class="rgDias">'+rgDiasOrd().map(function(d){return '<label class="rgDia"><input type="checkbox" value="'+d[0]+'"'+(RG.dias.indexOf(d[0])>=0?' checked':'')+'><span>'+d[1]+'</span></label>'}).join('')+'</div>'+
+  '<p class="rcDica">Sábado e domingo ficam desmarcados até você marcar. Feriados ficam fechados, a não ser que você abra a data.</p>'+
+  '<p class="rcPer2">Dias fechados por data</p><div id="rgFech">'+rgLista(RG.fechados,'f')+'</div>'+
+  '<div class="rgAdd"><input id="rgFD" type="date" data-fixo="1"><input id="rgFM" maxlength="60" placeholder="Motivo (opcional)" autocomplete="off">'+botao('Fechar esta data','rgAdd(\'f\')','s')+'</div>'+
+  '<p class="rcPer2">Datas abertas de propósito</p><div id="rgAbr">'+rgLista(RG.abertos,'a')+'</div>'+
+  '<div class="rgAdd"><input id="rgAD" type="date" data-fixo="1">'+botao('Abrir esta data','rgAdd(\'a\')','s')+'</div>'+
+  '<p class="rcPer2">Duração da janela</p><p class="rcDica">'+(c?'Calculada pelo volume: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga, em blocos de 30 minutos'+(c.em?' (aprovado por '+esc(c.em)+')':'')+'.':'Fixa em '+RG.padrao+' minutos. O app mede os recebimentos e avisa na parte de baixo do Recebimento quando houver tempo para você aprovar.')+'</p>'+
+  '<p>'+botao('Salvar regras','rgSalvar()','p')+'</p>';
+  $('rgBox').innerHTML=h}
+function rgTira(t,k){if(t==='f')delete RG.fechados[k];else RG.abertos=RG.abertos.filter(function(x){return x!==k});$(t==='f'?'rgFech':'rgAbr').innerHTML=rgLista(t==='f'?RG.fechados:RG.abertos,t)}
+function rgAdd(t){var d=val(t==='f'?'rgFD':'rgAD');if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||!agDataOk(d))return mostrarErro('Escolha a data.');
+  if(t==='f'){RG.fechados[d]=val('rgFM')||'Fechado';$('rgFM').value=''}else if(RG.abertos.indexOf(d)<0)RG.abertos.push(d);
+  $(t==='f'?'rgFD':'rgAD').value='';$(t==='f'?'rgFech':'rgAbr').innerHTML=rgLista(t==='f'?RG.fechados:RG.abertos,t);vib('ok')}
+function rgSalvar(){var dias=[].map.call(document.querySelectorAll('#rgBox .rgDia input:checked'),function(i){return Number(i.value)});
+  chamar('apiRecRegrasGravar',[quem(),{ini:val('rgIni'),fim:val('rgFim'),almI:val('rgAI'),almF:val('rgAF'),dias:dias,fechados:RG.fechados,abertos:RG.abertos}],function(r){
+    if(!r.ok){mostrarErro(r.msg);return}var c=RG.cfg,p=RG.padrao;RG=r.regras;RG.cfg=c;RG.padrao=p;REC.horC={};REC_CACHE={};try{recPrefetch()}catch(e){}pintarRegras();$('rgMsg').innerHTML=msg('ok',r.msg)})}
+
 /* Tempo por volume: o app propõe com 3 entregas medidas; o administrador decide */
 function recPropHtml(r){var h='',P=r.prop,c=r.cfg;
   if(c&&(REC.perm||{}).admin)h+='<p class="rcDica">Janela calculada pelos volumes: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga'+(c.em?' (aprovado por '+esc(c.em)+')':'')+'.</p>';
   if(!P)return h;
-  return h+'<div class="rcProp"><b>Tempo do recebimento medido</b><p>'+P.n+' entrega(s) medida(s)'+(P.veic.length?' ('+P.veic.map(function(v){return esc(v.v)+': '+v.n+', '+numV(v.tpv)+' min por volume'}).join(' · ')+')':'')+'.</p>'+
+  return h+'<div class="rcProp"><b>'+(P.tipo==='desvio'?'Recebimentos fora do padrão':'Tempo do recebimento medido')+'</b>'+(P.tipo==='desvio'?'<p>'+esc(P.motivo.charAt(0).toUpperCase()+P.motivo.slice(1))+'</p>':'')+'<p>'+P.n+' entrega(s) medida(s)'+(P.veic.length?' ('+P.veic.map(function(v){return esc(v.v)+': '+v.n+', '+numV(v.tpv)+' min por volume'}).join(' · ')+')':'')+'.</p>'+
     '<p>Descarregamento: <b>'+numV(P.tpv)+' min por volume</b>. Outras etapas da doca, até a armazenagem: <b>'+numV(P.fixo)+' min</b>. Com '+P.folga+'% de folga, uma entrega de '+P.ex.vol+' volumes teria janela de <b>'+durTxt(P.ex.dur)+'</b>.</p>'+
     '<p>Usar esse tempo no agendamento?</p><p class="rcBts">'+botao('Usar esse tempo','recTempoDecidir(true)','p')+botao('Agora não','recTempoDecidir(false)','s',{cls:'sec'})+'</p></div>'}
 function recTempoDecidir(usar){var faz=function(){chamar('apiRecTempoDecidir',[quem(),usar],function(r){if(!r.ok){mostrarErro(r.msg);return}carregarAvisos();recBuscar(true)})};
@@ -6380,10 +6418,11 @@ function ltConfere(k,seguir){var L=ltTodos(k),i=0;
     seguir()};prox()}
 /* =================== 05/11/2026 =================== */
 /* Texto da pergunta ao cancelar (sair da tela ou botão da caixinha) */
-function txCancelar(t){return 'Cancelar operação?'}
+function txCancelar(t){return t==='recag'?'Cancelar agendamento?':(t==='recd'||t==='recf')?'Descartar o que foi preenchido?':'Cancelar operação?'}
+function okCancelar(t){return t==='recag'?'Cancelar agendamento':(t==='recd'||t==='recf')?'Descartar':'Cancelar'}
 /* Botão "Cancelar operação" dentro da caixinha da ação atual (1º FIFO no Abastecer, posição no Endereçar, etc.):
    aparece só na primeira caixinha ainda pendente de cada tela de operação. Cancelando, a tela volta em branco. */
-function cancelarOp(){var t=TELA_ATUAL;perguntar(txCancelar(t),function(){limparTela(t);window.scrollTo({top:0,behavior:'smooth'});void 0},null,{ok:'Cancelar',no:'Continuar'})}
+function cancelarOp(){var t=TELA_ATUAL;perguntar(txCancelar(t),function(){limparTela(t);window.scrollTo({top:0,behavior:'smooth'});void 0},null,{ok:okCancelar(t),no:'Continuar'})}
 var CANC_T=0;
 function cancUpd(){CANC_T=0;document.querySelectorAll('.cancLin').forEach(function(x){x.remove()});return;if(MODO==='tv')return;['guardar','tirar','tend','inv'].forEach(function(t){var sc=$('s-'+t);if(!sc)return;
   var cards=sc.querySelectorAll('.endCard'),alvo=null;
