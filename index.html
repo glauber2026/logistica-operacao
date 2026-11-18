@@ -616,6 +616,13 @@ html body #tecCx{background:#1F1F21!important}
 html body #tecTit{color:#B5B7BC!important}
 html body #tecVal{color:#fff!important;font-size:38px!important;word-break:break-all}html body #tecVal.vz{color:#5A5A5E!important}
 html body #tecSub{color:#D1D3D8!important}html body #tecSub b{color:#fff!important}html body #tecSub .tecEr{color:#FF8A80!important}
+html body #tecEmb{text-align:center;margin:4px 0 8px}html body #tecEmb small{display:block;color:#A9ABB1;font-size:12px;margin-top:6px}
+html body .tecEmbB{display:inline-block;border-radius:999px;padding:8px 18px;background:transparent;color:#FF9A3C;box-shadow:inset 0 0 0 2px #FF9A3C;font-weight:700;font-size:15px;cursor:pointer;user-select:none}
+.qlLst .qlIt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;border:0;background:#fff;border-radius:10px;padding:10px;margin:0;text-align:left;font:inherit;color:#231F20;cursor:pointer}
+.qlLst .qlIt:nth-child(even){background:#F5F6F7}.qlLst .qlIt:active{background:#FFE7D3}.qlLst .qlIt small{display:block;color:#5C5C5C;font-size:12px;margin-top:2px}
+.qlLst .qlIt em{font-style:normal;font-size:12px;color:#5C5C5C;white-space:nowrap}.qlLst .qlIt.qlAt em{color:#C2410C;font-weight:700}.qlLst .qlF{cursor:default}
+html body #tecEmb a{color:#FF9A3C!important;font-weight:700}
+html body .tecEmbB:active{background:#F26A1B;color:#fff;box-shadow:none}
 html body #tecSub .tecRes{color:#FF9A3C!important;font-size:24px;font-weight:800}
 html body #tecKs{grid-template-columns:repeat(4,1fr)!important}
 html body .tecK{background:#2E2E32!important;color:#fff!important;height:58px!important;transition:background .08s}
@@ -883,11 +890,34 @@ html body.rolou header{min-height:40px!important;padding:4px 14px!important}
 html body.rolou header img{width:28px!important;height:28px!important;padding:3px!important}
 html body.rolou header h1,html body.rolou #htit{font-size:15px!important}
 @media (prefers-reduced-motion:reduce){html body header,html body header img,html body header h1{transition:none!important}}
-html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) .fBar{display:none}html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) .fBar.on{display:flex}
-html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) button.fTog{display:flex!important;width:100%!important;justify-content:space-between!important;align-items:center!important;gap:8px;background:#F4F5F6!important;color:#2E2E30!important;border-radius:12px!important;padding:9px 12px!important;margin:2px 0 6px!important;font-size:14px!important;font-weight:600!important;min-height:0!important;box-shadow:none!important;text-align:left!important}
-html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) .fAbre{display:flex;align-items:center;gap:6px;color:#C25E00;font-weight:700}
-html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) .fAbre i{width:8px;height:8px;border-right:2px solid #F26A1B;border-bottom:2px solid #F26A1B;transform:rotate(45deg);margin-top:-4px;transition:transform .15s}
-html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf) .fTog.on .fAbre i{transform:rotate(-135deg);margin-top:4px}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fBar{display:none}html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fBar.on{display:flex}
+/* 146: Pesquisa (abas Produto e Posição), filtros de rua/bloco/posição e o mapa de ocupação */
+.pqAbas{margin:2px 0 12px!important}
+html body main #s-pesq .pqAbas button{background:#E9EAEC!important;color:#2E2E30!important;font-weight:600!important;box-shadow:none!important}
+html body main #s-pesq .pqAbas button.at{background:#F2A766!important;font-weight:800!important}
+html body main #s-pesq button.mpL{display:grid!important;grid-template-columns:44px 1fr 74px!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:8px 6px!important;box-shadow:none!important;min-height:0!important;margin:0!important;width:100%!important;font-weight:400!important}
+html body main #s-pesq button.mpL:nth-of-type(even){background:#F5F6F7!important}html body main #s-pesq button.mpL:active{background:#FFE7D3!important}
+html body main #s-pesq button.mpC{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:8px!important;box-shadow:0 1px 4px rgba(0,0,0,.1)!important;min-height:58px!important;margin:0!important;width:100%!important;font-weight:400!important;text-align:left!important}
+html body main #s-pesq button.mpC.liv{background:#F5F6F7!important;color:#5C5C5C!important;box-shadow:none!important}html body main #s-pesq button.mpC.blq{background:#ECECEE!important;box-shadow:none!important}
+html body main #s-pesq button.mpC.pend{box-shadow:inset 0 0 0 2px #FF9A3C!important}html body main #s-pesq button.mpC:active{background:#FFE7D3!important}
+html body main #s-qual button.qlIt{display:flex!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:10px!important;box-shadow:none!important;min-height:0!important;margin:0!important;width:100%!important;font-weight:400!important;text-align:left!important;justify-content:space-between!important}
+html body main #s-qual button.qlIt:nth-of-type(even){background:#F5F6F7!important}html body main #s-qual button.qlIt:active{background:#FFE7D3!important}
+.qlLst,.mpLst{border-radius:12px;overflow:hidden}
+.cpFil{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 8px;align-items:end}.cpFil label{grid-row:1;font-size:13px;margin:0}.cpFil select{grid-row:2;margin:0}
+.mpCab{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:14px 0 6px}.mpCab b{font-size:16px}.mpCab small{color:#5C5C5C}
+.mpL{display:grid;grid-template-columns:44px 1fr 64px;align-items:center;gap:8px;width:100%;background:#fff;border:0;border-radius:10px;padding:8px 6px;margin:0;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.mpL:nth-child(even){background:#F5F6F7}.mpL:active{background:#FFE7D3}
+.mpL .barraG{margin:0}.mpL small{text-align:right;color:#5C5C5C;font-size:12px;line-height:1.2}.mpL small i{display:block;font-style:normal;color:#C2410C;font-weight:700}
+.mpG{display:grid;grid-template-columns:40px 1fr 1fr;gap:6px;align-items:stretch}.mpN{display:flex;align-items:center;justify-content:center;font-weight:800;border-radius:8px;font-size:13px}
+.mpC{border:0;border-radius:10px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:8px;min-height:58px;text-align:left;font:inherit;color:#231F20;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.mpC b{font-size:14px}.mpC small{font-size:12px;color:#5C5C5C}.mpC.liv{background:#F5F6F7;color:#5C5C5C}.mpC.blq{background:#ECECEE}.mpC.blq b{color:#7A7A7E}
+.mpC.pend{box-shadow:inset 0 0 0 2px #FF9A3C}.mpC .mpP{color:#C2410C;font-weight:700;font-size:11px}.mpC:active{background:#FFE7D3}
+.mpLado{display:grid;grid-template-columns:40px 1fr 1fr;gap:6px;font-size:12px;color:#5C5C5C;text-align:center;margin-bottom:4px}
+.cpPend{border-radius:12px;background:#FFF4EA;padding:10px 12px;margin:10px 0}.cpPend .selo{display:inline-block;background:#FF9A3C;color:#231F20;border-radius:999px;padding:3px 10px;font-weight:700;font-size:13px}.cpPend p{margin:6px 0 0;font-size:14px}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) button.fTog{display:flex!important;width:100%!important;justify-content:space-between!important;align-items:center!important;gap:8px;background:#F4F5F6!important;color:#2E2E30!important;border-radius:12px!important;padding:9px 12px!important;margin:2px 0 6px!important;font-size:14px!important;font-weight:600!important;min-height:0!important;box-shadow:none!important;text-align:left!important}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fAbre{display:flex;align-items:center;gap:6px;color:#C25E00;font-weight:700}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fAbre i{width:8px;height:8px;border-right:2px solid #F26A1B;border-bottom:2px solid #F26A1B;transform:rotate(45deg);margin-top:-4px;transition:transform .15s}
+html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fTog.on .fAbre i{transform:rotate(-135deg);margin-top:4px}
 .dfLista{border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);background:#fff;margin:6px 0 10px}
 .dfIt{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #E0E0E0;font-size:14px}
 .dfIt:nth-child(even){background:var(--lisC)}.dfIt small{color:#6B6B6B}
@@ -1108,6 +1138,22 @@ html body main .endCard.pAtual .endSt{order:1;margin-left:auto}
 .mercTitP{display:none}
 .endG{font-size:34px;font-weight:800;margin:8px 0}
 #etqPrev{overflow:auto;background:#fff;border-radius:14px;padding:8px;margin:8px 0}
+/* 146 (17/11/2026): etiquetas próprias — pequena 100 x 70 mm (Zebra, deitada) e Master A4 deitada (lida de baixo, código até 12 m) */
+#etqImp{display:none}
+@media print{body.peR>*:not(#etqImp){display:none!important}body.peR #etqImp{display:block!important}body.peR #etqImp .pg{break-after:page;page-break-after:always}body.peR #etqImp .pg:last-child{break-after:auto;page-break-after:auto}}
+#etqImp .pg{background:#fff;color:#000;font-family:'Arial Narrow',Arial,Helvetica,sans-serif;box-sizing:border-box;overflow:hidden;position:relative}
+.eS{width:100mm;height:70mm;padding:2mm}.eS .bx{border:.35mm solid #000;height:66mm;display:grid;grid-template-rows:22mm 8mm 1fr}
+.eS .r{border-bottom:.35mm solid #000;padding:.8mm 1.6mm;overflow:hidden}.eS .lb{font-size:2.4mm;font-family:Arial,sans-serif;line-height:1}
+.eS .bt{display:grid;grid-template-columns:62mm 1fr;line-height:1}.eS .esq{border-right:.35mm solid #000;display:grid;grid-template-rows:11mm 13mm 12mm;overflow:hidden}
+.eS .esq>div{border-bottom:.35mm solid #000;padding:.6mm 1.6mm}.eS .esq>div:last-child{border:0;padding:1mm}
+.eS .dd{display:flex;gap:4mm}.eS .dd b{display:block;font-size:4.3mm;font-weight:800;margin-top:.8mm}.eS .qt b{font-size:8.5mm;font-weight:800;line-height:1}.eS .qt span{font-size:4mm;font-weight:800;margin-left:1.5mm}
+.eQl{height:100%;box-sizing:border-box;border:.6mm solid #000;display:flex;flex-direction:column;justify-content:center;padding:0 1.5mm}.eQl.ag{background:#000;color:#fff}
+.eQl small{font-size:2.2mm;font-family:Arial,sans-serif}.eQl b{font-size:4.8mm;font-weight:800;line-height:1.05;white-space:nowrap}
+.eS .dir{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:1mm}.eS .dir small{font-size:2.3mm;font-family:Arial,sans-serif;align-self:stretch}
+.eM{width:297mm;height:210mm;padding:8mm 10mm}.eM .cod{height:84mm}.eM .ln{border-top:1.2mm solid #000;margin:1mm 0 2mm}.eM .ds{font-size:11mm;font-weight:800;white-space:nowrap;overflow:hidden;line-height:1.1}
+.eM .bt{display:grid;grid-template-columns:1fr 84mm;gap:8mm;margin-top:1mm;align-items:end}.eM .lb{font-size:4.5mm;font-family:Arial,sans-serif}.eM .qt b{font-size:26mm;font-weight:800;line-height:.95}.eM .qt span{font-size:13mm;font-weight:800;margin-left:3mm}
+.eM .dd{display:flex;gap:16mm;margin:2mm 0 3mm}.eM .dd b{display:block;font-size:11mm;font-weight:800;line-height:1}.eM .eQl{height:21mm;border-width:1.4mm;padding:2.2mm 4mm 0;line-height:1.05;justify-content:flex-start}.eM .eQl small{font-size:4.5mm}.eM .eQl b{font-size:12mm}
+.eM .rp{margin-top:1.5mm;font-size:4mm;font-family:Arial,sans-serif}
 .etqP{display:flex;gap:2mm;align-items:center;background:#fff;color:#000;border:1px dashed #bbb;box-sizing:border-box;padding:2mm;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
 .etqQ{flex:none}.etqQ svg{display:block}.etqT{flex:1;min-width:0;line-height:1.15}.etqT .eC{font-weight:800}.etqT .eD{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.etqT .eQ{font-weight:800;margin:.6mm 0}.etqT .eN{color:#333;margin-top:.6mm}
 @media print{body.pe *{visibility:hidden!important}body.pe #etqFolha,body.pe #etqFolha *{visibility:visible!important}body.pe #etqFolha{position:fixed;left:0;top:0}body.pe #etqPrev{padding:0;margin:0;border-radius:0}body.pe .etqP{border:0}}
@@ -1221,7 +1267,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="tit">Usuários (só administrador)</div>
   <label>Nome</label><input id="uNome">
   <label>Senha provisória</label><input id="uSenha" type="text">
-  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (usuário genérico do turno)</option><option value="Inventário">Inventário (só Inventário)</option></select>
+  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (usuário genérico do turno)</option><option value="Inventário">Inventário (só Inventário)</option><option value="Qualidade">Qualidade (só liberação de material)</option></select>
   <p><small>Operação e Gestor veem as telas do dia a dia e o painel. Administrador vê tudo, inclusive Equipe, Produtividade, Avisos e Usuários.</small></p>
   <p><button class="b bP" onclick="salvarUsu()">Cadastrar</button></p>
   <div id="uMsg"></div>
@@ -1381,7 +1427,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="grpT" onclick="recolher(this)" data-g="ini"><span>Início</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="proc1" onclick="abrirProc(1)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
-  <button data-k="pesq" onclick="ir('pesq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z" stroke="#2E2E30"/><path d="M16 16l5 5" stroke="#F26A1B"/></svg>Pesquisa de produto</button>
+  <button data-k="pesq" onclick="ir('pesq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z" stroke="#2E2E30"/><path d="M16 16l5 5" stroke="#F26A1B"/></svg>Pesquisa</button>
     <button class="ges" data-k="ptv" onclick="ir('ptv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4" stroke="#2E2E30"/><path d="M10 8.5v5l4-2.5z" stroke="#F26A1B"/></svg>Programação da TV</button>
   </div>
   <div class="grpT" onclick="recolher(this)" data-g="rec"><span>Recebimento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
@@ -1389,6 +1435,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
     <button data-k="recag" class="agd" onclick="ir('recag')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5" stroke="#2E2E30"/><path d="M12 12.5v6M9 15.5h6" stroke="#F26A1B"/></svg>Agendar entrega</button>
     <button data-k="recp" class="prt" onclick="recPortaria()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12M3 21h18" stroke="#2E2E30"/><path d="M8 21v-7h8v7M8 17.5h8" stroke="#F26A1B"/></svg>Portaria e fiscal</button>
     <button data-k="rec" onclick="ir('rec')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16" stroke="#2E2E30"/><path d="M8 3v5M16 3v5M8 13.5h3.5v3H8z" stroke="#F26A1B"/></svg>Janelas de recebimento</button>
+    <button data-k="qual" class="qlt" onclick="ir('qual');qualAbrir()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" stroke="#2E2E30"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#F26A1B"/></svg>Qualidade</button>
     <button data-k="recf" class="agd" onclick="ir('recf')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 20V8l5-3 5 3v12M14 20V11h6v9M3 20h18" stroke="#2E2E30"/><path d="M7 11h4M7 14.5h4M16.5 14.5h1.5" stroke="#F26A1B"/></svg>Fornecedores</button>
     <button data-k="recr" class="adm" onclick="ir('recr')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2E2E30"/><path d="M12 7v5l3 2" stroke="#F26A1B"/></svg>Regras do Recebimento</button>
     <button data-k="proc2" onclick="abrirProc(2)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
@@ -1396,7 +1443,6 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="grpT" onclick="recolher(this)" data-g="op"><span>Armazenamento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="guardar" onclick="ir('guardar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V3M21 21V3M3 12h18M3 21h18" stroke="#2E2E30"/><path d="M9 15h6v6H9zM12 4.5v5M9.8 7.5 12 9.7l2.2-2.2" stroke="#F26A1B"/></svg>Endereçar</button>
-    <button data-k="cpos" onclick="ir('cpos')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="11" height="15" rx="1.5" stroke="#2E2E30"/><path d="M6 8h5M6 11.5h5" stroke="#2E2E30"/><circle cx="16.5" cy="15.5" r="3.5" stroke="#F26A1B"/><path d="M19 18l2.5 2.5" stroke="#F26A1B"/></svg>Consultar posição</button>
     <button data-k="tend" onclick="ir('tend');xfLimpa()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="13" width="7" height="7" rx="1" stroke="#2E2E30"/><rect x="14.5" y="4" width="7" height="7" rx="1" stroke="#2E2E30"/><path d="M6 10V7.5h6M10 5.5l2 2-2 2" stroke="#F26A1B"/></svg>Transferência de endereço</button>
     <button data-k="desfazer" onclick="ir('desfazer')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F26A1B"/></svg>Movimentações</button>
     <button data-k="trein" onclick="abrirProc(3)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
@@ -1467,11 +1513,6 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="rgMsg"></div>
 </div>
 
-<div id="s-cpos" class="esc card">
-  <div class="tit">Consultar posição</div>
-  <div class="cbxPh" data-id="cpCod" data-o='{"cam":1,"up":1,"enter":"cposBuscar()","ph":"Endereço (ex.: R01-B02-N01-LE)"}'></div>
-  <div id="cpRes"></div>
-</div>
 
 <div id="s-pos" class="esc card">
   <div class="tit">Posição</div>
@@ -1492,10 +1533,24 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
 </div>
 
 <div id="s-pesq" class="esc card">
-  <div class="tit">Pesquisa de produto</div>
+  <div class="tit">Pesquisa</div>
+  <!-- 146 (17/11/2026): um cartão só de consulta, com as abas Produto e Posição (a Consultar posição saiu do Armazenamento) -->
+  <div class="perSeg pqAbas" role="tablist" aria-label="Pesquisar por"><button type="button" id="pqAbP" class="at" role="tab" onclick="pqAba('prod')">Produto</button><button type="button" id="pqAbE" role="tab" onclick="pqAba('pos')">Posição</button></div>
+  <div id="pqProd">
   <div class="cbxPh" data-id="pqCod" data-o='{"cam":1,"mic":1,"lista":1,"lembra":1,"enter":"pesqItem()","ph":"Código ou descrição do produto"}'></div>
   <div id="pqRes"></div>
   <p class="lkLin" id="pqTudoL"></p>
+  </div>
+  <div id="pqPos" hidden>
+  <div class="cbxPh" data-id="cpCod" data-o='{"cam":1,"up":1,"enter":"cposBuscar()","ph":"Endereço (ex.: R01-B02-N01-LE)"}'></div>
+  <button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="cpFTxt">Rua, bloco e posição</span><span class="fAbre">Filtros<i></i></span></button>
+  <div class="fBar"><div class="cpFil">
+    <label for="cpfR">Rua</label><select id="cpfR" onchange="cpFiltro('r')"></select>
+    <label for="cpfB">Bloco</label><select id="cpfB" onchange="cpFiltro('b')"></select>
+    <label for="cpfP">Posição</label><select id="cpfP" onchange="cpFiltro('p')"></select></div></div>
+  <div id="cpRes"></div>
+  <div id="cpMapa"></div>
+  </div>
 </div>
 
 <div id="s-painel" class="esc"><div id="painel"></div></div>
@@ -1538,6 +1593,12 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="rrMsg"></div>
 </div>
 
+<div id="s-qual" class="esc card">
+  <div class="tit">Qualidade</div>
+  <div id="qlLer"></div>
+  <div id="qlRes"></div>
+  <div id="qlLista"></div>
+</div>
 <div id="s-recf" class="esc card">
   <div class="tit">Fornecedores</div>
   <div id="fnLst"><button type="button" class="fTog" aria-expanded="false" onclick="fTog(this)"><span class="fTxt" id="fnFTxt">Ativos</span><span class="fAbre">Filtros<i></i></span></button>
@@ -2044,6 +2105,7 @@ html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.
     <div><label>Situação</label><select id="cSit"><option>Ativo</option><option>Em encerramento</option><option>Inativo</option></select></div>
   </div>
   <label>Embalagem lacrada (componente que pode subir de nível)</label><select id="cLac"><option>Não</option><option>Sim</option></select>
+  <label for="cQual">Qualidade</label><select id="cQual"><option>Passagem livre</option><option>Aguardar liberação</option></select>
   <div class="lin">
     <div><label>Foto do produto</label><input class="fotoIn" id="cFoto" type="file" accept="image/*" capture="environment" onchange="lerFoto(this,1)"><label for="cFoto" class="fotoBtn"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span>Tirar foto</span></label>
       <img id="cPrev" class="prevf" style="display:none"></div>
@@ -2196,7 +2258,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=145,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=146,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2251,11 +2313,13 @@ function avisoJan(t){perguntar(t,null,null,{so:1})}
    Vale para todo campo de número das telas de operação. No computador (sem toque) continua o teclado normal. */
 var TEC={inp:null,v:''};
 function tecAbrir(inp,op){var j=$('tecJan');if(!j){j=document.createElement('div');j.id='tecJan';j.className='np';
-  j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecKs">'+['1','2','3','×','4','5','6','−','7','8','9','+',',','0','⌫','='].map(function(k){var op='×−+='.indexOf(k)>=0;return '<div class="tecK'+(op?' tecO':'')+(k==='='?' tecIg':'')+'" role="button" tabindex="0" data-k="'+k+'" aria-label="'+({'⌫':'Apagar','×':'Vezes','−':'Menos','+':'Mais','=':'Igual'}[k]||k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
+  j.innerHTML='<div id="tecFundo"></div><div id="tecCx" role="dialog" aria-modal="true"><div id="tecTit"></div><div id="tecVal"></div><div id="tecSub"></div><div id="tecEmb" hidden></div><div id="tecKs">'+['1','2','3','×','4','5','6','−','7','8','9','+',',','0','⌫','='].map(function(k){var op='×−+='.indexOf(k)>=0;return '<div class="tecK'+(op?' tecO':'')+(k==='='?' tecIg':'')+'" role="button" tabindex="0" data-k="'+k+'" aria-label="'+({'⌫':'Apagar','×':'Vezes','−':'Menos','+':'Mais','=':'Igual'}[k]||k)+'">'+k+'</div>'}).join('')+'</div><div id="tecOk"></div></div>';
   document.body.appendChild(j);$('tecOk').innerHTML=botao('Confirmar','tecOk()','p');$('tecFundo').onclick=tecFecha;
   j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){b.classList.add('tq');setTimeout(function(){b.classList.remove('tq')},140);tecTecla(b.getAttribute('data-k'))})})}
   op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');TEC.novo=!!TEC.v;   /* 141: o 1º número digitado troca o valor que já estava; começar com ×, + ou − usa o valor (ex.: 128 × 4) */var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
-  $('tecTit').textContent=l||'Quantidade';tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
+  $('tecTit').textContent=l||'Quantidade';
+  /* 146: caixas cheias + peças soltas. Com a quantidade padrão no cadastro, o botão "Caixas de N" multiplica o número digitado; o + soma as peças soltas */
+  tecEmbPinta();tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
 /* 140 (15/11/2026): o teclado da quantidade virou calculadora (×, −, +, =), em tela escura. Ex.: 4 × 2.000 = 8.000.
    O resultado aparece embaixo da conta; o Confirmar grava o resultado. Sem divisão (quase não se usa em quantidade). */
 var TEC_OPS='×−+';
@@ -2274,15 +2338,29 @@ function tecTecla(k){if(TEC.novo){TEC.novo=false;if(/^[0-9,]$/.test(k))TEC.v=''}
   else if(k===','){if(num.indexOf(',')<0)v+=(num===''?'0':'')+','}
   else if(num.replace(',','').length<9)v=(num==='0'?v.slice(0,-1):v)+k;
   TEC.v=v;tecPinta();vib&&vib('tec')}
+/* 146: sem quantidade por caixa no cadastro (ou a caixa veio diferente), quem conta informa as peças da caixa; vira sugestão
+   em Cadastros para completar para o administrador aprovar (não muda o cadastro sozinho e não trava a operação) */
+function tecEmbPinta(){var eb=$('tecEmb'),op=TEC.op||{},pe=Number(op.emb)||0,h='';
+  if(op.defPc)h='<div class="tecEmbB" role="button" tabindex="0" onclick="tecDefPc()">Usar como peças por caixa</div><small>Digite quantas peças vêm em cada caixa (olhe na etiqueta da caixa) e toque aqui.</small>';
+  else if(pe>0)h='<div class="tecEmbB" role="button" tabindex="0" onclick="tecEmb()">× caixas de '+esc(numBR(pe))+'</div><small>Digite as caixas e toque aqui. Peças soltas: toque em + e digite.'+(op.cod?' <a href="#" onclick="tecPcMuda();return false">Caixa com outra quantidade?</a>':'')+'</small>';
+  else if(op.cod)h='<small><a href="#" onclick="tecPcMuda();return false">Contar em caixas</a></small>';
+  eb.innerHTML=h;eb.hidden=!h}
+function tecPcMuda(){var op=TEC.op;if(!op)return;op.defPc=1;op.v0=TEC.v;TEC.v='';TEC.novo=false;tecEmbPinta();tecPinta()}
+function tecDefPc(){var op=TEC.op;if(!op)return;var n=tecConta(TEC.v);if(!(n>0)){$('tecSub').innerHTML='<b class="tecEr">Digite quantas peças vêm em cada caixa.</b>';$('tecSub').hidden=false;vib&&vib('erro');return}
+  op.defPc=0;op.emb=n;TEC.v=op.v0||'';op.v0='';if(op.cod&&Number((ITMAP[String(op.cod).toUpperCase()]||[])[2])!==n){try{chamar('apiSugPadrao',[quem(),op.cod,n,op.orig||TELA_ATUAL||''],function(){})}catch(e){}}
+  tecEmbPinta();tecPinta();vib&&vib('ok')}
+function tecEmb(){var pe=Number(TEC.op&&TEC.op.emb)||0;if(!pe)return;TEC.novo=false;var v=TEC.v;
+  if(!v||!/[0-9]$/.test(v)){$('tecSub').innerHTML='<b class="tecEr">Digite primeiro quantas caixas.</b>';$('tecSub').hidden=false;vib&&vib('erro');return}
+  TEC.v=v+'×'+tecNum(pe);tecPinta();vib&&vib('tec')}
 function tecFecha(){var j=$('tecJan');if(j)j.classList.remove('on');TEC.inp=null;TEC.op=null}
 /* 134: op.valida devolve o erro (o teclado não fecha); op.ok faz a ação logo depois do Confirmar (ex.: grava o abastecimento) */
-function tecOk(){var i=TEC.inp,op=TEC.op||{},v=String(tecConta(TEC.v));if(!TEC.v)v='';if(op.valida){var er=op.valida(nIn(v));if(er){$('tecSub').innerHTML='<b class="tecEr">'+esc(er)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}}
+function tecOk(){var i=TEC.inp,op=TEC.op||{},v=String(tecConta(TEC.v));if(!TEC.v)v='';if(op.exige&&!TEC.v){$('tecSub').innerHTML='<b class="tecEr">'+esc(op.exige)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}if(op.valida){var er=op.valida(nIn(v));if(er){$('tecSub').innerHTML='<b class="tecEr">'+esc(er)+'</b>';$('tecSub').hidden=false;vib&&vib('erro');return}}
   if(i){i.value=v;i.dispatchEvent(new Event('input',{bubbles:true}));i.dispatchEvent(new Event('change',{bubbles:true}))}tecFecha();if(op.ok)op.ok()}
 document.addEventListener('keydown',function(e){var j=$('tecJan');if(!j||!j.classList.contains('on'))return;var k=e.key;
   if(/^[0-9]$/.test(k))tecTecla(k);else if(k===','||k==='.')tecTecla(',');else if(k==='*'||k==='x'||k==='X')tecTecla('×');else if(k==='-')tecTecla('−');else if(k==='+')tecTecla('+');else if(k==='=')tecTecla('=');else if(k==='Backspace')tecTecla('⌫');else if(k==='Enter')tecOk();else if(k==='Escape')tecFecha();else return;e.preventDefault()});
 window.addEventListener('popstate',function(){var j=$('tecJan');if(j&&j.classList.contains('on'))tecFecha()});
 document.addEventListener('click',function(e){var i=e.target&&e.target.closest&&e.target.closest('main .esc input[type=number]');if(!i||i.readOnly||i.disabled||MODO==='tv'||document.body.classList.contains('semToque'))return;
-  if(!('ontouchstart' in window||navigator.maxTouchPoints>0))return;e.preventDefault();i.blur();tecAbrir(i)},true);
+  if(!('ontouchstart' in window||navigator.maxTouchPoints>0))return;e.preventDefault();i.blur();tecAbrir(i,{emb:Number(i.getAttribute('data-emb'))||0,cod:i.getAttribute('data-cod')||''})},true);
 document.addEventListener('focusin',function(e){var i=e.target;if(i&&i.matches&&i.matches('main .esc input[type=number]')&&('ontouchstart' in window||navigator.maxTouchPoints>0)&&!i.readOnly)i.setAttribute('inputmode','none')},true);
 function okGrande(){if(MODO==='tv')return;var o=$('okG');if(!o){o=document.createElement('div');o.id='okG';o.className='np';o.setAttribute('aria-hidden','true');o.innerHTML='<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>';document.body.appendChild(o)}
   clearTimeout(o._t);o.classList.remove('on');void o.offsetWidth;o.classList.add('on');o._t=setTimeout(function(){o.classList.remove('on')},1100)}
@@ -2373,7 +2451,8 @@ function caixaAvisos(tit,l,def){var g='av_'+tit.replace(/\W/g,'');return '<div c
 /* Aviso clicável (29/10/2026): abre a tela certa já no endereço ou no produto */
 function irAviso(go){go=String(go||'');
   if(go.indexOf('pos:')===0){abrirPos(go.slice(4));return}
-  if(go==='pesqTudo'){ir('pesq');pesqTudo();return}
+  if(go==='pesqTudo'){ir('pesq');pqAba('prod');pesqTudo();return}
+  if(go==='qual'){ir('qual');qualAbrir();return}
   if(go==='lanc'||go==='lanc30'){PER.mv.p=go==='lanc'?'d':'m';if($('mvData'))$('mvData').value=hojeISO();ir('desfazer');perPesq('mv');return}
   if(go==='reorg'){ir('reorg');reorg();return}
   if(go==='regras'){ir('regras');abrirRegras();return}
@@ -3027,11 +3106,15 @@ function setaVolta(t){var mostra=false;   /* padrão novo: sem seta em cima; o V
     v.innerHTML='<svg viewBox="0 0 24 24" width="24" height="24"><path d="M15 4l-8 8 8 8" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     v.onclick=function(e){e.stopPropagation();voltarCamada()};ti.insertBefore(v,ti.firstChild)}
   ti.classList.add('comSeta');v.style.display='flex'}
-function voltarCamada(){var e=PILHA.pop();if(!e){GRUPO='ini';e={t:'menu',g:'ini'}}
+function voltarCamada(){
+  /* 146: na Pesquisa (aba Posição), o Voltar desfaz um passo por vez: posição → bloco → rua → sai da tela */
+  if(TELA_ATUAL==='pesq'&&PQ_ABA==='pos'){if($('cpRes')&&$('cpRes').innerHTML){$('cpRes').innerHTML='';if($('cpCod'))$('cpCod').value='';$('cpMapa').hidden=false;if(!$('cpMapa').innerHTML)mapaAbrir('','',1);try{rolarPara($('cpMapa'),true)}catch(x){}return}if(MAPA.rua||MAPA.bloco){mapaVolta();return}}
+  var e=PILHA.pop();if(!e){GRUPO='ini';e={t:'menu',g:'ini'}}
   VOLTANDO=true;try{GRUPO=e.g;ir(e.t,true);if(e.t!=='menu'){var f=window['abrir'+e.t.charAt(0).toUpperCase()+e.t.slice(1)];}}finally{VOLTANDO=false}}
 window.addEventListener('popstate',function(){if(PERG.aberta){fecharPergunta(1);try{history.pushState({c:PILHA.length},'')}catch(e){}return}
   if(MODO!=='tv'&&ATUAL&&ATUAL.t!=='nome')voltarCamada()});
-function ir(t,manter){document.body.classList.remove('gj');fecharMais();fecharPergunta();if(t==='guardar'&&$('opMan'))$('opMan').hidden=LS.getItem('jeAdm')!=='1';if(t==='guardar'&&MODO!=='tv')setTimeout(qrPreLigar,400);
+function ir(t,manter){if(t==='cpos'){ir('pesq',manter);pqAba('pos');return}   /* 146: Consultar posição virou a aba Posição da Pesquisa */
+  document.body.classList.remove('gj');fecharMais();fecharPergunta();if(t==='guardar'&&$('opMan'))$('opMan').hidden=LS.getItem('jeAdm')!=='1';if(t==='guardar'&&MODO!=='tv')setTimeout(qrPreLigar,400);
   if(MODO!=='tv' && !quem() && t!=='nome'){t='nome'}
   if(!manter) limparErros();
   document.querySelectorAll('.senhaBox input').forEach(function(i){i.type='password'});document.querySelectorAll('.olho').forEach(function(b){b.classList.remove('on')});
@@ -3051,7 +3134,7 @@ function ir(t,manter){document.body.classList.remove('gj');fecharMais();fecharPe
 }
 function guardarSessao(r){LS.setItem('jeTok',r.token||quem());LS.setItem('jeNome',r.nome);LS.setItem('jeAdm',r.admin?'1':'0');LS.setItem('jePerf',r.perfil||(r.admin?'Administrador':'Operador'))}
 function perfilUsu(){return LS.getItem('jePerf')||'Operador'}
-var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário'};
+var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário',Qualidade:'Qualidade'};
 function entrar(){
   $('lMsg').innerHTML='Entrando...';
   /* 12/11/2026 (versão 120): a senha sai do campo antes de ir ao sistema, para o Chrome não oferecer salvar */
@@ -3104,7 +3187,7 @@ function listarUsu(){
     var h='<table><tr><th>Nome</th><th>Perfil</th><th>Situação</th><th></th></tr>';
     r.lista.forEach(function(u){var n=esc(u.nome).replace(/'/g,'&#39;');
       h+='<tr><td><b>'+esc(u.nome)+'</b><br><small>'+(u.email?esc(u.email):'sem e-mail')+'</small></td><td>'+esc(NOME_PERFIL[u.perfil]||u.perfil)+'</td><td>'+(u.ativo?'Ativo':'Inativo')+(u.trocar?'<br><small>aguardando criar senha</small>':'')+'</td>'+
-      '<td>'+botao('Redefinir senha','redefinir(\''+n+'\')','s',{cls:'sec'})+' '+botao('E-mail','usuEmail(\''+n+'\')','s',{cls:'sec'})+' '+botao(''+(u.ativo?'Desativar':'Ativar')+'','ativar(\''+n+'\','+(!u.ativo)+')','s',{cls:'sec'})+' <select style="width:auto;margin-top:6px" onchange="mudarPerfil(\''+n+'\','+u.ativo+',this)">'+['Operador','Gestor','Administrador','Compras','Portaria','Inventário'].map(function(p){return '<option value="'+p+'"'+(p===u.perfil?' selected':'')+'>'+NOME_PERFIL[p]+'</option>'}).join('')+'</select></td></tr>'});
+      '<td>'+botao('Redefinir senha','redefinir(\''+n+'\')','s',{cls:'sec'})+' '+botao('E-mail','usuEmail(\''+n+'\')','s',{cls:'sec'})+' '+botao(''+(u.ativo?'Desativar':'Ativar')+'','ativar(\''+n+'\','+(!u.ativo)+')','s',{cls:'sec'})+' <select style="width:auto;margin-top:6px" onchange="mudarPerfil(\''+n+'\','+u.ativo+',this)">'+['Operador','Gestor','Administrador','Compras','Portaria','Inventário','Qualidade'].map(function(p){return '<option value="'+p+'"'+(p===u.perfil?' selected':'')+'>'+NOME_PERFIL[p]+'</option>'}).join('')+'</select></td></tr>'});
     $('uLista').innerHTML=h+'</table>';
   });
 }
@@ -4774,6 +4857,39 @@ function etqHtml(W,H){var e=etqDados(),qs=Math.min(H-6,W*0.42),f=Math.max(2.6,Ma
     '<div class="eC" style="font-size:'+(f*1.6)+'mm">'+esc(e.c)+'</div><div class="eD">'+esc(e.desc)+'</div>'+
     '<div class="eQ" style="font-size:'+(f*1.5)+'mm">'+esc(numBR(e.q))+' '+esc(e.u)+'</div>'+
     '<div>NF '+esc(e.nf)+' · Receb. <b>'+esc(e.dt)+'</b></div><div class="eN">Nº 000000 (teste) · '+esc(e.quem)+'</div></div></div>'}
+/* ---------- 146: ETIQUETAS PRÓPRIAS NO RECEBIMENTO ----------
+   O QR Code sai no mesmo formato do TOTVS (código|quantidade|unidade|nota|data|hora), sem os espaços que o TOTVS põe, por isso
+   fica com quadradinhos maiores; correção alta com o JE no meio. Cada etiqueta sai com uma hora própria (um segundo a mais por
+   etiqueta), então cada pallet/caixa tem um QR único. Material "Aguardar liberação" sai com o bloco preto; em quarentena, QUARENTENA. */
+/* código grande: altura máxima; só encolhe na largura quando não cabe (código curto não é esticado) */
+function svgCod(t,w,h){var fs=h*1.32,est=String(t).length*fs*0.62;try{var cv=svgCod._c||(svgCod._c=document.createElement('canvas').getContext('2d'));cv.font='800 100px "Arial Narrow",Arial,Helvetica,sans-serif';est=cv.measureText(String(t)).width/100*fs}catch(x){}var ap=est>w?' textLength="'+w+'" lengthAdjust="spacingAndGlyphs"':'';
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMinYMid meet"><text x="0" y="'+(h*0.96)+'"'+ap+' font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="800" font-size="'+fs+'">'+esc(t)+'</text></svg>'}
+function etqQualTx(e){return e.quar?['ag','QUARENTENA']:e.qual==='Aguardar liberação'?['ag','AGUARDAR LIBERAÇÃO']:['','PASSAGEM LIVRE']}
+function etqPeq(e){var ql=etqQualTx(e);return '<div class="pg eS"><div class="bx"><div class="r"><div class="lb">Produto:</div><div style="height:16.5mm">'+svgCod(e.c,920,165)+'</div></div>'+
+  '<div class="r" style="font-size:4.6mm;font-weight:800;white-space:nowrap">'+esc(e.desc)+'</div><div class="bt"><div class="esq">'+
+  '<div class="dd"><div><span class="lb">Documento:</span><b>'+esc(e.nf||'-')+'</b></div><div><span class="lb">Data Rec.:</span><b>'+esc(e.dt)+'</b></div></div>'+
+  '<div class="qt"><div class="lb">Quant.:</div><b>'+esc(numBR(e.q))+'</b><span>'+esc(e.u)+'</span></div>'+
+  '<div><div class="eQl '+ql[0]+'"><small>QUALIDADE</small><b>'+ql[1]+'</b></div></div></div>'+
+  '<div class="dir">'+qrSvg(e.qr,'29mm')+'<small>Volume: '+esc(e.vol)+'<br>'+esc(e.quem)+'</small></div></div></div></div>'}
+function etqMaster(e){var ql=etqQualTx(e);return '<div class="pg eM"><div class="cod">'+svgCod(e.c,2770,840)+'</div><div class="ln"></div><div class="ds">'+esc(e.desc)+'</div>'+
+  '<div class="bt"><div><div class="lb">QUANT.</div><div class="qt"><b>'+esc(numBR(e.q))+'</b><span>'+esc(e.u)+'</span></div>'+
+  '<div class="dd"><div><span class="lb">DOCUMENTO</span><b>'+esc(e.nf||'-')+'</b></div><div><span class="lb">DATA REC.</span><b>'+esc(e.dt)+'</b></div></div>'+
+  '<div class="eQl '+ql[0]+'"><small>QUALIDADE</small><b>'+ql[1]+'</b></div></div><div>'+qrSvg(e.qr,'84mm')+'</div></div>'+
+  '<div class="rp">JOHNSON ELECTRIC · Volume: '+esc(e.vol)+' · Recebido por: '+esc(e.quem)+'</div></div>'}
+function recEtqJan(){var x=REC.sel;if(!x||!x.receb||!x.receb.length){avisoJan('Termine a conferência antes de imprimir as etiquetas.');return}
+  var h='<p class="rcDica">Quantas etiquetas de cada produto e quanto vai em cada uma. A última etiqueta leva o que sobrar.</p>'+x.prod.map(function(p,i){var rq=Number((x.receb[i]||{}).q)||0,pd=embDoCod(p.c),n=pd>0&&rq>0?Math.max(1,Math.ceil(rq/pd)):1,q=pd>0&&rq>0?Math.min(pd,rq):rq;
+    return '<div class="rcQ"><b>'+esc(p.c)+'</b> · recebido '+esc(numBR(rq))+'<div class="cpFil" style="grid-template-columns:1fr 1fr"><label for="eqN'+i+'">Etiquetas</label><input id="eqN'+i+'" type="number" inputmode="numeric" min="0" step="1" value="'+(rq>0?n:0)+'"><label for="eqQ'+i+'">Qtd. por etiqueta</label><input id="eqQ'+i+'" type="number" inputmode="decimal" min="0" step="any" value="'+q+'"></div></div>'}).join('')+
+    '<div class="bLin">'+botao('Master (A4)',"recEtqImp('m')",'p')+botao('Pequena (Zebra)',"recEtqImp('p')",'p')+'</div>';
+  abrirJan('Imprimir etiquetas',h)}
+function recEtqImp(mod){var x=REC.sel;if(!x)return;var L=[],d=new Date(),p2=function(n){return ('0'+n).slice(-2)},ag=String(x.data||'').split('-'),dt=ag.length===3?ag[2]+'/'+ag[1]+'/'+ag[0].slice(2):p2(d.getDate())+'/'+p2(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(2),s0=d.getHours()*3600+d.getMinutes()*60+d.getSeconds(),seq=0;
+  var quar=(x.irr&&x.irr.q)||{};
+  x.prod.forEach(function(p,i){var rq=Number((x.receb[i]||{}).q)||0,n=Math.max(0,Math.round(nIn(val('eqN'+i)))),q=nIn(val('eqQ'+i)),it=ITMAP[String(p.c).toUpperCase()]||[];if(!(n>0)||!(rq>0))return;if(!(q>0))q=rq;
+    for(var k=0;k<n;k++){var qk=k<n-1?q:Math.round((rq-q*(n-1))*1000)/1000;if(!(qk>0))qk=q;var t=(s0+seq++)%86400,hr=p2(Math.floor(t/3600))+':'+p2(Math.floor(t/60)%60)+':'+p2(t%60),u=it[9]==='Kilo'?'KG':'PC',nf=String(p.nf||'').replace(/[^0-9A-Za-z-]/g,'');
+      L.push({c:String(p.c).toUpperCase(),desc:it[1]||p.d||'',q:qk,u:u,nf:nf,dt:dt,vol:(k+1)+'/'+n,quem:nomeUsu()||'',qual:it[11]||'Passagem livre',quar:Number(quar[String(p.c).toUpperCase()])>0,qr:[String(p.c).toUpperCase(),String(qk),u,nf,dt,hr].join('|')+'|'})}});
+  if(!L.length){avisoJan('Informe quantas etiquetas imprimir.');return}fecharJan();
+  var b=$('etqImp');if(!b){b=document.createElement('div');b.id='etqImp';document.body.appendChild(b)}b.innerHTML=L.map(mod==='m'?etqMaster:etqPeq).join('');
+  document.body.classList.add('peR');var st=document.createElement('style');st.id='peRP';st.textContent='@page{size:'+(mod==='m'?'297mm 210mm':'100mm 70mm')+';margin:0}';document.head.appendChild(st);
+  var fim=function(){document.body.classList.remove('peR');var y=$('peRP');if(y)y.remove();window.removeEventListener('afterprint',fim)};window.addEventListener('afterprint',fim);setTimeout(function(){window.print();setTimeout(fim,2000)},120)}
 function etqtPintar(){var b=$('etqPrev');if(!b)return;var W=Math.max(30,nIn(val('etW'))||100),H=Math.max(20,nIn(val('etH'))||50);b.innerHTML=etqHtml(W,H)}
 function etqtImprimir(){etqtPintar();var W=Math.max(30,nIn(val('etW'))||100),H=Math.max(20,nIn(val('etH'))||50);document.body.classList.add('pe');
   var st=document.createElement('style');st.id='peP';st.textContent='@page{size:'+W+'mm '+H+'mm;margin:0}';document.head.appendChild(st);
@@ -5008,14 +5124,23 @@ function fracIn(i){var f=$('tf'+i);if(f&&!$('tq'+i))f.innerHTML='<input id="tq'+
 function caixaTirar(i,end,qtd,q){fracIn(i);$('tq'+i).value=q;confirmarTirar(i,end,false)}
 /* 11. Fracionado: uma linha mostra quanto deve sobrar na posição (sem pedir contagem) */
 /* 134: "Outra quantidade" abre o teclado grande; embaixo do número aparece quanto deve sobrar e o Confirmar já grava o abastecimento */
+/* 146 (17/11/2026): levar mais do que o app mostra é permitido. O app pergunta uma vez "Quanto ficou na posição?",
+   grava o que ficou como saldo e manda a diferença ao Inventário (uma pendência só por posição) */
+function embDoCod(c){return Number((ITMAP[String(c||'').toUpperCase()]||[])[2])||0}
 function fracTirar(i,end,qtd){fracIn(i);var cod=(TIRAR_R||{}).codigo,inp=$('tq'+i);inp.value='';
-  tecAbrir(inp,{tit:'Quantidade para abastecer',
-    sub:function(q){var r=Math.round((Number(qtd)-q)*1000)/1000;return !(q>0)?'Deve sobrar na posição: <b>'+esc(qtdU(qtd,cod))+'</b>':r<0?'<b class="tecEr">A posição tem só '+esc(qtdU(qtd,cod))+'.</b>':'Deve sobrar na posição: <b>'+esc(qtdU(r,cod))+'</b>'},
-    valida:function(q){return !(q>0)?'Digite a quantidade.':q>Number(qtd)?'A posição tem só '+qtdU(qtd,cod)+'.':''},
-    ok:function(){confirmarTirar(i,end,false)}})}
+  tecAbrir(inp,{tit:'Quantidade para abastecer',emb:embDoCod(cod),cod:cod,
+    sub:function(q){var r=Math.round((Number(qtd)-q)*1000)/1000;return !(q>0)?'Deve sobrar na posição: <b>'+esc(qtdU(qtd,cod))+'</b>':r<0?'O app mostra <b>'+esc(qtdU(qtd,cod))+'</b> aqui. No Confirmar, o app pergunta quanto ficou.':'Deve sobrar na posição: <b>'+esc(qtdU(r,cod))+'</b>'},
+    valida:function(q){return !(q>0)?'Digite a quantidade.':''},
+    ok:function(){var q=nIn(inp.value);if(q>Number(qtd))ficouTirar(i,end,qtd,q);else confirmarTirar(i,end,false)}})}
+function ficouTirar(i,end,qtd,q){var cod=(TIRAR_R||{}).codigo,f=$('tfi'+i);if(!f){f=document.createElement('input');f.type='hidden';f.id='tfi'+i;$('tf'+i).appendChild(f)}f.value='';
+  tecAbrir(f,{tit:'Quanto ficou na posição?',emb:embDoCod(cod),cod:cod,exige:'Digite quanto ficou. Se não ficou nada, digite 0.',
+    sub:function(x){return 'Levando <b>'+esc(qtdU(q,cod))+'</b> · Ficam <b>'+esc(qtdU(x,cod))+'</b>'},
+    valida:function(x){return x<0?'A quantidade não pode ser negativa.':''},
+    ok:function(){confirmarTirar(i,end,false,f.value)}})}
 var TIRAR_OK=null;
-function confirmarTirar(i,end,inteiro){var b=$('tb'+i);
-  chamar('apiSaida',[{quem:quem(),end:end,inteiro:inteiro,qtd:inteiro?'':val('tq'+i),etq:ETQ_TIRAR}],function(r){if(r&&r.ok)cronoFim('abs');
+function confirmarTirar(i,end,inteiro,ficou){var b=$('tb'+i);
+  chamar('apiSaida',[{quem:quem(),end:end,inteiro:inteiro,qtd:inteiro?'':val('tq'+i),etq:ETQ_TIRAR,ficou:ficou===undefined?undefined:String(ficou)}],function(r){if(r&&r.ok)cronoFim('abs');
+    if(!r.ok&&r.ficou&&!inteiro){ficouTirar(i,end,0,nIn(val('tq'+i)));return}
     if(!r.ok){var e=$('tf'+i)&&$('tf'+i).innerHTML?$('tf'+i):b;e.insertAdjacentHTML('afterbegin',aviso('er',r.msg+(r.precisaJust?' Abasteça primeiro os componentes mais antigos (FIFO). Se precisar mesmo deste, leia o QR dele e preencha a saída fora do FIFO.':'')));vib('erro');return}
     $('ts'+i).textContent='Abastecido';$('ts'+i).className='endSt ok';TIRAR_OK=r;TIRAR_OK.i=i;
     /* 10. "A posição ficou vazia?" com um toque, quando o sistema diz que não sobrou nada nela */
@@ -5027,15 +5152,50 @@ function tirarVazia(sim){var r=TIRAR_OK;if(!r)return;if(sim){tirarConcl();return
 function tirarConcl(){var r=TIRAR_OK;if(!r)return;var i=r.i;$('ts'+i).className='endSt fim';$('tc'+i).classList.add('feito');$('tb'+i).innerHTML='';
   var x=((TIRAR_R||{}).lista||[])[i]||{},tr=TIRAR_R||{},c=r.item||tr.codigo;
   var L=[['Posição',endCor(r.base||r.end),1],['_peca',cartaoPeca(c,tr.desc||(ITMAP[c]||[])[1]||'',qtdU(r.qtd,c),x.data,nfDoLote(x.lote),1)]];
-  if(r.resto>0)L.push(['Ficou na posição',qtdU(r.resto,c)]);
+  if(r.resto>0||r.aj)L.push(['Ficou na posição',qtdU(r.resto||0,c)]);
   $('tRes').insertAdjacentHTML('beforeend',(r.sobra?aviso('at',r.sobra):'')+conclusao('Abastecido',L,'Abastecer outro',"contTela('tirar','tCod')"));vib('ok')}
 /* ---------- 138 (15/11/2026): CONSULTAR POSIÇÃO (operador) ----------
    Lê o QR (ou digita o endereço) e vê, grande, o que o sistema diz que está lá. Se não tiver nada, "Não tem nada aqui"
    manda a posição para o Inventário como urgente; quem ajusta o saldo é quem inventaria. */
 var CPOS=null;
+/* ---------- 146 (17/11/2026): PESQUISA com abas Produto e Posição ----------
+   Aba Posição: campo do endereço (ou QR), filtros recolhidos de rua, bloco e posição e o gráfico Ocupação por rua.
+   Toca na rua → blocos; toca no bloco → posições nível por nível (LE e LD); toca na posição → o que está nela.
+   O Voltar desfaz um passo por vez. */
+var PQ_ABA='prod',MAPA={pilha:[]};
+function pqAba(a){PQ_ABA=a;$('pqAbP').classList.toggle('at',a==='prod');$('pqAbE').classList.toggle('at',a==='pos');$('pqProd').hidden=a!=='prod';$('pqPos').hidden=a!=='pos';
+  if(a==='pos'){cpFilOpc();if(!$('cpMapa').innerHTML)mapaAbrir('','',1)}}
+function cpFilOpc(){var R=$('cpfR');if(!R||R.options.length)return;var op=function(l,t){return '<option value="">'+t+'</option>'+l.map(function(x){return '<option>'+x+'</option>'}).join('')},n=function(p,k){var o=[];for(var i=1;i<=k;i++)o.push(p+(i<10?'0':'')+i);return o};
+  R.innerHTML=op(n('R',6),'Todas');$('cpfB').innerHTML=op(n('B',10),'Todos');var P=[];n('N',7).forEach(function(x){P.push(x+'-LE',x+'-LD')});$('cpfP').innerHTML=op(P,'Todas')}
+function cpFiltro(q){var r=val('cpfR'),b=val('cpfB'),p=val('cpfP');if(q==='r'){$('cpfB').value='';$('cpfP').value='';b='';p=''}if(q==='b'){$('cpfP').value='';p=''}
+  $('cpFTxt').textContent=[r||'Todas as ruas',b,p].filter(Boolean).join(' · ');
+  if(r&&b&&p){$('cpCod').value=r+'-'+b+'-'+p;cposBuscar();return}
+  if(p&&!(r&&b)){avisoJan('Escolha a rua e o bloco antes da posição.');$('cpfP').value='';return}
+  $('cpRes').innerHTML='';MAPA.pilha=[];mapaAbrir(r,b,1)}
+function mapaAbrir(rua,bloco,novo){var box=$('cpMapa');if(!box)return;box.hidden=false;if(!novo)MAPA.pilha.push([MAPA.rua||'',MAPA.bloco||'']);MAPA.rua=rua;MAPA.bloco=bloco;
+  if(!box.innerHTML)box.innerHTML='<p class="rcDica">Carregando a ocupação...</p>';TOQUE.el=null;
+  chamar('apiMapaPos',[quem(),rua,bloco],function(r){if(!r||!r.ok){box.innerHTML=aviso('er',(r&&r.msg)||'Não deu para carregar a ocupação.');return}mapaPinta(r)})}
+function mapaVolta(){var a=MAPA.pilha.pop()||['',''];['cpfR','cpfB','cpfP'].forEach(function(i){if($(i))$(i).value=''});$('cpFTxt').textContent='Rua, bloco e posição';mapaAbrir(a[0],a[1],1)}
+function mapaPinta(r){var h='',vol='';   /* o Voltar do fim da tela desfaz um passo do mapa por vez (sem botão repetido) */
+  var pctTx=function(x){return Math.round((x.pct||0)*100)};
+  if(r.nivel==='rua'||r.nivel==='bloco'){
+    h+='<div class="mpCab"><b>'+(r.nivel==='rua'?'Ocupação por rua':'Rua '+esc(r.rua)+' · ocupação por bloco')+'</b>'+(r.total?'<small>'+pctTx(r.total)+'% · '+r.total.ocup+'/'+r.total.util+'</small>':'')+'</div>';
+    h+=r.lista.map(function(x){var p=pctTx(x),ac=r.nivel==='rua'?"mapaAbrir('"+x.nome+"','')":"mapaAbrir('"+esc(r.rua)+"','"+x.nome+"')";
+      return '<button type="button" class="mpL" onclick="'+ac+'"><b class="ruaN">'+esc(x.nome)+'</b><div class="barraG"><div class="enche" data-p="'+Math.min(p,100)+'" style="background:'+corPct(x.pct)+'"></div><span>'+p+'%</span></div><small>'+x.ocup+'/'+x.util+(x.pend?'<i>'+x.pend+' p/ inventário</i>':'')+'</small></button>'}).join('');
+    $('cpMapa').innerHTML=h+vol;encherBarras();return}
+  h+='<div class="mpCab"><b>'+esc(r.rua)+'-'+esc(r.bloco)+' · posições</b><small>toque na posição</small></div><div class="mpLado"><span></span><span>LE</span><span>LD</span></div>';
+  h+=r.lista.map(function(n){var nv=Number(String(n.nivel).slice(1))||1,ci=function(p){if(!p)return '<span></span>';var blq=p.status==='Bloqueado'||p.status==='Desativado',it=p.regs[0],cls=blq?' blq':(!it?' liv':'');if(p.pend&&p.pend.length)cls+=' pend';
+      var tx=it?'<b>'+esc(it.item)+(p.regs.length>1?' +'+(p.regs.length-1):'')+'</b><small>'+esc(qtdU(it.qtd,it.item))+'</small>':'<b>'+(blq?(p.status==='Desativado'?'Desativada':'Bloqueada'):'Livre')+'</b>'+(blq&&p.motivo?'<small>'+esc(p.motivo)+'</small>':'');
+      return '<button type="button" class="mpC'+cls+'" onclick="mapaPos(\''+esc(p.end)+'\')">'+tx+(p.pend&&p.pend.length?'<span class="mpP">Aguardando inventário</span>':'')+'</button>'};
+    return '<div class="mpG"><span class="mpN" style="'+corNivSt(nv)+'">'+esc(n.nivel)+'</span>'+ci(n.LE)+ci(n.LD)+'</div>'}).join('<div style="height:6px"></div>');
+  $('cpMapa').innerHTML=h+vol}
+function corNivSt(n){var c=(typeof NIV_COR!=='undefined'&&NIV_COR[n])||null;return c?'background:'+c[0]+';color:'+c[1]:'background:#E9EAEC'}
+function mapaPos(end){$('cpCod').value=end;cposBuscar();setTimeout(function(){rolarPara($('cpRes'),true)},400)}
 function cposBuscar(){var e=String(val('cpCod')||'').trim().toUpperCase().replace(/\s+/g,'');if(!e){$('cpRes').innerHTML=aviso('er','Leia o QR Code da posição ou digite o endereço.');return}
   chamar('apiConsPos',[quem(),e],function(r){if(!r||!r.ok){$('cpRes').innerHTML=aviso('er',(r&&r.msg)||'Não deu para consultar.');vib('erro');return}CPOS=r;cposPinta()})}
 function cposPinta(){var r=CPOS;if(!r)return;var h='<div class="passo">'+endBig(r.end);
+  /* 146: posição com pendência de inventário mostra o selo, o motivo, quem mandou e quando */
+  if(r.pend&&r.pend.length)h+='<div class="cpPend"><span class="selo">Aguardando inventário</span>'+r.pend.map(function(p){return '<p>'+esc(p.motivo)+'<br><small>'+esc([p.quem,p.quando].filter(Boolean).join(' · '))+'</small></p>'}).join('')+'</div>';
   if(r.status==='Livre'&&!r.regs.length)h+=aviso('ok','Posição livre no sistema.');
   else if(r.status==='Bloqueado')h+=aviso('at','Posição bloqueada'+(r.motivo?': '+r.motivo:'')+'.');
   else if(r.status!=='Ocupado'&&r.status!=='Livre')h+=aviso('at','Posição '+String(r.status).toLowerCase()+'.');
@@ -5043,7 +5203,7 @@ function cposPinta(){var r=CPOS;if(!r)return;var h='<div class="passo">'+endBig(
   if(r.ult)h+='<p class="cpUlt">Último lançamento: '+esc(r.ult.quem||'-')+' em '+esc(r.ult.quando)+'</p>';
   h+='</div>';
   if((r.regs||[]).some(function(x){return x.item})&&r.status!=='Bloqueado')h+=botao('Não tem nada aqui','cposVazia()','s',{cls:'opc'});
-  $('cpRes').innerHTML=h;try{fitEnd($('cpRes'))}catch(e){}}
+  $('cpRes').innerHTML=h;if($('cpMapa'))$('cpMapa').hidden=true;try{fitEnd($('cpRes'))}catch(e){}}
 function cposVazia(){var r=CPOS;if(!r)return;perguntar('Confirma que não tem nada na posição '+r.end+'?',function(){
   chamar('apiPosSemMaterial',[quem(),r.end],function(x){if(!x||!x.ok){avisoJan((x&&x.msg)||'Não deu para registrar.');vib('erro');return}
     vib('ok');$('cpRes').innerHTML=aviso('ok',x.msg)+blocoFim("contTela('cpos','cpCod')")})},null,{ok:'Sim, não tem nada',no:'Voltar'})}
@@ -5355,7 +5515,7 @@ var FOTO='',FOTO2='';
 function abrirCad(){semCadLista();chamar('apiItem',[''],function(r){if(!r.ok)return;var op=function(l){return '<option value=""></option>'+(l||[]).map(function(t){return '<option>'+esc(t)+'</option>'}).join('')};$('cTipo').innerHTML=op(r.tipos);$('cUnid').innerHTML=op(r.unidades)})}
 /* põe no select o valor antigo que não está mais na lista (ex.: tipo de volume antigo), para não apagar sem querer */
 function selVal(id,v){var e=$(id);v=String(v||'');if(v&&![].some.call(e.options,function(o){return o.value===v})){var o=document.createElement('option');o.textContent=v;e.appendChild(o)}e.value=v}
-function limparCad(){['cCod','cDesc','cPad','cPeso','cGiro'].forEach(function(i){$(i).value=''});$('cSit').value='Ativo';$('cLac').value='Não';$('cTipo').value='';$('cUnid').value='';$('cFoto').value='';$('cFoto2').value='';FOTO='';FOTO2='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'});$('cMsg').innerHTML=''}
+function limparCad(){['cCod','cDesc','cPad','cPeso','cGiro'].forEach(function(i){$(i).value=''});$('cSit').value='Ativo';$('cLac').value='Não';$('cQual').value='Passagem livre';$('cTipo').value='';$('cUnid').value='';$('cFoto').value='';$('cFoto2').value='';FOTO='';FOTO2='';$('cPrev').style.display='none';$('cPrev2').style.display='none';document.querySelectorAll('.fotoBtn span').forEach(function(x){x.textContent='Tirar foto'});$('cMsg').innerHTML=''}
 function cadNovoLista(){var nv=String(val('lsBusca')||'').trim().toUpperCase();fecharLista();limparCad();$('cCod').value=nv;$('cMsg').innerHTML=msg('aviso','Item novo. Preencha e salve.')}
 function buscarCad(direto){
   /* 137 (15/11/2026): mesma pesquisa da Pesquisa de produto: código ou palavra da descrição; vários resultados abrem a lista */
@@ -5367,7 +5527,7 @@ function buscarCad(direto){
   chamar('apiItem',[val('cCod')],function(r){
     if(!r.ok){$('cMsg').innerHTML=msg('erro',r.msg);return}
     if(!r.existe){$('cMsg').innerHTML=msg('aviso','Item novo. Preencha e salve.');return}
-    $('cDesc').value=r.desc;$('cPad').value=r.padrao;$('cPeso').value=r.peso;$('cGiro').value=r.giro||'';selVal('cSit',r.sit||'Ativo');$('cLac').value=r.lacrado?'Sim':'Não';selVal('cTipo',r.tipo);selVal('cUnid',r.unid);FOTO='';FOTO2='';
+    $('cDesc').value=r.desc;$('cPad').value=r.padrao;$('cPeso').value=r.peso;$('cGiro').value=r.giro||'';selVal('cSit',r.sit||'Ativo');$('cLac').value=r.lacrado?'Sim':'Não';$('cQual').value=r.qual||'Passagem livre';selVal('cTipo',r.tipo);selVal('cUnid',r.unid);FOTO='';FOTO2='';
     if(r.foto){$('cPrev').src=r.foto;$('cPrev').style.display='block'}else $('cPrev').style.display='none';
     if(r.foto2){$('cPrev2').src=r.foto2;$('cPrev2').style.display='block'}else $('cPrev2').style.display='none';
     $('cMsg').innerHTML=msg('ok','Item já cadastrado. Altere o que quiser e salve.');
@@ -5394,7 +5554,7 @@ function apagarCad(){
 function salvarCad(){
   if(!FOTO2&&$('cPrev2').style.display==='none'){$('cMsg').innerHTML=msg('erro','Tire a foto da embalagem para salvar o cadastro.');return}
   $('cMsg').innerHTML='Salvando...';
-  chamar('apiCadastrar',[quem(),{codigo:val('cCod'),desc:val('cDesc'),padrao:val('cPad'),tipo:$('cTipo').value,unid:$('cUnid').value,peso:val('cPeso'),giro:val('cGiro'),sit:$('cSit').value,lacrado:$('cLac').value,foto:FOTO,foto2:FOTO2}],function(r){
+  chamar('apiCadastrar',[quem(),{codigo:val('cCod'),desc:val('cDesc'),padrao:val('cPad'),tipo:$('cTipo').value,unid:$('cUnid').value,peso:val('cPeso'),giro:val('cGiro'),sit:$('cSit').value,lacrado:$('cLac').value,qual:$('cQual').value,foto:FOTO,foto2:FOTO2}],function(r){
     $('cMsg').innerHTML=msg(r.ok?'ok':'erro',r.ok?'Item salvo!':r.msg)+(r.ok?blocoFim("limparCad();contTela('cad','cCod')"):'');
     if(r.ok){FOTO='';FOTO2='';semCadLista();chamar('apiItens',[],function(l){ITENS=l;ITMAP={};l.forEach(function(x){ITMAP[x[0]]=x});
       $('listaItens').innerHTML=l.map(function(x){return '<option value="'+esc(x[0])+'">'+esc(x[1])+'</option>'}).join('')})}
@@ -5842,7 +6002,30 @@ var _irGuia=ir;ir=function(t,m){if(!m&&ACAO.indexOf(t)>=0)limparTela(t);_irGuia(
    Perfil Compras: só enxerga esta área. */
 var REC={per:'d',lista:[],perm:{},info:null,sel:null,itens:[],hora:'',tm:0,rf:0};
 var DSEM=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-function ehRestrito(){return perfilUsu()==='Compras'||perfilUsu()==='Portaria'}   /* Compras e Portaria: só a área Recebimento */
+function ehRestrito(){return perfilUsu()==='Compras'||perfilUsu()==='Portaria'||perfilUsu()==='Qualidade'}   /* Compras, Portaria e Qualidade: só a área Recebimento */
+function podeQual(){return ['Qualidade','Gestor','Administrador'].indexOf(perfilUsu())>=0}
+/* ---------- 146 (17/11/2026): QUALIDADE ----------
+   Lista do material com "Aguardar liberação" (vem da conferência do Recebimento). A liberação continua no TOTVS;
+   quem cola a etiqueta de aprovado lê o QR da etiqueta e toca em Liberado (ou Reprovado, com motivo). */
+var QUAL={l:[],f:[]};
+function qualAbrir(){$('qlLer').innerHTML=botaoCam('qualLer()','a etiqueta do material');$('qlRes').innerHTML='';$('qlLista').innerHTML='<p class="rcDica">Carregando...</p>';
+  chamar('apiQualLista',[quem()],function(r){if(!r||!r.ok){$('qlLista').innerHTML=aviso('er',(r&&r.msg)||'Não deu para carregar.');return}QUAL.l=r.lista||[];QUAL.f=r.feitos||[];qualPinta()})}
+function qualPinta(){var L=QUAL.l,h='<div class="mpCab"><b>Aguardando liberação ('+L.length+')</b><small>toque para decidir</small></div>';
+  if(!L.length)h+='<p class="rcDica">Nenhum material aguardando a Qualidade.</p>';
+  else h+='<div class="qlLst">'+L.map(function(x,i){return '<button type="button" class="qlIt'+(x.aviso?' qlAt':'')+'" onclick="qualSel('+i+')"><span><b>'+esc(x.item)+'</b> · '+esc(qtdU(x.qtd,x.item))+'<small>'+esc([x.desc,x.nf?'NF '+x.nf:'',x.forn].filter(Boolean).join(' · '))+'</small></span><em>'+(x.dias?x.dias+(x.dias===1?' dia':' dias'):'Hoje')+'</em></button>'}).join('')+'</div>';
+  if(QUAL.f.length)h+='<div class="mpCab"><b>Decididos nos últimos 7 dias</b></div><div class="qlLst">'+QUAL.f.map(function(x){return '<div class="qlIt qlF"><span><b>'+esc(x.item)+'</b> · '+esc(x.sit)+'<small>'+esc([x.nf?'NF '+x.nf:'',x.quem,x.quando,x.motivo].filter(Boolean).join(' · '))+'</small></span></div>'}).join('')+'</div>';
+  $('qlLista').innerHTML=h}
+function nfNum(n){return String(n||'').replace(/\D/g,'').replace(/^0+/,'')}
+function qualLer(){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){$('qlRes').innerHTML=aviso('er','Isso não é a etiqueta do produto. Leia a etiqueta do material.');vib('erro');return}
+  var nf=nfNum(tv.nf),k=-1;QUAL.l.forEach(function(x,i){if(k<0&&x.item===String(tv.cod).toUpperCase()&&(!nf||!nfNum(x.nf)||nfNum(x.nf)===nf))k=i});
+  if(k<0){$('qlRes').innerHTML=aviso('at','Este material ('+tv.cod+(tv.nf?', NF '+tv.nf:'')+') não está aguardando a Qualidade.');vib('erro');return}qualSel(k)})}
+function qualSel(i){var x=QUAL.l[i];if(!x)return;
+  $('qlRes').innerHTML='<div class="passo">'+cartaoPeca(x.item,x.desc,qtdU(x.qtd,x.item),x.data,x.nf,1)+(x.forn?'<p class="rcDica">'+esc(x.forn)+'</p>':'')+'<div class="bLin">'+botao('Liberado','qualDec('+i+',1)','p')+botao('Reprovado','qualDec('+i+',0)','s')+'</div></div>';rolarPara($('qlRes'),true)}
+function qualDec(i,lib){var x=QUAL.l[i];if(!x)return;
+  var go=function(m){chamar('apiQualDecidir',[quem(),x.lin,!!lib,m||''],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu para registrar.');vib('erro');return}
+    vib('ok');QUAL.l.splice(i,1);qualPinta();$('qlLer').innerHTML='';
+    $('qlRes').innerHTML=aviso(lib?'ok':'at',r.msg)+conclusao(lib?'Liberado':'Reprovado',[['_peca',cartaoPeca(x.item,x.desc,qtdU(x.qtd,x.item),x.data,x.nf,1)]],'Continuar','qualAbrir()','voltarGrupo()');rolarPara($('qlRes'),true)})};
+  if(lib)go('');else perguntar('Qual é o motivo da reprovação?',function(m){go(m)},null,{campo:1,ok:'Reprovar'})}
 function podeAgendar(){return ['Compras','Gestor','Administrador'].indexOf(perfilUsu())>=0}
 function ehInvPerf(){return perfilUsu()==='Inventário'}   /* 12/11/2026: perfil Inventário vê só o Início (Pesquisa de produto) e o Inventário */
 function podeAjInv(){return ['Inventário','Administrador'].indexOf(perfilUsu())>=0}
@@ -5854,7 +6037,10 @@ function aplicarPerfilRec(){document.body.classList.toggle('pCompras',ehRestrito
   document.querySelectorAll('.agd').forEach(function(b){b.style.display=podeAgendar()?'':'none'});
   document.querySelectorAll('.prt').forEach(function(b){b.style.display=podePortaria()?'':'none'});
   /* 145: a Portaria usa só o cartão Portaria e fiscal (antes tinha dois cartões abrindo a mesma tela) */
-  document.querySelectorAll('.menu [data-k="rec"]').forEach(function(b){b.style.display=perfilUsu()==='Portaria'?'none':''})}
+  document.querySelectorAll('.menu [data-k="rec"]').forEach(function(b){b.style.display=(perfilUsu()==='Portaria'||perfilUsu()==='Qualidade')?'none':''});
+  /* 146: cartão Qualidade (Qualidade, Gestor e Administrador); o perfil Qualidade vê só ele */
+  document.querySelectorAll('.qlt').forEach(function(b){b.style.display=podeQual()?'':'none'});
+  document.querySelectorAll('.menu [data-k="proc2"]').forEach(function(b){b.style.display=perfilUsu()==='Qualidade'?'none':''})}
 function podePortaria(){return ['Portaria','Administrador'].indexOf(perfilUsu())>=0}   /* 17/11/2026: a gestão nunca cobre a portaria */
 function podeReceber(){return ['Operador','Gestor','Administrador'].indexOf(perfilUsu())>=0}
 var _mostrarGrupoR=mostrarGrupo;mostrarGrupo=function(){if(ehRestrito())GRUPO='rec';if(ehInvPerf()&&GRUPO!=='ini')GRUPO='inv';_mostrarGrupoR()};
@@ -5945,9 +6131,14 @@ function estadoRec(x){var hoje=hojeISO(),am=agoraMin(),et=x.et||{};
   if(x.data<hoje)return ['rcNao','Não entregue'];
   if(x.data===hoje&&minH(x.fim)<=am)return ['rcAtr','Atrasada · ninguém iniciou'];
   return ['rcAg','Agendado']}
-function recCego(x){return x.sit==='Em recebimento'&&!!(REC.perm||{}).recebe}
+/* 146 (17/11/2026): conferência cega de verdade. A quantidade e os volumes programados só aparecem para Compras (agenda e
+   detalhe) e para Gestor e Administrador (só no detalhe da entrega). Operador e Portaria nunca veem. Durante a conferência
+   ninguém vê (o servidor também não manda os números para quem não pode ver). */
+function recVeQtd(x,onde){var p=perfilUsu();if(x&&x.sit==='Em recebimento'&&p!=='Compras')return false;
+  return onde==='card'?p==='Compras':['Compras','Gestor','Administrador'].indexOf(p)>=0}
+function recCego(x){return !recVeQtd(x,'det')}
 function recNfsTxt(x){return (x.nfs&&x.nfs.length)?x.nfs.join(', '):(x.nf||'')}
-function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=recCego(x);
+function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
   return '<button type="button" class="rcCard '+e[0]+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
     '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
@@ -5974,7 +6165,7 @@ function recGrade(r,F,L){var sem=REC.per==='s',dias=[],d0=new Date(F[0]+'T12:00:
     h+='<div class="agRow'+(alm?' agAlm':'')+'"><div class="agHr">'+('0'+hr).slice(-2)+':00</div>'+dias.map(function(k){
       var fe=r.fechados[k],its=uteis.filter(function(x){return x.data===k&&Math.floor(minH(x.ini)/60)===hr}),pas=k<hj||(k===hj&&(hr+1)*60<=am),c='<div class="agCel'+(fe?' fech':'')+(pas?' agPas':'')+'">';
       if(alm&&!its.length)c+='<span class="agAlmT">Almoço</span>';
-      its.forEach(function(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=recCego(x);
+      its.forEach(function(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
         c+='<button type="button" class="agBl '+e[0]+(x.critica?' rcCr':'')+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+(sem?'<u>'+esc(x.ini)+'</u><em> '+esc(x.forn)+'</em>':esc(x.forn))+'</b>'+
           (sem?'':'<span>'+esc(x.ini)+' – '+esc(x.fim)+(!cg&&vol?' · '+vol+' vol.':'')+(x.critica?' · Crítica':'')+'</span><span class="agSt">'+esc(e[1])+'</span>')+'</button>'});
       if(!its.length&&!alm&&!fe&&!sem&&!pas&&sl.indexOf(hr*60)>=0)c+='<span class="agLivre">Livre</span>';
@@ -6032,7 +6223,7 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
   if(x.critica&&x.obs)h+='<p class="rcObs"><small>Motivo da entrega crítica</small>'+esc(x.obs)+'</p>';
   if(x.aval)h+='<p class="rcObs"><small>Aval / cancelamento</small>'+esc(x.aval)+'</p>';
   h+='<div class="rcTab"><table><tr><th>Produto</th><th>NF</th>'+(cego?'':'<th>Qtd.</th>')+(fin?'<th>Recebido</th>':'')+'</tr>'+
-    x.prod.map(function(p,i){var rq=fin&&x.receb[i]?Number(x.receb[i].q):null,c=rq===null?'':(rq<Number(p.q)?' class="rcMenosT"':rq>Number(p.q)?' class="rcMaisT"':' class="rcOkT"');
+    x.prod.map(function(p,i){var rq=fin&&x.receb[i]?Number(x.receb[i].q):null,c=rq===null||cego?'':(rq<Number(p.q)?' class="rcMenosT"':rq>Number(p.q)?' class="rcMaisT"':' class="rcOkT"');
       return '<tr><td><b>'+esc(p.c)+'</b><br><small>'+esc(p.d||'')+'</small></td><td>'+esc(p.nf||'–')+'</td>'+(cego?'':'<td>'+numBR(p.q)+'</td>')+(fin?'<td'+c+'><b>'+(rq===null?'–':numBR(rq))+'</b></td>':'')+'</tr>'}).join('')+'</table></div>';
   if(x.irr)h+=irrHtml(x.irr);
   /* 145: linha do tempo em 4 fases (sempre visível) + tempos */
@@ -6067,6 +6258,7 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
       else if(et.doca&&!et.fdesc)a+=bt('fdesc','Fim do descarregamento');
       else a+='<div id="rdFinBox"><p>'+botao('Conferência e liberação do motorista','recAbrirConf()','p')+'</p></div>'}
     if(fin&&x.pend){
+      a+='<p>'+botao('Imprimir etiquetas','recEtqJan()','s',{cls:'sec'})+'</p>';   /* 146: etiqueta própria (Master A4 e pequena) logo depois da conferência */
       if(!et.etq)a+=bt('etq','Fim da etiquetagem');
       a+='<div class="rcArm"><p><b>Armazenagem</b><br><small>Enderece os pallets pelo Endereçar, lendo a etiqueta do produto. A entrega fecha sozinha quando o último pallet desta nota for guardado.</small></p>'+
         x.prod.map(function(p,i){var rq=x.receb[i]?Number(x.receb[i].q):0,g=Number((x.armz||{})[String(p.c).toUpperCase()])||0;
@@ -6094,10 +6286,13 @@ function recAbrirConf(rc){var x=REC.sel;ASS_OK=false;REC.rc=rc&&rc.linhas?rc:nul
   var h='<div class="card rcConf"><p><b>Conferência</b><br><small>Conte o que chegou e digite a quantidade de cada produto. Conte também os volumes recebidos.</small></p>'+
     x.prod.map(function(p,i){var pre=REC.cq&&!marca(i)&&REC.cq[i]!=null?REC.cq[i]:'',av=REC.av[i];
       return '<div class="rcQ'+(marca(i)?' blocoErro':'')+'" id="rcQ'+i+'"><label class="obr" for="rfQ'+i+'"><b>'+esc(p.c)+'</b>'+(p.d?' · '+esc(p.d):'')+'<small>Nota fiscal '+esc(p.nf||'–')+'</small></label>'+
-      '<input id="rfQ'+i+'" type="number" inputmode="decimal" min="0" step="any" data-obr="1" value="'+esc(pre)+'" oninput="agErroLimpa(this)">'+
+      '<input id="rfQ'+i+'" type="number" inputmode="decimal" min="0" step="any" data-obr="1" data-cod="'+esc(p.c)+'" data-emb="'+(embDoCod(p.c)||'')+'" value="'+esc(pre)+'" oninput="agErroLimpa(this)">'+
       (marca(i)?'<div class="msg erro errIn">Conte este produto de novo.</div>':'')+
       botao(av?'Material avariado: informe a quantidade':'Tem material avariado?','recAvToggle('+i+')','s',{cls:'sec rcAvB'+(av?' at':''),id:'rfAvB'+i})+
       '<div id="rfAvBox'+i+'"'+(av?'':' hidden')+'><label for="rfAv'+i+'">Quantidade avariada</label><input id="rfAv'+i+'" type="number" inputmode="decimal" min="0" step="any" value="'+esc(av||'')+'"></div></div>'}).join('')+
+    (R||x.c1?'<div class="rcQ"><label class="obr" for="rfQuem">Quem está recontando?</label><select id="rfQuem" data-obr="1" onchange="agErroLimpa(this)"><option value="">Escolha a pessoa</option>'+
+      [].map.call(($('nome')||{}).options||[],function(o){return o.value}).filter(function(n){return n&&n.toUpperCase()!==String(x.c1n||'').toUpperCase()}).map(function(n){return '<option'+(n===REC.rq?' selected':'')+'>'+esc(n)+'</option>'}).join('')+
+      '</select><small class="rcDica">A recontagem é feita por outra pessoa'+(x.c1n?', não por '+esc(x.c1n):'')+'.</small></div>':'')+
     '<div class="rcQ'+(R&&R.vol?' blocoErro':'')+'"><label class="obr" for="rfVol">Volumes recebidos</label><input id="rfVol" type="number" inputmode="numeric" min="0" step="1" data-obr="1" value="'+esc(R&&R.vol?'':(REC.cvol||''))+'" oninput="agErroLimpa(this)">'+(R&&R.vol?'<div class="msg erro errIn">Conte os volumes de novo.</div>':'')+'</div>'+
     '<p>'+botao('Concluir conferência','recFinalizar()','p')+'</p></div>';
   $('rdFinBox').innerHTML=h;GUIA.k='';agendarGuia('entrada');
@@ -6107,16 +6302,17 @@ function recColeta(){var x=REC.sel,q=[],av=[],i;limparErros();document.querySele
   for(i=0;i<x.prod.length;i++){var v=val('rfQ'+i);if(v===''||!(Number(v.replace(',','.'))>=0)){agErro('rfQ'+i,'Informe a quantidade contada de '+x.prod[i].c+'.');return null}
     q.push(Number(v.replace(',','.')));var a=$('rfAv'+i);if(a&&!$('rfAvBox'+i).hidden){var n=Number(String(a.value).replace(',','.'));if(!(n>0)){agErro('rfAv'+i,'Informe a quantidade avariada ou desmarque.');return null}if(n>q[i]){agErro('rfAv'+i,'A quantidade avariada não pode passar do que foi contado.');return null}av.push({i:i,q:n})}}
   var vv=val('rfVol');if(vv===''||!(Number(vv)>=0)){agErro('rfVol','Informe os volumes recebidos.');return null}
+  if($('rfQuem')){REC.rq=val('rfQuem');if(!REC.rq){agErro('rfQuem','Escolha quem está recontando.');return null}}
   REC.cq=q;REC.cvol=vv;REC.av={};av.forEach(function(a){REC.av[a.i]=a.q});return {q:q,vol:Number(vv),avaria:av}}
 function recFinalizar(irr){var x=REC.sel,d=(irr===true)?{q:REC.cq,vol:Number(REC.cvol),avaria:Object.keys(REC.av).map(function(k){return {i:Number(k),q:REC.av[k]}})}:recColeta();if(!d)return;
-  if(irr===true)d.irr=REC.irr;
+  if(irr===true)d.irr=REC.irr;if(REC.rq)d.recont=REC.rq;
   chamar('apiRecFinalizar',[quem(),x.id,d],function(r){
-    if(r.recont){recAbrirConf({linhas:r.linhas||[],vol:!!r.vol});vib('erro');avisoJan(r.msg+' Os campos marcados precisam ser contados de novo.');return}
+    if(r.recont){x.c1=true;x.c1n=x.c1n||nomeUsu();recAbrirConf({linhas:r.linhas||[],vol:!!r.vol});vib('erro');avisoJan(r.msg+' Os campos marcados precisam ser contados de novo.');return}
     if(r.irreg){recAbrirIrreg(r);return}
     if(!r.ok){if(r.campo&&$(r.campo)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
     var agora=new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(',','');
     recAtualiza(r,{sit:'Concluído',res:r.res,receb:x.prod.map(function(p,i){return {c:p.c,q:d.q[i]}}),fimR:agora,dur:r.dur,ass:r.ass||'',et:r.et||x.et,pend:!!r.pend,armz:{},volR:r.volR,irr:r.irr||null});
-    ASS_OK=false;REC.rc=null;REC.cq=null;REC.irr=null;REC.fotos=[];vib('ok');
+    ASS_OK=false;REC.rc=null;REC.cq=null;REC.irr=null;REC.fotos=[];REC.rq='';vib('ok');
     pintarRecDet(msg('ok',r.msg)+(r.pend?'':blocoFim("ir('rec')")))})}
 /* Irregularidade: motivo (opcional), fotos guiadas uma por vez e assinatura do motorista fecham o registro */
 var FOTOS_IRR=[['Placa do cavalo','cavalo'],['Placa da carreta','carreta'],['Interior do baú','baú'],['Material avariado','avaria'],['Foto livre','livre']];
@@ -6526,8 +6722,14 @@ function verSemGiro(){$('rgSemGiroRes').innerHTML='Carregando...';chamar('apiSem
 /* 139: Cadastros para completar virou um link pequeno (peça linkJan) embaixo da pesquisa; a lista abre numa janela */
 var SEMCAD=[];
 function semCadLista(){var b=$('cSemCad');if(!b)return;if(LS.getItem('jeAdm')!=='1'){b.innerHTML='';return}TOQUE.el=null;
-  chamar('apiSemCad',[quem()],function(r){SEMCAD=(r&&r.ok&&r.lista)||[];b.innerHTML=SEMCAD.length?linkJan('Cadastros para completar ('+SEMCAD.length+')','semCadJan()'):''})}
-function semCadJan(){abrirJan('Cadastros para completar','<p class="rcDica">Lidos sem cadastro e cadastros simples feitos pelos operadores. Toque no código para completar.</p><div class="jnLst">'+
+  chamar('apiSemCad',[quem()],function(r){SEMCAD=(r&&r.ok&&r.lista)||[];SUGPAD=(r&&r.ok&&r.sug)||[];var n=SEMCAD.length+SUGPAD.length;b.innerHTML=n?linkJan('Cadastros para completar ('+n+')','semCadJan()'):''})}
+var SUGPAD=[];
+/* 146: sugestões de peças por caixa vindas da contagem (Recebimento e Abastecer) — o administrador aprova ou descarta */
+function sugPadDecide(cod,sim){chamar('apiSugPadAprovar',[quem(),cod,!!sim],function(r){if(!r||!r.ok){avisoJan((r&&r.msg)||'Não deu.');return}
+  SUGPAD=SUGPAD.filter(function(x){return x.cod!==cod});if(sim)try{recarregarItens()}catch(e){}fecharJan();avisoJan(r.msg)})}
+function semCadJan(){abrirJan('Cadastros para completar',(SUGPAD.length?'<p class="rcDica"><b>Peças por caixa informadas na contagem</b></p><div class="jnLst">'+SUGPAD.map(function(x){var c=esc(x.cod).replace(/'/g,'');
+    return '<div class="sjIt"><b>'+esc(x.cod)+': '+esc(numBR(x.n))+' por caixa</b><small>'+(x.atual?'Cadastro hoje: '+esc(numBR(x.atual))+' · ':'Sem quantidade por caixa no cadastro · ')+esc(x.quem||'-')+' em '+esc(x.quando)+'</small><div class="bLin">'+botao('Aprovar',"sugPadDecide('"+c+"',1)",'p')+botao('Descartar',"sugPadDecide('"+c+"',0)",'s')+'</div></div>'}).join('')+'</div>':'')+
+  '<p class="rcDica">Lidos sem cadastro e cadastros simples feitos pelos operadores. Toque no código para completar.</p><div class="jnLst">'+
   SEMCAD.map(function(x){var c=esc(x.cod).replace(/'/g,'');return '<button type="button" class="sjIt" onclick="fecharJan();limparCad();$(\'cCod\').value=\''+c+'\';buscarCad(1)"><b>'+esc(x.cod)+'</b><small>'+(x.simples?'Cadastro simples'+(x.lac?', pode subir':x.motor?', motor':', nível 1'):'Sem cadastro')+' · '+esc(x.quem||'-')+' em '+esc(x.quando)+(x.vezes>1?' ('+x.vezes+' vezes)':'')+'</small></button>'}).join('')+'</div>')}
 
 </script>
