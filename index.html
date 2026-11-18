@@ -544,7 +544,7 @@ body.tv .conqBox{max-width:calc((100vh - 70px) * 1.7)}
 
 .trfSum{display:flex;gap:8px;margin:10px 0}.trfSum div{flex:1;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:10px;text-align:center;font-size:13px;color:#555}.trfSum b{display:block;font-size:22px;color:#2E2E30}
 .trfL{padding:10px 12px;border-radius:12px;margin:4px 0;background:#fff;font-size:14px;line-height:1.45}.trfL:nth-child(even){background:var(--lisC)}.trfL b{font-size:15px}.trfL small{color:#666}
-.rgEt{font-size:13px;padding:5px 10px;border-radius:999px;background:#E9EAEC;color:#555}.rgEt.at{background:#F2A766;color:#2E2E30;font-weight:700}.rgEt.ok{background:#16A34A;color:#fff}
+.rgEt{font-size:13px;padding:5px 10px;border-radius:999px;background:#E9EAEC;color:#555}.rgEt.at{background:#FF9A3C;color:#231F20;font-weight:700}.rgEt.ok{background:#16A34A;color:#fff}
 .ptvI{display:flex;align-items:center;gap:10px;padding:10px;background:var(--lis);border-radius:12px;margin:6px 0}.ptvI input{width:22px;height:22px}
 .tvGrande{text-align:center;padding:6vh 2vw}.tvGrande b{display:block;font-size:min(30vw,40vh);line-height:1;color:var(--ver)}.tvGrande span{font-size:min(6vw,7vh);font-weight:700}
 
@@ -612,27 +612,28 @@ html body main .jnLst button.sjIt.cam{background:transparent!important;color:var
 
 /* ---- 140 (15/11/2026): calculadora da quantidade em tela escura. Toque nas teclas no laranja das pesquisas (#F26A1B);
    o que é fixo e destaca (operações, resultado, = e Confirmar) em laranja brilhante (#FF9A3C). ---- */
-html body #tecCx{background:#1F1F21!important}
+/* 147: calculadora mais suave — cinza grafite, teclas de operação em laranja suave (o laranja forte só no toque) */
+html body #tecCx{background:#2E2E30!important}
 html body #tecTit{color:#B5B7BC!important}
 html body #tecVal{color:#fff!important;font-size:38px!important;word-break:break-all}html body #tecVal.vz{color:#5A5A5E!important}
 html body #tecSub{color:#D1D3D8!important}html body #tecSub b{color:#fff!important}html body #tecSub .tecEr{color:#FF8A80!important}
 html body #tecEmb{text-align:center;margin:4px 0 8px}html body #tecEmb small{display:block;color:#A9ABB1;font-size:12px;margin-top:6px}
-html body .tecEmbB{display:inline-block;border-radius:999px;padding:8px 18px;background:transparent;color:#FF9A3C;box-shadow:inset 0 0 0 2px #FF9A3C;font-weight:700;font-size:15px;cursor:pointer;user-select:none}
+html body .tecEmbB{display:inline-block;border-radius:999px;padding:8px 18px;background:#3A3A3E;color:#F2A766;box-shadow:none;font-weight:700;font-size:15px;cursor:pointer;user-select:none}
 .qlLst .qlIt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;border:0;background:#fff;border-radius:10px;padding:10px;margin:0;text-align:left;font:inherit;color:#231F20;cursor:pointer}
 .qlLst .qlIt:nth-child(even){background:#F5F6F7}.qlLst .qlIt:active{background:#FFE7D3}.qlLst .qlIt small{display:block;color:#5C5C5C;font-size:12px;margin-top:2px}
 .qlLst .qlIt em{font-style:normal;font-size:12px;color:#5C5C5C;white-space:nowrap}.qlLst .qlIt.qlAt em{color:#C2410C;font-weight:700}.qlLst .qlF{cursor:default}
-html body #tecEmb a{color:#FF9A3C!important;font-weight:700}
-html body .tecEmbB:active{background:#F26A1B;color:#fff;box-shadow:none}
+html body #tecEmb a{color:#F2A766!important;font-weight:700}
+html body .tecEmbB:active{background:#4A4A4F;color:#F2A766;box-shadow:none}
 html body #tecSub .tecRes{color:#FF9A3C!important;font-size:24px;font-weight:800}
 html body #tecKs{grid-template-columns:repeat(4,1fr)!important}
-html body .tecK{background:#2E2E32!important;color:#fff!important;height:58px!important;transition:background .08s}
-html body .tecK:active,html body .tecK.tq{background:#F26A1B!important;color:#fff!important}
-html body .tecK.tecO{background:transparent!important;color:#FF9A3C!important;box-shadow:inset 0 0 0 2px #FF9A3C;font-size:30px}
-html body .tecK.tecO:active,html body .tecK.tecO.tq{background:#F26A1B!important;color:#fff!important;box-shadow:none}
-html body .tecK.tecIg{background:#FF9A3C!important;color:#1F1F21!important;box-shadow:none}
-html body .tecK.tecIg:active,html body .tecK.tecIg.tq{background:#F26A1B!important;color:#fff!important}
-html body #tecOk button.b.bP{background:#FF9A3C!important;color:#1F1F21!important}
-html body #tecOk button.b.bP:active{background:#F26A1B!important;filter:none!important}
+html body .tecK{background:#3A3A3E!important;color:#F1F2F4!important;height:58px!important;transition:background .08s}
+html body .tecK:active,html body .tecK.tq{background:#4A4A4F!important;color:#fff!important}
+html body .tecK.tecO{background:#F2A766!important;color:#2E2E30!important;box-shadow:none;font-size:30px}
+html body .tecK.tecO:active,html body .tecK.tecO.tq{background:#E8975A!important;color:#2E2E30!important}
+html body .tecK.tecIg{background:#F2A766!important;color:#2E2E30!important;box-shadow:none}
+html body .tecK.tecIg:active,html body .tecK.tecIg.tq{background:#E8975A!important;color:#2E2E30!important}
+html body #tecOk button.b.bP{background:#F2A766!important;color:#2E2E30!important}
+html body #tecOk button.b.bP:active{background:#E8975A!important;filter:none!important}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style id="layoutPadrao">
@@ -840,17 +841,17 @@ html body main .passoBar{position:sticky;top:calc(var(--hdrH,68px) + 6px);z-inde
 .passoBar .pbDots i.f{background:#16A34A}.passoBar .pbDots i.a{background:#FF9A3C}
 .passoBar .pbSub{display:block;margin-top:6px;color:#6B6B72;font-size:13px}
 /* 06/11/2026: barra dos passos maior e mais visível (os operadores não estavam vendo) */
-html body main .passoBar.passoBar{padding:14px 14px 13px;border:2px solid #F2A766;box-shadow:0 6px 18px #1E243024}
+html body main .passoBar.passoBar{padding:14px 14px 13px;border:1px solid #0000000a;box-shadow:0 6px 18px #1E243024}   /* 147: contorno laranja da barra voltou ao padrão de antes (sem contorno) */
 html body main .passoBar .pbTop{gap:12px}
-html body main .passoBar .pbN{background:#F26A1B;color:#fff;font-size:18px;padding:6px 14px}
+html body main .passoBar .pbN{background:#FF9A3C;color:#231F20;font-size:18px;padding:6px 14px}
 html body main .passoBar .pbN.ok{background:#16A34A}
 html body main .passoBar .pbT{font-size:21px;font-weight:800;color:#1E1E22}
 html body main .passoBar .pbDots{gap:8px;margin-top:12px}
 html body main .passoBar .pbDots i{height:10px;border-radius:5px}
 html body main .passoBar .pbSub{font-size:15px;color:#4A4B50;margin-top:8px}
 .passo{position:relative;border-radius:14px;padding:8px 10px;margin:0 -10px 6px;transition:box-shadow .2s,opacity .2s}
-html body main .pAtual{box-shadow:0 0 0 2px #FF9A3C,0 0 0 7px #FF9A3C24!important}
-html body main .endCard.pAtual{box-shadow:0 0 0 2px #FF9A3C,0 0 0 7px #FF9A3C24,0 6px 18px #1E243012!important}
+html body main .pAtual{box-shadow:inset 5px 0 0 #FF9A3C,0 6px 18px #1E24301c!important}   /* 148: passo atual = cartão em destaque com faixa lateral em laranja fluorescente */
+html body main .endCard.pAtual{box-shadow:inset 5px 0 0 #FF9A3C,0 6px 18px #1E24301c!important}
 .pFeito{opacity:.55}
 .pFeito::after{content:"✓";position:absolute;top:6px;right:8px;width:24px;height:24px;border-radius:50%;background:#16A34A;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
 label.obr::after{content:" *";color:#DC2626;font-weight:800}
@@ -894,14 +895,14 @@ html body main :is(#s-rec,#s-trf,#s-desfazer,#s-falt,#s-recf,#s-pesq) .fBar{disp
 /* 146: Pesquisa (abas Produto e Posição), filtros de rua/bloco/posição e o mapa de ocupação */
 .pqAbas{margin:2px 0 12px!important}
 html body main #s-pesq .pqAbas button{background:#E9EAEC!important;color:#2E2E30!important;font-weight:600!important;box-shadow:none!important}
-html body main #s-pesq .pqAbas button.at{background:#F2A766!important;font-weight:800!important}
+html body main #s-pesq .pqAbas button.at{background:#FF9A3C!important;color:#231F20!important;font-weight:800!important}
 html body main #s-pesq button.mpL{display:grid!important;grid-template-columns:44px 1fr 74px!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:8px 6px!important;box-shadow:none!important;min-height:0!important;margin:0!important;width:100%!important;font-weight:400!important}
 html body main #s-pesq button.mpL:nth-of-type(even){background:#F5F6F7!important}html body main #s-pesq button.mpL:active{background:#FFE7D3!important}
 html body main #s-pesq button.mpC{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:8px!important;box-shadow:0 1px 4px rgba(0,0,0,.1)!important;min-height:58px!important;margin:0!important;width:100%!important;font-weight:400!important;text-align:left!important}
 html body main #s-pesq button.mpC.liv{background:#F5F6F7!important;color:#5C5C5C!important;box-shadow:none!important}html body main #s-pesq button.mpC.blq{background:#ECECEE!important;box-shadow:none!important}
 html body main #s-pesq button.mpC.pend{box-shadow:inset 0 0 0 2px #FF9A3C!important}html body main #s-pesq button.mpC:active{background:#FFE7D3!important}
-html body main #s-qual button.qlIt{display:flex!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:10px!important;box-shadow:none!important;min-height:0!important;margin:0!important;width:100%!important;font-weight:400!important;text-align:left!important;justify-content:space-between!important}
-html body main #s-qual button.qlIt:nth-of-type(even){background:#F5F6F7!important}html body main #s-qual button.qlIt:active{background:#FFE7D3!important}
+html body main #s-parm button.qlIt,html body main #s-qual button.qlIt{display:flex!important;background:#fff!important;color:#231F20!important;border-radius:10px!important;padding:10px!important;box-shadow:none!important;min-height:0!important;margin:0!important;width:100%!important;font-weight:400!important;text-align:left!important;justify-content:space-between!important}
+html body main :is(#s-qual,#s-parm) button.qlIt:nth-of-type(even){background:#F5F6F7!important}html body main :is(#s-qual,#s-parm) button.qlIt:active{background:#FFE7D3!important}
 .qlLst,.mpLst{border-radius:12px;overflow:hidden}
 .cpFil{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 8px;align-items:end}.cpFil label{grid-row:1;font-size:13px;margin:0}.cpFil select{grid-row:2;margin:0}
 .mpCab{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:14px 0 6px}.mpCab b{font-size:16px}.mpCab small{color:#5C5C5C}
@@ -963,18 +964,15 @@ html body main :is(#s-rec,#s-recd,#s-recag) .rcDet.rcAtr::after{display:none}
 .rcTab{overflow-x:auto;margin:8px 0}.rcTab table{width:100%;border-collapse:collapse;font-size:14px}.rcTab th{text-align:left;font-size:12px;color:#666;padding:6px}.rcTab td{padding:8px 6px;vertical-align:top}.rcTab tr:nth-child(even) td{background:var(--lisC)}
 .rcOkT b{color:#16A34A!important}.rcMaisT b{color:#C2410C!important}.rcMenosT b{color:#DC2626!important}
 html body main :is(#s-rec,#s-recd,#s-recag) .rcX{background:none!important;box-shadow:none!important;color:#FF9A3C!important;font-size:24px!important;padding:0 8px!important;width:auto!important;min-width:0!important}
-.rcChips{display:flex;flex-wrap:wrap;gap:8px}html body main :is(#s-rec,#s-recd,#s-recag) .rcChips button{width:auto!important;min-width:76px!important;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 14px!important;box-shadow:none!important;font-weight:700!important}html body main :is(#s-rec,#s-recd,#s-recag) .rcChips button.at{background:#F2A766!important;color:#2E2E30!important}
+.rcChips{display:flex;flex-wrap:wrap;gap:8px}html body main :is(#s-rec,#s-recd,#s-recag) .rcChips button{width:auto!important;min-width:76px!important;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 14px!important;box-shadow:none!important;font-weight:700!important}html body main :is(#s-rec,#s-recd,#s-recag) .rcChips button.at{background:#FF9A3C!important;color:#231F20!important}
 .rcHoras.blocoErro{outline:2px solid #DC2626;border-radius:12px;padding:4px}
 .rcAdd{background:#F4F5F6;border-radius:12px;padding:8px 10px;margin-top:6px}
 .rcConf{margin-top:10px}.rcQ label small{display:block;font-weight:400;color:#666}
 .rcBts{display:flex;gap:8px;flex-wrap:wrap}html body main :is(#s-rec,#s-recd,#s-recag) .rcBts button{flex:1!important}
-.rcPrCab{display:none}
+
 body.pCompras #navb button:not([data-t="g-rec"]){display:none!important}
 html body.pInv #navb button[data-t="g-rec"],html body.pInv #navb button[data-t="g-op"],html body.pInv #navb button[data-t="g-abs"],html body.pInv #navb button[data-t="g-ges"],html body.pInv #navb #nvMaisB{display:none!important}
 html body.pInv #navb button[data-t="g-inv"]{display:flex!important}
-@media print{body.prRec .esc{display:none!important}body.prRec #s-recd{display:block!important;box-shadow:none;padding:0}
-  body.prRec #s-recd .tit,body.prRec #s-recd .vFim,body.prRec #rdAcao,body.prRec #rdMsg,body.prRec #rdMais,body.prRec .passoBar,body.prRec .obrLeg{display:none!important}
-  body.prRec .rcPrCab{display:block;font-weight:700;margin-bottom:8px}body.prRec .rcInfo div,body.prRec .rcDet{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
 /* Transferência de endereço (29/10/2026) */
 .xfInfo{background:#FFF4EA;border-radius:12px;padding:10px 12px;margin-top:8px;font-size:16px}.xfInfo span{display:block;color:#555;font-size:15px;margin-top:2px}
@@ -1040,7 +1038,7 @@ html body main button.pqBt{width:100%}
 /* ---- período padrão (Dia / Semana / Mês), igual ao do Recebimento ---- */
 .perSeg{display:flex;gap:6px;margin:6px 0 6px}
 html body main .perSeg button{flex:1!important;background:#E9EAEC!important;color:#2E2E30!important;border-radius:999px!important;padding:10px 0!important;font-size:15px!important;box-shadow:none!important}
-html body main .perSeg button.at{background:#F2A766!important;color:#2E2E30!important;font-weight:700!important}
+html body main .perSeg button.at{background:#FF9A3C!important;color:#231F20!important;font-weight:800!important}   /* 147: o que está ativo em laranja fluorescente (o mesmo do toque nas listas) */
 html body main :is(#s-trf,#s-desfazer,#s-falt) .fBar label{margin-top:8px}
 
 /* ---- pesquisa por voz: microfone ao lado da câmera ---- */
@@ -1289,11 +1287,12 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
 
 <div id="s-prod" class="esc card">
   <div class="tit">Produtividade da equipe</div>
-  <label>De</label><input id="pDe" type="date">
-  <label>Até</label><input id="pAte" type="date">
-  <p><button class="b bP" onclick="verProd()">Ver</button></p>
-  <div id="pRes"></div>
-  <p><small>Tempo ativo = do primeiro ao último lançamento de cada dia (inclui pausas). Lançamentos desfeitos não contam.</small></p>
+  <div class="perSeg pqAbas" role="tablist" aria-label="Produtividade"><button type="button" id="prAbM" class="at" role="tab" onclick="prAba('mov')">Movimentações</button><button type="button" id="prAbT" role="tab" onclick="prAba('tempo')">Tempo das tarefas</button></div>
+  <label>De</label><input id="pDe" type="date" data-fixo="1">
+  <label>Até</label><input id="pAte" type="date" data-fixo="1">
+  <p><button class="b bP" onclick="prVer()">Ver resultado</button></p>
+  <div id="pRes"></div><div id="ptRes" hidden></div>
+  <p id="pDica"><small>Tempo ativo = do primeiro ao último lançamento de cada dia (inclui pausas). Lançamentos desfeitos não contam.</small></p>
 </div>
 
 <div id="s-seg" class="esc">
@@ -1347,7 +1346,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div><label>Situação</label><select id="eqAtivo"><option value="Sim">Ativo</option><option value="Não">Inativo</option></select></div></div>
   <div class="lin"><div><label>Vínculo</label><select id="eqVinc" onchange="$('eqFimBox').style.display=this.value==='Temporário'?'':'none'"><option>Efetivo</option><option>Temporário</option></select></div>
   <div id="eqFimBox" style="display:none"><label>Fim do contrato</label><input id="eqFim" type="date"></div></div>
-  <p><button class="b bP" onclick="salvarPessoa()">Salvar</button> <button class="b bS sec" onclick="novaPessoa()">Nova pessoa</button></p>
+  <p><button class="b bP" onclick="salvarPessoa()">Salvar pessoa</button> <button class="b bS sec" onclick="novaPessoa()">Nova pessoa</button></p>
   <div id="eqMsg"></div>
   <p><small>Quando faltarem 2 horas para o fim do turno de alguém que ainda não concluiu a contagem do dia, o aviso aparece no topo do menu, só para você.</small></p>
 </div>
@@ -1443,6 +1442,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="grpT" onclick="recolher(this)" data-g="op"><span>Armazenamento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="guardar" onclick="ir('guardar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V3M21 21V3M3 12h18M3 21h18" stroke="#2E2E30"/><path d="M9 15h6v6H9zM12 4.5v5M9.8 7.5 12 9.7l2.2-2.2" stroke="#F26A1B"/></svg>Endereçar</button>
+    <button data-k="parm" onclick="ir('parm');paraArm()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17h11V7H3z" stroke="#2E2E30"/><path d="M14 11h4l3 3v3h-7" stroke="#2E2E30"/><circle cx="7" cy="18.5" r="1.5" stroke="#2E2E30"/><circle cx="17" cy="18.5" r="1.5" stroke="#2E2E30"/><path d="M6 12h5M9 9.5l2.5 2.5L9 14.5" stroke="#F26A1B"/></svg>Para armazenar</button>
     <button data-k="tend" onclick="ir('tend');xfLimpa()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="13" width="7" height="7" rx="1" stroke="#2E2E30"/><rect x="14.5" y="4" width="7" height="7" rx="1" stroke="#2E2E30"/><path d="M6 10V7.5h6M10 5.5l2 2-2 2" stroke="#F26A1B"/></svg>Transferência de endereço</button>
     <button data-k="desfazer" onclick="ir('desfazer')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F26A1B"/></svg>Movimentações</button>
     <button data-k="trein" onclick="abrirProc(3)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
@@ -1464,14 +1464,14 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
     <button data-k="resinv" onclick="ir('resinv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2" stroke="#2E2E30"/><path d="M9 17v-3M12 17v-6M15 17v-4" stroke="#F26A1B"/></svg>Resultado do inventário</button>
     <button data-k="etq" onclick="ir('etq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" stroke="#2E2E30"/><path d="M7.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3z" stroke="#F26A1B"/></svg>Etiquetas</button>
   </div>
-  <div class="grpT adm" onclick="recolher(this)" data-g="ges"><span>Gestão</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
+  <div class="grpT ges" onclick="recolher(this)" data-g="ges"><span>Gestão</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button class="adm" data-k="etqt" onclick="ir('etqt');etqtPintar()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18v12H3z" stroke="#2E2E30"/><path d="M6 9h4v4H6zM13 9h5M13 12h5M6 15h12" stroke="#F26A1B"/></svg>Etiqueta de teste</button>
     <button class="adm" data-k="eq" onclick="ir('eq');listarEquipe()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 5a3 3 0 1 0 0 6 3 3 0 1 0 0-6zM3 20c0-4 3-6 6-6s6 2 6 6" stroke="#2E2E30"/><path d="M17 6.5a2.5 2.5 0 1 0 0 5M17 14c2.5.3 4 2 4 5" stroke="#F26A1B"/></svg>Equipe</button>
     <button class="adm" data-k="cal" onclick="ir('cal');abrirCal()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v16H3zM3 10h18" stroke="#2E2E30"/><path d="M8 3v4M16 3v4M8 14h3" stroke="#F26A1B"/></svg>Calendário</button>
     <button class="adm" data-k="prog" onclick="ir('prog');abrirProg()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M5 4h14v17H5z" stroke="#2E2E30"/><path d="M9 9h6M9 13h6M9 17h4" stroke="#F26A1B"/></svg>Programação</button>
     <button class="adm" data-k="falt" onclick="ir('falt');abrirFaltas()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM3 21c0-4 3-7 7-7" stroke="#2E2E30"/><path d="M16 15l5 5M21 15l-5 5" stroke="#F26A1B"/></svg>Faltas</button>
-    <button class="adm" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F26A1B"/></svg>Produtividade</button>
+    <button class="ges" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F26A1B"/></svg>Produtividade</button>
     <button class="adm" data-k="usu" onclick="ir('usu');listarUsu()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM4 21c0-4 4-7 8-7s8 3 8 7" stroke="#2E2E30"/><path d="M16.5 4.5l1.5 1.5 3-3" stroke="#F26A1B"/></svg>Usuários</button>
     <button class="ges" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F26A1B"/></svg>Cadastrar item</button>
     <button class="adm" data-k="regras" onclick="ir('regras');abrirRegras()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z" stroke="#2E2E30"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2" stroke="#F26A1B"/></svg>Configurações</button>
@@ -1593,11 +1593,19 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="rrMsg"></div>
 </div>
 
+<div id="s-parm" class="esc card">
+  <div class="tit">Para armazenar</div>
+  <div id="paLista"></div>
+</div>
 <div id="s-qual" class="esc card">
   <div class="tit">Qualidade</div>
   <div id="qlLer"></div>
   <div id="qlRes"></div>
   <div id="qlLista"></div>
+  <!-- 147: a Qualidade muda no cadastro só o campo Qualidade do item -->
+  <div class="mpCab"><b>Qualidade no cadastro do item</b></div>
+  <div class="cbxPh" data-id="qlCod" data-o='{"cam":1,"lista":1,"enter":"qualItem()","ph":"Código ou descrição do produto"}'></div>
+  <div id="qlCad"></div>
 </div>
 <div id="s-recf" class="esc card">
   <div class="tit">Fornecedores</div>
@@ -1619,6 +1627,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="agResumo"></div>
   <div class="passo" id="psR1">
     <label class="obr">Data da entrega</label><input id="agData" type="date" data-obr="1" oninput="recHoras()" onchange="recHoras()" onblur="recHoras()">
+    <label class="obr" for="agVolT">Volume total do container</label><input id="agVolT" type="number" inputmode="numeric" min="1" step="1" placeholder="Total de volumes (pallets ou caixas)" data-obr="1" oninput="agErroLimpa(this);agVolMuda()">
     <label class="chk"><input type="checkbox" id="agCrit" onchange="recCrit()"> Entrega crítica (fora do horário padrão)</label>
     <div id="agPad"><label class="obr">Horário</label><div id="agHoras" class="rcHoras"><p class="rcDica">Escolha a data para ver os horários livres.</p></div></div>
     <div id="agCritBox" hidden>
@@ -1630,7 +1639,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   </div>
   <div class="passo" id="psR2"><label class="obr">Fornecedor</label><div class="camBox"><input id="agForn" data-lista="forn" maxlength="120" autocomplete="off" data-obr="1" placeholder="Toque para escolher na lista"></div>
     <p class="agOk np"><button type="button" class="b bP" onclick="agPronto()">Pronto</button></p></div>
-  <div class="passo" id="psR3"><label class="obr">Nota fiscal</label><input id="agNF" maxlength="9" autocomplete="off" inputmode="numeric" pattern="[0-9]*" placeholder="Número da nota fiscal (9 números)" oninput="recNF()">
+  <div class="passo" id="psR3"><label class="obr">Nota fiscal</label><input id="agNF" maxlength="9" autocomplete="off" inputmode="numeric" pattern="[0-9]*" placeholder="Número da nota fiscal (9 números)" oninput="recNF()" onchange="recNF(1)">
     <div id="agLista"></div>
     <div id="agItensBox" hidden>
       <div class="rcAdd">
@@ -1639,11 +1648,10 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
         <label>Quantidade</label><input id="agQtd" type="number" inputmode="decimal" min="0" step="any" oninput="agErroLimpa(this)">
         <p><button type="button" class="b bP" onclick="recAddItem()">＋ Acrescentar produto</button></p>
       </div>
-      <div class="bLin agNotaBt"><button type="button" class="b bS" onclick="recMaisNotas()">Incluir mais notas</button><button type="button" class="b bP" onclick="recConcluirNotas()">Seguir para o volume</button></div>
+      <div class="bLin agNotaBt"><button type="button" class="b bS" onclick="recMaisNotas()">Incluir mais notas</button><button type="button" class="b bP" onclick="recConcluirNotas()">Seguir para agendar</button></div>
     </div>
   </div>
-  <div class="passo" id="psR4"><label class="obr">Volume total do container</label><input id="agVolT" type="number" inputmode="numeric" min="1" step="1" placeholder="Total de volumes" data-obr="1" oninput="agErroLimpa(this)">
-    <p class="rcDica" id="agVolDica"></p>
+  <div class="passo" id="psR4"><p class="rcDica" id="agVolDica"></p>
     <p><button class="b bP" type="button" id="agBtn" onclick="recAgendar()">Agendar entrega</button></p>
     <p><button class="b bS" type="button" onclick="agVoltaNotas()">Voltar às notas</button></p></div>
   <div id="agMsg"></div>
@@ -1666,7 +1674,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="ptvLista">Carregando...</div>
   <label>Tempo de cada tela (segundos)</label><input id="ptvSeg" type="number" min="8" max="120" value="20">
   <label>Data do último acidente (para "Dias sem acidente")</label><input id="ptvAcid" type="date">
-  <p class="lin"><button class="b bP" onclick="salvarPtv()">Salvar</button><button class="b bS sec" onclick="comecarTV()">Começar na TV</button></p>
+  <p class="lin"><button class="b bP" onclick="salvarPtv()">Salvar programação da TV</button><button class="b bS sec" onclick="comecarTV()">Começar na TV</button></p>
   <div id="ptvMsg"></div>
 </div>
 
@@ -1760,9 +1768,9 @@ html body button.pergSim.pergSim.pergSim.pergSim.pergSim.pergSim.bD.bD:active{ba
 
 /* ===== 13/11/2026 (versão 130): telas clean do Endereçar e padrões novos =====
    Barra do passo em laranja suave; endereço numa linha só, com letra estreita e alta; conclusão nova; janela de escolha. */
-html body main .passoBar .pbN.pbN{background:#F2A766!important;color:#2E2E30!important}
+html body main .passoBar .pbN.pbN{background:#FF9A3C!important;color:#231F20!important}
 html body main .passoBar .pbN.pbN.ok{background:#16A34A!important;color:#fff!important}
-html body main .passoBar .pbDots i.a{background:#F2A766!important}
+html body main .passoBar .pbDots i.a{background:#FF9A3C!important}
 label.obr::after{content:none!important}.obrLeg{display:none!important}
 html body main .endCard.pAtual .endE.endE{white-space:nowrap!important;font-family:'Oswald','Roboto Condensed','Arial Narrow',sans-serif-condensed,sans-serif!important;font-weight:500!important;letter-spacing:.5px;font-size:clamp(28px,calc((100vw - 112px)/6.4),60px)!important;line-height:1.1}
 html body main .endCard.pAtual .endE .nvChip{display:block;width:100%;box-sizing:border-box;text-align:center;padding:16px 6px!important;border-radius:var(--raio);overflow:hidden}
@@ -1821,8 +1829,8 @@ html body main .esc .endInfo{margin-left:0!important}
 #s-invpos #ip2 label{display:block;margin-top:10px}#s-dev #devQ{margin-top:10px}
 
 /* ===== 13/11/2026 (versão 132): contornos, opções fora da caixa e distribuição ===== */
-html body main .passoBar.passoBar.fim{border-color:#16A34A!important}
-html body main .esc .concl{box-shadow:0 0 0 2px #16A34A,0 0 0 7px #16A34A24!important;border-radius:14px!important;margin:6px 0 14px!important}
+/* 147: sem contorno verde no fim — a bolinha verde no meio da tela já confirma */
+html body main .esc .concl{border-radius:14px!important;margin:6px 0 14px!important}
 html body main .pAtual button.opc{display:none!important}
 .opsFora{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px}
 .opsFora .b{width:100%}
@@ -1957,9 +1965,11 @@ html body main #s-recd button.rcAvB.rcAvB.at{box-shadow:inset 0 0 0 2px #F26A1B!
 .quarIt{border:2px solid #F26A1B;border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff}.quarIt small{display:block;color:#6B6B6F}.quarIt p{margin:6px 0}.quarSit{font-weight:700}
 .quarBt{display:flex;flex-wrap:wrap;gap:8px}.quarBt .b{width:auto;flex:1 1 40%}
 /* modo foco (só no Agendar entrega, para teste): fundo escurecido leve e só o passo atual iluminado; o toque nos passos fechados continua livre */
-body:has(#s-recag:not([style*="none"]) .passo.pAtual)::before{content:"";position:fixed;inset:0;background:rgba(30,30,32,.34);z-index:40;pointer-events:none}
-#s-recag .passo.pAtual{position:relative;z-index:41;background:#fff}
-#s-recag #agResumo{position:relative;z-index:41}
+body:not(.tv):has(main .pAtual)::before{content:"";position:fixed;inset:0;background:rgba(30,30,32,.30);z-index:12;pointer-events:none}   /* 148: modo foco em todas as telas de passos (escuro leve; o forte é só o processando) */
+html body main .esc :is(.pAtual,.passoBar,.opsFora){position:relative;z-index:13}
+html body main .esc .passo.pAtual{background:#fff}
+body:has(main .pAtual) header{z-index:14}   /* o cabeçalho fica por cima do passo em destaque quando a tela rola */
+#s-recag #agResumo{position:relative;z-index:13}
 
 /* ===== 145: linha do tempo do recebimento + detalhe em duas colunas no computador ===== */
 .rdLinha{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:6px 0 10px;position:relative}
@@ -1998,7 +2008,7 @@ html body main #s-rec .agBl span{font-size:12px;color:#444;white-space:nowrap;ov
 html body main #s-rec .agBl .agSt{font-weight:700}
 html body main #s-rec .agCel.agPas{background:#F4F4F5}
 html body main #s-rec .agBl.rcAg{border-left-color:#8C8F96!important;background:#F1F2F4!important}
-html body main #s-rec .agBl.rcCr{background:#FFF1E4!important;border:2px dashed #F26A1B!important;border-left:5px solid #F26A1B!important;color:#2E2E30!important}   /* 145: crítica com cor própria pela borda, sem o laranja forte cheio */
+html body main #s-rec .agBl.rcCr{background:#FFF1E4!important;border:0!important;border-left:5px solid #F26A1B!important;color:#2E2E30!important}   /* 145: crítica com cor própria pela borda, sem o laranja forte cheio */
 html body main #s-rec .agBl.rcCr span,html body main #s-rec .agBl.rcCr b{color:#2E2E30!important}
 html body main #s-rec .agSem .agBl b{font-size:12px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .agSem .agBl{padding:3px 5px!important}
@@ -2020,6 +2030,61 @@ html body main #s-rec button.agDiaH.hoje span:not(#z1){color:#C25E00!important}
   html body main #s-rec .agSem .agBl{padding:4px 6px!important}html body main #s-rec .agSem .agBl b{font-size:13px}html body main #s-rec .agSem .agBl u{display:block;font-size:12px;color:#555}}
 /* toque: o laranja fecha (perto do queimado do RH) */
 html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.b.b:not(#z1):not(#z2):active,html body .pergSim.pergSim.pergSim:active{background:#E8975A!important;color:#2E2E30!important}   /* 145: um tom só ao tocar (antes #D1581A com texto branco) */
+
+/* 147: cores dos cartões das Janelas por situação (fundo suave + faixa lateral forte); vence as cores antigas */
+html body main #s-rec :is(.agBl,.rcCard).stAg{background:#F1F2F4!important;border-left:5px solid #8C8F96!important}
+html body main #s-rec :is(.agBl,.rcCard).stAtr{background:#F1F2F4!important;border-left:5px solid #FF9A3C!important}
+html body main #s-rec :is(.agBl,.rcCard).stOp{background:#FEF7DC!important;border-left:5px solid #EAB308!important}
+html body main #s-rec :is(.agBl,.rcCard).stOk{background:#EAF7EE!important;border-left:5px solid #16A34A!important}
+html body main #s-rec :is(.agBl,.rcCard).stDiv{background:#FDECEC!important;border-left:5px solid #DC2626!important}
+html body main #s-rec :is(.agBl,.rcCard).stOff{background:#F4F4F5!important;border-left:5px solid #C9CBD0!important;opacity:.7}
+html body main #s-rec :is(.agBl,.rcCard):is(.stAg,.stAtr,.stOp,.stOk,.stDiv) :is(b,span){color:#1F1F21!important}
+html body main #s-rec :is(.agBl,.rcCard).stPul{animation:stPulsa 2s ease-in-out infinite!important}
+html body main #s-rec :is(.agBl,.rcCard).stPul::after{display:none!important}
+@keyframes stPulsa{0%,100%{filter:none}50%{filter:saturate(1.9) brightness(.93)}}
+@media (prefers-reduced-motion:reduce){html body main #s-rec :is(.agBl,.rcCard).stPul{animation:none!important}}
+
+/* ===== 148 (18/11/2026): peça padrão dos passos =====
+   passo atual = cartão em destaque com faixa lateral em laranja fluorescente (modo foco em volta);
+   passo feito = uma linha com visto verde e o resumo do que foi feito; tocar abre para corrigir (Alterar / Fechar) */
+html body main .esc .pRes{display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;background:#fff;border-radius:14px;padding:10px 14px;margin:0 0 8px;box-shadow:0 2px 8px #1E243012;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;user-select:none}
+html body main .esc .pRes:active{background:#F1F2F4}
+html body main .esc .pRes .pResOk{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center}
+html body main .esc .pRes .pResT{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px}
+html body main .esc .pRes .pResT small{font-size:12px;color:#6B6B6F;font-weight:600}
+html body main .esc .pRes .pResT b{font-size:15px;color:#1F1F21;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body main .esc .pRes i{font-style:normal;font-size:13px;font-weight:700;color:#C2560F;flex:0 0 auto}
+html body main .esc .pRes+.pFeito:not(.pAbre){display:none!important}
+html body main .esc .pRes+.pFeito.pAbre{opacity:1}
+html body main .esc .pRes+.pFeito.pFeito.pAbre{display:block!important}
+html body main :is(#s-tend,#s-guardar,#s-tirar,#s-dev,#s-invpos,#s-inv) .pRes.pRes+.pFeito.pFeito.pAbre{display:block!important}
+html body main #s-prod .pqAbas button{background:#E9EAEC!important;color:#2E2E30!important;font-weight:600!important;box-shadow:none!important}
+html body main #s-prod .pqAbas button.at{background:#FF9A3C!important;color:#231F20!important;font-weight:800!important}
+html body main .esc .pRes+.pFeito::after{display:none!important}
+/* o resumo do Agendar entrega usa o mesmo desenho (sem contorno laranja, visto verde à esquerda) */
+html body main #agResumo .agRes{border:0!important;box-shadow:0 2px 8px #1E243012!important;padding:10px 80px 10px 52px!important}
+html body main #agResumo .agRes::before{content:"";position:absolute;left:14px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;background:#16A34A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat}
+html body main #agResumo .agRes i{color:#C2560F!important}
+/* Produtividade: Tempo das tarefas */
+#s-prod .pqAbas{margin:4px 0 12px}
+#ptRes .tpT{font-weight:800;font-size:16px;margin:16px 0 6px;color:#1F1F21}
+#ptRes .tpLista{border-radius:12px;overflow:hidden;box-shadow:0 2px 8px #1E243012}
+#ptRes .tpIt{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff}
+#ptRes .tpIt:nth-child(even){background:#F4F5F7}
+#ptRes .tpIt>div{flex:1 1 auto;min-width:0}
+#ptRes .tpIt small{display:block;color:#6B6B6F;font-size:12.5px}
+#ptRes .tpIt>span{font-weight:800;white-space:nowrap}
+#ptRes .tpIt.tpGo{cursor:pointer}
+#ptRes .tpIt.tpGo:active{background:#FFE4CC}
+#ptRes .tpDet{background:#FAFAFB;padding:4px 12px 10px 24px;font-size:14px;color:#2E2E30}
+#ptRes .tpDet>div{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid #EDEEF0}#ptRes .tpDet>div:last-child{border-bottom:0}#ptRes .tpDet span small{display:block;color:#6B6B6F;font-size:12.5px}#ptRes .tpDet b{white-space:nowrap}
+#ptRes .tpFora>span{color:#B42318}
+html body main .esc .xlsP{margin-top:12px}
+
+/* 149: janela de "Como é calculado" */
+#detJan .comoRes{background:#FFF4EA;border-left:5px solid #FF9A3C;border-radius:10px;padding:10px 12px;margin:0 0 12px;line-height:1.45}
+#detJan .comoRes small{display:block;margin-top:4px;color:#4A4B50;font-size:13.5px}
+html body main #s-recag #agHoras .rcDica button.infDetB{display:inline!important;width:auto!important;min-width:0!important;min-height:0!important;height:auto!important;padding:0 0 0 4px!important;margin:0!important;background:none!important;box-shadow:none!important;border:0!important;color:#C2560F!important;font-weight:700!important;font-size:inherit!important;text-decoration:underline;border-radius:0!important}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
 <title>Empilhadeiras trabalhando</title><desc>Tela da TV: a operadora da contrabalançada traz o pallet; o operador da retrátil desce, bipa a etiqueta do pallet com o celular, sobe, leva até o porta-pallets, desce, bipa a etiqueta da posição e guarda.</desc>
 <defs><linearGradient id="gOr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA24A"/><stop offset="1" stop-color="#E2691A"/></linearGradient>
@@ -2112,7 +2177,7 @@ html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.
     <div><label class="obr">Foto da embalagem</label><input class="fotoIn" id="cFoto2" type="file" accept="image/*" capture="environment" onchange="lerFoto(this,2)"><label for="cFoto2" class="fotoBtn"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg><span>Tirar foto</span></label>
       <img id="cPrev2" class="prevf" style="display:none"></div>
   </div>
-  <div class="lin"><button class="b bP" onclick="salvarCad()">Salvar</button><button class="b bS sec" onclick="limparCad()">Novo</button><button id="cApagar" class="verm adm" onclick="apagarCad()">Apagar</button></div>
+  <div class="lin"><button class="b bP" onclick="salvarCad()">Salvar cadastro</button><button class="b bS sec" onclick="limparCad()">Novo</button><button id="cApagar" class="verm adm" onclick="apagarCad()">Apagar</button></div>
   <div id="cMsg"></div>
 </div>
 
@@ -2206,7 +2271,7 @@ html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.
  <button data-t="g-op" onclick="abrirGrupo('op')"><svg viewBox="0 0 24 24"><path d="M4 21V3M20 21V3M4 9h16M4 15h16"/><path class="ac" d="M7 6h4v3H7zM13 12h4v3h-4z"/></svg><span>Armazenamento</span></button>
  <button data-t="g-abs" onclick="abrirGrupo('abs')"><svg viewBox="0 0 24 24"><path d="M2 17h20M4 20a1.5 1.5 0 1 0 0-.1M12 20a1.5 1.5 0 1 0 0-.1M20 20a1.5 1.5 0 1 0 0-.1"/><path class="ac" d="M4 10h5v5H4zM11 8h5v7h-5z"/><path d="M18 11.5h4M20.5 10l1.5 1.5-1.5 1.5"/></svg><span>Abastecimento de produção</span></button>
  <button data-t="g-inv" class="nvMais" onclick="abrirGrupo('inv')"><svg viewBox="0 0 24 24"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2"/><path class="ac" d="M9 13.5l2 2 4-4"/></svg><span>Invent.</span></button>
- <button data-t="g-ges" class="adm nvMais" onclick="abrirGrupo('ges')"><svg viewBox="0 0 24 24"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" d="M5 10l6-4 4 3 5-4"/></svg><span>Gestão</span></button>
+ <button data-t="g-ges" class="ges nvMais" onclick="abrirGrupo('ges')"><svg viewBox="0 0 24 24"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" d="M5 10l6-4 4 3 5-4"/></svg><span>Gestão</span></button>
  <button data-t="mais" id="nvMaisB" onclick="abrirMais()" aria-haspopup="true"><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>Mais</span></button>
  <span id="navAt" style="display:none"></span>
 </nav>
@@ -2236,7 +2301,7 @@ html body main button.b.bP.bP.bP:active:not(.sec),html body button.b.bP.b.b.b.b.
   <div class="faltaBt"><button class="b bP alOk" onclick="salvarFaltaCad()">Salvar agora</button><button class="b bS alOk sec2" onclick="fecharFalta()">Fazer depois</button></div>
 </div>
 <div id="alertasFundo" class="np" onclick="limparErros()"></div>
-<div id="alertas" class="np alertas2" role="alertdialog" aria-label="Aviso"><div id="alertasLista"></div><button type="button" class="b bP" onclick="limparErros()">OK</button></div>
+<div id="alertas" class="np alertas2" role="alertdialog" aria-label="Aviso"><div id="alertasLista"></div><button type="button" class="b bP" onclick="limparErros()">Entendi</button></div>
 
 <script>
 /* Memória do celular com plano B: em alguns navegadores a memória pode vir bloqueada.
@@ -2258,7 +2323,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=146,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=149,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2297,7 +2362,7 @@ function perguntar(t,sim,nao,op){op=op||{};var j=$('pergJan'),f=$('pergFundo'),i
   if(!j){if(sim)sim('');return}
   $('pergTx').textContent=String(t==null?'':t);i.value='';i.style.display=op.campo?'block':'none';
   var po=$('pergOps');if(po){po.innerHTML='';(op.lista||[]).forEach(function(o,k){po.insertAdjacentHTML('beforeend',botao(o.t,'','s',{cls:'pergOp'}));var bb=po.lastChild;bb.onclick=function(){fecha();if(o.a)o.a()}})}j.classList.toggle('lista',!!op.lista);
-  bs.textContent=op.ok||(op.so?'OK':'Confirmar');bs.style.display=op.lista?'none':'';var pg=/^(Cancelar opera|Cancelar agend|Cancelar$|Descartar|Não está aqui|Bloquear|Excluir|Apagar|Zerar)/.test(bs.textContent);bs.classList.toggle('bD',pg);bs.classList.toggle('bP',!pg);bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
+  bs.textContent=op.ok||(op.so?'OK':rotuloPerg(t));bs.style.display=op.lista?'none':'';var pg=/^(Cancelar opera|Cancelar agend|Cancelar$|Descartar|Não está aqui|Bloquear|Excluir|Apagar|Zerar)/.test(bs.textContent);bs.classList.toggle('bD',pg);bs.classList.toggle('bP',!pg);bn.textContent=op.no||'Cancelar';bn.style.display=op.so?'none':'';
   var tecla=function(e){if(e.key==='Escape'){e.preventDefault();bn.onclick()}else if(e.key==='Enter'){e.preventDefault();bs.onclick()}};
   var fecha=function(){PERG.aberta=0;j.classList.remove('on');f.classList.remove('on');document.removeEventListener('keydown',tecla)};
   bs.onclick=function(){var v=i.value.trim();if(op.campo&&!v){i.focus();return}fecha();if(sim)sim(op.campo?v:undefined)};
@@ -2317,7 +2382,7 @@ function tecAbrir(inp,op){var j=$('tecJan');if(!j){j=document.createElement('div
   document.body.appendChild(j);$('tecOk').innerHTML=botao('Confirmar','tecOk()','p');$('tecFundo').onclick=tecFecha;
   j.querySelectorAll('.tecK').forEach(function(b){b.addEventListener('click',function(){b.classList.add('tq');setTimeout(function(){b.classList.remove('tq')},140);tecTecla(b.getAttribute('data-k'))})})}
   op=op||{};TEC.op=op;TEC.inp=inp;TEC.v=String(inp.value||'').replace('.',',');TEC.novo=!!TEC.v;   /* 141: o 1º número digitado troca o valor que já estava; começar com ×, + ou − usa o valor (ex.: 128 × 4) */var l=op.tit||inp.getAttribute('aria-label')||inp.placeholder||'';if(!l){var lb=inp.closest('div,.passo')&&inp.closest('div,.passo').querySelector('label');l=lb?lb.textContent:'Quantidade'}
-  $('tecTit').textContent=l||'Quantidade';
+  $('tecTit').textContent=l||'Quantidade';var tl=String(l||'Quantidade').replace(/[:*]/g,'').trim();$('tecOk').innerHTML=botao(tl.length<=22?'Confirmar '+tl.toLowerCase():'Confirmar','tecOk()','p');
   /* 146: caixas cheias + peças soltas. Com a quantidade padrão no cadastro, o botão "Caixas de N" multiplica o número digitado; o + soma as peças soltas */
   tecEmbPinta();tecPinta();j.classList.add('on');try{history.pushState({tec:1},'')}catch(e){}}
 /* 140 (15/11/2026): o teclado da quantidade virou calculadora (×, −, +, =), em tela escura. Ex.: 4 × 2.000 = 8.000.
@@ -2455,6 +2520,7 @@ function irAviso(go){go=String(go||'');
   if(go==='qual'){ir('qual');qualAbrir();return}
   if(go==='lanc'||go==='lanc30'){PER.mv.p=go==='lanc'?'d':'m';if($('mvData'))$('mvData').value=hojeISO();ir('desfazer');perPesq('mv');return}
   if(go==='reorg'){ir('reorg');reorg();return}
+  if(go==='parm'){ir('parm');paraArm();return}
   if(go==='regras'){ir('regras');abrirRegras();return}
   if(go==='cal'){ir('cal');abrirCal();return}
   if(['inv','resinv','rec'].indexOf(go)>=0)ir(go)}
@@ -2549,13 +2615,13 @@ function invdPinta(extra){var x=INVD.x,p=x.p,it=x.it,ds=x.ds,h='';
   guia();if(INVD.st===2)setTimeout(function(){var q=$('ivQ'+p.lin);if(q&&!('ontouchstart' in window))q.focus()},200)}
 function invdPos(){var p=INVD.x.p;QR_ESP_PROX='pos';lerQR('',function(lido){
   if(!mesmaPos(String(lido||'').toUpperCase(),p.end)){vib('erro');invdPinta(aviso('er','Esta não é a posição '+p.end+'. Confira se está no lugar certo.'));return}
-  vib('ok');INVD.st=1;invdPinta()})}
+  vib('ok');cronoIni('inv');INVD.st=1;invdPinta()})}
 function invdEtq(){var x=INVD.x;QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);
   if(!tv){vib('erro');invdPinta(aviso('er','Isso não é a etiqueta do produto. Leia a etiqueta da embalagem.'));return}
   INVD.cod=tv.cod;vib('ok');INVD.st=2;invdPinta(normCod_(tv.cod)!==normCod_(x.it.item)?aviso('at','A etiqueta é do '+tv.cod+', não do '+x.it.item+'. Conte assim mesmo: vai ficar registrado como divergência.'):'')})}
 function normCod_(c){return String(c||'').toUpperCase().replace(/\s+/g,'')}
 function invdReg(){var p=INVD.x.p,q=val('ivQ'+p.lin);if(String(q).trim()===''){mostrarErro('Informe a quantidade contada.');return}if(!(nIn(q)>=0)){mostrarErro('A quantidade não pode ser negativa.');return}
-  chamar('apiConfirmarInvCod',[quem(),p.lin,INVD.cod||INVD.x.it.item,q],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}
+  chamar('apiConfirmarInvCod',[quem(),p.lin,INVD.cod||INVD.x.it.item,q],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Erro.');return}cronoFim('inv');
     if(r.diverg)avisoJan(r.msg);else vib('ok');abrirInv()})}
 var INV_BQ={};
 function invBqEtq(lin){QR_ESP_PROX='etq';lerQR('',function(txt){var tv=etiqTotvs(txt);if(!tv){avisoJan('Isso não é a etiqueta do produto.');return}
@@ -2755,11 +2821,11 @@ var PROCS={
        {k:'',t:'Durante a operação',p:['Cinto de segurança sempre afivelado na empilhadeira.','Nunca suba ou desça carga com pessoas embaixo.','Encontrou risco ou equipamento com problema? Pare e avise o líder.']}]},
  2:{n:'PROLOG 002',t:'Procedimento de recebimento',area:'Recebimento (materiais produtivos)',obj:'Receber os materiais produtivos na janela agendada, do motorista na portaria até o último pallet guardado, medindo o tempo de cada etapa.',aplic:'Toda entrega de fornecedor agendada por Compras ou Comex no Controle de janela de recebimento. Vale também, no futuro, para a expedição.',resp:'Agendamento: Compras e Comex. Portaria: chegada, EPIs e liberações. Fiscal: pré-nota. Execução na doca: o mesmo operador do recebimento até a armazenagem. Aval da entrega crítica e do tempo por volume: líder de logística.',rec:['Celular ou computador com o app na portaria','Celular com o app na doca, com o volume de mídia alto (som do aviso)','Empilhadeira ou paleteira para descarregar','Doca de descarregamento','EPIs do PROLOG 001'],
   ops:[{k:'',t:'Regra: sem agendamento não recebe',p:['Caminhão sem agendamento não entra para descarregar.','A portaria avisa o comprador, que pode agendar na hora, só em horário livre, entrando na fila como qualquer outra entrega.','Sem horário livre no dia, o motorista volta outro dia.']},
-   {k:'',t:'Agendar a entrega (Compras e Comex)',p:['Toque em Agendar entrega.','Escolha a data (pelo calendário ou digitando). Em data futura, o app mostra todas as janelas livres desde as 8h e tira só as já ocupadas; hoje, só os horários depois de agora. Das 8h às 16h, com o almoço das 12h às 13h travado; fechado em fim de semana e feriado.','Toque no horário. Hoje cada janela ocupa 1 hora; depois que o tempo por volume for aprovado, a janela é calculada pelos volumes da entrega.','Toque no campo Fornecedor e escolha na lista (dá para procurar por nome, código ou CNPJ). Se não estiver, cadastre em Fornecedores ou pelo botão no fim da lista.','Cada passo aparece um de cada vez. Fechou o passo, ele vira um resumo: toque nele para alterar.','Informe a nota fiscal e, daquela nota, os produtos: código (lista) e quantidade. Container com mais de uma nota: toque em Incluir mais notas e repita.','Toque em Seguir para o volume, informe o volume total do container (uma vez só) e toque em Agendar entrega. Se o volume destoar muito da quantidade de produtos, o app pede para você confirmar.','Não coube no dia? Escolha outro dia. Se for urgente fora do padrão, marque Entrega crítica, sugira o horário e explique o motivo: fica aguardando o aval do almoxarifado.']},
+   {k:'',t:'Agendar a entrega (Compras e Comex)',p:['Toque em Agendar entrega.','Escolha a data (pelo calendário ou digitando). Em data futura, o app mostra todas as janelas livres desde as 8h e tira só as já ocupadas; hoje, só os horários depois de agora. Das 8h às 16h, com o almoço das 12h às 13h travado; fechado em fim de semana e feriado.','Informe o volume total do container (pallets ou caixas). A duração da janela depende dele: 15 min por entrega + 3 min por volume + 20% de folga, arredondada para a meia hora seguinte (estimativa inicial; o cálculo é vivo e se ajusta com o tempo medido). Toque em Como é calculado para ver o detalhe.','Toque no horário: o app só mostra os horários em que a janela inteira cabe. Peça para o caminhão chegar 15 minutos antes, para passar pela portaria: a janela começa quando ele encosta na doca.','Toque no campo Fornecedor e escolha na lista (dá para procurar por nome, código ou CNPJ). Se não estiver, cadastre em Fornecedores ou pelo botão no fim da lista.','Cada passo aparece um de cada vez. Fechou o passo, ele vira um resumo: toque nele para alterar.','Informe a nota fiscal e, daquela nota, os produtos: código (lista) e quantidade. Container com mais de uma nota: toque em Incluir mais notas e repita.','Toque em Seguir para agendar e em Agendar entrega. Se o volume destoar muito da quantidade de produtos, o app pede para você confirmar.','Não coube no dia? Escolha outro dia. Se for urgente fora do padrão, marque Entrega crítica, sugira o horário e explique o motivo: fica aguardando o aval do almoxarifado.']},
    {k:'',t:'Portaria e fiscal',p:['Toque em Portaria e fiscal e no cartão da entrega.','Toque em Registrar chegada do motorista. Data, hora e fornecedor vêm preenchidos: informe o nome do motorista, a placa, o tipo de veículo e marque a nota fiscal que ele trouxe, entre as agendadas. A portaria terceirizada informa também o nome de quem está no turno, a cada registro.','Confira os EPIs do motorista (bota e calça) e marque a confirmação. Sem EPI, não entra.','Toque em Registrar chegada: o tempo começa a contar.','Leve a nota ao fiscal e toque em Nota no fiscal.','O fiscal confere o pedido e os preços (pré-nota). Liberou, toque em Liberado pelo fiscal.','Toque em Liberar para a doca: o almoxarifado recebe o aviso com som e vibração.']},
    {k:'rec',t:'Receber na doca e armazenar (o mesmo operador até o fim)',p:['Com o aviso, abra o cartão da entrega em Janelas de recebimento.','Com o caminhão na doca e o baú aberto, pegue a nota, confira os EPIs de novo e toque em Chegada na doca e conferência.','Toque em Início do descarregamento e, ao terminar, em Fim do descarregamento.','Toque em Conferência e liberação do motorista. A conferência é cega: você vê a nota e os códigos, conta e digita a quantidade de cada produto e os volumes recebidos. O app compara por trás.','Se a contagem não bater, o app pede para contar de novo os campos marcados. Se bater na segunda vez, está certo. Se não bater de novo, abre a irregularidade: motivo (opcional), fotos guiadas uma por vez (placa do cavalo, placa da carreta, interior do baú, material avariado e uma livre, até 6) e a assinatura do motorista. Material avariado também abre a irregularidade, e a foto do material é obrigatória.','Irregularidade nunca trava a operação: a carga não é recusada. O material irregular vai para quarentena (cartão Itens em quarentena, dentro do Recebimento), o comprador é avisado na tela e por e-mail e decide: seguradora, interno ou aceito.','Etiquete o material e toque em Fim da etiquetagem.','Enderece cada pallet pelo Endereçar, lendo a etiqueta do produto. Quando o último pallet da nota for guardado, a entrega fecha sozinha e o tempo total é gravado.','Se a quantidade da etiqueta não bater e a entrega não fechar sozinha, toque em Encerrar armazenagem no cartão.']},
-   {k:'',t:'Tempo por volume (líder de logística)',p:['O app grava o tempo de cada etapa e o tipo de veículo de cada entrega, na aba Tempos do recebimento.','A cada 3 entregas medidas, aparece em Janelas de recebimento a proposta: tempo de descarregamento por volume e das outras etapas da doca.','Toque em Usar esse tempo para o agendamento calcular a janela pelos volumes, com 20% de folga. Ou em Agora não, para esperar mais medições.']},
-   {k:'',t:'Cores dos cartões',p:['Cinza: agendada. Borda laranja com o nome da etapa: na portaria ou no fiscal.','Laranja piscando: motorista liberado para a doca, aguardando o operador.','Laranja com borda forte: em recebimento na doca.','Verde: recebida, bateu com o programado. Laranja: veio a mais. Vermelho: veio a menos. Enquanto falta etiquetar ou armazenar, o cartão avisa.','Vermelho piscando: passou do horário e ninguém iniciou. Vermelho fixo: a entrega não aconteceu.','Tracejado: entrega crítica aguardando aval.']}]},
+   {k:'',t:'Tempo por volume (líder de logística)',p:['O app grava o tempo de cada etapa e o tipo de veículo de cada entrega, na aba Tempos do recebimento.','Até a primeira aprovação, o agendamento usa a estimativa inicial: 15 min por entrega + 3 min por volume + 20% de folga.','A cada 3 entregas medidas, aparece em Janelas de recebimento a proposta: tempo de descarregamento por volume e das outras etapas da doca, da chegada na doca até a identificação (a espera na fila Para armazenar não conta).','Toque em Usar esse tempo para o agendamento passar a usar o tempo medido, com 20% de folga. Ou em Agora não, para esperar mais medições.']},
+   {k:'',t:'Cores dos cartões',p:['Cada cartão tem fundo suave e uma faixa na lateral com a cor da situação.','Cinza: agendada. Cinza com faixa laranja: atrasada.','Amarelo: em operação (portaria, fiscal ou doca).','Verde: concluída. Vermelho: divergência ou ocorrência.','Pulsa devagar só o que pede ação: atrasada, operação passando do horário e divergência ainda aberta.']}]},
  3:{n:'PROLOG 003',t:'Procedimento de armazenamento',area:'Armazenamento (porta-pallets)',obj:'Guardar no porta-pallets só material identificado, na posição certa, mantendo o FIFO.',aplic:'Todo material com etiqueta do TOTVS que entra no porta-pallets do almoxarifado.',resp:'Execução: operador de empilhadeira. Acompanhamento: líder de logística.',rec:['Celular com o app','Empilhadeira ou paleteira','Etiqueta do TOTVS no material','EPIs do PROLOG 001'],
   ops:[{k:'end',t:'Endereçar (o app escolhe a posição)',p:['Toque em Endereçar.','Toque em Ler a etiqueta e leia a etiqueta do material. Sem etiqueta não endereça: etiqueta danificada, tire uma nova etiqueta.','Confira o produto, a quantidade e a data (vêm da etiqueta) e toque em Ver posições.','O app mostra as posições certas, pensando no peso e no giro. Elas ficam guardadas para você enquanto estiver na tela; se cancelar ou sair, voltam a ficar livres na hora.','Vá até a posição e leia o QR Code da etiqueta da posição. Posição errada, o app não deixa.','Lendo a posição certa, o app confirma sozinho (aparece o visto verde). Se der erro, toque em Confirmar endereçamento para tentar de novo.','Se não for usar a posição sugerida, toque em Escolher outra posição: Posição com problema (diga o motivo; a posição vai para o Inventário e o app mostra a próxima livre) ou Juntar em (quando o mesmo código já está no N1).']},
        {k:'',t:'Como o app escolhe a posição',p:['Primeiro a segurança: cada item só vai para os níveis que as regras de armazenamento permitem (peso e tipo).','Depois a reserva por giro: cada motor com saída recente tem um bloco de posições perto de onde ele já está. O tamanho do bloco é a saída média por semana dividida pela quantidade por pallet do cadastro, mais uma folga de 20%. Enquanto o app ainda não tem 8 semanas de saídas, ele completa com o giro informado no cadastro (consumo médio do TOTVS ou a previsão de um projeto novo). Item marcado como Em encerramento não tem reserva. O lote novo vai sempre para o bloco do seu código, então não se espalha e fica fácil de achar (por exemplo, quando a Qualidade pede para inspecionar).','O bloco é recalculado sozinho uma vez por semana. Se um lote maior não couber, o bloco cresce na hora. Se o porta-pallets estiver cheio, outro produto pode usar uma posição reservada, para o recebimento nunca parar.','A família e o mesmo produto são só preferência: o app tenta guardar perto, mas nunca manda tirar um pallet do lugar para abrir espaço. Mover pallet só para juntar família custa tempo, empilhadeira e risco, e não melhora o FIFO.','Quem garante o FIFO é o app, não o lugar do pallet: ele sabe onde está cada pallet e só libera o mais antigo.','O Reorganizar só pede para mover o que está num nível que o item não pode usar (segurança).']},{k:'endm',t:'Endereçar manual (só o administrador)',p:['O Endereçar manual é só do administrador. O operador usa sempre o Endereçar inteligente, inclusive para o material que já está no porta-pallets e ainda não foi lançado: o app indica a posição certa e o pallet vai para lá.','Leia a etiqueta do material: código, quantidade e data vêm sozinhos. A quantidade pode ser mudada se precisar.','Leia o QR Code da posição onde o material está.','Confirme. Se a posição do nível 1 já tiver um produto, o app pergunta se o pallet pequeno cabe junto. Nos outros níveis, pergunta se é para trocar.']},{k:'',t:'Mais de um produto na mesma posição (até três, só nível 1)',p:['Vale só no nível 1, para pallets pequenos, e no máximo três produtos por posição. Quem decide se cabe é o operador.','No Endereçar, quando o mesmo código já está no N1, toque em Escolher outra posição e depois em Juntar em (a posição aparece no botão). O app só sugere posições com o mesmo código. Leia o QR Code da posição onde o pallet vai junto. Se a posição tiver outro produto, o app avisa: só junte se não tiver como confundir.','Confira o que já está na posição e toque em Confirmar junto nesta posição.','O QR Code da posição serve para todos os produtos. No app, os outros registros aparecem com -2 e -3 no fim do endereço.','Na transferência, o app descobre qual é pelo QR Code da etiqueta do produto.','Para juntar um pallet que já está guardado (por exemplo, um que está acabando), use a Transferência de endereço: depois da etiqueta, o app mostra onde dá para juntar. Leia o QR Code de uma dessas posições no endereço novo e confirme que cabe.']},
@@ -3020,11 +3086,12 @@ function naoUsarJuntar(i){var pre=$('jtPre');if(pre)pre.innerHTML='';var c=$('ec
   END_QTDS[document.querySelectorAll('#gRes .endCard').length]=END_QTDS[i];juntarN1()}
 /* Descobre em qual grupo do menu (Endereçamento, Gestão...) fica cada tela, para o Voltar levar de volta a ele */
 function grupoDaTela(t){var g='';document.querySelectorAll('.grpT[data-g]').forEach(function(el){var m=el.nextElementSibling;if(m&&m.querySelector('[data-k="'+t+'"]'))g=el.getAttribute('data-g')});return g}
-function abrirGrupo(g){if(g==='ges'&&LS.getItem('jeAdm')!=='1')g='ini';
+function veGes(){return LS.getItem('jeAdm')==='1'||perfilUsu()==='Gestor'}   /* 148: o gestor entra na Gestão (vê a Produtividade e o Cadastro) */
+function abrirGrupo(g){if(g==='ges'&&!veGes())g='ini';
   /* já está nessa área: toques repetidos na barra de baixo não refazem a tela (os cartões mexiam) */
   if(TELA_ATUAL==='menu'&&GRUPO===g&&$('s-menu').style.display==='block')return;
   GRUPO=g;ir('menu');}
-function mostrarGrupo(){var ad=LS.getItem('jeAdm')==='1';if(GRUPO==='ges'&&!ad)GRUPO='ini';
+function mostrarGrupo(){var ad=LS.getItem('jeAdm')==='1';if(GRUPO==='rec')setTimeout(function(){try{recAlertaCk()}catch(e){}},600);   /* 147: alerta guardado aparece ao entrar no Recebimento */if(GRUPO==='ges'&&!veGes())GRUPO='ini';
   LS.keys().forEach(function(k){if(k.indexOf('jeRec_')===0)LS.removeItem(k)});
   document.querySelectorAll('.grpT[data-g]').forEach(function(el){el.classList.remove('rec');var m=el.nextElementSibling;m.classList.remove('rec');m.style.display=el.getAttribute('data-g')===GRUPO?'':'none'});
   document.querySelectorAll('#navb button').forEach(function(b){var d=b.getAttribute('data-t');b.classList.toggle('on',d===(GRUPO==='ini'?'menu':'g-'+GRUPO))});
@@ -3178,7 +3245,7 @@ function verProd(){
     var v=function(x){return x===null?'-':String(x).replace('.',',')};
     var t='<table><tr><th>Pessoa</th><th>Endereçou</th><th>Tirou</th><th>Transf.</th><th>Total</th><th>Tempo ativo</th><th>Por hora</th><th>Min. por embalagem</th><th>Inventário</th><th>Erros no inventário</th></tr>';
     r.lista.forEach(function(p){t+='<tr><td><b>'+esc(p.nome)+'</b><br><small>'+p.dias+' dia(s)'+(p.fifo?' · '+p.fifo+' fora do FIFO':'')+'</small></td><td>'+p.ent+'</td><td>'+p.sai+'</td><td>'+p.tra+'</td><td><b>'+p.total+'</b></td><td>'+v(p.horas)+' h</td><td>'+v(p.porHora)+'</td><td>'+v(p.medio)+'</td><td>'+p.inv+'</td><td>'+(p.inv?(p.ivDiv+p.ivNao)+' ('+Math.round((p.ivDiv+p.ivNao)/p.inv*100)+'%)<br><small>'+p.ivDiv+' qtd · '+p.ivNao+' não achado</small>':'-')+'</td></tr>'});
-    $('pRes').innerHTML='<div style="overflow-x:auto">'+t+'</table></div>';
+    PROD_R=r;$('pRes').innerHTML='<div style="overflow-x:auto">'+t+'</table></div>'+botaoExcel('xlsProd()');
   });
 }
 function listarUsu(){
@@ -3232,7 +3299,7 @@ var NUM_GO={ini:['kpi:liv','lanc','lanc'],op:['kpi:liv','pesqTudo','kpi:blq'],ab
 function irNum(go){go=String(go||'');if(go.indexOf('kpi:')===0){abrirKpi(go.slice(4));return}
   if(go==='usu'){ir('usu');listarUsu();return}if(go==='sess'){ir('sess');return}if(go==='resinv'){ir('resinv');if(typeof carregarResInv==='function')carregarResInv();return}irAviso(go)}
 function abrirKpi(id){PAINEL=null;ir('painel');carregarPainel();var n=0,t=setInterval(function(){if(PAINEL&&$('pKpis')){clearInterval(t);painelKpi(id);var d=$('pDet');if(d)setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'start'})},120)}else if(++n>80)clearInterval(t)},150)}
-function pintarArea(){var g=GRUPO||'ini',A=AREAS[g]||AREAS.ini,ad=LS.getItem('jeAdm')==='1';if(g==='ges'&&!ad){g='ini';A=AREAS.ini}
+function pintarArea(){var g=GRUPO||'ini',A=AREAS[g]||AREAS.ini,ad=LS.getItem('jeAdm')==='1';if(g==='ges'&&!veGes()){g='ini';A=AREAS.ini}
   var ar=$('rsArea'),ola=document.querySelector('#iniTopo .iniOla');if(ar){ar.textContent=A.nome||'';ar.style.display=A.nome?'':'none'}if(ola)ola.style.display=g==='ini'?'':'none';
   var t=$('rsTit'),nb=$('rsNum'),bx=$('rsBox');if(!t||!nb)return;
   if(bx)bx.style.display=g==='ini'?'none':'';var tp=$('iniTopo');if(tp){if(g==='ini')tp.style.setProperty('margin-bottom','14px','important');else tp.style.removeProperty('margin-bottom')}   /* Início: só a saudação por enquanto; o resumo volta quando o Início tiver mais itens */
@@ -3244,7 +3311,7 @@ function pintarArea(){var g=GRUPO||'ini',A=AREAS[g]||AREAS.ini,ad=LS.getItem('je
   if(g==='ini'){
     /* no Início fica só a Segurança do dia */
     if(MODO!=='tv')h+=caixaAvisos('Segurança',[segFeito()?{t:'ok',x:'Segurança do dia confirmada: checklist da empilhadeira e EPIs.'}:{t:'er',x:'Antes de começar, faça o checklist da empilhadeira e confira os EPIs.'}]);
-  }else if(g==='ges'){if(AV.sis.length)h+=caixaAvisos('Avisos da gestão',AV.sis,'cal')}
+  }else if(g==='ges'){if(ad&&AV.sis.length)h+=caixaAvisos('Avisos da gestão',AV.sis,'cal')}
   else if(d&&d.av){var l=d.av.filter(function(a){return ad||!a.adm});if(l.length)h+=caixaAvisos('Avisos — '+A.nome,l,g==='rec'?'rec':'')}
   var si=$('segIni'),av=$('avisos');if(si){si.innerHTML=g==='ini'?h:'';si.style.display=g==='ini'?'':'none'}if(av)av.innerHTML=g==='ini'?'':h}
 
@@ -5398,7 +5465,7 @@ function mvPintar(a){a=a||'arm';var M=MV[a],k=M.k,r=M.r;if(!r||!r.res)return;var
   if(!tipos.length)h+='<p class="dfCont">Nenhum problema '+perTx+'. Muito bem!</p>';
   else{h+='<p class="dfCont dfTem">'+tipos.sort(function(a,c){return pc[c]-pc[a]}).map(function(k){return esc(k)+': <b>'+pc[k]+'</b>'}).join(' · ')+'</p>';
     h+='<div class="dfLista dfHist">'+P.map(function(x){return '<div class="dfIt"><div><b>'+esc(x.tipo)+'</b>'+(x.end?' · '+esc(x.end):'')+(x.item?' · '+esc(x.item):'')+'<br><small>'+esc(x.det)+'</small><br><small>'+esc(x.quando)+' · '+esc(x.quem)+'</small></div></div>'}).join('')+'</div>'}
-  $(k+'Res').innerHTML=h}
+  h+=botaoExcel("xlsMov('"+a+"')");$(k+'Res').innerHTML=h}
 
 /* ---------- PAINEL ---------- */
 function corPct(p){return p<=0.7?'var(--ver)':(p<=0.9?'var(--ama)':'var(--verm)')}
@@ -5627,7 +5694,7 @@ function carregarResInv(){var z=document.querySelector('.riZeraP');if(z)z.style.
     if(!r.lista.length){$('riRes').innerHTML=msg('aviso','Nenhuma contagem encontrada.');return}
     var h='';
     r.lista.forEach(function(x,i){var ok=x.res==='Confere'||x.res==='Existe';h+='<div class="riIt'+(i%2?' riAlt':'')+'"><div class="riL1"><b>'+esc(x.item)+'</b><span class="riSt '+(ok?'ok':'er')+'">'+(ok?'Bateu':esc(x.res))+'</span></div><div class="riDs">'+esc(x.desc)+'</div><div class="riL2"><span>'+esc(x.end)+'</span><span>'+esc(x.data)+'</span><span>'+esc(x.quem)+'</span></div></div>'});
-    $('riRes').innerHTML='<div class="riLista">'+h+'</div>'})}
+    RI_R=r;$('riRes').innerHTML='<div class="riLista">'+h+'</div>'+botaoExcel('xlsInv()')})}
 function zerarInv(){perguntar('Apagar todas as contagens do inventário? Use só para limpar os testes.',function(){chamar('apiZerarInv',[],function(r){if(!r.ok){avisoJan(r.msg);return}carregarResInv()})})}
 
 /* ---------- PROGRAMAÇÃO TV ---------- */
@@ -5830,7 +5897,7 @@ function xfPoe(i,v){var e=$(i);if(!e)return;e.value=v;e.dispatchEvent(new Event(
 function xfOrigLer(){QR_ESP_PROX='pos';lerQR('',function(l){l=String(l||'').trim().toUpperCase();if(!l)return;
   chamar('apiPosicao',[l],function(p){if(!p||!p.ok){xfErro(p&&p.msg||'Endereço não encontrado.');return}
     if(p.status!=='Ocupado'){xfErro('O endereço '+p.end+' está '+String(p.status).toLowerCase()+'. Leia o endereço onde o pallet está.');return}
-    XF={orig:p.end,p:p,p2:p.segundo||null,todos:[p].concat(p.outros||[])};if($('xfSug'))$('xfSug').innerHTML='';$('xfEtq').value='';$('xfDest').value='';xfPoe('xfOrig',p.end);
+    XF={orig:p.end,p:p,p2:p.segundo||null,todos:[p].concat(p.outros||[])};cronoIni('xf');if($('xfSug'))$('xfSug').innerHTML='';$('xfEtq').value='';$('xfDest').value='';xfPoe('xfOrig',p.end);
     $('xfInfo').innerHTML=endBig(p.end)+cartaoPeca(p.item,p.desc,qtdU(p.qtd,p.item),p.data,nfDoLote(p.lote),1);
     void 0})})}
 function xfEtqLer(){if(!XF.orig){xfErro('Primeiro leia o QR Code do endereço atual.');return}
@@ -5858,7 +5925,7 @@ function xfConf(){if(!XF.orig||!XF.etq||!XF.dest){xfErro('Faça as três leitura
   if(m==='Outro'&&!o){recErroCampo({campo:'xfObs',msg:'Escreva a observação do motivo.'});return}
   chamar('apiTransferir',[{quem:quem(),orig:XF.orig,dest:XF.dest,juntar:!!XF.juntar,cartao:true,motivo:m+(o?' — '+o:''),etq:{cod:XF.etq.cod,data:XF.etq.data,rg:XF.etq.rg}}],function(r){
     if(!r||!r.ok){xfErro(r&&r.msg||'Não deu para transferir.');return}
-    vib('ok');var o=XF.orig,d=XF.dest,jt=XF.juntar;$('xfRes').innerHTML=conclusao('Transferido',[['Posição',endCor(baseVaga(d))+(jt?'<small class="cJunto">junto</small>':''),1],['_peca',xfPeca()],['Saiu de',baseVaga(o)],['Motivo',m]],'Transferir outro',"xfLimpa();contTela('tend','xfOrig')")})}
+    vib('ok');cronoFim('xf');var o=XF.orig,d=XF.dest,jt=XF.juntar;$('xfRes').innerHTML=conclusao('Transferido',[['Posição',endCor(baseVaga(d))+(jt?'<small class="cJunto">junto</small>':''),1],['_peca',xfPeca()],['Saiu de',baseVaga(o)],['Motivo',m]],'Transferir outro',"xfLimpa();contTela('tend','xfOrig')")})}
 PASSOS.tend=function(){var fim=!!document.querySelector('#xfRes .endFim'),i=fim?4:!val('xfOrig')?0:!val('xfEtq')?1:!val('xfDest')?2:3;
   return {k:'xf',i:i,nomes:['Posição atual','Conferir o produto','Posição nova','Motivo'],bl:[$('psX1'),$('psX2'),$('psX3'),$('psX4')],
     fim:fim,fimBl:document.querySelector('#xfRes .endFim'),ativo:!fim&&!!val('xfOrig')}};
@@ -5917,7 +5984,7 @@ function legendaObr(s){var l0=s.querySelector('.obrLeg');if(l0)l0.remove();retur
 function guia(origem){GUIA.tm=0;if(MODO==='tv')return;setTimeout(acaoFixa,0);var t=TELA_ATUAL,s=telaVis();if(!s)return;
   var d=PASSOS[t]?PASSOS[t]():null;
   document.querySelectorAll('.pAtual,.pFeito').forEach(function(e){e.classList.remove('pAtual','pFeito')});
-  barraPassos(s,d);legendaObr(s);setTimeout(function(){fitEnd(s)},30);
+  barraPassos(s,d);legendaObr(s);resumoPassos(s,d);rascGuarda(t,d);setTimeout(function(){fitEnd(s)},30);
   if(t==='guardar'){var ps=d&&d.k==='gi'?(d.fim?'f':String(d.i)):'';if(s.getAttribute('data-ps')!==ps)s.setAttribute('data-ps',ps);gResumo(ps);var et=val('gCod')?'1':'';if(s.getAttribute('data-etq')!==et)s.setAttribute('data-etq',et);var cb=s.querySelector('#psG1>.bCam');if(cb)cb.hidden=!!et}
   if(t==='tirar'){var pt=d?(d.fim?'f':String(d.i)):'';if(s.getAttribute('data-ps')!==pt)s.setAttribute('data-ps',pt)}
   var tf=!!s.querySelector('.endFim');s.classList.toggle('temFim',tf);var vf=s.querySelector('.vFim');if(vf&&vf.hidden!==tf)vf.hidden=tf;
@@ -5979,8 +6046,8 @@ function emAndamento(t){if(MODO==='tv'||CONF_SAIR.indexOf(t)<0)return false;var 
 function sairSeguro(seguir){var t=TELA_ATUAL;
   if(emAndamento(t)){var pop=Date.now()-POP_T<1500;
     if(pop){try{history.pushState({c:PILHA.length},'')}catch(e){}}
-    perguntar(txCancelar(t),function(){limparTela(t);seguir()},null,{ok:okCancelar(t),no:'Continuar'});return}
-  limparTela(t);seguir()}
+    perguntar(txCancelar(t),function(){rascApaga(t);limparTela(t);seguir()},null,{ok:okCancelar(t),no:'Continuar'});return}
+  rascApaga(t);limparTela(t);seguir()}
 window.addEventListener('popstate',function(){POP_T=Date.now()},true);
 var _voltarCamada=voltarCamada;voltarCamada=function(){
   var t=TELA_ATUAL;
@@ -6007,7 +6074,21 @@ function podeQual(){return ['Qualidade','Gestor','Administrador'].indexOf(perfil
 /* ---------- 146 (17/11/2026): QUALIDADE ----------
    Lista do material com "Aguardar liberação" (vem da conferência do Recebimento). A liberação continua no TOTVS;
    quem cola a etiqueta de aprovado lê o QR da etiqueta e toca em Liberado (ou Reprovado, com motivo). */
-var QUAL={l:[],f:[]};
+/* ---------- 147: PARA ARMAZENAR (Armazenamento) ----------
+   Carga que o Recebimento já identificou e falta guardar. A mais antiga primeiro; tocar abre o Endereçar. */
+function paraArm(){var b=$('paLista');b.innerHTML='<p class="rcDica">Carregando...</p>';TOQUE.el=null;
+  chamar('apiParaArmazenar',[quem()],function(r){if(!r||!r.ok){b.innerHTML=aviso('er',(r&&r.msg)||'Não deu para carregar.');return}
+    if(!r.lista.length){b.innerHTML=aviso('ok','Nenhuma carga esperando para ser guardada.');return}
+    b.innerHTML='<div class="qlLst">'+r.lista.map(function(f){var tot=f.its.reduce(function(a,i){return a+i.rq},0),g=f.its.reduce(function(a,i){return a+Math.min(i.g,i.rq)},0),at=f.horas>=r.avisoH;
+      return '<button type="button" class="qlIt'+(at?' qlAt':'')+'" onclick="ir(\'guardar\')"><span><b>'+esc(f.forn)+'</b>'+(f.nf?' · NF '+esc(f.nf):'')+'<small>'+f.its.map(function(i){return esc(i.c)+': '+esc(numBR(Math.min(i.g,i.rq)))+' de '+esc(numBR(i.rq))}).join(' · ')+'</small></span><em>'+(f.horas<1?'Agora':f.horas+' h')+'<br>'+Math.round(tot?g/tot*100:0)+'%</em></button>'}).join('')+'</div>';
+    if(perfilUsu()==='Administrador')b.insertAdjacentHTML('beforeend','<p class="rcDica">Toque na carga para abrir o Endereçar e ler a etiqueta. Ela sai da lista quando o último pallet for guardado.</p>')})}
+var QUAL={l:[],f:[]};VOZ_ACAO.qlCod=function(){qualItem()};
+function qualItem(){var c=String(val('qlCod')||'').trim().toUpperCase();if(!c){$('qlCad').innerHTML='';return}var tv=etiqTotvs(c);if(tv)c=String(tv.cod).toUpperCase();
+  chamar('apiQualItem',[quem(),c],function(r){if(!r||!r.ok){$('qlCad').innerHTML=aviso('er',(r&&r.msg)||'Item não encontrado.');return}
+    var op=function(q){return '<option'+(q===r.qual?' selected':'')+'>'+q+'</option>'};
+    $('qlCad').innerHTML='<div class="passo"><b>'+esc(r.cod)+'</b> · '+esc(r.desc)+'<label for="qlSel">Qualidade</label><select id="qlSel">'+op('Passagem livre')+op('Aguardar liberação')+'</select><div class="bLin">'+botao('Salvar qualidade',"qualSalvar('"+esc(r.cod).replace(/'/g,'')+"')",'p')+'</div></div>'})}
+function qualSalvar(c){chamar('apiQualCadastro',[quem(),c,val('qlSel')],function(r){if(!r||!r.ok){$('qlCad').innerHTML=aviso('er',(r&&r.msg)||'Não deu para salvar.');return}
+  try{var it=ITMAP[c];if(it)it[11]=r.qual}catch(e){}okGrande();$('qlCad').innerHTML=aviso('ok',r.msg);$('qlCod').value=''})}
 function qualAbrir(){$('qlLer').innerHTML=botaoCam('qualLer()','a etiqueta do material');$('qlRes').innerHTML='';$('qlLista').innerHTML='<p class="rcDica">Carregando...</p>';
   chamar('apiQualLista',[quem()],function(r){if(!r||!r.ok){$('qlLista').innerHTML=aviso('er',(r&&r.msg)||'Não deu para carregar.');return}QUAL.l=r.lista||[];QUAL.f=r.feitos||[];qualPinta()})}
 function qualPinta(){var L=QUAL.l,h='<div class="mpCab"><b>Aguardando liberação ('+L.length+')</b><small>toque para decidir</small></div>';
@@ -6045,7 +6126,7 @@ function podePortaria(){return ['Portaria','Administrador'].indexOf(perfilUsu())
 function podeReceber(){return ['Operador','Gestor','Administrador'].indexOf(perfilUsu())>=0}
 var _mostrarGrupoR=mostrarGrupo;mostrarGrupo=function(){if(ehRestrito())GRUPO='rec';if(ehInvPerf()&&GRUPO!=='ini')GRUPO='inv';_mostrarGrupoR()};
 var _abrirGrupoR=abrirGrupo;abrirGrupo=function(g){if(ehRestrito())g='rec';if(ehInvPerf()&&g!=='ini')g='inv';_abrirGrupoR(g);if(g==='rec')setTimeout(recPrefetch,200)};
-var _aposEntrarR=aposEntrar;aposEntrar=function(f){setTimeout(recAlertaCk,1500);if(ehRestrito()&&MODO!=='tv'){GRUPO='rec';ir('menu');return}_aposEntrarR(f)};
+var _aposEntrarR=aposEntrar;aposEntrar=function(f){setTimeout(recAlertaCk,1500);setTimeout(somAreasCarrega,2500);if(ehRestrito()&&MODO!=='tv'){GRUPO='rec';ir('menu');return}_aposEntrarR(f)};
 var _irRec=ir;ir=function(t,m){_irRec(t,m);aplicarPerfilRec();
   if(t!=='rec'&&t!=='recd')REC.port=false;
   if(t==='rec')abrirRec();
@@ -6089,7 +6170,7 @@ function quarPinta(){var b=$('rcQuar');if(!b)return;var L=QUAR.lista;if(!L.lengt
       (q.mot?'<p>'+esc(q.mot)+'</p>':'')+(q.local?'<small>Local: '+esc(q.local)+'</small>':'')+
       '<p class="quarSit">'+esc(q.sit||'Em quarentena')+(q.dec?' · '+esc(q.dec)+(q.por?' ('+esc(q.por)+')':''):'')+'</p>'+(q.fotos?'<p><a href="'+esc(q.fotos)+'" target="_blank" rel="noopener">Ver as fotos</a></p>':'')+
       (QUAR.decide?'<div class="quarBt">'+['Seguradora','Interno','Aceito'].map(function(o){return botao(o,'quarDecide('+i+',\''+o+'\')','s',{cls:'sec'})}).join('')+(q.dec?botao('Encerrar','quarDecide('+i+',\'Encerrar\')','s',{cls:'sec'}):'')+'</div>':'')+'</div>'}).join('')+
-    (QUAR.decide?'':'<p class="rcDica">O comprador e a gestão decidem o destino: seguradora, interno ou aceito.</p>')+'</div>';
+    (QUAR.decide?'':'<p class="rcDica">O comprador e a gestão decidem o destino: seguradora, interno ou aceito.</p>')+botaoExcel('xlsQuar()')+'</div>';
   b.innerHTML=h}
 function quarDecide(i,d){var q=QUAR.lista[i];if(!q)return;
   var txt=d==='Aceito'?'Aceitar o material de '+q.c+' (NF '+q.nf+')? A quantidade sai da quarentena e o operador pode endereçar normalmente.':d==='Encerrar'?'Encerrar a quarentena de '+q.c+' (NF '+q.nf+')?':'Decidir '+d.toLowerCase()+' para '+q.c+' (NF '+q.nf+')? O material continua em quarentena até o encerramento.';
@@ -6117,7 +6198,7 @@ function recBuscar(quieto){fTxt('rcFTxt',REC.per,val('rcData'));var F=recFaixa()
 /* Ao entrar na área Recebimento, já busca as janelas de hoje por trás */
 function recPrefetch(){if(!quem()||MODO==='tv')return;var h=hojeISO(),F=[h,h],k=recChave(F),c=REC_CACHE[k];if(c&&Date.now()-c.t<60000)return;
   try{servidor('apiRecLista',[quem(),h,h],function(r){if(r&&r.ok)recGuarda(k,r)})}catch(e){}
-  try{if(podeAgendar()&&!(REC.horC||{})[h])recHorasGet(h,0,false,function(){})}catch(e){}}
+  /* 149: sem pré-carregar horários — agora eles dependem do volume informado */}
 /* Situação do cartão: cor e texto */
 function estadoRec(x){var hoje=hojeISO(),am=agoraMin(),et=x.et||{};
   if(x.sit==='Aguardando aval')return ['rcAval','Entrega crítica · aguardando aval'];
@@ -6126,7 +6207,7 @@ function estadoRec(x){var hoje=hojeISO(),am=agoraMin(),et=x.et||{};
   if(x.sit==='Na portaria'||x.sit==='No fiscal'||x.sit==='Liberado pelo fiscal')return ['rcPort',x.sit];
   if(x.sit==='Liberado para a doca')return ['rcLib','Liberado para a doca'];
   if(x.sit==='Em recebimento')return ['rcAnd',(et.fdesc?'Conferindo':et.desc?'Descarregando':et.doca?'Na doca':'Em recebimento')+(x.op?' · '+x.op:'')];
-  if(x.sit==='Concluído'){var f=x.pend?(et.etq?' · armazenando':' · etiquetando'):'';
+  if(x.sit==='Concluído'){var f=x.pend?' · identificando':'';
     return x.res==='menos'?['rcMenos','Recebido · veio a menos'+f]:x.res==='mais'?['rcMais','Recebido · veio a mais'+f]:['rcOk','Recebido · bateu'+f]}
   if(x.data<hoje)return ['rcNao','Não entregue'];
   if(x.data===hoje&&minH(x.fim)<=am)return ['rcAtr','Atrasada · ninguém iniciou'];
@@ -6138,8 +6219,18 @@ function recVeQtd(x,onde){var p=perfilUsu();if(x&&x.sit==='Em recebimento'&&p!==
   return onde==='card'?p==='Compras':['Compras','Gestor','Administrador'].indexOf(p)>=0}
 function recCego(x){return !recVeQtd(x,'det')}
 function recNfsTxt(x){return (x.nfs&&x.nfs.length)?x.nfs.join(', '):(x.nf||'')}
+/* 147 (17/11/2026): cor do cartão por situação, nas Janelas e na TV.
+   cinza = agendado · amarelo = operação iniciada · verde = concluído · vermelho = divergência/ocorrência · atrasado = cinza com faixa laranja.
+   Pulsa devagar (2 s) só o que pede ação: atrasado, operação passando do horário previsto e divergência sem fechar. */
+function recCor(x){var e=estadoRec(x)[0],am=agoraMin(),hoje=hojeISO(),et=x.et||{},fin=x.sit==='Concluído';
+  if(e==='rcOff')return 'stOff';
+  var div=!!x.irr||(fin&&(x.res==='menos'||x.res==='mais'))||e==='rcAval';
+  if(div)return 'stDiv'+(!fin||x.pend||e==='rcAval'?' stPul':'');
+  if(fin)return 'stOk';
+  if(x.sit==='Agendado'){if(x.data<hoje||(x.data===hoje&&minH(x.ini)<am))return 'stAtr stPul';return 'stAg'}
+  return 'stOp'+(x.data<hoje||(x.data===hoje&&minH(x.fim)<am)?' stPul':'')}
 function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
-  return '<button type="button" class="rcCard '+e[0]+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
+  return '<button type="button" class="rcCard '+e[0]+' '+recCor(x)+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
     '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
 /* ----- Centrar na hora atual (17/11/2026, versão 143; Modo TV removido) ----- */
@@ -6154,7 +6245,7 @@ function recGrade(r,F,L){var sem=REC.per==='s',dias=[],d0=new Date(F[0]+'T12:00:
   for(i=0;i<n;i++){var d=new Date(d0);d.setDate(d0.getDate()+i);k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
     var fds=d.getDay()===0||d.getDay()===6,tem=uteis.some(function(x){return x.data===k});
     if(sem&&fds&&!tem&&r.fechados[k])continue;dias.push(k)}
-  if(!sem&&r.fechados[dias[0]])return '<div class="rcFech">Recebimento fechado: '+esc(r.fechados[dias[0]])+'</div>'+(uteis.some(function(x){return x.data===dias[0]})?'':'');
+  if(!sem&&r.fechados[dias[0]])return aviso('at','Recebimento fechado: '+r.fechados[dias[0]])+(uteis.some(function(x){return x.data===dias[0]})?'':'');
   var sl=r.slots.map(minH),hMin=Math.floor((sl.length?sl[0]:480)/60),hMax=Math.ceil(((sl.length?sl[sl.length-1]:900)+60)/60);
   uteis.forEach(function(x){if(dias.indexOf(x.data)<0)return;hMin=Math.min(hMin,Math.floor(minH(x.ini)/60));hMax=Math.max(hMax,Math.ceil(minH(x.fim)/60))});
   var al=r.almoco.map(minH),horas=[];for(i=hMin;i<hMax;i++)horas.push(i);
@@ -6166,7 +6257,7 @@ function recGrade(r,F,L){var sem=REC.per==='s',dias=[],d0=new Date(F[0]+'T12:00:
       var fe=r.fechados[k],its=uteis.filter(function(x){return x.data===k&&Math.floor(minH(x.ini)/60)===hr}),pas=k<hj||(k===hj&&(hr+1)*60<=am),c='<div class="agCel'+(fe?' fech':'')+(pas?' agPas':'')+'">';
       if(alm&&!its.length)c+='<span class="agAlmT">Almoço</span>';
       its.forEach(function(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
-        c+='<button type="button" class="agBl '+e[0]+(x.critica?' rcCr':'')+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+(sem?'<u>'+esc(x.ini)+'</u><em> '+esc(x.forn)+'</em>':esc(x.forn))+'</b>'+
+        c+='<button type="button" class="agBl '+e[0]+(x.critica?' rcCr':'')+' '+recCor(x)+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+(sem?'<u>'+esc(x.ini)+'</u><em> '+esc(x.forn)+'</em>':esc(x.forn))+'</b>'+
           (sem?'':'<span>'+esc(x.ini)+' – '+esc(x.fim)+(!cg&&vol?' · '+vol+' vol.':'')+(x.critica?' · Crítica':'')+'</span><span class="agSt">'+esc(e[1])+'</span>')+'</button>'});
       if(!its.length&&!alm&&!fe&&!sem&&!pas&&sl.indexOf(hr*60)>=0)c+='<span class="agLivre">Livre</span>';
       if(k===hj&&am>=hr*60&&am<hr*60+60)c+='<i class="agAgora" style="top:'+((am-hr*60)/60*100).toFixed(1)+'%"></i>';
@@ -6199,10 +6290,11 @@ setInterval(function(){if(TELA_ATUAL!=='rec'||!telaVis())return;REC.rf++;if(REC.
 /* ----- Detalhe da entrega ----- */
 /* 145: linha do tempo do recebimento em 4 fases: feita (visto verde), atual (laranja), próximas (apagadas).
    Tocando numa fase com etapas feitas, abre hora, quem fez e tempo de cada etapa dela. */
-var REC_FASES=[['Portaria',['cheg','nf','libf','libd']],['Doca',['doca','desc','fdesc']],['Conferência',['conf']],['Armazenagem',['etq','arm']]];
-var REC_AGORA={cheg:'Esperando chegada',nf:'Na portaria',libf:'No fiscal',libd:'Esperando liberação',doca:'Esperando a doca',desc:'Na doca',fdesc:'Em descarga',conf:'Conferindo',etq:'Etiquetando',arm:'Armazenando'};
+/* 147: o Recebimento termina na identificação (etiquetagem); a armazenagem é do Armazenamento (fila Para armazenar) */
+var REC_FASES=[['Portaria',['cheg','nf','libf','libd']],['Doca',['doca','desc','fdesc']],['Conferência',['conf']],['Identificação',['etq']]];
+var REC_AGORA={cheg:'Esperando chegada',nf:'Na portaria',libf:'No fiscal',libd:'Esperando liberação',doca:'Esperando a doca',desc:'Na doca',fdesc:'Em descarga',conf:'Conferindo',etq:'Identificando'};
 function recLinhaHtml(x){var et=x.et||{},fin=x.sit==='Concluído',off=x.sit==='Cancelado'||x.sit==='Recusado';
-  var ok=[!!(et.libd||et.doca),!!(et.fdesc||et.conf||fin),!!(et.conf||fin),!!et.arm||(fin&&!x.pend&&!!et.conf)],at=off||x.sit==='Aguardando aval'?-1:ok.indexOf(false);
+  var ok=[!!(et.libd||et.doca),!!(et.fdesc||et.conf||fin),!!(et.conf||fin),!!et.etq||(fin&&!x.pend&&!!et.conf)],at=off||x.sit==='Aguardando aval'?-1:ok.indexOf(false);
   var h='<div class="rdLinha'+(off?' off':'')+'">'+REC_FASES.map(function(f,i){var ks=f[1].filter(function(k){return et[k]}),ult=ks.length?et[ks[ks.length-1]][0]:0,
       prox=f[1].filter(function(k){return !et[k]})[0],st=ok[i]?'feito':(i===at?'atual':'prox'),
       sub=ok[i]?(i===0&&!et.cheg?'Sem portaria':(ult?hhmm(ult):'')):(i===at?(REC_AGORA[prox]||''):'');   /* a tabela com os tempos fica recolhida: abre ao tocar na etapa */
@@ -6214,7 +6306,7 @@ function recLinhaHtml(x){var et=x.et||{},fin=x.sit==='Concluído',off=x.sit==='C
 function recFaseVer(i){REC.fase=REC.fase===i?-1:i;var b=$('rdLinhaBox');if(b&&REC.sel)b.innerHTML=recLinhaHtml(REC.sel)}
 function abrirRecDet(id){REC.fase=-1;var x=REC.lista.filter(function(y){return y.id===id})[0];if(!x)return;REC.sel=x;ir('recd');pintarRecDet()}
 function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=estadoRec(x),fin=x.sit==='Concluído',et=x.et||{},hj=hojeISO(),cego=recCego(x);
-  var h='<div class="rcPrCab">Johnson Electric · Logística · Controle de janela de recebimento</div>'+
+  var h=''+
     '<div class="rcDet '+e[0]+'"><b>'+esc(x.forn)+'</b><span class="rcSt">'+esc(e[1])+'</span></div>'+
     '<div class="rcInfo"><div>Data<b>'+dSem(x.data)+', '+dmy(x.data)+'</b></div><div>Horário<b>'+esc(x.ini)+' – '+esc(x.fim)+'</b></div>'+
     '<div>Comprador<b>'+esc(x.comp)+'</b></div><div>Entrega<b>'+(x.critica?'Crítica':'Padrão')+'</b></div>'+
@@ -6228,8 +6320,8 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
   if(x.irr)h+=irrHtml(x.irr);
   /* 145: linha do tempo em 4 fases (sempre visível) + tempos */
   var feitas=REC_ETAPAS.filter(function(k){return et[k]}),hd='<div id="rdLinhaBox">'+recLinhaHtml(x)+'</div>';
-  if(feitas.length){var aberto=!et.arm&&x.sit!=='Cancelado'&&x.sit!=='Recusado'&&!(fin&&!x.pend);
-    hd+='<div class="rcInfo"><div>Tempo total<b id="rdTot">'+(et.arm?fmtSeg((et.arm[0]-et[feitas[0]][0])/1000):'…')+'</b></div>'+(aberto?'<div>Nesta etapa<b id="rdEtp">…</b></div>':'')+
+  if(feitas.length){var aberto=!et.etq&&x.sit!=='Cancelado'&&x.sit!=='Recusado'&&!(fin&&!x.pend);
+    hd+='<div class="rcInfo"><div>Tempo total<b id="rdTot">'+(et.etq?fmtSeg((et.etq[0]-et[feitas[0]][0])/1000):'…')+'</b></div>'+(aberto?'<div>Nesta etapa<b id="rdEtp">…</b></div>':'')+
       (fin&&x.ass?'<div>Assinatura<b><a href="'+esc(x.ass)+'" target="_blank" rel="noopener">Ver assinatura</a></b></div>':'')+'</div>'}
   else if(x.iniR)hd+='<div class="rcInfo"><div>Início<b>'+esc(x.iniR)+'</b></div><div>'+(fin?'Fim':'Tempo')+'<b id="rdTempo">'+(fin?esc(x.fimR):'…')+'</b></div>'+
     (fin?'<div>Duração<b>'+fmtSeg(x.dur)+'</b></div>':'')+'<div>Operador<b>'+esc(x.op||'–')+'</b></div>'+
@@ -6259,14 +6351,11 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
       else a+='<div id="rdFinBox"><p>'+botao('Conferência e liberação do motorista','recAbrirConf()','p')+'</p></div>'}
     if(fin&&x.pend){
       a+='<p>'+botao('Imprimir etiquetas','recEtqJan()','s',{cls:'sec'})+'</p>';   /* 146: etiqueta própria (Master A4 e pequena) logo depois da conferência */
-      if(!et.etq)a+=bt('etq','Fim da etiquetagem');
-      a+='<div class="rcArm"><p><b>Armazenagem</b><br><small>Enderece os pallets pelo Endereçar, lendo a etiqueta do produto. A entrega fecha sozinha quando o último pallet desta nota for guardado.</small></p>'+
-        x.prod.map(function(p,i){var rq=x.receb[i]?Number(x.receb[i].q):0,g=Number((x.armz||{})[String(p.c).toUpperCase()])||0;
-          return '<p class="rcArmL'+(g>=rq?' rcOkT':'')+'"><span>'+esc(p.c)+'</span><b>'+numBR(g)+' de '+numBR(rq)+'</b></p>'}).join('')+
-        '<p class="rcBts">'+botao('Ir para o Endereçar','ir(\'guardar\')','p')+botao('Encerrar armazenagem','recEtapa(\'arm\')','s',{cls:'sec'})+'</p></div>'}}
+      a+=bt('etq','Identificação concluída')}
+    if(fin&&x.praArm)a+=aviso('ok','Identificação concluída. A carga está na fila Para armazenar do Armazenamento.')}
   if(x.sit==='Aguardando aval'&&P.admin)a+='<p class="rcBts">'+botao('Aceitar entrega crítica','recAval(true)','p')+botao('Recusar','recAval(false)','s',{cls:'sec'})+'</p>';
   if((x.sit==='Agendado'||x.sit==='Aguardando aval')&&(P.admin||x.meu))mais+='<p>'+botao('Cancelar agendamento','recCancelar()','s',{cls:'sec'})+'</p>';
-  mais+='<p class="np rcBts">'+botao('Imprimir','recImprimir()','s',{cls:'sec'})+'</p>';
+  if(P.admin)mais+='<p>'+botao('Excluir agendamento','recExcluir()','d')+'</p>';   /* 147: fase de testes, só administrador */
   /* 145: a mensagem fica logo abaixo do botão tocado; Cancelar e Imprimir depois. No computador, duas colunas */
   hd+='<div id="rdAcao">'+a+'</div><div id="rdMsg">'+(extra||'')+'</div><div id="rdMais">'+mais+'</div>';
   var i0=h.indexOf('<div class="rcInfo">');
@@ -6312,7 +6401,7 @@ function recFinalizar(irr){var x=REC.sel,d=(irr===true)?{q:REC.cq,vol:Number(REC
     if(!r.ok){if(r.campo&&$(r.campo)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
     var agora=new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(',','');
     recAtualiza(r,{sit:'Concluído',res:r.res,receb:x.prod.map(function(p,i){return {c:p.c,q:d.q[i]}}),fimR:agora,dur:r.dur,ass:r.ass||'',et:r.et||x.et,pend:!!r.pend,armz:{},volR:r.volR,irr:r.irr||null});
-    ASS_OK=false;REC.rc=null;REC.cq=null;REC.irr=null;REC.fotos=[];REC.rq='';vib('ok');
+    ASS_OK=false;REC.rc=null;REC.cq=null;REC.irr=null;REC.fotos=[];REC.rq='';vib('ok');okGrande();
     pintarRecDet(msg('ok',r.msg)+(r.pend?'':blocoFim("ir('rec')")))})}
 /* Irregularidade: motivo (opcional), fotos guiadas uma por vez e assinatura do motorista fecham o registro */
 var FOTOS_IRR=[['Placa do cavalo','cavalo'],['Placa da carreta','carreta'],['Interior do baú','baú'],['Material avariado','avaria'],['Foto livre','livre']];
@@ -6358,7 +6447,11 @@ function recAval(aceitar){var x=REC.sel;
 function recCancelar(){var x=REC.sel;
   perguntar('Cancelar a entrega de '+x.forn+' em '+dmy(x.data)+' às '+x.ini+'? O horário fica livre.',function(){
     chamar('apiRecCancelar',[quem(),x.id],function(r){if(!r.ok){mostrarErro(r.msg);return}recAtualiza(r,{sit:'Cancelado'});pintarRecDet(msg('ok',r.msg))})},null,{ok:'Cancelar agendamento'})}
-function recImprimir(){document.body.classList.add('prRec');setTimeout(function(){window.print();setTimeout(function(){document.body.classList.remove('prRec')},600)},50)}
+function recExcluir(){var x=REC.sel;
+  perguntar('Excluir de vez a entrega de '+x.forn+' em '+dmy(x.data)+' às '+x.ini+'? Some da agenda e não dá para desfazer.',function(){
+    chamar('apiRecExcluir',[quem(),x.id],function(r){if(!r.ok){mostrarErro(r.msg);return}REC.lista=(REC.lista||[]).filter(function(y){return y.id!==x.id});REC_CACHE={};try{LS.removeItem('jeRecC')}catch(e){}
+      okGrande();voltarCamada();setTimeout(function(){recBuscar(1)},300)})},null,{ok:'Excluir'})}
+
 
 /* ----- Agendar entrega ----- */
 /* 17/11/2026 (versão 143): um passo por vez (data e horário, fornecedor, nota e itens, volume total); nota fiscal primeiro, depois os itens dela;
@@ -6370,25 +6463,42 @@ function abrirRecAg(){REC.kHoras='';REC.itens=[];REC.hora='';REC.ver=-1;REC.nota
 function recCrit(quieto){var c=$('agCrit').checked;$('agCritBox').hidden=!c;$('agPad').hidden=c;if(!quieto){limparErros();GUIA.k='';agendarGuia('change')}}
 function agDataOk(k){return /^\d{4}-\d{2}-\d{2}$/.test(k)&&Number(k.slice(0,4))>=2020&&Number(k.slice(0,4))<=2100}
 REC.horC={};
-function recHorasGet(k,vol,fresco,cb){var c=REC.horC[k];if(!fresco&&c&&Date.now()-c.t<45000){cb(c.r);return}
-  chamar('apiRecHorarios',[quem(),k,vol],function(r){if(r&&r.ok)REC.horC[k]={t:Date.now(),r:r};cb(r)})}
+function recHorasGet(k,vol,fresco,cb){var ch=k+'|'+(vol||0),c=REC.horC[ch];if(!fresco&&c&&Date.now()-c.t<45000){cb(c.r);return}
+  chamar('apiRecHorarios',[quem(),k,vol],function(r){if(r&&r.ok)REC.horC[ch]={t:Date.now(),r:r};cb(r)})}
+/* 149: a janela depende do volume — mudou o volume, os horários livres se recalculam (o horário escolhido fica se ainda couber) */
+function agVolN(){var v=Math.round(Number(String(val('agVolT')).replace(',','.')));return v>=1?v:0}
+function agVolMuda(){clearTimeout(REC.tmV);REC.tmV=setTimeout(function(){if(!$('agCrit').checked)recHoras(true);GUIA.k='';agendarGuia('change')},500)}
+function recComoCalc(){var c=REC.cfgH||{tpv:3,fixo:15,folga:20,ini:true},f=Number(c.folga)||20,ex=10,b=Math.round(c.fixo+ex*c.tpv),d=Math.max(30,Math.ceil(b*(1+f/100)/30)*30),n=function(x){return numV(x)+' minuto'+(Number(x)===1?'':'s')};
+  var por=c.ini?'Um para descarregar, já olhando se veio alguma avaria; outro para a <b>conferência da carga (o material)</b>, contando as peças; e outro para identificar.':'É o tempo de descarregar (já olhando se veio alguma avaria), fazer a <b>conferência da carga (o material)</b> e identificar, medido nas nossas entregas.';
+  abrirJan('Como a gente calcula o tempo da sua entrega',
+    '<div class="comoRes"><b>Janela = '+n(c.fixo)+' + '+n(c.tpv)+' por volume + '+f+'% de folga</b>, arredondando para a meia hora seguinte.<br><small>Exemplo: '+ex+' volumes → '+numV(c.fixo)+' + '+numV(ex*c.tpv)+' = '+b+' minutos → com a folga, janela de <b>'+durTxt(d)+'</b>.</small></div>'+
+    '<p><b>Peça para o caminhão chegar 15 minutos antes do horário agendado</b>, para dar tempo de passar pela portaria.</p>'+
+    '<p><b>Antes da doca: portaria.</b> Quando o caminhão chega à planta, passa primeiro pela portaria. O fiscal confere a nota com o pedido e o preço, a portaria checa os EPIs do motorista e só então libera para a doca. O app registra o tempo de cada uma dessas etapas.</p>'+
+    '<p><b>Na doca: a janela começa aqui.</b> O tempo da janela conta a partir do momento em que o caminhão encosta na nossa doca. Toda entrega leva '+n(c.fixo)+', seja grande ou pequena: encostar, conferir a nota com a quantidade e os volumes que chegaram e liberar o motorista.</p>'+
+    '<p><b>Cada volume leva mais '+n(c.tpv)+'.</b> '+por+'</p>'+
+    '<p>Por segurança, a gente soma '+f+'% de folga e arredonda para a meia hora seguinte.</p>'+
+    '<p><b>Esse tempo vai melhorando sozinho.</b> O app mede cada recebimento de verdade e, com essas medições, o cálculo fica cada vez mais próximo da nossa realidade.'+(c.ini?' Hoje vale a estimativa inicial.':(c.em?' Último ajuste: '+esc(c.em)+'.':''))+'</p>')}
 function recHoras(manter){var k=val('agData');if(!manter&&k&&k===REC.kHoras&&$('agHoras').querySelector('.rcChips'))return;var ant=manter?REC.hora:'';REC.hora='';REC.kHoras=k;var n=++REC.reqH;
   if(!k||!agDataOk(k)){$('agHoras').innerHTML=k?'<p class="rcDica">Termine de digitar a data (dia, mês e ano).</p>':'<p class="rcDica">Escolha a data para ver os horários livres.</p>';return}
-  if(k<hojeISO()){$('agHoras').innerHTML='<div class="rcFech">Essa data já passou. Escolha hoje ou uma data futura.</div>';return}
-  var vol=0;
+  if(k<hojeISO()){$('agHoras').innerHTML=aviso('at','Essa data já passou. Escolha hoje ou uma data futura.');return}
+  var vol=agVolN();if(!vol){$('agHoras').innerHTML='<p class="rcDica">Informe o volume total para ver os horários livres: a duração da janela depende dele.</p>';if(manter&&REC.hora)REC.hora='';return}
   $('agHoras').innerHTML='<p class="rcDica">Buscando horários...</p>';if(manter)TOQUE.el=null;
-  recHorasGet(k,vol,manter,function(r){if(n!==REC.reqH||val('agData')!==k)return;
-    if(!r.ok){$('agHoras').innerHTML=msg('erro',r.msg);return}REC.porVol=!!r.porVolume;
-    if(r.fechado){$('agHoras').innerHTML='<div class="rcFech">Recebimento fechado: '+esc(r.fechado)+'. Escolha outro dia ou marque Entrega crítica.</div>';return}
-    if(!r.livres.length){$('agHoras').innerHTML='<div class="rcFech">Não há mais horário livre neste dia. Escolha outro dia.</div>';if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.');return}
-    $('agHoras').innerHTML='<p class="rcDica">'+(k===hojeISO()?'Horários livres de hoje, depois de agora (1 hora cada):':'Horários livres neste dia, desde as 8h (1 hora cada):')+'</p><div class="rcChips">'+
+  recHorasGet(k,vol,manter,function(r){if(n!==REC.reqH||val('agData')!==k||agVolN()!==vol)return;
+    if(!r.ok){$('agHoras').innerHTML=msg('erro',r.msg);return}REC.porVol=!!r.porVolume;REC.cfgH=r.cfg||REC.cfgH;REC.durH=r.dur;
+    if(r.fechado){$('agHoras').innerHTML=aviso('at','Recebimento fechado: '+r.fechado+'. Escolha outro dia ou marque Entrega crítica.');return}
+    if(!r.livres.length){$('agHoras').innerHTML=aviso('at','Não há mais horário livre neste dia. Escolha outro dia.');if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.');return}
+    $('agHoras').innerHTML='<p class="rcDica">'+(k===hojeISO()?'Horários livres de hoje, depois de agora':'Horários livres neste dia, desde as 8h')+', para <b>'+vol+' volume'+(vol===1?'':'s')+'</b>: janela de <b>'+durTxt(r.dur)+'</b>. <button type="button" class="infDetB" onclick="recComoCalc()">Como é calculado ›</button></p><div class="rcChips">'+
       r.livres.map(function(h){return '<button type="button" data-h="'+h+'"'+(h===ant?' class="at"':'')+' onclick="recEscHora(this)">'+h+'</button>'}).join('')+'</div>';
     if(ant&&r.livres.indexOf(ant)>=0)REC.hora=ant;else if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.')})}
 function recEscHora(b){REC.hora=b.getAttribute('data-h');document.querySelectorAll('#agHoras .rcChips button').forEach(function(x){x.classList.toggle('at',x===b)});
   var e=b.closest('.blocoErro');if(e)e.classList.remove('blocoErro');document.querySelectorAll('#psR1 .errIn').forEach(function(x){x.remove()});vib('ok');GUIA.k='';agendarGuia('change')}
 function agErroLimpa(f){var p=recRef(f),n=p&&p.nextElementSibling;if(n&&n.classList.contains('errIn'))n.remove();f.classList.remove('campoErro');var b=blocoCampo(f);if(b)b.classList.remove('blocoErro')}
-function recNF(){var el=$('agNF'),v=el.value.replace(/\D/g,'').slice(0,9);if(el.value!==v)el.value=v;var tem=!!v,mudou=($('agItensBox').hidden===tem);
-  if(mudou)$('agItensBox').hidden=!tem;pintarItensRec();agErroLimpa(el);if(mudou){GUIA.k='';agendarGuia('change')}}
+/* 147 (17/11/2026): enquanto digita a NF, a tela não se mexe: só limpa o que não é número. A parte dos produtos abre e a
+   lista das notas se redesenha quando a nota fica completa (9 números) ou quando sai do campo, sem rolar nem tirar o foco. */
+function recNF(fim){var el=$('agNF'),v=el.value.replace(/\D/g,'').slice(0,9);if(el.value!==v)el.value=v;agErroLimpa(el);
+  if(v.length<9&&!fim)return;
+  var tem=v.length===9,box=$('agItensBox'),abrir=tem&&box.hidden;if(abrir)box.hidden=false;pintarItensRec();
+  if(abrir){GUIA.k='';var y=window.scrollY;agendarGuia('change');window.scrollTo(0,y);try{el.focus({preventScroll:true})}catch(e){}}}
 function recDesc(){var c=val('agCod').split(' — ')[0].trim().toUpperCase(),it=ITMAP[c];$('agDesc').textContent=c?(it?it[1]:'Produto fora do cadastro do app (pode agendar assim mesmo).'):''}
 function agNFAtual(){return val('agNF').replace(/\D/g,'').slice(0,9)}
 function agNF9(nf){return nf.length===9}
@@ -6424,10 +6534,10 @@ function pintarItensRec(){var L=REC.itens,box=$('agLista');if(!L.length){if(box.
     if(!aberta){h+='<button type="button" class="agNotaR" onclick="recAbreNota(\''+esc(nf)+'\')"><span>NF <b>'+esc(nf)+'</b> · '+cab+'</span><i>Ver</i></button>';return}
     h+='<div class="agNota"><div class="agNotaT">Nota fiscal <b>'+esc(nf)+'</b> · '+cab+(nf!==atual?' <a class="agFecha" onclick="recAbreNota(\''+esc(nf)+'\')">Recolher</a>':'')+'</div>'+its.map(function(x){var p=x[0];return '<div class="agIt"><div><b>'+esc(p.c)+'</b><small>'+esc(p.d)+'</small></div><span>'+numBR(p.q)+'</span><button type="button" class="rcX" onclick="recTiraItem('+x[1]+')" aria-label="Tirar '+esc(p.c)+'">×</button></div>'}).join('')+'</div>'});
   if(box._h!==h){box._h=h;box.innerHTML=h}}
-function agResumoTxt(k){if(k===0){var c=$('agCrit').checked;return esc(dmy(val('agData')))+' às '+esc(c?val('agHora'):REC.hora)+(c?' (crítica)':'')}
+function agResumoTxt(k){if(k===0){var c=$('agCrit').checked,v=agVolN();return esc(dmy(val('agData')))+' às '+esc(c?val('agHora'):REC.hora)+(c?' (crítica)':'')+' · '+v+' volume'+(v===1?'':'s')+(!c&&REC.durH?' · janela de '+durTxt(REC.durH):'')}
   if(k===1)return esc(val('agForn'));
   var n=agNotas();return 'NF '+esc(n.join(', '))+' · '+REC.itens.length+' produto(s)'}
-function agResumo(i){var r=$('agResumo'),h='',nomes=['Data e horário','Fornecedor','Notas e produtos'];
+function agResumo(i){var r=$('agResumo'),h='',nomes=['Data, volume e horário','Fornecedor','Notas e produtos'];
   for(var k=0;k<i&&k<3;k++)h+='<button type="button" class="agRes" onclick="agVer('+k+')"><small>'+nomes[k]+'</small><b>'+agResumoTxt(k)+'</b><i>Alterar</i></button>';
   if(r._h!==h){r._h=h;r.innerHTML=h}}
 function recAgendar(){limparErros();document.querySelectorAll('#psR4 .errIn').forEach(function(x){x.remove()});var crit=$('agCrit').checked;
@@ -6437,7 +6547,7 @@ function recAgendar(){limparErros();document.querySelectorAll('#psR4 .errIn').fo
   if(!val('agForn')||!$('agForn').dataset.cod){REC.ver=1;GUIA.k='';agendarGuia('change');mostrarErro('Escolha o fornecedor na lista.');return}
   if(!REC.itens.length){REC.notasOk=false;GUIA.k='';agendarGuia('change');mostrarErro('Acrescente a nota fiscal e pelo menos um produto.');return}
   var vol=Math.round(Number(val('agVolT').replace(',','.')));
-  if(!(vol>=1))return agErro('agVolT','Informe o volume total do container (número inteiro).');
+  if(!(vol>=1)){REC.ver=0;GUIA.k='';agendarGuia('change');mostrarErro('Informe o volume total do container (número inteiro).');return}
   var enviar=function(){var d={data:val('agData'),hora:crit?val('agHora'):REC.hora,critica:crit,obs:crit?val('agMot'):'',forn:val('agForn'),fornCod:$('agForn').dataset.cod||'',itens:REC.itens,vol:vol};
     chamar('apiRecAgendar',[quem(),d],function(r){
       if(!r.ok){REC.horC={};if(r.livres){REC.ver=0;recHoras();GUIA.k='';agendarGuia('change')}var f=r.campo&&$(r.campo);if(f&&vis(f)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
@@ -6446,11 +6556,11 @@ function recAgendar(){limparErros();document.querySelectorAll('#psR4 .errIn').fo
   var n=REC.itens.length;
   if(vol<n||vol>n*40)perguntar('O volume total ('+vol+') parece fora do esperado para '+n+' produto(s) em '+agNotas().length+' nota(s). Confirma '+vol+' volume(s)?',enviar,null,{ok:'Confirmar volume'});
   else enviar()}
-PASSOS.recag=function(){var fimBl=document.querySelector('#agMsg .endFim'),crit=$('agCrit').checked,okH=crit?(!!val('agHora')&&!!val('agMot')):!!REC.hora,
+PASSOS.recag=function(){var fimBl=document.querySelector('#agMsg .endFim'),crit=$('agCrit').checked,okH=agVolN()>0&&(crit?(!!val('agHora')&&!!val('agMot')):!!REC.hora),
     i0=(!val('agData')||!okH)?0:!$('agForn').dataset.cod?1:!REC.notasOk?2:3,i=fimBl?3:(REC.ver>=0&&REC.ver<i0?REC.ver:i0);
   var s=$('s-recag');if(s){s.classList.toggle('agEdita',!fimBl&&REC.ver>=0&&REC.ver<i0);s.setAttribute('data-ps',fimBl?'f':String(i))}
   agResumo(fimBl?0:i);
-  return {k:'rg',i:i,nomes:['Data e horário','Fornecedor','Nota e produtos','Volume total'],bl:[$('psR1'),$('psR2'),$('psR3'),$('psR4')],
+  return {k:'rg',i:i,nomes:['Data, volume e horário','Fornecedor','Nota e produtos','Agendar'],bl:[$('psR1'),$('psR2'),$('psR3'),$('psR4')],
     fim:!!fimBl,fimBl:fimBl,ativo:!fimBl&&(!!val('agData')||!!val('agForn')||REC.itens.length>0)}};
 var _limparTelaR=limparTela;limparTela=function(t){_limparTelaR(t);if(t==='recag'){REC.itens=[];REC.hora='';REC.ver=-1;REC.notasOk=false;var c=$('agCrit');if(c){c.checked=false;recCrit(true)}$('agLista').innerHTML='';$('agLista')._h='';REC.abre={}}
   if(t==='recd'){ASS_OK=false;if(REC.tm){clearInterval(REC.tm);REC.tm=0}}};
@@ -6507,7 +6617,7 @@ document.addEventListener('input',function(ev){if(ev.target&&ev.target.id==='agF
    etiquetagem e armazenagem (fecha sozinha com o último pallet endereçado). Aviso com som quando o motorista é liberado. */
 var REC_ETAPAS=['cheg','nf','libf','libd','doca','desc','fdesc','conf','etq','arm'];
 var REC_NOME={cheg:'Chegada do motorista',nf:'Nota no fiscal',libf:'Liberado pelo fiscal',libd:'Liberado para a doca',doca:'Chegada na doca e conferência',
-  desc:'Início do descarregamento',fdesc:'Fim do descarregamento',conf:'Conferência e liberação do motorista',etq:'Fim da etiquetagem',arm:'Armazenagem concluída'};
+  desc:'Início do descarregamento',fdesc:'Fim do descarregamento',conf:'Conferência e liberação do motorista',etq:'Identificação concluída',arm:'Armazenagem concluída'};
 var REC_SIT={nf:'No fiscal',libf:'Liberado pelo fiscal',libd:'Liberado para a doca',doca:'Em recebimento'};
 function hhmm(ms){var d=new Date(ms);return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
 function durTxt(m){var h=Math.floor(m/60),r=m%60;return h?h+'h'+(r?('0'+r).slice(-2):''):r+' min'}
@@ -6518,7 +6628,7 @@ function recPortaria(){$('rcData').value=hojeISO();REC.per='d';REC.port=true;ir(
 /* Formulário de chegada: data e hora automáticas, fornecedor do agendamento */
 function recChegForm(){var x=REC.sel,ag=new Date(),nfs=x.nfs||[],port=perfilUsu()==='Portaria';
   var nfH=nfs.length?'<div><label class="obr">Nota fiscal que o motorista trouxe</label><div class="rcChips pcNfs" id="pcNFs">'+nfs.map(function(n){return '<button type="button" class="at" data-n="'+esc(n)+'" onclick="this.classList.toggle(\'at\')">'+esc(n)+'</button>'}).join('')+'</div><p class="rcDica">As notas do agendamento vêm marcadas. Desmarque a que não veio.</p></div>':
-    '<div><label class="obr" for="pcNF">Nota fiscal</label><input id="pcNF" inputmode="numeric" maxlength="20" autocomplete="off" data-obr="1"></div>';
+    '<div><label class="obr" for="pcNF">Nota fiscal</label><input id="pcNF" inputmode="numeric" maxlength="9" autocomplete="off" data-obr="1" oninput="this.value=this.value.replace(/\\D/g,\'\').slice(0,9)"></div>';
   var h='<div class="card rcConf"><p><b>Chegada do motorista</b><br><small>Só entrega agendada entra. Sem agendamento, o comprador agenda num horário livre ou o motorista volta outro dia.</small></p>'+
     '<div class="rcInfo"><div>Data e hora de chegada<b>'+dmy(hojeISO())+' '+hhmm(ag.getTime())+'</b></div><div>Fornecedor<b>'+esc(x.forn)+'</b></div></div>'+
     (port?'<label class="obr" for="pcTurno">Nome de quem está no turno da portaria</label><input id="pcTurno" maxlength="40" autocomplete="off" data-obr="1">':'')+
@@ -6544,7 +6654,8 @@ function recEtapa(k){var x=REC.sel,conf={doca:['Conferiu a nota fiscal e os EPIs
   var tur='';if(['nf','libf','libd'].indexOf(k)>=0&&perfilUsu()==='Portaria'){tur=val('ptTurno');if(tur.length<2){recErroCampo({campo:'ptTurno',msg:'Informe o nome de quem está no turno da portaria.'});return}}
   var faz=function(){chamar('apiRecEtapa',[quem(),x.id,k,tur],function(r){if(!r.ok){mostrarErro(r.msg);return}
     var c={et:r.et,sit:r.sit};if(k==='doca'){c.op=r.op;c.iniMs=r.iniMs;c.iniR=new Date(r.iniMs).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(',','')}
-    if(k==='arm')c.pend=false;recAtualiza(r,c);vib('ok');if(k==='arm'||k==='libd')carregarAvisos();
+    if(k==='arm'||k==='etq')c.pend=false;if(k==='etq')c.praArm=true;recAtualiza(r,c);vib('ok');if(k==='arm'||k==='libd'||k==='etq')carregarAvisos();
+    if(k==='etq'){okGrande();pintarRecDet(blocoFim("ir('rec')"));return}   /* 147: fim do Recebimento */
     pintarRecDet(msg('ok',r.msg)+(k==='arm'?blocoFim("ir('rec')"):''))})};
   if(conf)perguntar(conf[0],faz,null,{ok:conf[1]});else faz()}
 
@@ -6553,6 +6664,13 @@ var SOM={ctx:null,pend:0},ALR={vistos:{}};
 function somCtx(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!SOM.ctx)SOM.ctx=new C();return SOM.ctx}catch(e){return null}}
 function somToca(c){var t=c.currentTime+.05;[[880,0],[660,.3],[880,.6],[660,.9]].forEach(function(n){var o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=n[0];
   g.gain.setValueAtTime(.0001,t+n[1]);g.gain.exponentialRampToValueAtTime(.7,t+n[1]+.02);g.gain.exponentialRampToValueAtTime(.0001,t+n[1]+.26);o.connect(g);g.connect(c.destination);o.start(t+n[1]);o.stop(t+n[1]+.28)})}
+/* 147: peça somArea(área) — o alerta sonoro só toca para quem está naquela área e só se o som dela estiver ligado nas Regras
+   da área. Os bipes de certo/errado das leituras (qrBipe) não passam por aqui e continuam no app inteiro. */
+var SOM_AREAS={rec:1};try{SOM_AREAS=JSON.parse(LS.getItem('jeSomA')||'null')||SOM_AREAS}catch(e){}
+function somAreasCarrega(){try{servidor('apiSomAreas',[quem()],function(r){if(r&&r.ok){SOM_AREAS=r.som||SOM_AREAS;try{LS.setItem('jeSomA',JSON.stringify(SOM_AREAS))}catch(e){}}})}catch(e){}}
+function areaAtual(){return TELA_ATUAL==='menu'?GRUPO:(grupoDaTela(TELA_ATUAL)||({recd:'rec',recag:'rec',recr:'rec',recf:'rec',qual:'rec'})[TELA_ATUAL]||'')}
+function naArea(a){return areaAtual()===a}
+function somArea(a){if(!SOM_AREAS[a]||!naArea(a))return false;somAviso();return true}
 function somAviso(){try{if(navigator.vibrate)navigator.vibrate([300,120,300,120,300])}catch(e){}
   var c=somCtx();if(!c)return;if(c.state==='running'){SOM.pend=0;somToca(c);return}
   SOM.pend=1;try{c.resume().then(function(){if(SOM.pend&&c.state==='running'){SOM.pend=0;somToca(c)}}).catch(function(){})}catch(e){}}
@@ -6562,10 +6680,12 @@ function recAlertaCk(){if(MODO==='tv'||!quem()||!podeReceber()||document.hidden|
   try{servidor('apiRecAlerta',[quem()],recAlertaResp)}catch(e){}}
 function recAlertaResp(r){if(!r||!r.ok)return;var L=r.lista||[],novos=L.filter(function(x){return !ALR.vistos[x.id]});
   if(!novos.length)return;
-  if(PERG.aberta){somAviso();return}   // janela de pergunta aberta: toca agora e mostra o aviso na próxima conferência
-  novos.forEach(function(x){ALR.vistos[x.id]=1});somAviso();
+  /* 147: fora do Recebimento não toca nem abre janela; o alerta espera a pessoa entrar no Recebimento */
+  if(!naArea('rec'))return;
+  if(PERG.aberta){somArea('rec');return}   // janela de pergunta aberta: toca agora e mostra o aviso na próxima conferência
+  novos.forEach(function(x){ALR.vistos[x.id]=1});somArea('rec');
   if(TELA_ATUAL==='rec')recBuscar(true);
-  avisoJan('🚚 Motorista liberado para a doca: '+novos.map(function(x){return x.forn+(x.placa?' (placa '+x.placa+(x.veic?', '+x.veic:'')+')':'')+(x.hora?' às '+x.hora:'')}).join('; ')+'. Toque no cartão em Janelas de recebimento e marque Chegada na doca e conferência.')}
+  avisoJan('Motorista liberado para a doca: '+novos.map(function(x){return x.forn+(x.placa?' (placa '+x.placa+(x.veic?', '+x.veic:'')+')':'')+(x.hora?' às '+x.hora:'')}).join('; ')+'. Toque no cartão em Janelas de recebimento e marque Chegada na doca e conferência.')}
 setInterval(recAlertaCk,30000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(recAlertaCk,800)});
 
@@ -6586,9 +6706,12 @@ function pintarRecRegras(){var c=RR.cfg,h='<label for="rrIni">Início do recebim
   '<div class="rrAdd"><input id="rrFD" type="date" data-fixo="1"><input id="rrFM" maxlength="60" placeholder="Motivo (opcional)" autocomplete="off">'+botao('Fechar esta data','rrAdd(\'f\')','s')+'</div>'+
   '<p class="rcPer2">Datas abertas de propósito</p><div id="rrAbr">'+rrLista(RR.abertos,'a')+'</div>'+
   '<div class="rrAdd"><input id="rrAD" type="date" data-fixo="1">'+botao('Abrir esta data','rrAdd(\'a\')','s')+'</div>'+
-  '<p class="rcPer2">Duração da janela</p><p class="rcDica">'+(c?'Calculada pelo volume: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga, em blocos de 30 minutos'+(c.em?' (aprovado por '+esc(c.em)+')':'')+'.':'Fixa em '+RR.padrao+' minutos. O app mede os recebimentos e avisa na parte de baixo do Recebimento quando houver tempo para você aprovar.')+'</p>'+
+  '<p class="rcPer2">Duração da janela</p><p class="rcDica">'+(c?'Calculada pelo volume: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga, em blocos de 30 minutos'+(c.ini?' (estimativa inicial, até aprovar o tempo medido)':c.em?' (aprovado por '+esc(c.em)+')':'')+'.':'Fixa em '+RR.padrao+' minutos. O app mede os recebimentos e avisa na parte de baixo do Recebimento quando houver tempo para você aprovar.')+'</p>'+
+  '<p class="rcPer2">Som dos alertas desta área</p><label class="rrDia" style="display:inline-block"><input type="checkbox" id="rrSom"'+(SOM_AREAS.rec?' checked':'')+' onchange="somAreaMuda(\'rec\',this.checked)"><span>Tocar o som do alerta (motorista liberado para a doca)</span></label>'+
+  '<p class="rcDica">O som toca só para quem está no Recebimento. Os bipes de leitura (certo e errado) continuam no app inteiro.</p>'+
   '<p>'+botao('Salvar regras','rrSalvar()','p')+'</p>';
   $('rrBox').innerHTML=h}
+function somAreaMuda(a,lig){chamar('apiSomAreaGravar',[quem(),a,!!lig],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Não deu.');return}SOM_AREAS=r.som;try{LS.setItem('jeSomA',JSON.stringify(SOM_AREAS))}catch(e){}vib('ok')})}
 function rrTira(t,k){if(t==='f')delete RR.fechados[k];else RR.abertos=RR.abertos.filter(function(x){return x!==k});$(t==='f'?'rrFech':'rrAbr').innerHTML=rrLista(t==='f'?RR.fechados:RR.abertos,t)}
 function rrAdd(t){var d=val(t==='f'?'rrFD':'rrAD');if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||!agDataOk(d))return mostrarErro('Escolha a data.');
   if(t==='f'){RR.fechados[d]=val('rrFM')||'Fechado';$('rrFM').value=''}else if(RR.abertos.indexOf(d)<0)RR.abertos.push(d);
@@ -6599,7 +6722,7 @@ function rrSalvar(){var dias=[].map.call(document.querySelectorAll('#rrBox .rrDi
 
 /* Tempo por volume: o app propõe com 3 entregas medidas; o administrador decide */
 function recPropHtml(r){var h='',P=r.prop,c=r.cfg;
-  if(c&&(REC.perm||{}).admin)h+='<p class="rcDica">Janela calculada pelos volumes: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga'+(c.em?' (aprovado por '+esc(c.em)+')':'')+'.</p>';
+  if(c&&(REC.perm||{}).admin)h+='<p class="rcDica">Janela calculada pelos volumes: '+numV(c.tpv)+' min por volume + '+numV(c.fixo)+' min das outras etapas + '+c.folga+'% de folga'+(c.ini?' (estimativa inicial, até aprovar o tempo medido)':c.em?' (aprovado por '+esc(c.em)+')':'')+'.</p>';
   if(!P)return h;
   return h+'<div class="rcProp"><b>'+(P.tipo==='desvio'?'Recebimentos fora do padrão':'Tempo do recebimento medido')+'</b>'+(P.tipo==='desvio'?'<p>'+esc(P.motivo.charAt(0).toUpperCase()+P.motivo.slice(1))+'</p>':'')+'<p>'+P.n+' entrega(s) medida(s)'+(P.veic.length?' ('+P.veic.map(function(v){return esc(v.v)+': '+v.n+', '+numV(v.tpv)+' min por volume'}).join(' · ')+')':'')+'.</p>'+
     '<p>Descarregamento: <b>'+numV(P.tpv)+' min por volume</b>. Outras etapas da doca, até a armazenagem: <b>'+numV(P.fixo)+' min</b>. Com '+P.folga+'% de folga, uma entrega de '+P.ex.vol+' volumes teria janela de <b>'+durTxt(P.ex.dur)+'</b>.</p>'+
@@ -6735,5 +6858,155 @@ function semCadJan(){abrirJan('Cadastros para completar',(SUGPAD.length?'<p clas
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 
+<script>
+/* ===================== VERSÃO 148 (18/11/2026) ===================== */
+
+/* ---- Peça dos passos: passo feito vira uma linha com visto verde e o resumo; tocar abre para corrigir ---- */
+var ICO_OKP='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+function passoValor(b){var v=[];
+  b.querySelectorAll('input,select,textarea').forEach(function(e){if(v.length>=2)return;var ty=(e.type||'').toLowerCase();
+    if(ty==='file'||ty==='password'||ty==='button'||ty==='checkbox'||ty==='radio')return;
+    var x=e.tagName==='SELECT'?(e.value&&e.selectedIndex>=0?e.options[e.selectedIndex].text:''):String(e.value||'').trim();
+    if(/^\d{4}-\d{2}-\d{2}$/.test(x))x=x.split('-').reverse().join('/');
+    if(x&&v.indexOf(x)<0)v.push(x)});
+  return v.join(' · ')}
+function resumoPassos(s,d){var vivos=[];
+  if(s&&d&&!d.fim&&s.id!=='s-recag')(d.bl||[]).forEach(function(b,k){
+    if(!b||k>=d.i||b.classList.contains('endCard')||!b.parentNode||!s.contains(b))return;
+    var r=b.previousElementSibling;
+    if(!(r&&r.classList.contains('pRes'))){r=document.createElement('div');r.className='pRes';r.setAttribute('role','button');r.tabIndex=0;b.parentNode.insertBefore(r,b);
+      r.addEventListener('click',function(){var bb=r.nextElementSibling;if(!bb)return;bb.classList.toggle('pAbre');r._h='';GUIA.k='';agendarGuia('mut');
+        if(bb.classList.contains('pAbre'))setTimeout(function(){rolarPara(bb,true,true)},80)})}
+    var ab=b.classList.contains('pAbre'),h='<span class="pResOk">'+ICO_OKP+'</span><span class="pResT"><small>'+esc(d.nomes[k]||('Passo '+(k+1)))+'</small><b>'+esc(passoValor(b)||'Feito')+'</b></span><i>'+(ab?'Fechar':'Alterar')+'</i>';
+    if(r._h!==h){r._h=h;r.innerHTML=h}vivos.push(r)});
+  (s?s.querySelectorAll('.pRes'):[]).forEach(function(r){if(vivos.indexOf(r)<0){var n=r.nextElementSibling;if(n)n.classList.remove('pAbre');r.remove()}})}
+
+/* ---- Botões com o nome da ação: a pergunta sem texto próprio pega o verbo da frase ---- */
+function rotuloPerg(t){t=String(t||'').trim();
+  if(/^Mudar o perfil/.test(t))return 'Mudar perfil';
+  var m=t.match(/^(Apagar|Desativar|Ativar|Deslogar|Marcar|Excluir|Zerar|Liberar|Bloquear|Trocar|Enviar|Encerrar|Finalizar|Descartar|Aceitar|Aprovar|Reprovar)\b/);if(m)return m[1];
+  if(/está vazia\?/.test(t))return 'Sim, está vazia';
+  if(/É essa mesmo\?$/.test(t))return 'Sim, é essa';
+  if(/^(Confirma que|Tem certeza)/.test(t))return 'Sim, confirmo';
+  return 'Confirmar'}
+
+/* ---- Retomar a tarefa de onde parou (app fechou, internet caiu, bateria acabou) ----
+   Cada tela guarda o mínimo para refazer o caminho; o rascunho some ao concluir, ao cancelar ou em "Começar de novo". */
+var RASC_ABERTO=0,QR_RAW={},RASC_ULT='',RASC_PERG=0,RASC_DIRETO='',RASC_MAX=12*3600000;
+var _qrEntRasc=qrEntregar;qrEntregar=function(txt){try{if(QR_ALVO&&!QR_CB)QR_RAW[QR_ALVO]=txt}catch(e){}return _qrEntRasc(txt)};
+var NOME_RASC={guardar:'um Endereçar',tirar:'um Abastecer',tend:'uma Transferência',recag:'um Agendamento de entrega'};
+var RASC_AD={
+  guardar:{s:function(){var tv=QR_TV.gCod,raw=QR_RAW.gCod;if(!tv||!raw)return null;return {raw:raw,q:val('gQtd')}},
+    r:function(o){QR_ALVO='gCod';QR_CB=null;qrEntregar(o.raw);setTimeout(function(){var q=$('gQtd');if(q&&o.q){q.value=o.q;q.dispatchEvent(new Event('input',{bubbles:true}))}},300)}},
+  tirar:{s:function(){if(!val('tCod')||!TIRAR_R)return null;return {c:val('tCod')}},
+    r:function(o){$('tCod').value=o.c;tirar()}},
+  tend:{s:function(){if(!XF.orig)return null;var v={},h={};['xfOrig','xfEtq','xfDest','xfMot','xfObs'].forEach(function(i){v[i]=val(i)});['xfInfo','xfDestG','xfSug'].forEach(function(i){var e=$(i);h[i]=e?e.innerHTML:''});return {xf:XF,v:v,h:h}},
+    r:function(o){XF=o.xf||{};Object.keys(o.h||{}).forEach(function(i){var e=$(i);if(e)e.innerHTML=o.h[i]});Object.keys(o.v||{}).forEach(function(i){var e=$(i);if(e)e.value=o.v[i]||''});xfMotMuda();cronoIni('xf');GUIA.k='';agendarGuia('change')}},
+  recag:{s:function(){if(!REC.hora&&!REC.itens.length&&!val('agForn')&&!agVolN())return null;   /* a data de hoje vem sozinha: não é tarefa começada */
+      return {d:val('agData'),c:$('agCrit').checked,h:val('agHora'),m:val('agMot'),f:val('agForn'),fc:$('agForn').dataset.cod||'',it:REC.itens,rh:REC.hora,nok:REC.notasOk,vol:val('agVolT')}},
+    r:function(o){$('agData').value=o.d||'';$('agCrit').checked=!!o.c;recCrit(true);$('agHora').value=o.h||'';$('agMot').value=o.m||'';$('agForn').value=o.f||'';if(o.fc)$('agForn').dataset.cod=o.fc;
+      REC.itens=o.it||[];REC.notasOk=!!o.nok;$('agVolT').value=o.vol||'';REC.hora=o.rh||'';if(o.d)recHoras(true);pintarItensRec();GUIA.k='';agendarGuia('change')}}};
+/* um rascunho por tela (dá para ter um Endereçar e um Agendamento pela metade ao mesmo tempo) */
+function rascTodos(){try{return JSON.parse(LS.getItem('jeRasc')||'{}')||{}}catch(e){return {}}}
+function rascLer(t){var R=rascTodos();if(t)return R[t]||null;var l=Object.keys(R).map(function(k){return R[k]}).sort(function(a,b){return b.quando-a.quando});return l[0]||null}
+function rascApaga(t){var R=rascTodos();if(t)delete R[t];else R={};try{if(Object.keys(R).length)LS.setItem('jeRasc',JSON.stringify(R));else LS.removeItem('jeRasc')}catch(e){}RASC_ULT=''}
+function rascGuarda(t,d){if(!RASC_AD[t]||MODO==='tv'||RASC_PERG||!quem())return;if(d&&d.fim){if(rascTodos()[t])rascApaga(t);return}
+  var o=null;try{o=RASC_AD[t].s()}catch(e){}if(!o)return;var js=t+JSON.stringify(o);if(js===RASC_ULT)return;RASC_ULT=js;
+  var R=rascTodos();R[t]={t:t,quem:quem(),quando:Date.now(),o:o};try{LS.setItem('jeRasc',JSON.stringify(R))}catch(e){}}
+/* "Começar de novo" só apaga quando a pessoa toca no botão; fechar a pergunta trocando de tela não apaga */
+var PERG_NAO_T=0;document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#pergNao'))PERG_NAO_T=Date.now()},true);
+function tocouNao(){return Date.now()-PERG_NAO_T<1500}
+function haTempo(ms){var m=Math.round((Date.now()-ms)/60000);return m<2?'de agora há pouco':m<60?'de '+m+' min atrás':'de '+Math.round(m/60)+' h atrás'}
+function rascValido(r){if(!r||!RASC_AD[r.t]||r.quem!==quem())return false;if(Date.now()-r.quando>RASC_MAX){rascApaga(r.t);return false}return true}
+function rascRestaura(t,r){try{RASC_AD[t].r(r.o)}catch(e){rascApaga(t);mostrarErro('Não deu para retomar a tarefa. Comece de novo.')}}
+function rascOferta(t){var r=rascLer(t);RASC_PERG=0;if(!rascValido(r)||MODO==='tv')return;
+  if(RASC_DIRETO===t){RASC_DIRETO='';rascRestaura(t,r);return}
+  RASC_PERG=1;perguntar('Você tem '+NOME_RASC[t]+' pela metade, '+haTempo(r.quando)+'. Quer continuar de onde parou?',
+    function(){RASC_PERG=0;rascRestaura(t,r)},function(){RASC_PERG=0;if(tocouNao())rascApaga(t)},{ok:'Continuar tarefa',no:'Começar de novo'})}
+var _irRasc=ir;ir=function(t,m){if(!m&&RASC_AD[t]&&rascLer(t))RASC_PERG=1;   /* segura o rascunho até a pessoa responder */
+  _irRasc(t,m);if(!m&&RASC_AD[t]&&MODO!=='tv')setTimeout(function(){if(TELA_ATUAL===t)rascOferta(t)},450)};
+/* ao abrir o app: se ficou tarefa pela metade, oferece voltar direto para ela */
+function rascAbertura(n){n=n||0;if(RASC_ABERTO&&!n)return;RASC_ABERTO=1;var r=rascLer();if(!rascValido(r)||MODO==='tv')return;
+  if(ACAO.indexOf(TELA_ATUAL)>=0||TELA_ATUAL==='recag')return;   /* já está trabalhando numa tarefa: não interrompe */
+  if(TELA_ATUAL!=='menu'||PERG.aberta){if(n<10)setTimeout(function(){rascAbertura(n+1)},3000);return}
+  perguntar('Uma tarefa ficou pela metade: '+NOME_RASC[r.t]+', '+haTempo(r.quando)+'. Quer continuar de onde parou?',
+    function(){RASC_DIRETO=r.t;try{var g=grupoDaTela(r.t);if(g)GRUPO=g}catch(e){}ir(r.t)},function(){if(tocouNao())rascApaga(r.t)},{ok:'Continuar tarefa',no:'Descartar tarefa'})}
+var _aposRasc=aposEntrar;aposEntrar=function(){var x=_aposRasc.apply(this,arguments);setTimeout(rascAbertura,1800);return x};
+
+/* ---- Produtividade: abas Movimentações e Tempo das tarefas (administrador e gestor) ---- */
+var PR_ABA='mov',PROD_R=null,TEMPO_R=null,RI_R=null,TP_AB={};
+function prAba(a){PR_ABA=a;$('prAbM').classList.toggle('at',a==='mov');$('prAbT').classList.toggle('at',a==='tempo');$('pRes').hidden=a!=='mov';$('ptRes').hidden=a!=='tempo';$('pDica').hidden=a!=='mov'}
+function prVer(){if(PR_ABA==='tempo')verTempo();else verProd()}
+function fmtSeg(s){s=Math.round(Number(s)||0);if(s<60)return s+' s';var m=Math.floor(s/60),r=s%60;if(m<60)return m+' min'+(r?' '+(r<10?'0':'')+r+' s':'');return Math.floor(m/60)+' h '+(m%60)+' min'}
+function verTempo(){var b=$('ptRes');b.innerHTML='';chamar('apiTempoTarefas',[quem(),val('pDe'),val('pAte')],function(r){if(!r||!r.ok){b.innerHTML=aviso('er',(r&&r.msg)||'Não deu para buscar os tempos.');return}TEMPO_R=r;TP_AB={};tpPinta()})}
+function tpAbre(i){var p=TEMPO_R.pessoas[i];TP_AB[p.nome]=!TP_AB[p.nome];tpPinta()}
+function tpPinta(){var r=TEMPO_R,b=$('ptRes');if(!r||!b)return;
+  if(!r.total){b.innerHTML=aviso('at','Nenhum tempo gravado nesse período. O app mede sozinho ao terminar Endereçar, Abastecer, Transferir, a contagem do inventário e o recebimento.');return}
+  var eq={};r.ops.forEach(function(o){eq[o.op]=o});
+  var h='<p class="tpT">Tempo médio por tarefa</p><div class="tpLista">'+r.ops.map(function(o){return '<div class="tpIt"><div><b>'+esc(o.nome)+'</b><small>'+o.n+' vez'+(o.n===1?'':'es')+' · o normal é '+fmtSeg(o.mediana)+'</small></div><span>'+fmtSeg(o.media)+'</span></div>'}).join('')+'</div>';
+  h+='<p class="tpT">Por pessoa</p><div class="tpLista">'+r.pessoas.map(function(p,i){var ab=TP_AB[p.nome];
+    return '<div class="tpIt tpGo" role="button" tabindex="0" onclick="tpAbre('+i+')"><div><b>'+esc(p.nome)+'</b><small>'+p.n+' tarefa'+(p.n===1?'':'s')+'</small></div><span>'+(ab?'Fechar':'Ver ›')+'</span></div>'+
+      (ab?'<div class="tpDet">'+Object.keys(p.ops).map(function(k){var o=p.ops[k];return '<div><span>'+esc(r.nomes[k]||k)+'<small>'+o.n+' vez'+(o.n===1?'':'es')+(eq[k]?' · equipe '+fmtSeg(eq[k].media):'')+'</small></span><b>'+fmtSeg(o.media)+'</b></div>'}).join('')+'</div>':'')}).join('')+'</div>';
+  h+='<p class="tpT">Fora da curva</p>'+(r.fora.length?'<div class="tpLista">'+r.fora.map(function(x){return '<div class="tpIt tpFora"><div><b>'+esc(x.nome)+'</b><small>'+esc(x.quando)+' · '+esc(x.quem)+'</small></div><span>'+fmtSeg(x.s)+' · '+String(x.vezes).replace('.',',')+'x</span></div>'}).join('')+'</div>':aviso('ok','Nenhuma tarefa fora da curva nesse período.'));
+  h+='<p class="rcDica">Fora da curva = mais que o dobro do tempo normal da tarefa. Quase sempre é a tarefa (posição difícil, etiqueta ruim, falta de material), não a pessoa.</p>';
+  b.innerHTML=h+botaoExcel('xlsTempo()')}
+
+/* ---- Peça "Baixar Excel": monta o .xlsx no próprio aparelho (não pesa o servidor). Só administrador e gestor. ---- */
+function podeExcel(){return ['Administrador','Gestor'].indexOf(perfilUsu())>=0}
+function botaoExcel(acao){return podeExcel()?'<p class="np xlsP">'+botao('Baixar Excel',acao,'s',{cls:'sec'})+'</p>':''}
+var XLS_CRC=null;
+function xlsCrc(u){if(!XLS_CRC){XLS_CRC=[];for(var n=0;n<256;n++){var c=n;for(var k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;XLS_CRC[n]=c>>>0}}
+  var c=0xFFFFFFFF;for(var i=0;i<u.length;i++)c=XLS_CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+function xlsZip(arqs){var en=new TextEncoder(),partes=[],cent=[],off=0,tam=0;
+  arqs.forEach(function(a){var nb=en.encode(a.n),d=en.encode(a.d),crc=xlsCrc(d),h=new DataView(new ArrayBuffer(30));
+    h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(8,0,true);h.setUint16(10,0,true);h.setUint16(12,33,true);
+    h.setUint32(14,crc,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,nb.length,true);h.setUint16(28,0,true);
+    partes.push(new Uint8Array(h.buffer),nb,d);
+    var c=new DataView(new ArrayBuffer(46));c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint16(10,0,true);c.setUint16(12,0,true);c.setUint16(14,33,true);
+    c.setUint32(16,crc,true);c.setUint32(20,d.length,true);c.setUint32(24,d.length,true);c.setUint16(28,nb.length,true);c.setUint32(42,off,true);
+    cent.push(new Uint8Array(c.buffer),nb);off+=30+nb.length+d.length});
+  cent.forEach(function(x){tam+=x.length});
+  var e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,arqs.length,true);e.setUint16(10,arqs.length,true);e.setUint32(12,tam,true);e.setUint32(16,off,true);
+  return new Blob(partes.concat(cent,[new Uint8Array(e.buffer)]),{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})}
+function xlsTx(s){return String(s==null?'':s).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function xlsCol(n){var s='';n++;while(n>0){var m=(n-1)%26;s=String.fromCharCode(65+m)+s;n=Math.floor((n-1)/26)}return s}
+function xlsAba(linhas){var larg=[];linhas.forEach(function(l){l.forEach(function(v,j){var n=String(v==null?'':v).length;larg[j]=Math.min(60,Math.max(larg[j]||8,n+2))})});
+  var x='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>';
+  if(larg.length)x+='<cols>'+larg.map(function(w,j){return '<col min="'+(j+1)+'" max="'+(j+1)+'" width="'+w+'" customWidth="1"/>'}).join('')+'</cols>';
+  x+='<sheetData>'+linhas.map(function(l,i){return '<row r="'+(i+1)+'">'+l.map(function(v,j){var r=xlsCol(j)+(i+1),st=i===0?' s="1"':'';
+    if(typeof v==='number'&&isFinite(v))return '<c r="'+r+'"'+st+'><v>'+v+'</v></c>';
+    return '<c r="'+r+'"'+st+' t="inlineStr"><is><t xml:space="preserve">'+xlsTx(v)+'</t></is></c>'}).join('')+'</row>'}).join('')+'</sheetData></worksheet>';return x}
+function xlsxBaixar(nome,abas){abas=abas.filter(function(a){return a&&a.linhas&&a.linhas.length});if(!abas.length){mostrarErro('Não tem nada para baixar. Faça a pesquisa primeiro.');return}
+  var ns='xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"',arqs=[];
+  arqs.push({n:'[Content_Types].xml',d:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+abas.map(function(a,i){return '<Override PartName="/xl/worksheets/sheet'+(i+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'}).join('')+'</Types>'});
+  arqs.push({n:'_rels/.rels',d:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'});
+  arqs.push({n:'xl/workbook.xml',d:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook '+ns+'><sheets>'+abas.map(function(a,i){return '<sheet name="'+xlsTx(String(a.nome).replace(/[\[\]:*?\/\\]/g,' ').slice(0,31))+'" sheetId="'+(i+1)+'" r:id="rId'+(i+1)+'"/>'}).join('')+'</sheets></workbook>'});
+  arqs.push({n:'xl/_rels/workbook.xml.rels',d:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+abas.map(function(a,i){return '<Relationship Id="rId'+(i+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(i+1)+'.xml"/>'}).join('')+'<Relationship Id="rId'+(abas.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'});
+  arqs.push({n:'xl/styles.xml',d:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF26A1B"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/></cellXfs></styleSheet>'});
+  abas.forEach(function(a,i){arqs.push({n:'xl/worksheets/sheet'+(i+1)+'.xml',d:xlsAba(a.linhas)})});
+  var blob=xlsZip(arqs),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=String(nome).replace(/[\\\/:*?"<>|]/g,'-')+'.xlsx';document.body.appendChild(a);a.click();
+  setTimeout(function(){try{URL.revokeObjectURL(a.href)}catch(e){}a.remove()},3000);vib('ok')}
+function xlsPer(){return (val('pDe')||'')+' a '+(val('pAte')||'')}
+function xlsProd(){var r=PROD_R;if(!r){mostrarErro('Faça a pesquisa primeiro.');return}
+  xlsxBaixar('Produtividade '+xlsPer(),[{nome:'Movimentações',linhas:[['Pessoa','Dias','Endereçou','Tirou','Transferências','Total','Fora do FIFO','Tempo ativo (h)','Por hora','Min. por embalagem','Inventário','Erros no inventário']].concat(r.lista.map(function(p){return [p.nome,p.dias,p.ent,p.sai,p.tra,p.total,p.fifo,p.horas,p.porHora==null?'':p.porHora,p.medio==null?'':p.medio,p.inv,p.ivDiv+p.ivNao]}))}])}
+function xlsTempo(){var r=TEMPO_R;if(!r){mostrarErro('Faça a pesquisa primeiro.');return}var eq={};r.ops.forEach(function(o){eq[o.op]=o});
+  var pp=[['Pessoa','Tarefa','Vezes','Média (s)','Média da equipe (s)']];r.pessoas.forEach(function(p){Object.keys(p.ops).forEach(function(k){pp.push([p.nome,r.nomes[k]||k,p.ops[k].n,p.ops[k].media,eq[k]?eq[k].media:''])})});
+  xlsxBaixar('Tempo das tarefas '+xlsPer(),[
+    {nome:'Tempo por tarefa',linhas:[['Tarefa','Vezes','Média (s)','Normal - mediana (s)']].concat(r.ops.map(function(o){return [o.nome,o.n,o.media,o.mediana]}))},
+    {nome:'Por pessoa',linhas:pp},
+    {nome:'Fora da curva',linhas:[['Quando','Pessoa','Tarefa','Tempo (s)','Vezes o normal']].concat(r.fora.map(function(x){return [x.quando,x.quem,x.nome,x.s,x.vezes]}))},
+    {nome:'Tempos do recebimento',linhas:r.trec&&r.trec.linhas.length?[r.trec.cab].concat(r.trec.linhas):[]}])}
+function xlsMov(a){var M=MV[a],k=M.k,r=M.r;if(!r){mostrarErro('Faça a pesquisa primeiro.');return}var f=$(k+'Pes').value,b=String(val(k+'Busca')||'').trim().toLowerCase();
+  var daP=function(x){return !f||String(x.quem).toUpperCase()===f.toUpperCase()},bate=function(x){return !b||[x.quem,x.tipo,x.end,x.dest,x.item,x.desc,x.quando,x.nf].join(' ').toLowerCase().indexOf(b)>=0};
+  var L=r.lista.filter(daP).filter(bate).map(function(x){var it=ITMAP[x.item]||[];return [x.quando,x.quem,x.tipo,x.end,x.dest,x.item,x.desc||it[1]||'',Number(x.qtd)||x.qtd||'',x.nf||'']});
+  var P=r.prob.filter(daP).map(function(x){return [x.quando,x.quem,x.tipo,x.end,x.item,x.det]});
+  xlsxBaixar(((a==='abs'?'Abastecimentos ':'Movimentações ')+(M.tx||'').replace(/[^\w\sÀ-ú-]/g,' ')).replace(/\s+/g,' ').trim(),[{nome:'Lançamentos',linhas:L.length?[['Quando','Quem','Tipo','Posição','Destino','Código','Descrição','Quantidade','NF']].concat(L):[]},
+    {nome:'Problemas',linhas:P.length?[['Quando','Quem','Tipo','Posição','Código','Detalhe']].concat(P):[]}])}
+function xlsInv(){var r=RI_R;if(!r||!r.lista.length){mostrarErro('Faça a pesquisa primeiro.');return}
+  xlsxBaixar('Resultado do inventário',[{nome:'Contagens',linhas:[['Código','Descrição','Posição','Resultado','Sistema','Contado','Data','Quem']].concat(r.lista.map(function(x){var ok=x.res==='Confere'||x.res==='Existe';return [x.item,x.desc,x.end,ok?'Bateu':x.res,x.sis===''||x.sis==null?'':Number(x.sis),x.cont===''||x.cont==null?'':Number(x.cont),x.data,x.quem]}))}])}
+function xlsQuar(){var L=QUAR.lista||[];if(!L.length){mostrarErro('Não há itens em quarentena.');return}
+  xlsxBaixar('Itens em quarentena',[{nome:'Quarentena',linhas:[['Código','Descrição','Quantidade','NF','Lote','Fornecedor','Quando','Motivo da irregularidade','Local','Situação','Decisão','Decidido por','Fotos']].concat(L.map(function(q){return [q.c,q.d||'',Number(q.q)||q.q||'',q.nf||'',q.lote||'',q.forn||'',q.quando||'',q.mot||'',q.local||'',q.sit||'Em quarentena',q.dec||'',q.por||'',q.fotos||'']}))}])}
+
+</script>
 </body>
 </html>
