@@ -1243,9 +1243,9 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
 
 <div id="s-nome" class="esc card">
   <div class="tit">Logística de Operação · Entrar</div>
-  <label>Nome</label><select id="nome"></select>
-  <label>Senha</label><div class="senhaBox"><input id="lSenha" type="password" autocomplete="off" data-lpignore="true" onkeydown="if(event.key==='Enter')entrar()"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
-  <label class="chk"><input type="checkbox" id="lManter"> Manter conectado neste celular</label>
+  <label for="nome">Usuário</label><input id="nome" type="text" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" maxlength="60" data-lpignore="true" onkeydown="if(event.key==='Enter'){event.preventDefault();$('lSenha').focus()}">
+  <label for="lSenha">Senha</label><div class="senhaBox"><input id="lSenha" type="password" autocomplete="off" data-lpignore="true" onkeydown="if(event.key==='Enter')entrar()"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+  <label class="chk"><input type="checkbox" id="lManter"> Manter conectado até o fim do turno</label>
   <p><button class="b bP" onclick="entrar()">Entrar</button></p>
   <div id="lManut"></div>
   <div id="lMsg"></div>
@@ -1254,7 +1254,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
 
 <div id="s-troca" class="esc card">
   <div class="tit">Crie sua senha</div>
-  <p>Escolha uma senha só sua, com pelo menos 4 caracteres.</p>
+  <p>Escolha uma senha só sua, com pelo menos 6 caracteres.</p>
   <label>Nova senha</label><div class="senhaBox"><input id="tS1" type="password" autocomplete="off" data-lpignore="true"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
   <label>Repita a senha</label><div class="senhaBox"><input id="tS2" type="password" autocomplete="off" data-lpignore="true"><button type="button" class="olho" onmousedown="event.preventDefault()" onclick="verSenha(this)" aria-label="Mostrar senha"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
   <p><button class="b bP" onclick="trocarSenha()">Salvar senha</button></p>
@@ -1265,7 +1265,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="tit">Usuários (só administrador)</div>
   <label>Nome</label><input id="uNome">
   <label>Senha provisória</label><input id="uSenha" type="text">
-  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (usuário genérico do turno)</option><option value="Inventário">Inventário (só Inventário)</option><option value="Qualidade">Qualidade (só liberação de material)</option></select>
+  <label>Perfil</label><select id="uPerf"><option value="Operador">Operação</option><option value="Gestor">Gestor (chefe)</option><option value="Administrador">Administrador</option><option value="Compras">Compras (só Recebimento)</option><option value="Portaria">Portaria (usuário genérico do turno)</option><option value="Inventário">Inventário (só Inventário)</option><option value="Qualidade">Qualidade (só liberação de material)</option><option value="Fiscal">Fiscal (só Recebimento: libera a nota)</option></select>
   <p><small>Operação e Gestor veem as telas do dia a dia e o painel. Administrador vê tudo, inclusive Equipe, Produtividade, Avisos e Usuários.</small></p>
   <p><button class="b bP" onclick="salvarUsu()">Cadastrar</button></p>
   <div id="uMsg"></div>
@@ -1428,6 +1428,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
     <button data-k="proc1" onclick="abrirProc(1)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
   <button data-k="pesq" onclick="ir('pesq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z" stroke="#2E2E30"/><path d="M16 16l5 5" stroke="#F26A1B"/></svg>Pesquisa</button>
     <button class="ges" data-k="ptv" onclick="ir('ptv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4" stroke="#2E2E30"/><path d="M10 8.5v5l4-2.5z" stroke="#F26A1B"/></svg>Programação da TV</button>
+    <button class="ges" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F26A1B"/></svg>Produtividade</button>
   </div>
   <div class="grpT" onclick="recolher(this)" data-g="rec"><span>Recebimento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
@@ -1442,9 +1443,11 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="grpT" onclick="recolher(this)" data-g="op"><span>Armazenamento</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button data-k="guardar" onclick="ir('guardar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 21V3M21 21V3M3 12h18M3 21h18" stroke="#2E2E30"/><path d="M9 15h6v6H9zM12 4.5v5M9.8 7.5 12 9.7l2.2-2.2" stroke="#F26A1B"/></svg>Endereçar</button>
+    <button class="opr" data-k="etqp" onclick="ir('etqp');epAbrir()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" stroke="#2E2E30"/><path d="M7.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3z" stroke="#F26A1B"/></svg>Etiqueta de produto</button>
     <button data-k="parm" onclick="ir('parm');paraArm()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17h11V7H3z" stroke="#2E2E30"/><path d="M14 11h4l3 3v3h-7" stroke="#2E2E30"/><circle cx="7" cy="18.5" r="1.5" stroke="#2E2E30"/><circle cx="17" cy="18.5" r="1.5" stroke="#2E2E30"/><path d="M6 12h5M9 9.5l2.5 2.5L9 14.5" stroke="#F26A1B"/></svg>Para armazenar</button>
     <button data-k="tend" onclick="ir('tend');xfLimpa()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="13" width="7" height="7" rx="1" stroke="#2E2E30"/><rect x="14.5" y="4" width="7" height="7" rx="1" stroke="#2E2E30"/><path d="M6 10V7.5h6M10 5.5l2 2-2 2" stroke="#F26A1B"/></svg>Transferência de endereço</button>
     <button data-k="desfazer" onclick="ir('desfazer')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F26A1B"/></svg>Movimentações</button>
+    <button class="ges" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F26A1B"/></svg>Cadastrar item</button>
     <button data-k="trein" onclick="abrirProc(3)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
     <button class="adm" data-k="rarm" onclick="ir('rarm');abrirRArm()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#2E2E30"/><path d="M7 8h6M7 12h4M7 16h6" stroke="#2E2E30"/><rect x="14" y="12" width="6" height="7" rx="1" stroke="#F26A1B"/><path d="M15.5 12v-1.5a1.5 1.5 0 0 1 3 0V12" stroke="#F26A1B"/></svg>Regras da área</button>
     <button data-k="reorg" onclick="ir('reorg');reorg()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M14 5l3 3-3 3" stroke="#2E2E30"/><path d="M20 16H7M10 13l-3 3 3 3" stroke="#F26A1B"/></svg>Reorganizar</button>
@@ -1453,6 +1456,7 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div class="menu">
     <button data-k="tirar" onclick="ir('tirar')" class="pri"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 17h20M4 20a1.5 1.5 0 1 0 0-.1M12 20a1.5 1.5 0 1 0 0-.1M20 20a1.5 1.5 0 1 0 0-.1M18 11.5h4M20.5 10l1.5 1.5-1.5 1.5" stroke="#2E2E30"/><path d="M4 10h5v5H4zM11 8h5v7h-5z" stroke="#F26A1B"/></svg>Abastecer produção</button>
     <button data-k="trf" onclick="ir('trf')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 8h13M20 16H7" stroke="#2E2E30"/><path d="M14 5l3 3-3 3M10 13l-3 3 3 3" stroke="#F26A1B"/></svg>Movimentações</button>
+    <button class="opr" data-k="etqp" onclick="ir('etqp');epAbrir()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" stroke="#2E2E30"/><path d="M7.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3z" stroke="#F26A1B"/></svg>Etiqueta de produto</button>
     <button data-k="dev" onclick="ir('dev');devIni()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 17h20M4 20a1.5 1.5 0 1 0 0-.1M12 20a1.5 1.5 0 1 0 0-.1M20 20a1.5 1.5 0 1 0 0-.1" stroke="#2E2E30"/><path d="M14 12H6m3-3-3 3 3 3M15 8h5v7h-5z" stroke="#F26A1B"/></svg>Devolução da produção</button>
     <button data-k="lays" onclick="ir('lays')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v14H3z" stroke="#2E2E30"/><path d="M6 8h3v3H6zM10.5 8h3v3h-3zM15 8h3v3h-3zM6 13.5h3v3H6zM10.5 13.5h3v3h-3z" stroke="#F26A1B"/></svg>Layouts das áreas</button>
     <button data-k="proc4" onclick="abrirProc(4)"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 5l10 5-10 5L2 10z" stroke="#2E2E30"/><path d="M6 12v5c0 2 12 2 12 0v-5" stroke="#F26A1B"/></svg>Procedimento</button>
@@ -1464,16 +1468,14 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
     <button data-k="resinv" onclick="ir('resinv')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2" stroke="#2E2E30"/><path d="M9 17v-3M12 17v-6M15 17v-4" stroke="#F26A1B"/></svg>Resultado do inventário</button>
     <button data-k="etq" onclick="ir('etq')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" stroke="#2E2E30"/><path d="M7.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3z" stroke="#F26A1B"/></svg>Etiquetas</button>
   </div>
-  <div class="grpT ges" onclick="recolher(this)" data-g="ges"><span>Gestão</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
+  <div class="grpT adm" onclick="recolher(this)" data-g="ges"><span>Gestão</span><span style="display:flex;align-items:center;gap:8px"><span class="bdg"></span><i class="seta"></i></span></div>
   <div class="menu">
     <button class="adm" data-k="etqt" onclick="ir('etqt');etqtPintar()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18v12H3z" stroke="#2E2E30"/><path d="M6 9h4v4H6zM13 9h5M13 12h5M6 15h12" stroke="#F26A1B"/></svg>Etiqueta de teste</button>
     <button class="adm" data-k="eq" onclick="ir('eq');listarEquipe()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M9 5a3 3 0 1 0 0 6 3 3 0 1 0 0-6zM3 20c0-4 3-6 6-6s6 2 6 6" stroke="#2E2E30"/><path d="M17 6.5a2.5 2.5 0 1 0 0 5M17 14c2.5.3 4 2 4 5" stroke="#F26A1B"/></svg>Equipe</button>
     <button class="adm" data-k="cal" onclick="ir('cal');abrirCal()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 5h18v16H3zM3 10h18" stroke="#2E2E30"/><path d="M8 3v4M16 3v4M8 14h3" stroke="#F26A1B"/></svg>Calendário</button>
     <button class="adm" data-k="prog" onclick="ir('prog');abrirProg()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M5 4h14v17H5z" stroke="#2E2E30"/><path d="M9 9h6M9 13h6M9 17h4" stroke="#F26A1B"/></svg>Programação</button>
     <button class="adm" data-k="falt" onclick="ir('falt');abrirFaltas()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM3 21c0-4 3-7 7-7" stroke="#2E2E30"/><path d="M16 15l5 5M21 15l-5 5" stroke="#F26A1B"/></svg>Faltas</button>
-    <button class="ges" data-k="prod" onclick="ir('prod');abrirProd()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11" stroke="#2E2E30"/><path d="M5 10l6-4 4 3 5-4" stroke="#F26A1B"/></svg>Produtividade</button>
     <button class="adm" data-k="usu" onclick="ir('usu');listarUsu()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM4 21c0-4 4-7 8-7s8 3 8 7" stroke="#2E2E30"/><path d="M16.5 4.5l1.5 1.5 3-3" stroke="#F26A1B"/></svg>Usuários</button>
-    <button class="ges" data-k="cad" onclick="ir('cad');abrirCad()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M4 10l8 4 8-4M4 10v7l8 4 8-4v-7M12 14v7M4 10l8-4 8 4" stroke="#2E2E30"/><path d="M18 2v6M15 5h6" stroke="#F26A1B"/></svg>Cadastrar item</button>
     <button class="adm" data-k="regras" onclick="ir('regras');abrirRegras()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21z" stroke="#2E2E30"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2" stroke="#F26A1B"/></svg>Configurações</button>
     <button class="adm" data-k="desemp" onclick="ir('desemp');abrirDesemp()"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2E2E30" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" stroke="#F26A1B" d="M5 10l6-4 4 3 5-4"/></svg>Desempenho do app</button>
     <button class="adm" data-k="sess" onclick="ir('sess')"><svg class="ic icL" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" aria-hidden="true"><path d="M10 4H5v16h5" stroke="#2E2E30"/><path d="M14 8l4 4-4 4M18 12H9" stroke="#F26A1B"/></svg>Deslogar todos</button>
@@ -1593,6 +1595,24 @@ html body button.b.b.b.b.b.b.b.b:not(#z1):not(#z2).on{background:#F26A1B;color:#
   <div id="rrMsg"></div>
 </div>
 
+<div id="s-etqp" class="esc card">
+  <div class="tit">Etiqueta de produto</div>
+  <div class="perSeg pqAbas" role="tablist" aria-label="Tipo de etiqueta"><button type="button" id="epAbN" class="at" role="tab" onclick="epAba('n')">Pela nota</button><button type="button" id="epAbA" role="tab" onclick="epAba('a')">Avulsa</button></div>
+  <div id="epNota">
+    <label class="obr" for="epNF">Nota fiscal</label><input id="epNF" maxlength="9" inputmode="numeric" autocomplete="off" placeholder="Número da nota fiscal (9 números)" oninput="this.value=this.value.replace(/\D/g,'').slice(0,9);if(this.value.length===9)epBuscaNF()">
+    <div id="epLista"></div>
+  </div>
+  <div id="epAv" hidden>
+    <label class="obr" for="epCod">Produto</label><div class="camBox"><input id="epCod" data-lista="1" autocomplete="off" onchange="epDesc()" oninput="agErroLimpa(this)"></div>
+    <div id="epDsc" class="rcDica"></div>
+    <label class="obr" for="epQ">Quantidade por etiqueta</label><input id="epQ" type="number" inputmode="decimal" min="0" step="any" oninput="agErroLimpa(this)">
+    <label class="obr" for="epN">Quantas etiquetas</label><input id="epN" type="number" inputmode="numeric" min="1" max="200" step="1" value="1" oninput="agErroLimpa(this)">
+    <label for="epNFa">Nota fiscal (se tiver)</label><input id="epNFa" maxlength="9" inputmode="numeric" autocomplete="off" oninput="this.value=this.value.replace(/\D/g,'').slice(0,9);agErroLimpa(this)">
+    <label class="obr" for="epMot">Motivo</label><select id="epMot" onchange="agErroLimpa(this)"><option value="">Escolha o motivo</option><option>Etiqueta danificada</option><option>Material sem etiqueta</option><option>Etiqueta com dado errado</option><option>Outro</option></select>
+    <p class="rcDica">A etiqueta avulsa fica registrada com o seu nome, a data e o motivo.</p>
+    <div class="bLin" id="epAvBt"></div>
+  </div>
+</div>
 <div id="s-parm" class="esc card">
   <div class="tit">Para armazenar</div>
   <div id="paLista"></div>
@@ -2085,6 +2105,16 @@ html body main .esc .xlsP{margin-top:12px}
 #detJan .comoRes{background:#FFF4EA;border-left:5px solid #FF9A3C;border-radius:10px;padding:10px 12px;margin:0 0 12px;line-height:1.45}
 #detJan .comoRes small{display:block;margin-top:4px;color:#4A4B50;font-size:13.5px}
 html body main #s-recag #agHoras .rcDica button.infDetB{display:inline!important;width:auto!important;min-width:0!important;min-height:0!important;height:auto!important;padding:0 0 0 4px!important;margin:0!important;background:none!important;box-shadow:none!important;border:0!important;color:#C2560F!important;font-weight:700!important;font-size:inherit!important;text-decoration:underline;border-radius:0!important}
+
+/* 150: perfil Gestor não vê os cartões de operação (vê tudo o resto) */
+body.ehGestor .menu :is([data-k="guardar"],[data-k="parm"],[data-k="tend"],[data-k="tirar"],[data-k="dev"],[data-k="reorg"],[data-k="inv"],[data-k="etqp"]){display:none!important}
+#s-etqp .pqAbas{margin:4px 0 12px}
+html body main #s-etqp .pqAbas button{background:#E9EAEC!important;color:#2E2E30!important;font-weight:600!important;box-shadow:none!important}
+html body main #s-etqp .pqAbas button.at{background:#FF9A3C!important;color:#231F20!important;font-weight:800!important}
+html body main #s-rec .rcChips button small,html body main #s-recag .rcChips button small,#detJan .rcChips button small{display:block;font-size:11.5px;font-weight:600;color:#6B6B6F}
+html body main #s-recag #agHoras .rcChips button{min-width:132px}
+#detJan .rcChips{display:flex;flex-wrap:wrap;gap:8px}#detJan .rcChips button{padding:10px 14px;border-radius:999px;background:#E9EAEC;border:0;font-weight:700;font-size:15px}
+#rdBox .rdDicaF{margin:4px 0 8px;font-size:12.5px}
 </style><div class="lo"><h2 class="sr-only">Tela da TV: animação das empilhadeiras com letreiro rolando das conquistas do almoxarifado.</h2><div id="cenaTV"><svg id="svgTV" width="100%" viewBox="0 0 420 226" role="img" style="display:block;width:100%;height:auto;aspect-ratio:420/226">
 <title>Empilhadeiras trabalhando</title><desc>Tela da TV: a operadora da contrabalançada traz o pallet; o operador da retrátil desce, bipa a etiqueta do pallet com o celular, sobe, leva até o porta-pallets, desce, bipa a etiqueta da posição e guarda.</desc>
 <defs><linearGradient id="gOr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA24A"/><stop offset="1" stop-color="#E2691A"/></linearGradient>
@@ -2271,7 +2301,7 @@ html body main #s-recag #agHoras .rcDica button.infDetB{display:inline!important
  <button data-t="g-op" onclick="abrirGrupo('op')"><svg viewBox="0 0 24 24"><path d="M4 21V3M20 21V3M4 9h16M4 15h16"/><path class="ac" d="M7 6h4v3H7zM13 12h4v3h-4z"/></svg><span>Armazenamento</span></button>
  <button data-t="g-abs" onclick="abrirGrupo('abs')"><svg viewBox="0 0 24 24"><path d="M2 17h20M4 20a1.5 1.5 0 1 0 0-.1M12 20a1.5 1.5 0 1 0 0-.1M20 20a1.5 1.5 0 1 0 0-.1"/><path class="ac" d="M4 10h5v5H4zM11 8h5v7h-5z"/><path d="M18 11.5h4M20.5 10l1.5 1.5-1.5 1.5"/></svg><span>Abastecimento de produção</span></button>
  <button data-t="g-inv" class="nvMais" onclick="abrirGrupo('inv')"><svg viewBox="0 0 24 24"><path d="M9 3h6v3H9zM8 4.5H6V21h12V4.5h-2"/><path class="ac" d="M9 13.5l2 2 4-4"/></svg><span>Invent.</span></button>
- <button data-t="g-ges" class="ges nvMais" onclick="abrirGrupo('ges')"><svg viewBox="0 0 24 24"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" d="M5 10l6-4 4 3 5-4"/></svg><span>Gestão</span></button>
+ <button data-t="g-ges" class="adm nvMais" onclick="abrirGrupo('ges')"><svg viewBox="0 0 24 24"><path d="M2 21h20M5 21v-6M11 21v-9M17 21v-11"/><path class="ac" d="M5 10l6-4 4 3 5-4"/></svg><span>Gestão</span></button>
  <button data-t="mais" id="nvMaisB" onclick="abrirMais()" aria-haspopup="true"><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg><span>Mais</span></button>
  <span id="navAt" style="display:none"></span>
 </nav>
@@ -2323,7 +2353,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=149,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=151,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2822,8 +2852,8 @@ var PROCS={
  2:{n:'PROLOG 002',t:'Procedimento de recebimento',area:'Recebimento (materiais produtivos)',obj:'Receber os materiais produtivos na janela agendada, do motorista na portaria até o último pallet guardado, medindo o tempo de cada etapa.',aplic:'Toda entrega de fornecedor agendada por Compras ou Comex no Controle de janela de recebimento. Vale também, no futuro, para a expedição.',resp:'Agendamento: Compras e Comex. Portaria: chegada, EPIs e liberações. Fiscal: pré-nota. Execução na doca: o mesmo operador do recebimento até a armazenagem. Aval da entrega crítica e do tempo por volume: líder de logística.',rec:['Celular ou computador com o app na portaria','Celular com o app na doca, com o volume de mídia alto (som do aviso)','Empilhadeira ou paleteira para descarregar','Doca de descarregamento','EPIs do PROLOG 001'],
   ops:[{k:'',t:'Regra: sem agendamento não recebe',p:['Caminhão sem agendamento não entra para descarregar.','A portaria avisa o comprador, que pode agendar na hora, só em horário livre, entrando na fila como qualquer outra entrega.','Sem horário livre no dia, o motorista volta outro dia.']},
    {k:'',t:'Agendar a entrega (Compras e Comex)',p:['Toque em Agendar entrega.','Escolha a data (pelo calendário ou digitando). Em data futura, o app mostra todas as janelas livres desde as 8h e tira só as já ocupadas; hoje, só os horários depois de agora. Das 8h às 16h, com o almoço das 12h às 13h travado; fechado em fim de semana e feriado.','Informe o volume total do container (pallets ou caixas). A duração da janela depende dele: 15 min por entrega + 3 min por volume + 20% de folga, arredondada para a meia hora seguinte (estimativa inicial; o cálculo é vivo e se ajusta com o tempo medido). Toque em Como é calculado para ver o detalhe.','Toque no horário: o app só mostra os horários em que a janela inteira cabe. Peça para o caminhão chegar 15 minutos antes, para passar pela portaria: a janela começa quando ele encosta na doca.','Toque no campo Fornecedor e escolha na lista (dá para procurar por nome, código ou CNPJ). Se não estiver, cadastre em Fornecedores ou pelo botão no fim da lista.','Cada passo aparece um de cada vez. Fechou o passo, ele vira um resumo: toque nele para alterar.','Informe a nota fiscal e, daquela nota, os produtos: código (lista) e quantidade. Container com mais de uma nota: toque em Incluir mais notas e repita.','Toque em Seguir para agendar e em Agendar entrega. Se o volume destoar muito da quantidade de produtos, o app pede para você confirmar.','Não coube no dia? Escolha outro dia. Se for urgente fora do padrão, marque Entrega crítica, sugira o horário e explique o motivo: fica aguardando o aval do almoxarifado.']},
-   {k:'',t:'Portaria e fiscal',p:['Toque em Portaria e fiscal e no cartão da entrega.','Toque em Registrar chegada do motorista. Data, hora e fornecedor vêm preenchidos: informe o nome do motorista, a placa, o tipo de veículo e marque a nota fiscal que ele trouxe, entre as agendadas. A portaria terceirizada informa também o nome de quem está no turno, a cada registro.','Confira os EPIs do motorista (bota e calça) e marque a confirmação. Sem EPI, não entra.','Toque em Registrar chegada: o tempo começa a contar.','Leve a nota ao fiscal e toque em Nota no fiscal.','O fiscal confere o pedido e os preços (pré-nota). Liberou, toque em Liberado pelo fiscal.','Toque em Liberar para a doca: o almoxarifado recebe o aviso com som e vibração.']},
-   {k:'rec',t:'Receber na doca e armazenar (o mesmo operador até o fim)',p:['Com o aviso, abra o cartão da entrega em Janelas de recebimento.','Com o caminhão na doca e o baú aberto, pegue a nota, confira os EPIs de novo e toque em Chegada na doca e conferência.','Toque em Início do descarregamento e, ao terminar, em Fim do descarregamento.','Toque em Conferência e liberação do motorista. A conferência é cega: você vê a nota e os códigos, conta e digita a quantidade de cada produto e os volumes recebidos. O app compara por trás.','Se a contagem não bater, o app pede para contar de novo os campos marcados. Se bater na segunda vez, está certo. Se não bater de novo, abre a irregularidade: motivo (opcional), fotos guiadas uma por vez (placa do cavalo, placa da carreta, interior do baú, material avariado e uma livre, até 6) e a assinatura do motorista. Material avariado também abre a irregularidade, e a foto do material é obrigatória.','Irregularidade nunca trava a operação: a carga não é recusada. O material irregular vai para quarentena (cartão Itens em quarentena, dentro do Recebimento), o comprador é avisado na tela e por e-mail e decide: seguradora, interno ou aceito.','Etiquete o material e toque em Fim da etiquetagem.','Enderece cada pallet pelo Endereçar, lendo a etiqueta do produto. Quando o último pallet da nota for guardado, a entrega fecha sozinha e o tempo total é gravado.','Se a quantidade da etiqueta não bater e a entrega não fechar sozinha, toque em Encerrar armazenagem no cartão.']},
+   {k:'',t:'Portaria e fiscal',p:['Toque em Portaria e fiscal e no cartão da entrega.','Toque em Registrar chegada do motorista. Data, hora e fornecedor vêm preenchidos: informe o nome do motorista, a placa, o tipo de veículo e marque a nota fiscal que ele trouxe, entre as agendadas. A portaria terceirizada informa também o nome de quem está no turno, a cada registro.','Confira os EPIs do motorista (bota e calça) e marque a confirmação. Sem EPI, não entra.','Toque em Registrar chegada: o tempo começa a contar.','Leve a nota ao fiscal e toque em Nota no fiscal.','O fiscal confere o pedido e os preços (pré-nota). Liberou, o fiscal (perfil Fiscal) ou a portaria toca em Liberado pelo fiscal.','Toque em Liberar para a doca: o almoxarifado recebe o aviso com som e vibração.','Motorista chegou antes do dia agendado? Abra a entrega e toque em Motorista chegou adiantado. O comprador é avisado na tela e por e-mail e decide: remarcar para hoje num horário livre ou pedir entrega crítica. Aguarde a decisão dele; a operação não decide.']},
+   {k:'rec',t:'Receber na doca e armazenar (o mesmo operador até o fim)',p:['Quem toca em Chegada na doca é o dono do recebimento: só ele marca as etapas seguintes. Troca de turno? Quem vai continuar toca em Mais opções › Assumir este recebimento (fica registrado).','Com o aviso, abra o cartão da entrega em Janelas de recebimento.','Com o caminhão na doca e o baú aberto, pegue a nota, confira os EPIs de novo e toque em Chegada na doca e conferência.','Toque em Início do descarregamento e, ao terminar, em Fim do descarregamento.','Toque em Conferência e liberação do motorista. A conferência é cega: você vê a nota e os códigos, conta e digita a quantidade de cada produto e os volumes recebidos. O app compara por trás.','Se a contagem não bater, o app pede para contar de novo os campos marcados. Se bater na segunda vez, está certo. Se não bater de novo, abre a irregularidade: motivo (opcional), fotos guiadas uma por vez (placa do cavalo, placa da carreta, interior do baú, material avariado e uma livre, até 6) e a assinatura do motorista. Material avariado também abre a irregularidade, e a foto do material é obrigatória.','Irregularidade nunca trava a operação: a carga não é recusada. O material irregular vai para quarentena (cartão Itens em quarentena, dentro do Recebimento), o comprador é avisado na tela e por e-mail e decide: seguradora, interno ou aceito.','Etiquete o material e toque em Fim da etiquetagem.','Enderece cada pallet pelo Endereçar, lendo a etiqueta do produto. Quando o último pallet da nota for guardado, a entrega fecha sozinha e o tempo total é gravado.','Se a quantidade da etiqueta não bater e a entrega não fechar sozinha, toque em Encerrar armazenagem no cartão.']},
    {k:'',t:'Tempo por volume (líder de logística)',p:['O app grava o tempo de cada etapa e o tipo de veículo de cada entrega, na aba Tempos do recebimento.','Até a primeira aprovação, o agendamento usa a estimativa inicial: 15 min por entrega + 3 min por volume + 20% de folga.','A cada 3 entregas medidas, aparece em Janelas de recebimento a proposta: tempo de descarregamento por volume e das outras etapas da doca, da chegada na doca até a identificação (a espera na fila Para armazenar não conta).','Toque em Usar esse tempo para o agendamento passar a usar o tempo medido, com 20% de folga. Ou em Agora não, para esperar mais medições.']},
    {k:'',t:'Cores dos cartões',p:['Cada cartão tem fundo suave e uma faixa na lateral com a cor da situação.','Cinza: agendada. Cinza com faixa laranja: atrasada.','Amarelo: em operação (portaria, fiscal ou doca).','Verde: concluída. Vermelho: divergência ou ocorrência.','Pulsa devagar só o que pede ação: atrasada, operação passando do horário e divergência ainda aberta.']}]},
  3:{n:'PROLOG 003',t:'Procedimento de armazenamento',area:'Armazenamento (porta-pallets)',obj:'Guardar no porta-pallets só material identificado, na posição certa, mantendo o FIFO.',aplic:'Todo material com etiqueta do TOTVS que entra no porta-pallets do almoxarifado.',resp:'Execução: operador de empilhadeira. Acompanhamento: líder de logística.',rec:['Celular com o app','Empilhadeira ou paleteira','Etiqueta do TOTVS no material','EPIs do PROLOG 001'],
@@ -3086,7 +3116,7 @@ function naoUsarJuntar(i){var pre=$('jtPre');if(pre)pre.innerHTML='';var c=$('ec
   END_QTDS[document.querySelectorAll('#gRes .endCard').length]=END_QTDS[i];juntarN1()}
 /* Descobre em qual grupo do menu (Endereçamento, Gestão...) fica cada tela, para o Voltar levar de volta a ele */
 function grupoDaTela(t){var g='';document.querySelectorAll('.grpT[data-g]').forEach(function(el){var m=el.nextElementSibling;if(m&&m.querySelector('[data-k="'+t+'"]'))g=el.getAttribute('data-g')});return g}
-function veGes(){return LS.getItem('jeAdm')==='1'||perfilUsu()==='Gestor'}   /* 148: o gestor entra na Gestão (vê a Produtividade e o Cadastro) */
+function veGes(){return LS.getItem('jeAdm')==='1'}   /* 150: a aba Gestão é só do administrador (tem coisas pessoais da equipe) */
 function abrirGrupo(g){if(g==='ges'&&!veGes())g='ini';
   /* já está nessa área: toques repetidos na barra de baixo não refazem a tela (os cartões mexiam) */
   if(TELA_ATUAL==='menu'&&GRUPO===g&&$('s-menu').style.display==='block')return;
@@ -3136,7 +3166,7 @@ function chamar(fn,args,cb){if(COM_TOKEN[fn])args=[quem()].concat(args||[]);
   /* 13/11/2026 (versão 122): o número fica guardado no celular, e vale mesmo se o operador fechar e abrir o app */
   var rk=gk?ridChave(gk):'',rid='';if(rk){ridCarregar();var rp=RID_PEND[rk];if(rp&&Date.now()-rp.t<RID_VALE)rid=rp.id;else{rid=novoRid();RID_PEND[rk]={id:rid,t:Date.now()};ridSalvar()}}
   var b=(MODO!=='tv'&&TOQUE.el&&Date.now()-TOQUE.t<4000)?TOQUE.el:null;TOQUE.el=null;espera(true,b);
-  var bola=!!b||(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn]);
+  var bola=!!b||(MODO!=='tv'&&PROC_BUSCA.test(fn)&&!SEM_BOLA[fn])||(MODO!=='tv'&&TOQUE.dig&&Date.now()-TOQUE.dig<4000&&!SEM_BOLA[fn]&&!/^api(RecAlerta|Resumo|Avisos|Desemp|Segurar|Soltar|Sessao)/.test(fn));if(bola&&!b)TOQUE.dig=0;   /* 150: busca disparada digitando também mostra a bolinha */
   if(bola)procLiga(fn);if(PROC_GRAVA.test(fn)){AV_T=0;if(window.PQ_CACHE)PQ_CACHE.t=0}var fim=function(){espera(false,b);if(bola)procDesliga()};
   /* 12/11/2026: falha de conexão. Pedido automático (ninguém tocou): fica em silêncio. Pesquisa: tenta de novo sozinha
      depois de 2 s. Gravação: não repete sozinha (pode ter gravado e só a resposta não chegou) e pede para conferir */
@@ -3201,14 +3231,17 @@ function ir(t,manter){if(t==='cpos'){ir('pesq',manter);pqAba('pos');return}   /*
 }
 function guardarSessao(r){LS.setItem('jeTok',r.token||quem());LS.setItem('jeNome',r.nome);LS.setItem('jeAdm',r.admin?'1':'0');LS.setItem('jePerf',r.perfil||(r.admin?'Administrador':'Operador'))}
 function perfilUsu(){return LS.getItem('jePerf')||'Operador'}
-var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário',Qualidade:'Qualidade'};
+var NOME_PERFIL={Operador:'Operação',Gestor:'Gestor',Administrador:'Administrador',Compras:'Compras',Portaria:'Portaria','Inventário':'Inventário',Qualidade:'Qualidade',Fiscal:'Fiscal'};
 function entrar(){
   $('lMsg').innerHTML='Entrando...';
   /* 12/11/2026 (versão 120): a senha sai do campo antes de ir ao sistema, para o Chrome não oferecer salvar */
-  var sn=$('lSenha').value;$('lSenha').value='';
-  chamar('apiLogin',[$('nome').value,sn,$('lManter')&&$('lManter').checked],function(r){
+  var us=String($('nome').value||'').trim(),sn=$('lSenha').value,mt=!!($('lManter')&&$('lManter').checked);
+  if(!us||!sn){$('lMsg').innerHTML=msg('erro','Informe o usuário e a senha.');return}
+  $('lSenha').value='';
+  chamar('apiLogin',[us,sn,mt],function(r){
     if(!r.ok){$('lMsg').innerHTML=msg('erro',r.msg);return}
-    guardarSessao(r);marcaUso();$('lSenha').value='';$('lMsg').innerHTML='';
+    /* 151: "Manter conectado até o fim do turno" tira só a saída por 30 min sem uso; o sistema encerra a sessão no fim do turno */
+    guardarSessao(r);LS.setItem('jeManter',mt?'1':'0');marcaUso();$('lSenha').value='';$('nome').value='';if($('lManter'))$('lManter').checked=false;$('lMsg').innerHTML='';carregarNomes();
     if(r.trocar){ir('troca');return}
     aposEntrar(true);
   });
@@ -3224,14 +3257,17 @@ function trocarSenha(){
    quando o app volta do fundo ou é aberto de novo. A TV não sai. */
 var INATIVO_MS=30*60000;
 function marcaUso(){try{LS.setItem('jeUso',String(Date.now()))}catch(e){}}
-function checaInativo(){if(MODO==='tv'||!quem())return false;var u=Number(LS.getItem('jeUso')||0);
+function checaInativo(){if(MODO==='tv'||!quem()||LS.getItem('jeManter')==='1')return false;var u=Number(LS.getItem('jeUso')||0);
   if(u&&Date.now()-u>INATIVO_MS){sair();setTimeout(function(){avisoJan('Você ficou 30 minutos sem usar o app. Entre de novo com o seu nome e a sua senha.')},150);return true}return false}
 ['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,function(){if(!checaInativo())marcaUso()},true)});
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')checaInativo()});
 setInterval(checaInativo,60000);setTimeout(function(){if(!checaInativo()&&quem())marcaUso()},500);
-function sair(){chamar('apiSair',[quem()],function(){});AV_T=0;if($('avisos'))$('avisos').innerHTML='';['jeTok','jeNome','jeAdm','jePerf','jeAvC'].forEach(function(k){LS.removeItem(k)});AV={meus:[],res:null,sis:[],ges:null};carregarNomes();ir('nome')}
+function sair(){chamar('apiSair',[quem()],function(){});AV_T=0;if($('avisos'))$('avisos').innerHTML='';['jeTok','jeNome','jeAdm','jePerf','jeAvC','jeManter','jeNomesC'].forEach(function(k){LS.removeItem(k)});NOMES=[];AV={meus:[],res:null,sis:[],ges:null};carregarNomes();ir('nome')}
 function avisoManut(){if(MODO==='tv'||!$('lManut'))return;chamar('apiAvisoManut',[],function(m){$('lManut').innerHTML=m&&m.ativo?msg('aviso','🔧 '+m.msg):''})}
-function carregarNomes(){pintaVer();avisoManut();chamar('apiNomes',[],function(l){if(!Array.isArray(l))return;$('nome').innerHTML=l.map(function(n){return '<option>'+esc(n)+'</option>'}).join('');var n=nomeUsu();if(n)$('nome').value=n;
+/* 151 (18/11/2026): a entrada não mostra mais a lista de nomes. Os nomes da equipe (filtros por pessoa e recontagem)
+   só vêm depois do login e ficam em NOMES. */
+var NOMES=(function(){try{var l=JSON.parse(LS.getItem('jeNomesC')||'[]');return Array.isArray(l)?l:[]}catch(e){return []}})();
+function carregarNomes(){pintaVer();avisoManut();if(MODO==='tv'||!quem())return;chamar('apiNomesEquipe',[quem()],function(l){if(!Array.isArray(l))return;NOMES=l;
   try{LS.setItem('jeNomesC',JSON.stringify(l))}catch(e){}
   /* abertura rápida: se a tela de Movimentações já estiver aberta, a lista de pessoas é completada agora */
   if(typeof mvPessoas==='function'){mvPessoas('mv',MV.arm.r&&MV.arm.r.pessoas);mvPessoas('ab',MV.abs.r&&MV.abs.r.pessoas)}})}
@@ -3265,7 +3301,7 @@ function salvarUsu(){
     $('uMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);if(r.ok){$('uNome').value='';$('uSenha').value='';$('uPerf').value='Operador';listarUsu();carregarNomes()}});
 }
 function redefinir(n){
-  perguntar('Senha provisória para '+n+' (mínimo 4 caracteres):',function(p){if(!p)return;
+  perguntar('Senha provisória para '+n+' (mínimo 6 caracteres):',function(p){if(!p)return;
   chamar('apiRedefinirSenha',[quem(),n,p],function(r){$('uMsg').innerHTML=msg(r.ok?'ok':'erro',r.msg);listarUsu()})},null,{campo:1,ok:'Salvar'});
 }
 function mudarPerfil(n,at,sel){
@@ -5431,8 +5467,7 @@ function perTx(k){var F=perFaixa(k),br=function(x){return x.split('-').reverse()
 var MV={arm:{k:'mv',r:null,max:100},abs:{k:'ab',r:null,max:100}};   /* mostra 100 de cada vez: a tela abre mais rápido */
 /* Lista de pessoas já pronta ao entrar (03/11/2026): vem da lista de usuários que o app já carrega, mais quem aparecer na pesquisa */
 function mvPessoas(k,extra){var sl=$(k+'Pes');if(!sl)return;var v=sl.value,m={};
-  [].forEach.call(($('nome')||{options:[]}).options,function(o){if(o.text)m[o.text]=1});(extra||[]).forEach(function(n){if(n)m[n]=1});
-  if(!Object.keys(m).length){try{(JSON.parse(LS.getItem('jeNomesC')||'[]')||[]).forEach(function(n){if(n)m[n]=1})}catch(e){}}   /* guardada no celular */
+  (NOMES||[]).forEach(function(n){if(n)m[n]=1});(extra||[]).forEach(function(n){if(n)m[n]=1});
   sl.innerHTML='<option value="">Todos</option>'+Object.keys(m).sort(function(a,b){return a.localeCompare(b)}).map(function(p){return '<option'+(p===v?' selected':'')+'>'+esc(p)+'</option>'}).join('');if(v)sl.value=v}
 function mvAbrir(a){var k=MV[a].k;fFecha();perIni(k);mvPessoas(k);MV[a].r=null;perVazio(k)}   /* entra sem buscar nada */
 function mvBuscar(a,pes){var M=MV[a],k=M.k,F=perFaixa(k);perPinta(k);$(k+'Res').innerHTML='';M.max=100;
@@ -6069,7 +6104,7 @@ var _irGuia=ir;ir=function(t,m){if(!m&&ACAO.indexOf(t)>=0)limparTela(t);_irGuia(
    Perfil Compras: só enxerga esta área. */
 var REC={per:'d',lista:[],perm:{},info:null,sel:null,itens:[],hora:'',tm:0,rf:0};
 var DSEM=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-function ehRestrito(){return perfilUsu()==='Compras'||perfilUsu()==='Portaria'||perfilUsu()==='Qualidade'}   /* Compras, Portaria e Qualidade: só a área Recebimento */
+function ehRestrito(){return ['Compras','Portaria','Qualidade','Fiscal'].indexOf(perfilUsu())>=0}   /* Compras, Portaria e Qualidade: só a área Recebimento */
 function podeQual(){return ['Qualidade','Gestor','Administrador'].indexOf(perfilUsu())>=0}
 /* ---------- 146 (17/11/2026): QUALIDADE ----------
    Lista do material com "Aguardar liberação" (vem da conferência do Recebimento). A liberação continua no TOTVS;
@@ -6122,8 +6157,8 @@ function aplicarPerfilRec(){document.body.classList.toggle('pCompras',ehRestrito
   /* 146: cartão Qualidade (Qualidade, Gestor e Administrador); o perfil Qualidade vê só ele */
   document.querySelectorAll('.qlt').forEach(function(b){b.style.display=podeQual()?'':'none'});
   document.querySelectorAll('.menu [data-k="proc2"]').forEach(function(b){b.style.display=perfilUsu()==='Qualidade'?'none':''})}
-function podePortaria(){return ['Portaria','Administrador'].indexOf(perfilUsu())>=0}   /* 17/11/2026: a gestão nunca cobre a portaria */
-function podeReceber(){return ['Operador','Gestor','Administrador'].indexOf(perfilUsu())>=0}
+function podePortaria(){return ['Portaria','Fiscal','Administrador'].indexOf(perfilUsu())>=0}   /* 17/11/2026: a gestão nunca cobre a portaria */
+function podeReceber(){return ['Operador','Administrador'].indexOf(perfilUsu())>=0}   /* 150: o gestor acompanha, não opera */
 var _mostrarGrupoR=mostrarGrupo;mostrarGrupo=function(){if(ehRestrito())GRUPO='rec';if(ehInvPerf()&&GRUPO!=='ini')GRUPO='inv';_mostrarGrupoR()};
 var _abrirGrupoR=abrirGrupo;abrirGrupo=function(g){if(ehRestrito())g='rec';if(ehInvPerf()&&g!=='ini')g='inv';_abrirGrupoR(g);if(g==='rec')setTimeout(recPrefetch,200)};
 var _aposEntrarR=aposEntrar;aposEntrar=function(f){setTimeout(recAlertaCk,1500);setTimeout(somAreasCarrega,2500);if(ehRestrito()&&MODO!=='tv'){GRUPO='rec';ir('menu');return}_aposEntrarR(f)};
@@ -6215,8 +6250,8 @@ function estadoRec(x){var hoje=hojeISO(),am=agoraMin(),et=x.et||{};
 /* 146 (17/11/2026): conferência cega de verdade. A quantidade e os volumes programados só aparecem para Compras (agenda e
    detalhe) e para Gestor e Administrador (só no detalhe da entrega). Operador e Portaria nunca veem. Durante a conferência
    ninguém vê (o servidor também não manda os números para quem não pode ver). */
-function recVeQtd(x,onde){var p=perfilUsu();if(x&&x.sit==='Em recebimento'&&p!=='Compras')return false;
-  return onde==='card'?p==='Compras':['Compras','Gestor','Administrador'].indexOf(p)>=0}
+function recVeQtd(x,onde){var p=perfilUsu();if(onde==='card')return p==='Compras'||p==='Fiscal';   /* 150: administrador, comprador e fiscal sempre; gestor só concluída */
+  return ['Compras','Fiscal','Administrador'].indexOf(p)>=0||(p==='Gestor'&&!!x&&x.sit==='Concluído')}
 function recCego(x){return !recVeQtd(x,'det')}
 function recNfsTxt(x){return (x.nfs&&x.nfs.length)?x.nfs.join(', '):(x.nf||'')}
 /* 147 (17/11/2026): cor do cartão por situação, nas Janelas e na TV.
@@ -6231,7 +6266,7 @@ function recCor(x){var e=estadoRec(x)[0],am=agoraMin(),hoje=hojeISO(),et=x.et||{
   return 'stOp'+(x.data<hoje||(x.data===hoje&&minH(x.fim)<am)?' stPul':'')}
 function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
   return '<button type="button" class="rcCard '+e[0]+' '+recCor(x)+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
-    '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
+    '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(x.pausa?' (pausa almoço)':'')+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
 /* ----- Centrar na hora atual (17/11/2026, versão 143; Modo TV removido) ----- */
 function recCentrar(){if(!REC.centrar||TELA_ATUAL!=='rec')return;var g=document.querySelector('#rcLista .agG');if(!g)return;REC.centrar=false;
@@ -6308,7 +6343,7 @@ function abrirRecDet(id){REC.fase=-1;var x=REC.lista.filter(function(y){return y
 function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=estadoRec(x),fin=x.sit==='Concluído',et=x.et||{},hj=hojeISO(),cego=recCego(x);
   var h=''+
     '<div class="rcDet '+e[0]+'"><b>'+esc(x.forn)+'</b><span class="rcSt">'+esc(e[1])+'</span></div>'+
-    '<div class="rcInfo"><div>Data<b>'+dSem(x.data)+', '+dmy(x.data)+'</b></div><div>Horário<b>'+esc(x.ini)+' – '+esc(x.fim)+'</b></div>'+
+    '<div class="rcInfo"><div>Data<b>'+dSem(x.data)+', '+dmy(x.data)+'</b></div><div>Horário<b>'+esc(x.ini)+' – '+esc(x.fim)+(x.pausa?' <small>(pausa no almoço)</small>':'')+'</b></div>'+
     '<div>Comprador<b>'+esc(x.comp)+'</b></div><div>Entrega<b>'+(x.critica?'Crítica':'Padrão')+'</b></div>'+
     (x.mot?'<div>Motorista<b>'+esc(x.mot)+'</b></div>':'')+(x.placa?'<div>Placa<b>'+esc(x.placa)+'</b></div>':'')+
     (x.veic?'<div>Veículo<b>'+esc(x.veic)+'</b></div>':'')+(recNfsTxt(x)?'<div>Nota fiscal<b>'+esc(recNfsTxt(x))+'</b></div>':'')+(!cego&&x.vol?'<div>Volume programado<b>'+x.vol+'</b></div>':'')+(fin&&x.volR!=null&&x.volR!==''?'<div>Volume recebido<b>'+esc(x.volR)+'</b></div>':'')+'</div>';
@@ -6327,29 +6362,39 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
     (fin?'<div>Duração<b>'+fmtSeg(x.dur)+'</b></div>':'')+'<div>Operador<b>'+esc(x.op||'–')+'</b></div>'+
     (fin?'<div>Motorista<b>'+esc(x.mot)+'</b></div><div>Assinatura<b>'+(x.ass?'<a href="'+esc(x.ass)+'" target="_blank" rel="noopener">Ver assinatura</a>':'–')+'</b></div>':'')+'</div>';
   /* ações conforme o perfil e a situação */
-  var a='',mais='',bt=function(k,t,sec){return '<p>'+botao(t,"recEtapa('"+k+"')",sec?'s':'p',sec?{cls:'sec'}:null)+'</p>'},naPort=['Na portaria','No fiscal','Liberado pelo fiscal'].indexOf(x.sit)>=0;
+  /* 150: o botão diz quem faz o passo (Portaria · / Fiscal · / Doca ·); o que não é do passo vai para Mais opções */
+  var QUEM_P={nf:'Portaria',libf:'Fiscal',libd:'Portaria',doca:'Doca',desc:'Doca',fdesc:'Doca',etq:'Doca'};
+  var a='',mais='',bt=function(k,t,sec){return '<p>'+botao((QUEM_P[k]?QUEM_P[k]+' · ':'')+t,"recEtapa('"+k+"')",sec?'s':'p',sec?{cls:'sec'}:null)+'</p>'},naPort=['Na portaria','No fiscal','Liberado pelo fiscal'].indexOf(x.sit)>=0;
+  var meuRec=!x.op||String(x.op).toUpperCase()===String(nomeUsu()).toUpperCase()||P.admin;
+  /* chegada adiantada: a portaria avisa, o comprador decide (remarcar para hoje ou entrega crítica) */
+  var adiAb=x.adi&&!x.adi.est;
+  if(adiAb&&(P.agenda&&(x.meu||P.admin)||perfilUsu()==='Compras'))a+=aviso('er','Chegou adiantado: o motorista está na portaria desde as '+hhmm(x.adi.em)+'. Decida:')+'<p class="rcBts">'+botao('Remarcar para hoje','recAdiHoje()','p')+botao('Pedir entrega crítica','recAdiCrit()','s',{cls:'sec'})+'</p>';
   if(P.port){
-    if(x.sit==='Agendado'&&x.data===hj)a+='<div id="rdChegBox"><p>'+botao('Registrar chegada do motorista','recChegForm()','p')+'</p></div>';
-    if(x.sit==='Agendado'&&x.data>hj&&!P.recebe)a+='<p class="rcDica">Só dá para registrar a chegada no dia da entrega.</p>';
+    if(x.sit==='Agendado'&&x.data===hj)a+='<div id="rdChegBox"><p>'+botao('Portaria · Registrar chegada do motorista','recChegForm()','p')+'</p></div>';
+    if(x.sit==='Agendado'&&x.data>hj){if(adiAb)a+='<p class="rcDica">Comprador avisado às '+hhmm(x.adi.em)+'. O motorista aguarda a decisão dele.</p>';
+      else{if(perfilUsu()==='Portaria')a+='<div class="rcTurno"><label class="obr" for="ptTurno">Nome de quem está no turno da portaria</label><input id="ptTurno" maxlength="40" autocomplete="off" data-obr="1"></div>';
+        a+='<p>'+botao('Portaria · Motorista chegou adiantado','recAdiantado()','p')+'</p><p class="rcDica">Esta entrega é para '+dmy(x.data)+' às '+esc(x.ini)+'. O comprador é avisado e decide: remarcar para hoje ou pedir entrega crítica.</p>'}}
     if(x.sit==='Aguardando aval'&&!P.admin)a+='<p class="rcDica">Entrega crítica sem aval: não registre a chegada até o almoxarifado aceitar.</p>';
     if(perfilUsu()==='Portaria'&&['Na portaria','No fiscal','Liberado pelo fiscal'].indexOf(x.sit)>=0)a+='<div class="rcTurno"><label class="obr" for="ptTurno">Nome de quem está no turno da portaria</label><input id="ptTurno" maxlength="40" autocomplete="off" data-obr="1"></div>';
     if(x.sit==='Na portaria')a+=bt('nf','Nota no fiscal');
-    if(x.sit==='No fiscal')a+=bt('libf','Liberado pelo fiscal');
+    if(x.sit==='No fiscal'&&!P.fiscal)a+=bt('libf','Liberado pelo fiscal');
     if(x.sit==='Liberado pelo fiscal')a+=bt('libd','Liberar para a doca');
     if(x.sit==='Liberado para a doca'&&!P.recebe)a+='<p class="rcDica">Motorista liberado. O almoxarifado foi avisado.</p>'}
+  if(P.fiscal&&x.sit==='No fiscal')a+=bt('libf','Liberado pelo fiscal');
   if(P.recebe){
     if((x.sit==='Agendado'||x.sit==='Liberado para a doca')&&x.data<=hj){
       /* 145: quem também é da portaria (administrador) vê primeiro a chegada; pular a portaria fica como opção */
-      if(x.sit==='Agendado'&&P.port&&x.data===hj)a+=bt('doca','Motorista já está na doca (sem portaria)',1);
+      if(x.sit==='Agendado'&&P.port&&x.data===hj)mais+=bt('doca','Motorista já está na doca (sem portaria)',1);
       else{a+=bt('doca','Chegada na doca e conferência');
         if(x.sit==='Agendado')a+='<p class="rcDica">A portaria ainda não registrou a chegada. Se o motorista já está na doca, pode começar assim mesmo.</p>'}}
     if(x.sit==='Agendado'&&x.data>hj)a+='<p class="rcDica">Só dá para iniciar no dia da entrega.</p>';
     if(naPort&&!P.port)a+='<p class="rcDica">O motorista está na portaria ('+esc(x.sit.toLowerCase())+'). Aguarde a liberação para a doca.</p>';
-    if(x.sit==='Em recebimento'){
+    if((x.sit==='Em recebimento'||(fin&&x.pend))&&!meuRec){a+='<p class="rcDica">Em recebimento com <b>'+esc(x.op)+'</b>. Só ele continua as etapas.</p>';mais+='<p>'+botao('Assumir este recebimento','recAssumir()','s',{cls:'sec'})+'</p>'}
+    else if(x.sit==='Em recebimento'){
       if(et.doca&&!et.desc)a+=bt('desc','Início do descarregamento');
       else if(et.doca&&!et.fdesc)a+=bt('fdesc','Fim do descarregamento');
       else a+='<div id="rdFinBox"><p>'+botao('Conferência e liberação do motorista','recAbrirConf()','p')+'</p></div>'}
-    if(fin&&x.pend){
+    if(fin&&x.pend&&meuRec){
       a+='<p>'+botao('Imprimir etiquetas','recEtqJan()','s',{cls:'sec'})+'</p>';   /* 146: etiqueta própria (Master A4 e pequena) logo depois da conferência */
       a+=bt('etq','Identificação concluída')}
     if(fin&&x.praArm)a+=aviso('ok','Identificação concluída. A carga está na fila Para armazenar do Armazenamento.')}
@@ -6357,7 +6402,7 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
   if((x.sit==='Agendado'||x.sit==='Aguardando aval')&&(P.admin||x.meu))mais+='<p>'+botao('Cancelar agendamento','recCancelar()','s',{cls:'sec'})+'</p>';
   if(P.admin)mais+='<p>'+botao('Excluir agendamento','recExcluir()','d')+'</p>';   /* 147: fase de testes, só administrador */
   /* 145: a mensagem fica logo abaixo do botão tocado; Cancelar e Imprimir depois. No computador, duas colunas */
-  hd+='<div id="rdAcao">'+a+'</div><div id="rdMsg">'+(extra||'')+'</div><div id="rdMais">'+mais+'</div>';
+  hd+='<div id="rdAcao">'+a+'</div><div id="rdMsg">'+(extra||'')+'</div><div id="rdMais">'+(mais?'<p>'+botao('Mais opções','recMaisTog()','s',{cls:'sec',id:'rdMaisB'})+'</p><div id="rdMaisBox" hidden>'+mais+'</div>':'')+'</div>';
   var i0=h.indexOf('<div class="rcInfo">');
   $('rdBox').innerHTML=h.slice(0,i0)+'<div class="rdCols"><div class="rdEsq">'+h.slice(i0)+'</div><div class="rdDir">'+hd+'</div></div>';
   if(REC.tm){clearInterval(REC.tm);REC.tm=0}
@@ -6380,7 +6425,7 @@ function recAbrirConf(rc){var x=REC.sel;ASS_OK=false;REC.rc=rc&&rc.linhas?rc:nul
       botao(av?'Material avariado: informe a quantidade':'Tem material avariado?','recAvToggle('+i+')','s',{cls:'sec rcAvB'+(av?' at':''),id:'rfAvB'+i})+
       '<div id="rfAvBox'+i+'"'+(av?'':' hidden')+'><label for="rfAv'+i+'">Quantidade avariada</label><input id="rfAv'+i+'" type="number" inputmode="decimal" min="0" step="any" value="'+esc(av||'')+'"></div></div>'}).join('')+
     (R||x.c1?'<div class="rcQ"><label class="obr" for="rfQuem">Quem está recontando?</label><select id="rfQuem" data-obr="1" onchange="agErroLimpa(this)"><option value="">Escolha a pessoa</option>'+
-      [].map.call(($('nome')||{}).options||[],function(o){return o.value}).filter(function(n){return n&&n.toUpperCase()!==String(x.c1n||'').toUpperCase()}).map(function(n){return '<option'+(n===REC.rq?' selected':'')+'>'+esc(n)+'</option>'}).join('')+
+      (NOMES||[]).slice().filter(function(n){return n&&n.toUpperCase()!==String(x.c1n||'').toUpperCase()}).map(function(n){return '<option'+(n===REC.rq?' selected':'')+'>'+esc(n)+'</option>'}).join('')+
       '</select><small class="rcDica">A recontagem é feita por outra pessoa'+(x.c1n?', não por '+esc(x.c1n):'')+'.</small></div>':'')+
     '<div class="rcQ'+(R&&R.vol?' blocoErro':'')+'"><label class="obr" for="rfVol">Volumes recebidos</label><input id="rfVol" type="number" inputmode="numeric" min="0" step="1" data-obr="1" value="'+esc(R&&R.vol?'':(REC.cvol||''))+'" oninput="agErroLimpa(this)">'+(R&&R.vol?'<div class="msg erro errIn">Conte os volumes de novo.</div>':'')+'</div>'+
     '<p>'+botao('Concluir conferência','recFinalizar()','p')+'</p></div>';
@@ -6482,13 +6527,13 @@ function recHoras(manter){var k=val('agData');if(!manter&&k&&k===REC.kHoras&&$('
   if(!k||!agDataOk(k)){$('agHoras').innerHTML=k?'<p class="rcDica">Termine de digitar a data (dia, mês e ano).</p>':'<p class="rcDica">Escolha a data para ver os horários livres.</p>';return}
   if(k<hojeISO()){$('agHoras').innerHTML=aviso('at','Essa data já passou. Escolha hoje ou uma data futura.');return}
   var vol=agVolN();if(!vol){$('agHoras').innerHTML='<p class="rcDica">Informe o volume total para ver os horários livres: a duração da janela depende dele.</p>';if(manter&&REC.hora)REC.hora='';return}
-  $('agHoras').innerHTML='<p class="rcDica">Buscando horários...</p>';if(manter)TOQUE.el=null;
+  if(manter)TOQUE.el=null;TOQUE.dig=Date.now();
   recHorasGet(k,vol,manter,function(r){if(n!==REC.reqH||val('agData')!==k||agVolN()!==vol)return;
-    if(!r.ok){$('agHoras').innerHTML=msg('erro',r.msg);return}REC.porVol=!!r.porVolume;REC.cfgH=r.cfg||REC.cfgH;REC.durH=r.dur;
+    if(!r.ok){$('agHoras').innerHTML=msg('erro',r.msg);return}REC.porVol=!!r.porVolume;REC.cfgH=r.cfg||REC.cfgH;REC.durH=r.dur;REC.finsH=r.fins||{};REC.pausaH=r.pausa||{};
     if(r.fechado){$('agHoras').innerHTML=aviso('at','Recebimento fechado: '+r.fechado+'. Escolha outro dia ou marque Entrega crítica.');return}
     if(!r.livres.length){$('agHoras').innerHTML=aviso('at','Não há mais horário livre neste dia. Escolha outro dia.');if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.');return}
     $('agHoras').innerHTML='<p class="rcDica">'+(k===hojeISO()?'Horários livres de hoje, depois de agora':'Horários livres neste dia, desde as 8h')+', para <b>'+vol+' volume'+(vol===1?'':'s')+'</b>: janela de <b>'+durTxt(r.dur)+'</b>. <button type="button" class="infDetB" onclick="recComoCalc()">Como é calculado ›</button></p><div class="rcChips">'+
-      r.livres.map(function(h){return '<button type="button" data-h="'+h+'"'+(h===ant?' class="at"':'')+' onclick="recEscHora(this)">'+h+'</button>'}).join('')+'</div>';
+      r.livres.map(function(h){return '<button type="button" data-h="'+h+'"'+(h===ant?' class="at"':'')+' onclick="recEscHora(this)">'+h+((r.fins||{})[h]?' às '+r.fins[h]:'')+((r.pausa||{})[h]?'<small>pausa no almoço</small>':'')+'</button>'}).join('')+'</div>';
     if(ant&&r.livres.indexOf(ant)>=0)REC.hora=ant;else if(ant)avisoJan('O horário '+ant+' não está mais livre. Escolha outro.')})}
 function recEscHora(b){REC.hora=b.getAttribute('data-h');document.querySelectorAll('#agHoras .rcChips button').forEach(function(x){x.classList.toggle('at',x===b)});
   var e=b.closest('.blocoErro');if(e)e.classList.remove('blocoErro');document.querySelectorAll('#psR1 .errIn').forEach(function(x){x.remove()});vib('ok');GUIA.k='';agendarGuia('change')}
@@ -6534,7 +6579,7 @@ function pintarItensRec(){var L=REC.itens,box=$('agLista');if(!L.length){if(box.
     if(!aberta){h+='<button type="button" class="agNotaR" onclick="recAbreNota(\''+esc(nf)+'\')"><span>NF <b>'+esc(nf)+'</b> · '+cab+'</span><i>Ver</i></button>';return}
     h+='<div class="agNota"><div class="agNotaT">Nota fiscal <b>'+esc(nf)+'</b> · '+cab+(nf!==atual?' <a class="agFecha" onclick="recAbreNota(\''+esc(nf)+'\')">Recolher</a>':'')+'</div>'+its.map(function(x){var p=x[0];return '<div class="agIt"><div><b>'+esc(p.c)+'</b><small>'+esc(p.d)+'</small></div><span>'+numBR(p.q)+'</span><button type="button" class="rcX" onclick="recTiraItem('+x[1]+')" aria-label="Tirar '+esc(p.c)+'">×</button></div>'}).join('')+'</div>'});
   if(box._h!==h){box._h=h;box.innerHTML=h}}
-function agResumoTxt(k){if(k===0){var c=$('agCrit').checked,v=agVolN();return esc(dmy(val('agData')))+' às '+esc(c?val('agHora'):REC.hora)+(c?' (crítica)':'')+' · '+v+' volume'+(v===1?'':'s')+(!c&&REC.durH?' · janela de '+durTxt(REC.durH):'')}
+function agResumoTxt(k){if(k===0){var c=$('agCrit').checked,v=agVolN(),fh=!c&&REC.finsH&&REC.finsH[REC.hora];return esc(dmy(val('agData')))+(fh?', das '+esc(REC.hora)+' às '+esc(fh)+(REC.pausaH&&REC.pausaH[REC.hora]?' (pausa no almoço)':''):' às '+esc(c?val('agHora'):REC.hora))+(c?' (crítica)':'')+' · '+v+' volume'+(v===1?'':'s')+(!c&&REC.durH?' · janela de '+durTxt(REC.durH):'')}
   if(k===1)return esc(val('agForn'));
   var n=agNotas();return 'NF '+esc(n.join(', '))+' · '+REC.itens.length+' produto(s)'}
 function agResumo(i){var r=$('agResumo'),h='',nomes=['Data, volume e horário','Fornecedor','Notas e produtos'];
@@ -6652,7 +6697,7 @@ function recEtapa(k){var x=REC.sel,conf={doca:['Conferiu a nota fiscal e os EPIs
     libd:['Liberar o motorista de '+x.forn+' para a doca? O almoxarifado recebe o aviso com som.','Liberar para a doca'],
     arm:['Encerrar a armazenagem agora? Use só se o Endereçar não fechou sozinho (por exemplo, quantidade diferente na etiqueta).','Encerrar armazenagem']}[k];
   var tur='';if(['nf','libf','libd'].indexOf(k)>=0&&perfilUsu()==='Portaria'){tur=val('ptTurno');if(tur.length<2){recErroCampo({campo:'ptTurno',msg:'Informe o nome de quem está no turno da portaria.'});return}}
-  var faz=function(){chamar('apiRecEtapa',[quem(),x.id,k,tur],function(r){if(!r.ok){mostrarErro(r.msg);return}
+  var faz=function(){chamar('apiRecEtapa',[quem(),x.id,k,tur],function(r){if(!r.ok){if(r.atual){recRecarrega(x.id,function(){pintarRecDet(aviso('at',r.msg))});return}mostrarErro(r.msg);return}
     var c={et:r.et,sit:r.sit};if(k==='doca'){c.op=r.op;c.iniMs=r.iniMs;c.iniR=new Date(r.iniMs).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(',','')}
     if(k==='arm'||k==='etq')c.pend=false;if(k==='etq')c.praArm=true;recAtualiza(r,c);vib('ok');if(k==='arm'||k==='libd'||k==='etq')carregarAvisos();
     if(k==='etq'){okGrande();pintarRecDet(blocoFim("ir('rec')"));return}   /* 147: fim do Recebimento */
@@ -6923,8 +6968,8 @@ function rascOferta(t){var r=rascLer(t);RASC_PERG=0;if(!rascValido(r)||MODO==='t
   if(RASC_DIRETO===t){RASC_DIRETO='';rascRestaura(t,r);return}
   RASC_PERG=1;perguntar('Você tem '+NOME_RASC[t]+' pela metade, '+haTempo(r.quando)+'. Quer continuar de onde parou?',
     function(){RASC_PERG=0;rascRestaura(t,r)},function(){RASC_PERG=0;if(tocouNao())rascApaga(t)},{ok:'Continuar tarefa',no:'Começar de novo'})}
-var _irRasc=ir;ir=function(t,m){if(!m&&RASC_AD[t]&&rascLer(t))RASC_PERG=1;   /* segura o rascunho até a pessoa responder */
-  _irRasc(t,m);if(!m&&RASC_AD[t]&&MODO!=='tv')setTimeout(function(){if(TELA_ATUAL===t)rascOferta(t)},450)};
+var _irRasc=ir;ir=function(t,m){var tem=!m&&RASC_AD[t]&&!!rascLer(t);if(tem)RASC_PERG=1;   /* segura o rascunho até a pessoa responder */
+  _irRasc(t,m);if(tem&&MODO!=='tv')setTimeout(function(){if(TELA_ATUAL===t)rascOferta(t);else RASC_PERG=0},450)};   /* 150: só oferece o rascunho que já existia ao entrar */
 /* ao abrir o app: se ficou tarefa pela metade, oferece voltar direto para ela */
 function rascAbertura(n){n=n||0;if(RASC_ABERTO&&!n)return;RASC_ABERTO=1;var r=rascLer();if(!rascValido(r)||MODO==='tv')return;
   if(ACAO.indexOf(TELA_ATUAL)>=0||TELA_ATUAL==='recag')return;   /* já está trabalhando numa tarefa: não interrompe */
@@ -7006,6 +7051,79 @@ function xlsInv(){var r=RI_R;if(!r||!r.lista.length){mostrarErro('Faça a pesqui
   xlsxBaixar('Resultado do inventário',[{nome:'Contagens',linhas:[['Código','Descrição','Posição','Resultado','Sistema','Contado','Data','Quem']].concat(r.lista.map(function(x){var ok=x.res==='Confere'||x.res==='Existe';return [x.item,x.desc,x.end,ok?'Bateu':x.res,x.sis===''||x.sis==null?'':Number(x.sis),x.cont===''||x.cont==null?'':Number(x.cont),x.data,x.quem]}))}])}
 function xlsQuar(){var L=QUAR.lista||[];if(!L.length){mostrarErro('Não há itens em quarentena.');return}
   xlsxBaixar('Itens em quarentena',[{nome:'Quarentena',linhas:[['Código','Descrição','Quantidade','NF','Lote','Fornecedor','Quando','Motivo da irregularidade','Local','Situação','Decisão','Decidido por','Fotos']].concat(L.map(function(q){return [q.c,q.d||'',Number(q.q)||q.q||'',q.nf||'',q.lote||'',q.forn||'',q.quando||'',q.mot||'',q.local||'',q.sit||'Em quarentena',q.dec||'',q.por||'',q.fotos||'']}))}])}
+
+</script>
+<script>
+
+/* ===================== VERSÃO 150 (18/11/2026) ===================== */
+/* ---- bolinha: busca que a pessoa dispara digitando (data, volume, nota) também mostra a bolinha ---- */
+document.addEventListener('input',function(e){if(e.target&&e.target.closest&&e.target.closest('main .esc'))TOQUE.dig=Date.now()},true);
+/* ---- detalhe da entrega ---- */
+function recRecarrega(id,cb){var x=REC.sel;if(!x){if(cb)cb(false);return}
+  chamar('apiRecLista',[quem(),x.data,x.data],function(r){var ok=false;if(r&&r.ok){var y=(r.lista||[]).filter(function(z){return z.id===id})[0];if(y){REC.sel=y;REC.lista=REC.lista.map(function(z){return z.id===id?y:z});ok=true}if(r.perm)REC.perm=r.perm}if(cb)cb(ok)})}
+function recMaisTog(){var b=$('rdMaisBox');if(!b)return;b.hidden=!b.hidden;var t=$('rdMaisB');if(t)t.textContent=b.hidden?'Mais opções':'Fechar opções'}
+function recAssumir(){var x=REC.sel;perguntar('Assumir o recebimento de '+x.forn+'? Hoje está com '+x.op+'. A troca fica registrada.',function(){
+  chamar('apiRecAssumir',[quem(),x.id],function(r){if(!r.ok){mostrarErro(r.msg);return}vib('ok');recRecarrega(x.id,function(){pintarRecDet(aviso('ok',r.msg))})})},null,{ok:'Assumir recebimento'})}
+function recAdiantado(){var x=REC.sel,tur='';if(perfilUsu()==='Portaria'){tur=val('ptTurno');if(tur.length<2){recErroCampo({campo:'ptTurno',msg:'Informe o nome de quem está no turno da portaria.'});return}}
+  perguntar('O motorista de '+x.forn+' chegou antes do dia agendado ('+dmy(x.data)+' às '+x.ini+')? O comprador é avisado na tela e por e-mail e decide.',function(){
+    chamar('apiRecAdiantado',[quem(),x.id,tur],function(r){if(!r.ok){mostrarErro(r.msg);return}vib('ok');REC.sel.adi=r.adi;recAtualiza(r,{adi:r.adi});carregarAvisos();pintarRecDet(aviso('ok',r.msg))})},null,{ok:'Avisar o comprador'})}
+function recAdiHoje(){var x=REC.sel,v=x.vol||0;if(!(v>0)){mostrarErro('Esta entrega está sem volume. Peça entrega crítica.');return}
+  chamar('apiRecHorarios',[quem(),hojeISO(),v],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Não deu para buscar os horários.');return}
+    if(r.fechado||!r.livres.length){abrirJan('Remarcar para hoje',aviso('at',r.fechado?'Recebimento fechado hoje ('+r.fechado+').':'Não há horário livre hoje para '+v+' volumes.')+'<p>'+botao('Pedir entrega crítica','fecharJan();recAdiCrit()','p')+'</p>');return}
+    abrirJan('Remarcar para hoje','<p class="rcDica">Horários livres hoje para <b>'+v+' volumes</b>: janela de <b>'+durTxt(r.dur)+'</b>.</p><div class="rcChips">'+r.livres.map(function(h){return '<button type="button" onclick="recAdiDecide(\'hoje\',\''+h+'\')">'+h+' às '+r.fins[h]+((r.pausa||{})[h]?'<small>pausa no almoço</small>':'')+'</button>'}).join('')+'</div>')})}
+function recAdiCrit(){var x=REC.sel;perguntar('Pedir entrega crítica para hoje, agora? Fica aguardando o aval do almoxarifado.',function(){recAdiDecide('critica','')},null,{ok:'Pedir entrega crítica'})}
+function recAdiDecide(modo,h){var x=REC.sel;fecharJan();chamar('apiRecAdiantadoDecidir',[quem(),x.id,modo,h,''],function(r){if(!r.ok){mostrarErro(r.msg);return}okGrande();carregarAvisos();REC_CACHE={};
+  x.data=hojeISO();recRecarrega(x.id,function(){pintarRecDet(aviso('ok',r.msg))})})}
+/* a mensagem verde do toque some sozinha: a linha do tempo já mostra o que foi feito */
+var _pintarRecDet150=pintarRecDet;pintarRecDet=function(extra){_pintarRecDet150(extra);var m=$('rdMsg');clearTimeout(REC.tmMsg);
+  if(m&&extra&&!/endFim|blocoFim|class="av (er|at)/.test(extra))REC.tmMsg=setTimeout(function(){if($('rdMsg')===m)m.innerHTML=''},6000);
+  var l=document.querySelector('#rdBox .rdLinha');if(l&&!document.querySelector('#rdBox .rdDicaF'))l.insertAdjacentHTML('afterend','<p class="rcDica rdDicaF">Toque numa etapa para ver os horários de cada passo.</p>')};
+/* abrir uma entrega sempre busca a situação de agora (antes mostrava a guardada no aparelho) */
+var _abrirRecDet150=abrirRecDet;abrirRecDet=function(id){var x=REC.lista.filter(function(y){return y.id===id})[0];if(!x)return;REC.sel=x;REC.fase=-1;ir('recd');$('rdBox').innerHTML='';
+  recRecarrega(id,function(){pintarRecDet()})};
+/* ---- retomar: o Recebimento também volta de onde parou (abre a entrega com a situação de agora) ---- */
+NOME_RASC.recd='um Recebimento';
+RASC_AD.recd={s:function(){var x=REC.sel;if(!x||TELA_ATUAL!=='recd')return null;var aberto=x.sit==='Em recebimento'||(x.sit==='Concluído'&&x.pend);if(!aberto){if(rascTodos().recd)rascApaga('recd');return null}
+    var q={},tem=0;document.querySelectorAll('#rdBox [id^="rfQ"],#rdBox #rfVol').forEach(function(e){if(e.value){q[e.id]=e.value;tem=1}});return {id:x.id,data:x.data,forn:x.forn,q:tem?q:null}},
+  r:function(o){REC.sel={id:o.id,data:o.data,forn:o.forn};REC.lista=REC.lista||[];ir('recd');$('rdBox').innerHTML='';recRecarrega(o.id,function(ok){if(!ok){rascApaga('recd');mostrarErro('Não achei mais esta entrega.');return}pintarRecDet();
+    if(o.q&&REC.sel.sit==='Em recebimento'&&REC.sel.et&&REC.sel.et.fdesc){try{recAbrirConf();setTimeout(function(){Object.keys(o.q).forEach(function(i){var e=$(i);if(e)e.value=o.q[i]})},150)}catch(e){}}})}};
+var _irRasc150=ir;ir=function(t,m){if(t==='recd'){_irRasc(t,m);return}_irRasc150(t,m)};
+var _rascAb150=rascAbertura;rascAbertura=function(n){var r=rascLer();if(r&&r.t==='recd'&&rascValido(r)&&!n&&!RASC_ABERTO){RASC_ABERTO=1;
+    var tenta=function(k){if(TELA_ATUAL!=='menu'||PERG.aberta){if(k<10)setTimeout(function(){tenta(k+1)},3000);return}
+      perguntar('Ficou um recebimento pela metade: '+(r.o.forn||'')+', '+haTempo(r.quando)+'. Quer continuar de onde parou?',function(){rascRestaura('recd',r)},function(){if(tocouNao())rascApaga('recd')},{ok:'Continuar tarefa',no:'Descartar'})};tenta(0);return}
+  return _rascAb150(n)};
+setInterval(function(){try{if(TELA_ATUAL==='recd')rascGuarda('recd',null)}catch(e){}},4000);
+document.addEventListener('input',function(e){if(TELA_ATUAL==='recd'&&e.target&&/^rf/.test(e.target.id||''))setTimeout(function(){rascGuarda('recd',null)},50)},true);
+/* ---- perfil Gestor: vê tudo, não opera (o servidor também barra) ---- */
+function marcaGestor(){document.body.classList.toggle('ehGestor',perfilUsu()==='Gestor')}
+var _aplicarPerfilRec150=aplicarPerfilRec;aplicarPerfilRec=function(){_aplicarPerfilRec150.apply(this,arguments);marcaGestor()};
+setTimeout(marcaGestor,800);
+/* ---- Etiqueta de produto: pela nota (recebida e conferida) ou avulsa (registrada) ---- */
+var EP={aba:'n',r:null};
+function epAbrir(){epAba(EP.aba||'n');$('epAvBt').innerHTML=botao('Imprimir pequena (Zebra)',"epAvulsa('p')",'p')+botao('Imprimir Master (A4)',"epAvulsa('m')",'s',{cls:'sec'})}
+function epAba(a){EP.aba=a;$('epAbN').classList.toggle('at',a==='n');$('epAbA').classList.toggle('at',a==='a');$('epNota').hidden=a!=='n';$('epAv').hidden=a!=='a'}
+function epDesc(){var it=ITMAP[String(val('epCod')).toUpperCase()]||[];$('epDsc').textContent=it[1]||''}
+function epBuscaNF(){var nf=val('epNF');if(nf.length!==9){agErro('epNF','A nota fiscal tem 9 números.');return}TOQUE.dig=Date.now();
+  chamar('apiEtqNota',[quem(),nf],function(r){if(!r.ok){$('epLista').innerHTML=aviso('at',r.msg);return}EP.r=r;
+    $('epLista').innerHTML='<p class="rcDica">'+esc(r.forn)+' · recebida em '+esc(dmy(r.data))+'. Quantas etiquetas de cada produto e quanto vai em cada uma. A última leva o que sobrar.</p>'+r.lista.map(function(p,i){var pd=embDoCod(p.c),n=pd>0?Math.max(1,Math.ceil(p.q/pd)):1,q=pd>0?Math.min(pd,p.q):p.q;
+      return '<div class="rcQ"><b>'+esc(p.c)+'</b> · recebido '+esc(numBR(p.q))+(p.quar?' · <b>em quarentena</b>':'')+'<div class="cpFil" style="grid-template-columns:1fr 1fr"><label for="epn'+i+'">Etiquetas</label><input id="epn'+i+'" type="number" inputmode="numeric" min="0" step="1" value="'+n+'"><label for="epq'+i+'">Qtd. por etiqueta</label><input id="epq'+i+'" type="number" inputmode="decimal" min="0" step="any" value="'+q+'"></div></div>'}).join('')+
+      '<div class="bLin">'+botao('Imprimir pequena (Zebra)',"epNotaImp('p')",'p')+botao('Imprimir Master (A4)',"epNotaImp('m')",'s',{cls:'sec'})+'</div>'})}
+function epLinhas(c,desc,tot,n,q,nf,quar){var L=[],d=new Date(),p2=function(x){return ('0'+x).slice(-2)},dt=p2(d.getDate())+'/'+p2(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(2),s0=d.getHours()*3600+d.getMinutes()*60+d.getSeconds(),it=ITMAP[c]||[],u=it[9]==='Kilo'?'KG':'PC';
+  for(var k=0;k<n;k++){var qk=tot>0?(k<n-1?q:Math.round((tot-q*(n-1))*1000)/1000):q;if(!(qk>0))qk=q;var t=(s0+k)%86400,hr=p2(Math.floor(t/3600))+':'+p2(Math.floor(t/60)%60)+':'+p2(t%60),nfx=String(nf||'').replace(/[^0-9A-Za-z-]/g,'');
+    L.push({c:c,desc:desc||it[1]||'',q:qk,u:u,nf:nfx,dt:dt,vol:(k+1)+'/'+n,quem:nomeUsu()||'',qual:it[11]||'Passagem livre',quar:!!quar,qr:[c,String(qk),u,nfx,dt,hr].join('|')+'|'})}return L}
+function epImprime(L,mod){if(!L.length){avisoJan('Informe quantas etiquetas imprimir.');return}
+  var b=$('etqImp');if(!b){b=document.createElement('div');b.id='etqImp';document.body.appendChild(b)}b.innerHTML=L.map(mod==='m'?etqMaster:etqPeq).join('');
+  document.body.classList.add('peR');var st=document.createElement('style');st.id='peRP';st.textContent='@page{size:'+(mod==='m'?'297mm 210mm':'100mm 70mm')+';margin:0}';document.head.appendChild(st);
+  var fim=function(){document.body.classList.remove('peR');var y=$('peRP');if(y)y.remove();window.removeEventListener('afterprint',fim)};window.addEventListener('afterprint',fim);setTimeout(function(){window.print();setTimeout(fim,2000)},120)}
+function epNotaImp(mod){var r=EP.r;if(!r)return;var L=[];r.lista.forEach(function(p,i){var n=Math.max(0,Math.round(nIn(val('epn'+i)))),q=nIn(val('epq'+i));if(!(n>0))return;if(!(q>0))q=p.q;L=L.concat(epLinhas(p.c,p.d,p.q,n,q,p.nf,p.quar))});epImprime(L,mod)}
+function epAvulsa(mod){var d={c:String(val('epCod')).toUpperCase(),q:val('epQ'),n:val('epN'),nf:val('epNFa'),mot:val('epMot')};
+  chamar('apiEtqAvulsa',[quem(),d],function(r){if(!r.ok){if(r.campo&&$(r.campo))agErro(r.campo,r.msg);else mostrarErro(r.msg);return}vib('ok');
+    var q=nIn(d.q),n=Math.max(1,Math.round(nIn(d.n)));epImprime(epLinhas(d.c,'',0,n,q,d.nf,false),mod)})}
+/* ---- tela no computador e na TV: o app inteiro cresce na proporção da tela (letras, botões, cartões), sem esticar ---- */
+function escalaTela(){var w=window.innerWidth||0,h=window.innerHeight||0,z=1;
+  if(w>=900&&!/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent||''))z=Math.max(1,Math.min(w/1180,h/760,2.4));
+  z=Math.round(z*100)/100;if(document.body.style.zoom!==String(z))document.body.style.zoom=z===1?'':z;document.body.classList.toggle('telaGde',z>1)}
+window.addEventListener('resize',function(){clearTimeout(window._esc);window._esc=setTimeout(escalaTela,150)});escalaTela();
 
 </script>
 </body>
