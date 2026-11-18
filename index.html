@@ -1877,10 +1877,11 @@ html body main .esc :is(.passo.pIlu,#psG1) .etqIlu{margin:0!important}
 html body main .concl .cTop i{display:none!important}
 html body main .concl .cTop{margin-top:4px}
 #okG{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
-#okG.on{opacity:1;animation:okSai 1.1s forwards}
+#okG.on{opacity:1;animation:okSai 2s forwards}
 #okG i{width:132px;height:132px;border-radius:50%;background:#16A34A;color:#fff;display:flex;align-items:center;justify-content:center;transform:scale(.6);transition:transform .25s cubic-bezier(.2,1.4,.4,1)}
-#okG.on i{transform:scale(1)}#okG i svg{width:72px;height:72px}
-@keyframes okSai{0%,75%{opacity:1}100%{opacity:0}}
+#okG.on i{transform:scale(1)}
+.rcNum{font-size:20px;font-weight:800;color:#B85E14;margin:6px 0 4px;letter-spacing:.5px}#okG i svg{width:72px;height:72px}
+@keyframes okSai{0%,80%{opacity:1}100%{opacity:0}}   /* 152: 1,6 s parada e 0,4 s sumindo (antes 1,1 s no total) */
 @media (prefers-reduced-motion:reduce){#okG i{transition:none}}
 #tecJan{position:fixed;inset:0;z-index:95;display:none}#tecJan.on{display:block}
 #tecFundo{position:absolute;inset:0;background:rgba(0,0,0,.45)}
@@ -2353,7 +2354,7 @@ if(POS.indexOf('<'+'?')===0||MODO.indexOf('<'+'?')===0){(function(){var q={};loc
 /* Fala com o servidor: dentro do Google usa google.script.run; no GitHub manda pelo link /exec */
 /* No GitHub, os pedidos feitos juntos (ex.: ao abrir o app) vão numa viagem só ao Google: bem mais rápido */
 /* 12/11/2026 (versão 121): número da versão da tela. Tem que ser igual ao APP_VER do App.gs */
-var VER_TELA=151,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
+var VER_TELA=152,VER_REV=0,VER_SRV=0;   /* 13/11/2026: VER_REV = ajuste só da tela (o App.gs não muda) */
 function pintaVer(){var hv=$('hVer');if(hv)hv.textContent='v'+VER_TELA+(VER_REV?'.'+VER_REV:'');var ok=!VER_SRV||VER_SRV===VER_TELA,t='Versão '+VER_TELA+(VER_REV?'.'+VER_REV:'')+(VER_SRV&&!ok?' (sistema na '+VER_SRV+')':'');
   if($('lVer'))$('lVer').innerHTML=ok?esc(t):aviso('at','A tela está na versão '+VER_TELA+' e o sistema na versão '+VER_SRV+'. Avise o líder.');
   if($('rgVer'))$('rgVer').innerHTML=VER_SRV?(ok?aviso('ok','Versão '+VER_TELA+': a tela e o sistema estão na mesma versão.'):aviso('er','A tela (index.html) está na versão '+VER_TELA+' e o sistema (App.gs) na versão '+VER_SRV+'. Publique os dois arquivos da mesma versão.')):''}
@@ -2458,7 +2459,7 @@ document.addEventListener('click',function(e){var i=e.target&&e.target.closest&&
   if(!('ontouchstart' in window||navigator.maxTouchPoints>0))return;e.preventDefault();i.blur();tecAbrir(i,{emb:Number(i.getAttribute('data-emb'))||0,cod:i.getAttribute('data-cod')||''})},true);
 document.addEventListener('focusin',function(e){var i=e.target;if(i&&i.matches&&i.matches('main .esc input[type=number]')&&('ontouchstart' in window||navigator.maxTouchPoints>0)&&!i.readOnly)i.setAttribute('inputmode','none')},true);
 function okGrande(){if(MODO==='tv')return;var o=$('okG');if(!o){o=document.createElement('div');o.id='okG';o.className='np';o.setAttribute('aria-hidden','true');o.innerHTML='<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>';document.body.appendChild(o)}
-  clearTimeout(o._t);o.classList.remove('on');void o.offsetWidth;o.classList.add('on');o._t=setTimeout(function(){o.classList.remove('on')},1100)}
+  clearTimeout(o._t);o.classList.remove('on');void o.offsetWidth;o.classList.add('on');o._t=setTimeout(function(){o.classList.remove('on')},2000)}
 function gGrid(q,d,nf){d=String(d||'');if(/^\d{4}-\d{2}-\d{2}/.test(d))d=d.slice(0,10).split('-').reverse().join('/');return '<div class="gGrid"><div class="gBx"><small>Quantidade</small><b>'+esc(q)+'</b></div><div class="gBx"><small>Recebido</small><b>'+esc(d||'-')+'</b></div>'+(nf?'<div class="gBx gW"><small>NF</small><b>'+esc(nf)+'</b></div>':'')+'</div>'}
 /* Peça cartaoPeca (versão 133): o cartão padrão da peça — código grande, descrição, Quantidade, Recebido e NF */
 function cartaoPeca(cod,desc,q,d,nf,peq){clearTimeout(cartaoPeca._t);cartaoPeca._t=setTimeout(chkPeca,0);return '<div class="gPeca"><div class="gCodG gCodM">'+esc(cod)+'</div><div class="gDesc">'+esc(desc||'')+'</div>'+gGrid(q,d,nf)+'</div>'}
@@ -6266,7 +6267,7 @@ function recCor(x){var e=estadoRec(x)[0],am=agoraMin(),hoje=hojeISO(),et=x.et||{
   return 'stOp'+(x.data<hoje||(x.data===hoje&&minH(x.fim)<am)?' stPul':'')}
 function cartaoRec(x){var e=estadoRec(x),vol=x.vol>0?x.vol:x.prod.reduce(function(a,p){return a+(Number(p.v)||0)},0),cg=!recVeQtd(x,'card');
   return '<button type="button" class="rcCard '+e[0]+' '+recCor(x)+'" onclick="abrirRecDet(\''+esc(x.id)+'\')"><b>'+esc(x.forn)+'</b>'+
-    '<span class="rcHr">'+esc(x.ini)+' – '+esc(x.fim)+(x.pausa?' (pausa almoço)':'')+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
+    '<span class="rcHr">'+(x.num?esc(x.num)+' · ':'')+esc(x.ini)+' – '+esc(x.fim)+(x.pausa?' (pausa almoço)':'')+(cg||!vol?'':' · '+vol+' volume'+(vol===1?'':'s'))+(x.critica?' · <i class="rcCrit">Crítica</i>':'')+'</span>'+
     '<span class="rcSt">'+esc(e[1])+'</span></button>'}
 /* ----- Centrar na hora atual (17/11/2026, versão 143; Modo TV removido) ----- */
 function recCentrar(){if(!REC.centrar||TELA_ATUAL!=='rec')return;var g=document.querySelector('#rcLista .agG');if(!g)return;REC.centrar=false;
@@ -6342,7 +6343,7 @@ function recFaseVer(i){REC.fase=REC.fase===i?-1:i;var b=$('rdLinhaBox');if(b&&RE
 function abrirRecDet(id){REC.fase=-1;var x=REC.lista.filter(function(y){return y.id===id})[0];if(!x)return;REC.sel=x;ir('recd');pintarRecDet()}
 function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=estadoRec(x),fin=x.sit==='Concluído',et=x.et||{},hj=hojeISO(),cego=recCego(x);
   var h=''+
-    '<div class="rcDet '+e[0]+'"><b>'+esc(x.forn)+'</b><span class="rcSt">'+esc(e[1])+'</span></div>'+
+    '<div class="rcDet '+e[0]+'"><b>'+esc(x.forn)+'</b><span class="rcSt">'+esc(e[1])+'</span></div>'+(x.num?'<p class="rcNum">'+esc(x.num)+'</p>':'')+
     '<div class="rcInfo"><div>Data<b>'+dSem(x.data)+', '+dmy(x.data)+'</b></div><div>Horário<b>'+esc(x.ini)+' – '+esc(x.fim)+(x.pausa?' <small>(pausa no almoço)</small>':'')+'</b></div>'+
     '<div>Comprador<b>'+esc(x.comp)+'</b></div><div>Entrega<b>'+(x.critica?'Crítica':'Padrão')+'</b></div>'+
     (x.mot?'<div>Motorista<b>'+esc(x.mot)+'</b></div>':'')+(x.placa?'<div>Placa<b>'+esc(x.placa)+'</b></div>':'')+
@@ -6400,6 +6401,7 @@ function pintarRecDet(extra){var x=REC.sel,P=REC.perm||{};if(!x)return;var e=est
     if(fin&&x.praArm)a+=aviso('ok','Identificação concluída. A carga está na fila Para armazenar do Armazenamento.')}
   if(x.sit==='Aguardando aval'&&P.admin)a+='<p class="rcBts">'+botao('Aceitar entrega crítica','recAval(true)','p')+botao('Recusar','recAval(false)','s',{cls:'sec'})+'</p>';
   if((x.sit==='Agendado'||x.sit==='Aguardando aval')&&(P.admin||x.meu))mais+='<p>'+botao('Cancelar agendamento','recCancelar()','s',{cls:'sec'})+'</p>';
+  mais+='<p>'+botao('Baixar comprovante (PDF)','recPdf(REC.sel.id)','s',{cls:'sec'})+'</p>';   /* 152 */
   if(P.admin)mais+='<p>'+botao('Excluir agendamento','recExcluir()','d')+'</p>';   /* 147: fase de testes, só administrador */
   /* 145: a mensagem fica logo abaixo do botão tocado; Cancelar e Imprimir depois. No computador, duas colunas */
   hd+='<div id="rdAcao">'+a+'</div><div id="rdMsg">'+(extra||'')+'</div><div id="rdMais">'+(mais?'<p>'+botao('Mais opções','recMaisTog()','s',{cls:'sec',id:'rdMaisB'})+'</p><div id="rdMaisBox" hidden>'+mais+'</div>':'')+'</div>';
@@ -6597,7 +6599,7 @@ function recAgendar(){limparErros();document.querySelectorAll('#psR4 .errIn').fo
     chamar('apiRecAgendar',[quem(),d],function(r){
       if(!r.ok){REC.horC={};if(r.livres){REC.ver=0;recHoras();GUIA.k='';agendarGuia('change')}var f=r.campo&&$(r.campo);if(f&&vis(f)){agErro(r.campo,r.msg)}else mostrarErro(r.msg);return}
       REC.horC={};$('agBtn').parentNode.hidden=true;carregarAvisos();
-      $('agMsg').innerHTML=msg('ok',r.msg)+blocoFim("contTela('recag','agData')")})};
+      REC.agFim=r.id;$('agMsg').innerHTML=msg('ok',r.msg)+'<p class="np">'+botao('Baixar comprovante (PDF)',"recPdf(REC.agFim)",'s',{cls:'sec'})+'</p>'+blocoFim("contTela('recag','agData')")})};
   var n=REC.itens.length;
   if(vol<n||vol>n*40)perguntar('O volume total ('+vol+') parece fora do esperado para '+n+' produto(s) em '+agNotas().length+' nota(s). Confirma '+vol+' volume(s)?',enviar,null,{ok:'Confirmar volume'});
   else enviar()}
@@ -7061,6 +7063,10 @@ document.addEventListener('input',function(e){if(e.target&&e.target.closest&&e.t
 /* ---- detalhe da entrega ---- */
 function recRecarrega(id,cb){var x=REC.sel;if(!x){if(cb)cb(false);return}
   chamar('apiRecLista',[quem(),x.data,x.data],function(r){var ok=false;if(r&&r.ok){var y=(r.lista||[]).filter(function(z){return z.id===id})[0];if(y){REC.sel=y;REC.lista=REC.lista.map(function(z){return z.id===id?y:z});ok=true}if(r.perm)REC.perm=r.perm}if(cb)cb(ok)})}
+/* 152: comprovante do agendamento em PDF (gerado no servidor, baixado no celular ou no computador) */
+function recPdf(id){if(!id)return;chamar('apiRecComprovante',[quem(),id],function(r){if(!r||!r.ok){mostrarErro((r&&r.msg)||'Não deu para gerar o PDF.');return}
+  try{var b=atob(r.b64),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([u],{type:'application/pdf'}));
+    a.download=String(r.nome||'comprovante.pdf').replace(/[\\\/:*?"<>|]/g,'-');document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000);vib('ok')}catch(e){mostrarErro('Não deu para baixar o PDF neste aparelho.')}})}
 function recMaisTog(){var b=$('rdMaisBox');if(!b)return;b.hidden=!b.hidden;var t=$('rdMaisB');if(t)t.textContent=b.hidden?'Mais opções':'Fechar opções'}
 function recAssumir(){var x=REC.sel;perguntar('Assumir o recebimento de '+x.forn+'? Hoje está com '+x.op+'. A troca fica registrada.',function(){
   chamar('apiRecAssumir',[quem(),x.id],function(r){if(!r.ok){mostrarErro(r.msg);return}vib('ok');recRecarrega(x.id,function(){pintarRecDet(aviso('ok',r.msg))})})},null,{ok:'Assumir recebimento'})}
